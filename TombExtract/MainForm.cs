@@ -17,6 +17,9 @@ namespace TombExtract
         readonly TR2Utilities TR2 = new TR2Utilities();
         readonly TR3Utilities TR3 = new TR3Utilities();
 
+        // Progress form
+        private static ProgressForm progressForm;
+
         // Destination path
         private string savegameDestinationPath;
 
@@ -98,8 +101,6 @@ namespace TombExtract
 
                     TR3.SetSavegameSourcePath(fileBrowserDialog.FileName);
                     TR3.PopulateSourceSavegames(cklSourceSavegamesTR3);
-
-                    prgProgress.Value = 0;
                 }
             }
 
@@ -135,8 +136,6 @@ namespace TombExtract
 
                     TR3.SetSavegameDestinationPath(fileBrowserDialog.FileName);
                     TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
-
-                    prgProgress.Value = 0;
                 }
             }
 
@@ -194,11 +193,15 @@ namespace TombExtract
             }
             else
             {
-                prgProgress.Value = 0;
-
                 DisableButtons();
 
-                TR1.WriteSavegamesToDestination(selectedSavegames, prgProgress, rdoNoConvertTR1, rdoToPCTR1, rdoToPS4TR1,
+                progressForm = new ProgressForm();
+                progressForm.Owner = this;
+                progressForm.Show();
+
+                TR1.SetProgressForm(progressForm);
+
+                TR1.WriteSavegamesToDestination(selectedSavegames, rdoNoConvertTR1, rdoToPCTR1, rdoToPS4TR1,
                     cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3,
                     btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile,
                     btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1);
@@ -233,11 +236,15 @@ namespace TombExtract
             }
             else
             {
-                prgProgress.Value = 0;
-
                 DisableButtons();
 
-                TR2.WriteSavegamesToDestination(selectedSavegames, prgProgress, rdoNoConvertTR2, rdoToPCTR2, rdoToPS4TR2,
+                progressForm = new ProgressForm();
+                progressForm.Owner = this;
+                progressForm.Show();
+
+                TR2.SetProgressForm(progressForm);
+
+                TR2.WriteSavegamesToDestination(selectedSavegames, rdoNoConvertTR2, rdoToPCTR2, rdoToPS4TR2,
                     cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3,
                     btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile,
                     btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR2);
@@ -272,11 +279,15 @@ namespace TombExtract
             }
             else
             {
-                prgProgress.Value = 0;
-
                 DisableButtons();
 
-                TR3.WriteSavegamesToDestination(selectedSavegames, prgProgress, rdoNoConvertTR3, rdoToPCTR3, rdoToPS4TR3,
+                progressForm = new ProgressForm();
+                progressForm.Owner = this;
+                progressForm.Show();
+
+                TR3.SetProgressForm(progressForm);
+
+                TR3.WriteSavegamesToDestination(selectedSavegames, rdoNoConvertTR3, rdoToPCTR3, rdoToPS4TR3,
                     cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3,
                     btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile,
                     btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3);
@@ -335,6 +346,9 @@ namespace TombExtract
             {
                 btnExtractTR1.Text = "Convert";
             }
+
+            rdoNoConvertTR2.Checked = rdoNoConvertTR1.Checked;
+            rdoNoConvertTR3.Checked = rdoNoConvertTR1.Checked;
         }
 
         private void rdoToPCTR1_CheckedChanged(object sender, EventArgs e)
@@ -347,6 +361,9 @@ namespace TombExtract
             {
                 btnExtractTR1.Text = "Convert";
             }
+
+            rdoToPCTR2.Checked = rdoToPCTR1.Checked;
+            rdoToPCTR3.Checked = rdoToPCTR1.Checked;
         }
 
         private void rdoToPS4TR1_CheckedChanged(object sender, EventArgs e)
@@ -359,6 +376,9 @@ namespace TombExtract
             {
                 btnExtractTR1.Text = "Convert";
             }
+
+            rdoToPS4TR2.Checked = rdoToPS4TR1.Checked;
+            rdoToPS4TR3.Checked = rdoToPS4TR1.Checked;
         }
 
         private void rdoNoConvertTR2_CheckedChanged(object sender, EventArgs e)
@@ -371,6 +391,9 @@ namespace TombExtract
             {
                 btnExtractTR2.Text = "Convert";
             }
+
+            rdoNoConvertTR1.Checked = rdoNoConvertTR2.Checked;
+            rdoNoConvertTR3.Checked = rdoNoConvertTR2.Checked;
         }
 
         private void rdoToPCTR2_CheckedChanged(object sender, EventArgs e)
@@ -383,6 +406,9 @@ namespace TombExtract
             {
                 btnExtractTR2.Text = "Convert";
             }
+
+            rdoToPCTR1.Checked = rdoToPCTR2.Checked;
+            rdoToPCTR3.Checked = rdoToPCTR2.Checked;
         }
 
         private void rdoToPS4TR2_CheckedChanged(object sender, EventArgs e)
@@ -395,6 +421,9 @@ namespace TombExtract
             {
                 btnExtractTR2.Text = "Convert";
             }
+
+            rdoToPS4TR1.Checked = rdoToPS4TR2.Checked;
+            rdoToPS4TR3.Checked = rdoToPS4TR2.Checked;
         }
 
         private void rdoNoConvertTR3_CheckedChanged(object sender, EventArgs e)
@@ -407,6 +436,9 @@ namespace TombExtract
             {
                 btnExtractTR3.Text = "Convert";
             }
+
+            rdoNoConvertTR1.Checked = rdoNoConvertTR3.Checked;
+            rdoNoConvertTR2.Checked = rdoNoConvertTR3.Checked;
         }
 
         private void rdoToPCTR3_CheckedChanged(object sender, EventArgs e)
@@ -419,6 +451,9 @@ namespace TombExtract
             {
                 btnExtractTR3.Text = "Convert";
             }
+
+            rdoToPCTR1.Checked = rdoToPCTR3.Checked;
+            rdoToPCTR2.Checked = rdoToPCTR3.Checked;
         }
 
         private void rdoToPS4TR3_CheckedChanged(object sender, EventArgs e)
@@ -431,6 +466,9 @@ namespace TombExtract
             {
                 btnExtractTR3.Text = "Convert";
             }
+
+            rdoToPS4TR1.Checked = rdoToPS4TR3.Checked;
+            rdoToPS4TR2.Checked = rdoToPS4TR3.Checked;
         }
     }
 }

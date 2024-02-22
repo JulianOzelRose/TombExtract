@@ -24,7 +24,7 @@ namespace TombExtract
         private int totalSavegames = 0;
 
         private BackgroundWorker bgWorker;
-        private ToolStripProgressBar prgProgress;
+        private ProgressForm progressForm;
 
         private bool isWriting = false;
 
@@ -143,7 +143,7 @@ namespace TombExtract
             }
         }
 
-        public void WriteSavegamesToDestination(List<Savegame> savegames, ToolStripProgressBar prgProgress,
+        public void WriteSavegamesToDestination(List<Savegame> savegames,
             RadioButton rdoNoConvert, RadioButton rdoToPC, RadioButton rdoToPS4, CheckedListBox cklSourceSavegamesTR1,
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1,
             Button btnExtractTR2, Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
@@ -158,15 +158,15 @@ namespace TombExtract
 
             totalSavegames = savegames.Count;
 
-            this.prgProgress = prgProgress;
-
             bgWorker = new BackgroundWorker();
             bgWorker.WorkerReportsProgress = true;
             bgWorker.DoWork += WriteSavegamesBackground;
+
             bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, cklSourceSavegamesTR1, cklSourceSavegamesTR2,
                 cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
                 grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3);
-            bgWorker.ProgressChanged += UpdateProgress;
+
+            bgWorker.ProgressChanged += UpdateProgressBar;
 
             try
             {
@@ -184,6 +184,8 @@ namespace TombExtract
             GroupBox grpConvertTR2, GroupBox grpConvertTR3, Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite,
             ListBox lstDestinationSavegamesTR3)
         {
+            progressForm.Close();
+
             if (e.Error != null)
             {
                 MessageBox.Show(e.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -196,8 +198,8 @@ namespace TombExtract
             {
                 string operation = "";
 
-                if (noConvert) operation = "extracted";
-                else if (toPC || toPS4) operation = "converted";
+                if (noConvert) operation = "transferred";
+                else if (toPC || toPS4) operation = "converted and transferred";
 
                 string savegamesText = totalSavegames == 1 ? "savegame" : "savegames";
 
@@ -240,6 +242,8 @@ namespace TombExtract
             {
                 for (int i = 0; i < savegames.Count; i++)
                 {
+                    progressForm.UpdateStatusMessage($"Copying '{savegames[i].Name} - {savegames[i].Number}'...");
+
                     int currentSavegameOffset = savegames[i].Offset;
 
                     byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
@@ -252,6 +256,8 @@ namespace TombExtract
 
                     if (toPC)
                     {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to PC...");
+
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
                             int currentRelativeOffset = offset - currentSavegameOffset;
@@ -268,6 +274,8 @@ namespace TombExtract
                     }
                     else if (toPS4)
                     {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to to PS4...");
+
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
                             int currentRelativeOffset = offset - currentSavegameOffset;
@@ -284,6 +292,8 @@ namespace TombExtract
                     }
                     else if (noConvert)
                     {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to destination...");
+
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
                             WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
@@ -305,9 +315,15 @@ namespace TombExtract
             return isWriting;
         }
 
-        private void UpdateProgress(object sender, ProgressChangedEventArgs e)
+        private void UpdateProgressBar(object sender, ProgressChangedEventArgs e)
         {
-            prgProgress.Value = e.ProgressPercentage;
+            progressForm.UpdateProgressBar(e.ProgressPercentage);
+            progressForm.UpdatePercentage(e.ProgressPercentage);
+        }
+
+        public void SetProgressForm(ProgressForm progressForm)
+        {
+            this.progressForm = progressForm;
         }
 
         public void SetSavegameSourcePath(string path)

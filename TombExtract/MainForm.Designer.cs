@@ -81,8 +81,6 @@ namespace TombExtract
             this.lblDestinationSavegamesTR3 = new System.Windows.Forms.Label();
             this.lblSourceSavegamesTR3 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR3 = new System.Windows.Forms.CheckedListBox();
-            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.prgProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -91,7 +89,6 @@ namespace TombExtract
             this.grpConvertTR2.SuspendLayout();
             this.tpTR3.SuspendLayout();
             this.grpConvertTR3.SuspendLayout();
-            this.ssrStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFilePaths
@@ -107,7 +104,7 @@ namespace TombExtract
             this.pnlFilePaths.Controls.Add(this.txtSourceFilePath);
             this.pnlFilePaths.Location = new System.Drawing.Point(5, 6);
             this.pnlFilePaths.Name = "pnlFilePaths";
-            this.pnlFilePaths.Size = new System.Drawing.Size(582, 71);
+            this.pnlFilePaths.Size = new System.Drawing.Size(583, 71);
             this.pnlFilePaths.TabIndex = 0;
             // 
             // chkBackupOnWrite
@@ -643,32 +640,14 @@ namespace TombExtract
             this.cklSourceSavegamesTR3.Size = new System.Drawing.Size(238, 304);
             this.cklSourceSavegamesTR3.TabIndex = 21;
             // 
-            // ssrStatusStrip
-            // 
-            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prgProgress});
-            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 510);
-            this.ssrStatusStrip.Name = "ssrStatusStrip";
-            this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ssrStatusStrip.Size = new System.Drawing.Size(595, 22);
-            this.ssrStatusStrip.SizingGrip = false;
-            this.ssrStatusStrip.TabIndex = 2;
-            this.ssrStatusStrip.Text = "statusStrip1";
-            // 
-            // prgProgress
-            // 
-            this.prgProgress.Name = "prgProgress";
-            this.prgProgress.Size = new System.Drawing.Size(590, 16);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(595, 532);
+            this.ClientSize = new System.Drawing.Size(595, 513);
             this.Controls.Add(this.tabGame);
             this.Controls.Add(this.pnlFilePaths);
-            this.Controls.Add(this.ssrStatusStrip);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -692,10 +671,7 @@ namespace TombExtract
             this.tpTR3.PerformLayout();
             this.grpConvertTR3.ResumeLayout(false);
             this.grpConvertTR3.PerformLayout();
-            this.ssrStatusStrip.ResumeLayout(false);
-            this.ssrStatusStrip.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -715,7 +691,6 @@ namespace TombExtract
         private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR2;
         private System.Windows.Forms.Label lblDestinationSavegamesTR2;
         private System.Windows.Forms.Label lblSourceSavegamesTR2;
-        private System.Windows.Forms.StatusStrip ssrStatusStrip;
         private System.Windows.Forms.Button btnExitTR2;
         private System.Windows.Forms.Button btnExtractTR2;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR2;
@@ -753,7 +728,6 @@ namespace TombExtract
         private System.Windows.Forms.Button btnAboutTR1;
         private System.Windows.Forms.Button btnAboutTR2;
         private System.Windows.Forms.Button btnAboutTR3;
-        private System.Windows.Forms.ToolStripProgressBar prgProgress;
     }
 }
 
