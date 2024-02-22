@@ -4,14 +4,14 @@ to and from PS4/PC format. Useful for downloading savegames from the Internet wi
 simply navigate to the next section below. For a savegame editor for Tomb Raider I-III Remastered,
 check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/4d8500cc-753e-4f5e-a19b-0eab9145451f)
+![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/06aa26b3-8572-4e41-b589-39ba82af3403)
 
 ## Installation and use
 To use this program, simply navigate to the [Release](https://github.com/JulianOzelRose/TombExtract/tree/master/TombExtract/bin/x64/Release)
 folder, then download `TombExtract.exe`. Once downloaded, click the "..." button next to source file textbox to select the savegame source. Then click the "..." button
 next to the destination file to select your savegame file. It should be located in:
 
-`C:\Users\USERNAME\AppData\Roaming\TRX\77777777777777777\savegame.dat`.
+`C:\Users\USERNAME\AppData\Roaming\TRX\77777777777777777\savegame.dat`
 
 Just replace "USERNAME" with your username, and "77777777777777777" with whatever numeric ID you see in that folder. Use the checklist on the left to select which savegames
 you would like to transfer/convert. The buttons below allow the check list allow you to specify whether or not you would like to convert your savegames. Select the relevant
