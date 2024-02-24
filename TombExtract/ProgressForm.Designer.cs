@@ -64,7 +64,7 @@ namespace TombExtract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 76);
+            this.ClientSize = new System.Drawing.Size(450, 72);
             this.ControlBox = false;
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.lblStatus);

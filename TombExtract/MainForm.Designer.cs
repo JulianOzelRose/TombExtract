@@ -207,7 +207,7 @@ namespace TombExtract
             // 
             // btnAboutTR1
             // 
-            this.btnAboutTR1.Location = new System.Drawing.Point(404, 363);
+            this.btnAboutTR1.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR1.Name = "btnAboutTR1";
             this.btnAboutTR1.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR1.TabIndex = 23;
@@ -292,7 +292,7 @@ namespace TombExtract
             // 
             // btnExitTR1
             // 
-            this.btnExitTR1.Location = new System.Drawing.Point(323, 363);
+            this.btnExitTR1.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR1.Name = "btnExitTR1";
             this.btnExitTR1.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR1.TabIndex = 16;
@@ -303,7 +303,7 @@ namespace TombExtract
             // btnExtractTR1
             // 
             this.btnExtractTR1.Enabled = false;
-            this.btnExtractTR1.Location = new System.Drawing.Point(485, 363);
+            this.btnExtractTR1.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR1.Name = "btnExtractTR1";
             this.btnExtractTR1.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR1.TabIndex = 15;
@@ -359,7 +359,7 @@ namespace TombExtract
             // 
             // btnAboutTR2
             // 
-            this.btnAboutTR2.Location = new System.Drawing.Point(404, 363);
+            this.btnAboutTR2.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR2.Name = "btnAboutTR2";
             this.btnAboutTR2.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR2.TabIndex = 25;
@@ -444,7 +444,7 @@ namespace TombExtract
             // 
             // btnExitTR2
             // 
-            this.btnExitTR2.Location = new System.Drawing.Point(323, 363);
+            this.btnExitTR2.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR2.Name = "btnExitTR2";
             this.btnExitTR2.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR2.TabIndex = 9;
@@ -455,7 +455,7 @@ namespace TombExtract
             // btnExtractTR2
             // 
             this.btnExtractTR2.Enabled = false;
-            this.btnExtractTR2.Location = new System.Drawing.Point(485, 363);
+            this.btnExtractTR2.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR2.Name = "btnExtractTR2";
             this.btnExtractTR2.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR2.TabIndex = 8;
@@ -510,7 +510,7 @@ namespace TombExtract
             // 
             // btnAboutTR3
             // 
-            this.btnAboutTR3.Location = new System.Drawing.Point(404, 363);
+            this.btnAboutTR3.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR3.Name = "btnAboutTR3";
             this.btnAboutTR3.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR3.TabIndex = 30;
@@ -595,7 +595,7 @@ namespace TombExtract
             // 
             // btnExitTR3
             // 
-            this.btnExitTR3.Location = new System.Drawing.Point(323, 363);
+            this.btnExitTR3.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR3.Name = "btnExitTR3";
             this.btnExitTR3.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR3.TabIndex = 25;
@@ -606,7 +606,7 @@ namespace TombExtract
             // btnExtractTR3
             // 
             this.btnExtractTR3.Enabled = false;
-            this.btnExtractTR3.Location = new System.Drawing.Point(485, 363);
+            this.btnExtractTR3.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR3.Name = "btnExtractTR3";
             this.btnExtractTR3.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR3.TabIndex = 24;
