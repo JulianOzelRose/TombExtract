@@ -105,7 +105,7 @@ namespace TombExtract
                 UInt16 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
                 byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset, levelIndexOffset);
 
-                if (saveNumber != 0 && levelIndex >= 1 && levelIndex <= 22)
+                if (saveNumber != 0 && levelIndex >= 1 && levelIndex <= 23)
                 {
                     string levelName = levelNames[levelIndex];
                     Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName);
@@ -127,7 +127,7 @@ namespace TombExtract
                 UInt16 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
                 byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset, levelIndexOffset);
 
-                if (saveNumber != 0 && levelIndex >= 1 && levelIndex <= 22)
+                if (saveNumber != 0 && levelIndex >= 1 && levelIndex <= 23)
                 {
                     string levelName = levelNames[levelIndex];
                     Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName);
