@@ -81,6 +81,19 @@ namespace TombExtract
             this.lblDestinationSavegamesTR3 = new System.Windows.Forms.Label();
             this.lblSourceSavegamesTR3 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR3 = new System.Windows.Forms.CheckedListBox();
+            this.tsrToolStrip = new System.Windows.Forms.ToolStrip();
+            this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsmiBrowseSourceFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBrowseDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFileSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsddbHelp = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSendFeedback = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -89,6 +102,8 @@ namespace TombExtract
             this.grpConvertTR2.SuspendLayout();
             this.tpTR3.SuspendLayout();
             this.grpConvertTR3.SuspendLayout();
+            this.tsrToolStrip.SuspendLayout();
+            this.ssrStatusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFilePaths
@@ -102,7 +117,7 @@ namespace TombExtract
             this.pnlFilePaths.Controls.Add(this.lblSourceFile);
             this.pnlFilePaths.Controls.Add(this.txtDestinationFilePath);
             this.pnlFilePaths.Controls.Add(this.txtSourceFilePath);
-            this.pnlFilePaths.Location = new System.Drawing.Point(5, 6);
+            this.pnlFilePaths.Location = new System.Drawing.Point(5, 29);
             this.pnlFilePaths.Name = "pnlFilePaths";
             this.pnlFilePaths.Size = new System.Drawing.Size(583, 71);
             this.pnlFilePaths.TabIndex = 0;
@@ -178,7 +193,7 @@ namespace TombExtract
             this.tabGame.Controls.Add(this.tpTR2);
             this.tabGame.Controls.Add(this.tpTR3);
             this.tabGame.ItemSize = new System.Drawing.Size(194, 22);
-            this.tabGame.Location = new System.Drawing.Point(5, 81);
+            this.tabGame.Location = new System.Drawing.Point(5, 104);
             this.tabGame.Name = "tabGame";
             this.tabGame.SelectedIndex = 0;
             this.tabGame.Size = new System.Drawing.Size(586, 426);
@@ -231,7 +246,7 @@ namespace TombExtract
             this.grpConvertTR1.Controls.Add(this.rdoToPS4TR1);
             this.grpConvertTR1.Controls.Add(this.rdoToPCTR1);
             this.grpConvertTR1.Controls.Add(this.rdoNoConvertTR1);
-            this.grpConvertTR1.Location = new System.Drawing.Point(15, 341);
+            this.grpConvertTR1.Location = new System.Drawing.Point(15, 343);
             this.grpConvertTR1.Name = "grpConvertTR1";
             this.grpConvertTR1.Size = new System.Drawing.Size(238, 46);
             this.grpConvertTR1.TabIndex = 21;
@@ -372,7 +387,7 @@ namespace TombExtract
             this.grpConvertTR2.Controls.Add(this.rdoToPS4TR2);
             this.grpConvertTR2.Controls.Add(this.rdoToPCTR2);
             this.grpConvertTR2.Controls.Add(this.rdoNoConvertTR2);
-            this.grpConvertTR2.Location = new System.Drawing.Point(15, 341);
+            this.grpConvertTR2.Location = new System.Drawing.Point(15, 343);
             this.grpConvertTR2.Name = "grpConvertTR2";
             this.grpConvertTR2.Size = new System.Drawing.Size(238, 46);
             this.grpConvertTR2.TabIndex = 24;
@@ -523,7 +538,7 @@ namespace TombExtract
             this.grpConvertTR3.Controls.Add(this.rdoToPS4TR3);
             this.grpConvertTR3.Controls.Add(this.rdoToPCTR3);
             this.grpConvertTR3.Controls.Add(this.rdoNoConvertTR3);
-            this.grpConvertTR3.Location = new System.Drawing.Point(15, 341);
+            this.grpConvertTR3.Location = new System.Drawing.Point(15, 343);
             this.grpConvertTR3.Name = "grpConvertTR3";
             this.grpConvertTR3.Size = new System.Drawing.Size(238, 46);
             this.grpConvertTR3.TabIndex = 29;
@@ -640,12 +655,130 @@ namespace TombExtract
             this.cklSourceSavegamesTR3.Size = new System.Drawing.Size(238, 304);
             this.cklSourceSavegamesTR3.TabIndex = 21;
             // 
+            // tsrToolStrip
+            // 
+            this.tsrToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tsrToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsddbFile,
+            this.tsddbHelp});
+            this.tsrToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.tsrToolStrip.Name = "tsrToolStrip";
+            this.tsrToolStrip.Size = new System.Drawing.Size(595, 25);
+            this.tsrToolStrip.TabIndex = 2;
+            this.tsrToolStrip.Text = "toolStrip1";
+            // 
+            // tsddbFile
+            // 
+            this.tsddbFile.AutoToolTip = false;
+            this.tsddbFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsddbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiBrowseSourceFile,
+            this.tsmiBrowseDestinationFile,
+            this.tsmiExtract,
+            this.tsmiFileSeparator,
+            this.tsmiExit});
+            this.tsddbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsddbFile.Image")));
+            this.tsddbFile.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddbFile.Name = "tsddbFile";
+            this.tsddbFile.ShowDropDownArrow = false;
+            this.tsddbFile.Size = new System.Drawing.Size(29, 22);
+            this.tsddbFile.Text = "File";
+            // 
+            // tsmiBrowseSourceFile
+            // 
+            this.tsmiBrowseSourceFile.Name = "tsmiBrowseSourceFile";
+            this.tsmiBrowseSourceFile.Size = new System.Drawing.Size(183, 22);
+            this.tsmiBrowseSourceFile.Text = "Browse source...";
+            this.tsmiBrowseSourceFile.Click += new System.EventHandler(this.tsmiBrowseSourceFile_Click);
+            // 
+            // tsmiBrowseDestinationFile
+            // 
+            this.tsmiBrowseDestinationFile.Name = "tsmiBrowseDestinationFile";
+            this.tsmiBrowseDestinationFile.Size = new System.Drawing.Size(183, 22);
+            this.tsmiBrowseDestinationFile.Text = "Browse destination...";
+            this.tsmiBrowseDestinationFile.Click += new System.EventHandler(this.tsmiBrowseDestinationFile_Click);
+            // 
+            // tsmiExtract
+            // 
+            this.tsmiExtract.Name = "tsmiExtract";
+            this.tsmiExtract.Size = new System.Drawing.Size(183, 22);
+            this.tsmiExtract.Text = "Extract";
+            this.tsmiExtract.Click += new System.EventHandler(this.tsmiExtract_Click);
+            // 
+            // tsmiFileSeparator
+            // 
+            this.tsmiFileSeparator.Name = "tsmiFileSeparator";
+            this.tsmiFileSeparator.Size = new System.Drawing.Size(180, 6);
+            // 
+            // tsmiExit
+            // 
+            this.tsmiExit.Name = "tsmiExit";
+            this.tsmiExit.Size = new System.Drawing.Size(183, 22);
+            this.tsmiExit.Text = "Exit";
+            this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
+            // 
+            // tsddbHelp
+            // 
+            this.tsddbHelp.AutoToolTip = false;
+            this.tsddbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsddbHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiViewReadme,
+            this.tsmiSendFeedback,
+            this.tsmiAbout});
+            this.tsddbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsddbHelp.Image")));
+            this.tsddbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddbHelp.Name = "tsddbHelp";
+            this.tsddbHelp.ShowDropDownArrow = false;
+            this.tsddbHelp.Size = new System.Drawing.Size(36, 22);
+            this.tsddbHelp.Text = "Help";
+            // 
+            // tsmiViewReadme
+            // 
+            this.tsmiViewReadme.Name = "tsmiViewReadme";
+            this.tsmiViewReadme.Size = new System.Drawing.Size(153, 22);
+            this.tsmiViewReadme.Text = "View README";
+            this.tsmiViewReadme.Click += new System.EventHandler(this.tsmiViewReadme_Click);
+            // 
+            // tsmiSendFeedback
+            // 
+            this.tsmiSendFeedback.Name = "tsmiSendFeedback";
+            this.tsmiSendFeedback.Size = new System.Drawing.Size(153, 22);
+            this.tsmiSendFeedback.Text = "Send Feedback";
+            this.tsmiSendFeedback.Click += new System.EventHandler(this.tsmiSendFeedback_Click);
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(153, 22);
+            this.tsmiAbout.Text = "About";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
+            // 
+            // ssrStatusStrip
+            // 
+            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.slblStatus});
+            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 533);
+            this.ssrStatusStrip.Name = "ssrStatusStrip";
+            this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.ssrStatusStrip.Size = new System.Drawing.Size(595, 22);
+            this.ssrStatusStrip.SizingGrip = false;
+            this.ssrStatusStrip.TabIndex = 3;
+            this.ssrStatusStrip.Text = "statusStrip1";
+            // 
+            // slblStatus
+            // 
+            this.slblStatus.Name = "slblStatus";
+            this.slblStatus.Size = new System.Drawing.Size(39, 17);
+            this.slblStatus.Text = "Ready";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(595, 513);
+            this.ClientSize = new System.Drawing.Size(595, 555);
+            this.Controls.Add(this.ssrStatusStrip);
+            this.Controls.Add(this.tsrToolStrip);
             this.Controls.Add(this.tabGame);
             this.Controls.Add(this.pnlFilePaths);
             this.DoubleBuffered = true;
@@ -671,7 +804,12 @@ namespace TombExtract
             this.tpTR3.PerformLayout();
             this.grpConvertTR3.ResumeLayout(false);
             this.grpConvertTR3.PerformLayout();
+            this.tsrToolStrip.ResumeLayout(false);
+            this.tsrToolStrip.PerformLayout();
+            this.ssrStatusStrip.ResumeLayout(false);
+            this.ssrStatusStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -728,6 +866,19 @@ namespace TombExtract
         private System.Windows.Forms.Button btnAboutTR1;
         private System.Windows.Forms.Button btnAboutTR2;
         private System.Windows.Forms.Button btnAboutTR3;
+        private System.Windows.Forms.ToolStrip tsrToolStrip;
+        private System.Windows.Forms.ToolStripDropDownButton tsddbFile;
+        private System.Windows.Forms.ToolStripDropDownButton tsddbHelp;
+        private System.Windows.Forms.StatusStrip ssrStatusStrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmiViewReadme;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSendFeedback;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseSourceFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseDestinationFile;
+        private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExit;
+        private System.Windows.Forms.ToolStripStatusLabel slblStatus;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExtract;
     }
 }
 

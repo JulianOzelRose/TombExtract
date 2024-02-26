@@ -141,7 +141,9 @@ namespace TombExtract
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1,
             Button btnExtractTR2, Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
             GroupBox grpConvertTR1, GroupBox grpConvertTR2, GroupBox grpConvertTR3, Button btnBrowseSourceFile,
-            Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1)
+            Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
+            ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
+            ToolStripMenuItem tsmiExtract)
         {
             isWriting = true;
 
@@ -158,16 +160,18 @@ namespace TombExtract
             bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, cklSourceSavegamesTR1, cklSourceSavegamesTR2,
                 cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
                 grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite,
-                lstDestinationSavegamesTR1);
+                lstDestinationSavegamesTR1, tsmiBrowseSourceFile, tsmiBrowseDestinationFile, slblStatus, tsmiExtract);
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
             try
             {
+                slblStatus.Text = "Extracting savegames...";
                 bgWorker.RunWorkerAsync(savegames);
             }
             catch (Exception ex)
             {
+                slblStatus.Text = $"Error extracting savegames.";
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -176,16 +180,20 @@ namespace TombExtract
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1, Button btnExtractTR2,
             Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3, GroupBox grpConvertTR1,
             GroupBox grpConvertTR2, GroupBox grpConvertTR3, Button btnBrowseSourceFile,
-            Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1)
+            Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
+            ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
+            ToolStripMenuItem tsmiExtract)
         {
             progressForm.Close();
 
             if (e.Error != null)
             {
+                slblStatus.Text = $"Error transferring savegames.";
                 MessageBox.Show(e.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (e.Cancelled)
             {
+                slblStatus.Text = $"Transfer canceled.";
                 MessageBox.Show("Operation was cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -196,6 +204,8 @@ namespace TombExtract
                 else if (toPC || toPS4) operation = "converted and transferred";
 
                 string savegamesText = totalSavegames == 1 ? "savegame" : "savegames";
+
+                slblStatus.Text = $"Successfully {operation} {totalSavegames} {savegamesText} to destination file.";
 
                 MessageBox.Show($"Successfully {operation} {totalSavegames} Tomb Raider I {savegamesText} to destination file.",
                                 "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -221,6 +231,10 @@ namespace TombExtract
 
             btnBrowseSourceFile.Enabled = true;
             btnBrowseDestinationFile.Enabled = true;
+
+            tsmiBrowseSourceFile.Enabled = true;
+            tsmiBrowseDestinationFile.Enabled = true;
+            tsmiExtract.Enabled = true;
 
             chkBackupOnWrite.Enabled = true;
 
