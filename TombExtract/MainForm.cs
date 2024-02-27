@@ -129,6 +129,10 @@ namespace TombExtract
             btnSelectAllTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
             btnSelectAllTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
 
+            tsmiExtract.Enabled = ((cklSourceSavegamesTR1.Items.Count > 0 ||
+                                    cklSourceSavegamesTR1.Items.Count > 0 ||
+                                    cklSourceSavegamesTR1.Items.Count > 0) && !string.IsNullOrEmpty(txtDestinationFilePath.Text));
+
             chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtSourceFilePath.Text) && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
         }
 
@@ -165,6 +169,10 @@ namespace TombExtract
             btnSelectAllTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
             btnSelectAllTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
             btnSelectAllTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
+
+            tsmiExtract.Enabled = ((cklSourceSavegamesTR1.Items.Count > 0 ||
+                                    cklSourceSavegamesTR1.Items.Count > 0 ||
+                                    cklSourceSavegamesTR1.Items.Count > 0) && !string.IsNullOrEmpty(txtDestinationFilePath.Text));
 
             chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtSourceFilePath.Text) && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
         }

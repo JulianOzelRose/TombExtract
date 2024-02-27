@@ -700,6 +700,7 @@ namespace TombExtract
             // 
             // tsmiExtract
             // 
+            this.tsmiExtract.Enabled = false;
             this.tsmiExtract.Name = "tsmiExtract";
             this.tsmiExtract.Size = new System.Drawing.Size(183, 22);
             this.tsmiExtract.Text = "Extract";
