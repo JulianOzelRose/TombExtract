@@ -92,6 +92,12 @@ namespace TombExtract
             chkBackupOnWrite.Enabled = false;
         }
 
+        private bool IsValidSavegame(string path)
+        {
+            FileInfo fileInfo = new FileInfo(path);
+            return fileInfo.Length >= 0x152004;
+        }
+
         private void BrowseSourceFile()
         {
             using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
@@ -102,6 +108,12 @@ namespace TombExtract
 
                 if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
+                    if (!IsValidSavegame(fileBrowserDialog.FileName))
+                    {
+                        MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     txtSourceFilePath.Text = fileBrowserDialog.FileName;
 
                     TR1.SetSavegameSourcePath(fileBrowserDialog.FileName);
@@ -146,6 +158,12 @@ namespace TombExtract
 
                 if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
+                    if (!IsValidSavegame(fileBrowserDialog.FileName))
+                    {
+                        MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     txtDestinationFilePath.Text = fileBrowserDialog.FileName;
                     savegameDestinationPath = fileBrowserDialog.FileName;
 
