@@ -222,11 +222,6 @@ namespace TombExtract
 
         private void ExtractSavegamesTR1()
         {
-            if (chkBackupOnWrite.Checked)
-            {
-                CreateBackup();
-            }
-
             List<Savegame> selectedSavegames = new List<Savegame>();
 
             for (int i = 0; i < cklSourceSavegamesTR1.Items.Count; i++)
@@ -248,6 +243,24 @@ namespace TombExtract
             }
             else
             {
+                int numOverwrites = TR1.GetNumOverwrites(selectedSavegames);
+
+                if (numOverwrites > 0)
+                {
+                    DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                if (chkBackupOnWrite.Checked)
+                {
+                    CreateBackup();
+                }
+
                 DisableButtons();
 
                 progressForm = new ProgressForm();
@@ -266,11 +279,6 @@ namespace TombExtract
 
         private void ExtractSavegamesTR2()
         {
-            if (chkBackupOnWrite.Checked)
-            {
-                CreateBackup();
-            }
-
             List<Savegame> selectedSavegames = new List<Savegame>();
 
             for (int i = 0; i < cklSourceSavegamesTR2.Items.Count; i++)
@@ -292,6 +300,24 @@ namespace TombExtract
             }
             else
             {
+                int numOverwrites = TR2.GetNumOverwrites(selectedSavegames);
+
+                if (numOverwrites > 0)
+                {
+                    DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                if (chkBackupOnWrite.Checked)
+                {
+                    CreateBackup();
+                }
+
                 DisableButtons();
 
                 progressForm = new ProgressForm();
@@ -310,11 +336,6 @@ namespace TombExtract
 
         private void ExtractSavegamesTR3()
         {
-            if (chkBackupOnWrite.Checked)
-            {
-                CreateBackup();
-            }
-
             List<Savegame> selectedSavegames = new List<Savegame>();
 
             for (int i = 0; i < cklSourceSavegamesTR3.Items.Count; i++)
@@ -336,6 +357,24 @@ namespace TombExtract
             }
             else
             {
+                int numOverwrites = TR3.GetNumOverwrites(selectedSavegames);
+
+                if (numOverwrites > 0)
+                {
+                    DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                if (chkBackupOnWrite.Checked)
+                {
+                    CreateBackup();
+                }
+
                 DisableButtons();
 
                 progressForm = new ProgressForm();

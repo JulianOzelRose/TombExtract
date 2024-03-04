@@ -136,6 +136,23 @@ namespace TombExtract
             }
         }
 
+        public int GetNumOverwrites(List<Savegame> savegames)
+        {
+            int numOverwrites = 0;
+
+            for (int i = 0; i < savegames.Count; i++)
+            {
+                int currentSavegameOffset = savegames[i].Offset;
+
+                if (ReadByte(savegameDestinationPath, currentSavegameOffset + saveNumberOffset) != 0)
+                {
+                    numOverwrites++;
+                }
+            }
+
+            return numOverwrites;
+        }
+
         public void WriteSavegamesToDestination(List<Savegame> savegames,
             RadioButton rdoNoConvert, RadioButton rdoToPC, RadioButton rdoToPS4, CheckedListBox cklSourceSavegamesTR1,
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1,
