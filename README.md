@@ -4,7 +4,7 @@ to and from PC/PS4 format. Useful for downloading savegames from the Internet wi
 to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider I-III Remastered,
 check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/9aca5418-103b-4001-9c7d-d0c4d98e2647)
+![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/52d25f49-a8e3-449a-bf89-45f8b53c3ee5)
 
 ## Installation and use
 To use this program, simply navigate to the [Release](https://github.com/JulianOzelRose/TombExtract/tree/master/TombExtract/bin/x64/Release)
