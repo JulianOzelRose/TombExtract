@@ -94,6 +94,7 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsmiFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -140,6 +141,7 @@ namespace TombExtract
             this.btnBrowseDestinationFile.Size = new System.Drawing.Size(29, 23);
             this.btnBrowseDestinationFile.TabIndex = 5;
             this.btnBrowseDestinationFile.Text = "...";
+            this.btnBrowseDestinationFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBrowseDestinationFile.UseVisualStyleBackColor = true;
             this.btnBrowseDestinationFile.Click += new System.EventHandler(this.btnBrowseDestinationFile_Click);
             // 
@@ -150,6 +152,7 @@ namespace TombExtract
             this.btnBrowseSourceFile.Size = new System.Drawing.Size(29, 23);
             this.btnBrowseSourceFile.TabIndex = 4;
             this.btnBrowseSourceFile.Text = "...";
+            this.btnBrowseSourceFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBrowseSourceFile.UseVisualStyleBackColor = true;
             this.btnBrowseSourceFile.Click += new System.EventHandler(this.btnBrowseSourceFile_Click);
             // 
@@ -291,11 +294,12 @@ namespace TombExtract
             // lblArrowTR1
             // 
             this.lblArrowTR1.AutoSize = true;
+            this.lblArrowTR1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR1.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR1.Name = "lblArrowTR1";
-            this.lblArrowTR1.Size = new System.Drawing.Size(25, 13);
+            this.lblArrowTR1.Size = new System.Drawing.Size(25, 20);
             this.lblArrowTR1.TabIndex = 18;
-            this.lblArrowTR1.Text = "---->";
+            this.lblArrowTR1.Text = "→";
             // 
             // lstDestinationSavegamesTR1
             // 
@@ -443,11 +447,12 @@ namespace TombExtract
             // lblArrowTR2
             // 
             this.lblArrowTR2.AutoSize = true;
+            this.lblArrowTR2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR2.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR2.Name = "lblArrowTR2";
-            this.lblArrowTR2.Size = new System.Drawing.Size(25, 13);
+            this.lblArrowTR2.Size = new System.Drawing.Size(25, 20);
             this.lblArrowTR2.TabIndex = 11;
-            this.lblArrowTR2.Text = "---->";
+            this.lblArrowTR2.Text = "→";
             // 
             // lstDestinationSavegamesTR2
             // 
@@ -594,11 +599,12 @@ namespace TombExtract
             // lblArrowTR3
             // 
             this.lblArrowTR3.AutoSize = true;
+            this.lblArrowTR3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR3.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR3.Name = "lblArrowTR3";
-            this.lblArrowTR3.Size = new System.Drawing.Size(25, 13);
+            this.lblArrowTR3.Size = new System.Drawing.Size(25, 20);
             this.lblArrowTR3.TabIndex = 27;
-            this.lblArrowTR3.Text = "---->";
+            this.lblArrowTR3.Text = "→";
             // 
             // lstDestinationSavegamesTR3
             // 
@@ -674,8 +680,9 @@ namespace TombExtract
             this.tsddbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBrowseSourceFile,
             this.tsmiBrowseDestinationFile,
-            this.tsmiExtract,
             this.tsmiFileSeparator,
+            this.tsmiExtract,
+            this.tsmiFileSeparator2,
             this.tsmiExit});
             this.tsddbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsddbFile.Image")));
             this.tsddbFile.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -687,34 +694,34 @@ namespace TombExtract
             // tsmiBrowseSourceFile
             // 
             this.tsmiBrowseSourceFile.Name = "tsmiBrowseSourceFile";
-            this.tsmiBrowseSourceFile.Size = new System.Drawing.Size(183, 22);
-            this.tsmiBrowseSourceFile.Text = "Browse source...";
+            this.tsmiBrowseSourceFile.Size = new System.Drawing.Size(202, 22);
+            this.tsmiBrowseSourceFile.Text = "Browse source file...";
             this.tsmiBrowseSourceFile.Click += new System.EventHandler(this.tsmiBrowseSourceFile_Click);
             // 
             // tsmiBrowseDestinationFile
             // 
             this.tsmiBrowseDestinationFile.Name = "tsmiBrowseDestinationFile";
-            this.tsmiBrowseDestinationFile.Size = new System.Drawing.Size(183, 22);
-            this.tsmiBrowseDestinationFile.Text = "Browse destination...";
+            this.tsmiBrowseDestinationFile.Size = new System.Drawing.Size(202, 22);
+            this.tsmiBrowseDestinationFile.Text = "Browse destination file...";
             this.tsmiBrowseDestinationFile.Click += new System.EventHandler(this.tsmiBrowseDestinationFile_Click);
             // 
             // tsmiExtract
             // 
             this.tsmiExtract.Enabled = false;
             this.tsmiExtract.Name = "tsmiExtract";
-            this.tsmiExtract.Size = new System.Drawing.Size(183, 22);
+            this.tsmiExtract.Size = new System.Drawing.Size(202, 22);
             this.tsmiExtract.Text = "Extract";
             this.tsmiExtract.Click += new System.EventHandler(this.tsmiExtract_Click);
             // 
             // tsmiFileSeparator
             // 
             this.tsmiFileSeparator.Name = "tsmiFileSeparator";
-            this.tsmiFileSeparator.Size = new System.Drawing.Size(180, 6);
+            this.tsmiFileSeparator.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(183, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(202, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -771,6 +778,11 @@ namespace TombExtract
             this.slblStatus.Name = "slblStatus";
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
+            // 
+            // tsmiFileSeparator2
+            // 
+            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
+            this.tsmiFileSeparator2.Size = new System.Drawing.Size(199, 6);
             // 
             // MainForm
             // 
@@ -880,6 +892,7 @@ namespace TombExtract
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
         private System.Windows.Forms.ToolStripStatusLabel slblStatus;
         private System.Windows.Forms.ToolStripMenuItem tsmiExtract;
+        private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator2;
     }
 }
 
