@@ -45,7 +45,7 @@ namespace TombExtract
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(134, 348);
+            this.btnOK.Location = new System.Drawing.Point(134, 349);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(92, 30);
             this.btnOK.TabIndex = 1;
@@ -81,7 +81,7 @@ namespace TombExtract
             this.lblVersionNumber.Name = "lblVersionNumber";
             this.lblVersionNumber.Size = new System.Drawing.Size(39, 16);
             this.lblVersionNumber.TabIndex = 4;
-            this.lblVersionNumber.Text = "v0.81";
+            this.lblVersionNumber.Text = "v0.90";
             // 
             // lblAuthorName
             // 
