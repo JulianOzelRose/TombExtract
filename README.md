@@ -1,10 +1,11 @@
 # Tomb Raider I-III Remastered Savegame Extractor
 This is a tool for extracting individual Tomb Raider I-III Remastered savegames from one file to another. It also includes the ability to convert savegames
-to and from PC/PS4 format. Useful for downloading savegames from the Internet without having to replace your entire savegame file, or transferring savegames
+between PC, PS4, and Nintendo Switch format. Useful for downloading savegames from the Internet without having to replace your entire savegame file, or transferring savegames
 to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider I-III Remastered,
 check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/52d25f49-a8e3-449a-bf89-45f8b53c3ee5)
+![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/e4fea35f-70d3-4f5a-99f8-c94f85c943a1)
+
 
 ## Installation and use
 To use this program, simply navigate to the [Release](https://github.com/JulianOzelRose/TombExtract/tree/master/TombExtract/bin/x64/Release)
