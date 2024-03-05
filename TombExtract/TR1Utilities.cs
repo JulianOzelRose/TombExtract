@@ -66,7 +66,7 @@ namespace TombExtract
             return ReadInt32(path, savegameOffset + saveNumberOffset);
         }
 
-        private byte GetLevelIndex(string path, int savegameOffset, int levelIndexOffset)
+        private byte GetLevelIndex(string path, int savegameOffset)
         {
             return ReadByte(path, savegameOffset + levelIndexOffset);
         }
@@ -102,7 +102,7 @@ namespace TombExtract
             {
                 int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
 
-                byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset, levelIndexOffset);
+                byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset);
 
                 if (levelIndex >= 1 && levelIndex <= 19)
                 {
@@ -123,7 +123,7 @@ namespace TombExtract
             {
                 int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
 
-                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset, levelIndexOffset);
+                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
 
                 if (levelIndex >= 1 && levelIndex <= 19)
                 {
@@ -147,8 +147,9 @@ namespace TombExtract
             for (int i = 0; i < savegames.Count; i++)
             {
                 int currentSavegameOffset = savegames[i].Offset;
+                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
 
-                if (ReadByte(savegameDestinationPath, currentSavegameOffset + saveNumberOffset) != 0)
+                if (levelIndex >= 1 && levelIndex <= 19)
                 {
                     numOverwrites++;
                 }
