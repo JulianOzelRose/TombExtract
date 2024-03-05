@@ -104,7 +104,7 @@ namespace TombExtract
 
                 byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset, levelIndexOffset);
 
-                if (levelIndex >= 1 && levelIndex <= 22)
+                if (levelIndex >= 1 && levelIndex <= 19)
                 {
                     Int32 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
                     string levelName = levelNames[levelIndex];
@@ -125,7 +125,7 @@ namespace TombExtract
 
                 byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset, levelIndexOffset);
 
-                if (levelIndex >= 1 && levelIndex <= 22)
+                if (levelIndex >= 1 && levelIndex <= 19)
                 {
                     Int32 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
                     string levelName = levelNames[levelIndex];
