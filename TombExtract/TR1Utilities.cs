@@ -17,9 +17,13 @@ namespace TombExtract
         private const int BASE_SAVEGAME_OFFSET_TR1 = 0x2000;
         private const int SAVEGAME_ITERATOR = 0x3800;
 
-        private bool toPC = false;
-        private bool toPS4 = false;
-        private bool noConvert = false;
+        private bool PS4_TO_PC = false;
+        private bool PC_TO_PS4 = false;
+        private bool SWITCH_TO_PC = false;
+        private bool NO_CONVERT = false;
+        private bool PC_TO_SWITCH = false;
+        private bool PS4_TO_SWITCH = false;
+        private bool SWITCH_TO_PS4 = false;
 
         private int totalSavegames = 0;
 
@@ -153,20 +157,45 @@ namespace TombExtract
             return numOverwrites;
         }
 
-        public void WriteSavegamesToDestination(List<Savegame> savegames,
-            RadioButton rdoNoConvert, RadioButton rdoToPC, RadioButton rdoToPS4, CheckedListBox cklSourceSavegamesTR1,
+        public void WriteSavegamesToDestination(List<Savegame> savegames, CheckedListBox cklSourceSavegamesTR1,
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1,
             Button btnExtractTR2, Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
-            GroupBox grpConvertTR1, GroupBox grpConvertTR2, GroupBox grpConvertTR3, Button btnBrowseSourceFile,
-            Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
+            Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
             ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
-            ToolStripMenuItem tsmiExtract)
+            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3)
         {
             isWriting = true;
 
-            noConvert = rdoNoConvert.Checked;
-            toPC = rdoToPC.Checked;
-            toPS4 = rdoToPS4.Checked;
+            int conversion = cmbConversionTR1.SelectedIndex;
+
+            if (conversion == 0)
+            {
+                NO_CONVERT = true;
+            }
+            else if (conversion == 1)
+            {
+                PC_TO_PS4 = true;
+            }
+            else if (conversion == 2)
+            {
+                PS4_TO_PC = true;
+            }
+            else if (conversion == 3)
+            {
+                SWITCH_TO_PC = true;
+            }
+            else if (conversion == 4)
+            {
+                PC_TO_SWITCH = true;
+            }
+            else if (conversion == 5)
+            {
+                PS4_TO_SWITCH = true;
+            }
+            else if (conversion == 6)
+            {
+                SWITCH_TO_PS4 = true;
+            }
 
             totalSavegames = savegames.Count;
 
@@ -176,30 +205,33 @@ namespace TombExtract
 
             bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, cklSourceSavegamesTR1, cklSourceSavegamesTR2,
                 cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
-                grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite,
-                lstDestinationSavegamesTR1, tsmiBrowseSourceFile, tsmiBrowseDestinationFile, slblStatus, tsmiExtract);
+                btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, tsmiBrowseSourceFile,
+                tsmiBrowseDestinationFile, slblStatus, tsmiExtract, cmbConversionTR1,
+                cmbConversionTR2, cmbConversionTR3);
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
             try
             {
-                slblStatus.Text = "Extracting savegames...";
+                string operation = NO_CONVERT ? "Extracting" : "Converting";
+                slblStatus.Text = $"{operation} savegames...";
                 bgWorker.RunWorkerAsync(savegames);
             }
             catch (Exception ex)
             {
-                slblStatus.Text = $"Error extracting savegames.";
+                string operation = NO_CONVERT ? "extracting" : "converting";
+                slblStatus.Text = $"Error {operation} savegames.";
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e, CheckedListBox cklSourceSavegamesTR1,
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1, Button btnExtractTR2,
-            Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3, GroupBox grpConvertTR1,
-            GroupBox grpConvertTR2, GroupBox grpConvertTR3, Button btnBrowseSourceFile,
+            Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
+            Button btnBrowseSourceFile,
             Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
             ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
-            ToolStripMenuItem tsmiExtract)
+            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3)
         {
             progressForm.Close();
 
@@ -215,10 +247,10 @@ namespace TombExtract
             }
             else
             {
-                string operation = "";
+                string operation;
 
-                if (noConvert) operation = "transferred";
-                else if (toPC || toPS4) operation = "converted and transferred";
+                if (NO_CONVERT) operation = "transferred";
+                else operation = "converted and transferred";
 
                 string savegamesText = totalSavegames == 1 ? "savegame" : "savegames";
 
@@ -234,9 +266,9 @@ namespace TombExtract
             cklSourceSavegamesTR2.Enabled = true;
             cklSourceSavegamesTR3.Enabled = true;
 
-            grpConvertTR1.Enabled = true;
-            grpConvertTR2.Enabled = true;
-            grpConvertTR3.Enabled = true;
+            cmbConversionTR1.Enabled = true;
+            cmbConversionTR2.Enabled = true;
+            cmbConversionTR3.Enabled = true;
 
             btnSelectAllTR1.Enabled = true;
             btnSelectAllTR2.Enabled = true;
@@ -278,7 +310,7 @@ namespace TombExtract
                         savegameBytes[j] = currentByte;
                     }
 
-                    if (toPC)
+                    if (PS4_TO_PC)
                     {
                         progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to PC...");
 
@@ -300,7 +332,7 @@ namespace TombExtract
                             }
                         }
                     }
-                    else if (toPS4)
+                    else if (PC_TO_PS4)
                     {
                         progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to to PS4...");
 
@@ -322,7 +354,69 @@ namespace TombExtract
                             }
                         }
                     }
-                    else if (noConvert)
+                    else if (SWITCH_TO_PC)
+                    {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to to PC...");
+
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        {
+                            int currentRelativeOffset = offset - currentSavegameOffset;
+
+                            if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                            {
+                                WriteByte(savegameDestinationPath, (offset + 1), savegameBytes[j]);
+                            }
+                            else if (currentRelativeOffset >= 0x6B0)
+                            {
+                                WriteByte(savegameDestinationPath, (offset + 4), savegameBytes[j]);
+                            }
+                            else
+                            {
+                                WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                            }
+                        }
+                    }
+                    else if (PC_TO_SWITCH)
+                    {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to to Switch...");
+
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        {
+                            int currentRelativeOffset = offset - currentSavegameOffset;
+
+                            if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                            {
+                                WriteByte(savegameDestinationPath, (offset - 1), savegameBytes[j]);
+                            }
+                            else if (currentRelativeOffset >= 0x6B0)
+                            {
+                                WriteByte(savegameDestinationPath, (offset - 4), savegameBytes[j]);
+                            }
+                            else
+                            {
+                                WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                            }
+                        }
+                    }
+                    else if (PS4_TO_SWITCH)
+                    {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to Switch...");
+
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        {
+                            WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                        }
+                    }
+                    else if (SWITCH_TO_PS4)
+                    {
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to PS4...");
+
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        {
+                            WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                        }
+                    }
+                    else if (NO_CONVERT)
                     {
                         progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to destination...");
 

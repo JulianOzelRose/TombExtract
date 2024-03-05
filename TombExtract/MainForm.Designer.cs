@@ -40,12 +40,10 @@ namespace TombExtract
             this.txtSourceFilePath = new System.Windows.Forms.TextBox();
             this.tabGame = new System.Windows.Forms.TabControl();
             this.tpTR1 = new System.Windows.Forms.TabPage();
+            this.lblConvertTR1 = new System.Windows.Forms.Label();
+            this.cmbConversionTR1 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR1 = new System.Windows.Forms.Button();
             this.btnSelectAllTR1 = new System.Windows.Forms.Button();
-            this.grpConvertTR1 = new System.Windows.Forms.GroupBox();
-            this.rdoToPS4TR1 = new System.Windows.Forms.RadioButton();
-            this.rdoToPCTR1 = new System.Windows.Forms.RadioButton();
-            this.rdoNoConvertTR1 = new System.Windows.Forms.RadioButton();
             this.lblArrowTR1 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR1 = new System.Windows.Forms.ListBox();
             this.btnExitTR1 = new System.Windows.Forms.Button();
@@ -54,11 +52,9 @@ namespace TombExtract
             this.lblSourceSavegamesTR1 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR1 = new System.Windows.Forms.CheckedListBox();
             this.tpTR2 = new System.Windows.Forms.TabPage();
+            this.lblConvertTR2 = new System.Windows.Forms.Label();
+            this.cmbConversionTR2 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR2 = new System.Windows.Forms.Button();
-            this.grpConvertTR2 = new System.Windows.Forms.GroupBox();
-            this.rdoToPS4TR2 = new System.Windows.Forms.RadioButton();
-            this.rdoToPCTR2 = new System.Windows.Forms.RadioButton();
-            this.rdoNoConvertTR2 = new System.Windows.Forms.RadioButton();
             this.btnSelectAllTR2 = new System.Windows.Forms.Button();
             this.lblArrowTR2 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR2 = new System.Windows.Forms.ListBox();
@@ -68,11 +64,9 @@ namespace TombExtract
             this.lblSourceSavegamesTR2 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR2 = new System.Windows.Forms.CheckedListBox();
             this.tpTR3 = new System.Windows.Forms.TabPage();
+            this.lblConvertTR3 = new System.Windows.Forms.Label();
+            this.cmbConversionTR3 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR3 = new System.Windows.Forms.Button();
-            this.grpConvertTR3 = new System.Windows.Forms.GroupBox();
-            this.rdoToPS4TR3 = new System.Windows.Forms.RadioButton();
-            this.rdoToPCTR3 = new System.Windows.Forms.RadioButton();
-            this.rdoNoConvertTR3 = new System.Windows.Forms.RadioButton();
             this.btnSelectAllTR3 = new System.Windows.Forms.Button();
             this.lblArrowTR3 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR3 = new System.Windows.Forms.ListBox();
@@ -85,8 +79,9 @@ namespace TombExtract
             this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiBrowseSourceFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBrowseDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsddbHelp = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,15 +89,11 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmiFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
-            this.grpConvertTR1.SuspendLayout();
             this.tpTR2.SuspendLayout();
-            this.grpConvertTR2.SuspendLayout();
             this.tpTR3.SuspendLayout();
-            this.grpConvertTR3.SuspendLayout();
             this.tsrToolStrip.SuspendLayout();
             this.ssrStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -205,9 +196,10 @@ namespace TombExtract
             // 
             // tpTR1
             // 
+            this.tpTR1.Controls.Add(this.lblConvertTR1);
+            this.tpTR1.Controls.Add(this.cmbConversionTR1);
             this.tpTR1.Controls.Add(this.btnAboutTR1);
             this.tpTR1.Controls.Add(this.btnSelectAllTR1);
-            this.tpTR1.Controls.Add(this.grpConvertTR1);
             this.tpTR1.Controls.Add(this.lblArrowTR1);
             this.tpTR1.Controls.Add(this.lstDestinationSavegamesTR1);
             this.tpTR1.Controls.Add(this.btnExitTR1);
@@ -222,6 +214,33 @@ namespace TombExtract
             this.tpTR1.TabIndex = 0;
             this.tpTR1.Text = "Tomb Raider I";
             this.tpTR1.UseVisualStyleBackColor = true;
+            // 
+            // lblConvertTR1
+            // 
+            this.lblConvertTR1.AutoSize = true;
+            this.lblConvertTR1.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR1.Name = "lblConvertTR1";
+            this.lblConvertTR1.Size = new System.Drawing.Size(47, 13);
+            this.lblConvertTR1.TabIndex = 33;
+            this.lblConvertTR1.Text = "Convert:";
+            // 
+            // cmbConversionTR1
+            // 
+            this.cmbConversionTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConversionTR1.FormattingEnabled = true;
+            this.cmbConversionTR1.Items.AddRange(new object[] {
+            "No",
+            "PC → PS4",
+            "PS4 → PC",
+            "Nintendo Switch → PC",
+            "PC → Nintendo Switch",
+            "PS4 → Nintendo Switch",
+            "Nintendo Switch → PS4"});
+            this.cmbConversionTR1.Location = new System.Drawing.Point(67, 356);
+            this.cmbConversionTR1.Name = "cmbConversionTR1";
+            this.cmbConversionTR1.Size = new System.Drawing.Size(186, 21);
+            this.cmbConversionTR1.TabIndex = 32;
+            this.cmbConversionTR1.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR1_SelectedIndexChanged);
             // 
             // btnAboutTR1
             // 
@@ -243,53 +262,6 @@ namespace TombExtract
             this.btnSelectAllTR1.Text = "Select All";
             this.btnSelectAllTR1.UseVisualStyleBackColor = true;
             this.btnSelectAllTR1.Click += new System.EventHandler(this.btnSelectAllTR1_Click);
-            // 
-            // grpConvertTR1
-            // 
-            this.grpConvertTR1.Controls.Add(this.rdoToPS4TR1);
-            this.grpConvertTR1.Controls.Add(this.rdoToPCTR1);
-            this.grpConvertTR1.Controls.Add(this.rdoNoConvertTR1);
-            this.grpConvertTR1.Location = new System.Drawing.Point(15, 343);
-            this.grpConvertTR1.Name = "grpConvertTR1";
-            this.grpConvertTR1.Size = new System.Drawing.Size(238, 46);
-            this.grpConvertTR1.TabIndex = 21;
-            this.grpConvertTR1.TabStop = false;
-            this.grpConvertTR1.Text = "Convert";
-            // 
-            // rdoToPS4TR1
-            // 
-            this.rdoToPS4TR1.AutoSize = true;
-            this.rdoToPS4TR1.Location = new System.Drawing.Point(165, 19);
-            this.rdoToPS4TR1.Name = "rdoToPS4TR1";
-            this.rdoToPS4TR1.Size = new System.Drawing.Size(61, 17);
-            this.rdoToPS4TR1.TabIndex = 2;
-            this.rdoToPS4TR1.Text = "To PS4";
-            this.rdoToPS4TR1.UseVisualStyleBackColor = true;
-            this.rdoToPS4TR1.CheckedChanged += new System.EventHandler(this.rdoToPS4TR1_CheckedChanged);
-            // 
-            // rdoToPCTR1
-            // 
-            this.rdoToPCTR1.AutoSize = true;
-            this.rdoToPCTR1.Location = new System.Drawing.Point(80, 19);
-            this.rdoToPCTR1.Name = "rdoToPCTR1";
-            this.rdoToPCTR1.Size = new System.Drawing.Size(55, 17);
-            this.rdoToPCTR1.TabIndex = 1;
-            this.rdoToPCTR1.Text = "To PC";
-            this.rdoToPCTR1.UseVisualStyleBackColor = true;
-            this.rdoToPCTR1.CheckedChanged += new System.EventHandler(this.rdoToPCTR1_CheckedChanged);
-            // 
-            // rdoNoConvertTR1
-            // 
-            this.rdoNoConvertTR1.AutoSize = true;
-            this.rdoNoConvertTR1.Checked = true;
-            this.rdoNoConvertTR1.Location = new System.Drawing.Point(13, 19);
-            this.rdoNoConvertTR1.Name = "rdoNoConvertTR1";
-            this.rdoNoConvertTR1.Size = new System.Drawing.Size(39, 17);
-            this.rdoNoConvertTR1.TabIndex = 0;
-            this.rdoNoConvertTR1.TabStop = true;
-            this.rdoNoConvertTR1.Text = "No";
-            this.rdoNoConvertTR1.UseVisualStyleBackColor = true;
-            this.rdoNoConvertTR1.CheckedChanged += new System.EventHandler(this.rdoNoConvertTR1_CheckedChanged);
             // 
             // lblArrowTR1
             // 
@@ -358,8 +330,9 @@ namespace TombExtract
             // 
             // tpTR2
             // 
+            this.tpTR2.Controls.Add(this.lblConvertTR2);
+            this.tpTR2.Controls.Add(this.cmbConversionTR2);
             this.tpTR2.Controls.Add(this.btnAboutTR2);
-            this.tpTR2.Controls.Add(this.grpConvertTR2);
             this.tpTR2.Controls.Add(this.btnSelectAllTR2);
             this.tpTR2.Controls.Add(this.lblArrowTR2);
             this.tpTR2.Controls.Add(this.lstDestinationSavegamesTR2);
@@ -376,6 +349,33 @@ namespace TombExtract
             this.tpTR2.Text = "Tomb Raider II";
             this.tpTR2.UseVisualStyleBackColor = true;
             // 
+            // lblConvertTR2
+            // 
+            this.lblConvertTR2.AutoSize = true;
+            this.lblConvertTR2.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR2.Name = "lblConvertTR2";
+            this.lblConvertTR2.Size = new System.Drawing.Size(47, 13);
+            this.lblConvertTR2.TabIndex = 33;
+            this.lblConvertTR2.Text = "Convert:";
+            // 
+            // cmbConversionTR2
+            // 
+            this.cmbConversionTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConversionTR2.FormattingEnabled = true;
+            this.cmbConversionTR2.Items.AddRange(new object[] {
+            "No",
+            "PC → PS4",
+            "PS4 → PC",
+            "Nintendo Switch → PC",
+            "PC → Nintendo Switch",
+            "PS4 → Nintendo Switch",
+            "Nintendo Switch → PS4"});
+            this.cmbConversionTR2.Location = new System.Drawing.Point(67, 356);
+            this.cmbConversionTR2.Name = "cmbConversionTR2";
+            this.cmbConversionTR2.Size = new System.Drawing.Size(186, 21);
+            this.cmbConversionTR2.TabIndex = 32;
+            this.cmbConversionTR2.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR2_SelectedIndexChanged);
+            // 
             // btnAboutTR2
             // 
             this.btnAboutTR2.Location = new System.Drawing.Point(403, 356);
@@ -385,53 +385,6 @@ namespace TombExtract
             this.btnAboutTR2.Text = "About";
             this.btnAboutTR2.UseVisualStyleBackColor = true;
             this.btnAboutTR2.Click += new System.EventHandler(this.btnAboutTR2_Click);
-            // 
-            // grpConvertTR2
-            // 
-            this.grpConvertTR2.Controls.Add(this.rdoToPS4TR2);
-            this.grpConvertTR2.Controls.Add(this.rdoToPCTR2);
-            this.grpConvertTR2.Controls.Add(this.rdoNoConvertTR2);
-            this.grpConvertTR2.Location = new System.Drawing.Point(15, 343);
-            this.grpConvertTR2.Name = "grpConvertTR2";
-            this.grpConvertTR2.Size = new System.Drawing.Size(238, 46);
-            this.grpConvertTR2.TabIndex = 24;
-            this.grpConvertTR2.TabStop = false;
-            this.grpConvertTR2.Text = "Convert";
-            // 
-            // rdoToPS4TR2
-            // 
-            this.rdoToPS4TR2.AutoSize = true;
-            this.rdoToPS4TR2.Location = new System.Drawing.Point(165, 19);
-            this.rdoToPS4TR2.Name = "rdoToPS4TR2";
-            this.rdoToPS4TR2.Size = new System.Drawing.Size(61, 17);
-            this.rdoToPS4TR2.TabIndex = 2;
-            this.rdoToPS4TR2.Text = "To PS4";
-            this.rdoToPS4TR2.UseVisualStyleBackColor = true;
-            this.rdoToPS4TR2.CheckedChanged += new System.EventHandler(this.rdoToPS4TR2_CheckedChanged);
-            // 
-            // rdoToPCTR2
-            // 
-            this.rdoToPCTR2.AutoSize = true;
-            this.rdoToPCTR2.Location = new System.Drawing.Point(80, 19);
-            this.rdoToPCTR2.Name = "rdoToPCTR2";
-            this.rdoToPCTR2.Size = new System.Drawing.Size(55, 17);
-            this.rdoToPCTR2.TabIndex = 1;
-            this.rdoToPCTR2.Text = "To PC";
-            this.rdoToPCTR2.UseVisualStyleBackColor = true;
-            this.rdoToPCTR2.CheckedChanged += new System.EventHandler(this.rdoToPCTR2_CheckedChanged);
-            // 
-            // rdoNoConvertTR2
-            // 
-            this.rdoNoConvertTR2.AutoSize = true;
-            this.rdoNoConvertTR2.Checked = true;
-            this.rdoNoConvertTR2.Location = new System.Drawing.Point(13, 19);
-            this.rdoNoConvertTR2.Name = "rdoNoConvertTR2";
-            this.rdoNoConvertTR2.Size = new System.Drawing.Size(39, 17);
-            this.rdoNoConvertTR2.TabIndex = 0;
-            this.rdoNoConvertTR2.TabStop = true;
-            this.rdoNoConvertTR2.Text = "No";
-            this.rdoNoConvertTR2.UseVisualStyleBackColor = true;
-            this.rdoNoConvertTR2.CheckedChanged += new System.EventHandler(this.rdoNoConvertTR2_CheckedChanged);
             // 
             // btnSelectAllTR2
             // 
@@ -511,8 +464,9 @@ namespace TombExtract
             // 
             // tpTR3
             // 
+            this.tpTR3.Controls.Add(this.lblConvertTR3);
+            this.tpTR3.Controls.Add(this.cmbConversionTR3);
             this.tpTR3.Controls.Add(this.btnAboutTR3);
-            this.tpTR3.Controls.Add(this.grpConvertTR3);
             this.tpTR3.Controls.Add(this.btnSelectAllTR3);
             this.tpTR3.Controls.Add(this.lblArrowTR3);
             this.tpTR3.Controls.Add(this.lstDestinationSavegamesTR3);
@@ -528,6 +482,33 @@ namespace TombExtract
             this.tpTR3.Text = "Tomb Raider III";
             this.tpTR3.UseVisualStyleBackColor = true;
             // 
+            // lblConvertTR3
+            // 
+            this.lblConvertTR3.AutoSize = true;
+            this.lblConvertTR3.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR3.Name = "lblConvertTR3";
+            this.lblConvertTR3.Size = new System.Drawing.Size(47, 13);
+            this.lblConvertTR3.TabIndex = 31;
+            this.lblConvertTR3.Text = "Convert:";
+            // 
+            // cmbConversionTR3
+            // 
+            this.cmbConversionTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbConversionTR3.FormattingEnabled = true;
+            this.cmbConversionTR3.Items.AddRange(new object[] {
+            "No",
+            "PC → PS4",
+            "PS4 → PC",
+            "Nintendo Switch → PC",
+            "PC → Nintendo Switch",
+            "PS4 → Nintendo Switch",
+            "Nintendo Switch → PS4"});
+            this.cmbConversionTR3.Location = new System.Drawing.Point(67, 356);
+            this.cmbConversionTR3.Name = "cmbConversionTR3";
+            this.cmbConversionTR3.Size = new System.Drawing.Size(186, 21);
+            this.cmbConversionTR3.TabIndex = 0;
+            this.cmbConversionTR3.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR3_SelectedIndexChanged);
+            // 
             // btnAboutTR3
             // 
             this.btnAboutTR3.Location = new System.Drawing.Point(403, 356);
@@ -537,53 +518,6 @@ namespace TombExtract
             this.btnAboutTR3.Text = "About";
             this.btnAboutTR3.UseVisualStyleBackColor = true;
             this.btnAboutTR3.Click += new System.EventHandler(this.btnAboutTR3_Click);
-            // 
-            // grpConvertTR3
-            // 
-            this.grpConvertTR3.Controls.Add(this.rdoToPS4TR3);
-            this.grpConvertTR3.Controls.Add(this.rdoToPCTR3);
-            this.grpConvertTR3.Controls.Add(this.rdoNoConvertTR3);
-            this.grpConvertTR3.Location = new System.Drawing.Point(15, 343);
-            this.grpConvertTR3.Name = "grpConvertTR3";
-            this.grpConvertTR3.Size = new System.Drawing.Size(238, 46);
-            this.grpConvertTR3.TabIndex = 29;
-            this.grpConvertTR3.TabStop = false;
-            this.grpConvertTR3.Text = "Convert";
-            // 
-            // rdoToPS4TR3
-            // 
-            this.rdoToPS4TR3.AutoSize = true;
-            this.rdoToPS4TR3.Location = new System.Drawing.Point(165, 19);
-            this.rdoToPS4TR3.Name = "rdoToPS4TR3";
-            this.rdoToPS4TR3.Size = new System.Drawing.Size(61, 17);
-            this.rdoToPS4TR3.TabIndex = 2;
-            this.rdoToPS4TR3.Text = "To PS4";
-            this.rdoToPS4TR3.UseVisualStyleBackColor = true;
-            this.rdoToPS4TR3.CheckedChanged += new System.EventHandler(this.rdoToPS4TR3_CheckedChanged);
-            // 
-            // rdoToPCTR3
-            // 
-            this.rdoToPCTR3.AutoSize = true;
-            this.rdoToPCTR3.Location = new System.Drawing.Point(80, 19);
-            this.rdoToPCTR3.Name = "rdoToPCTR3";
-            this.rdoToPCTR3.Size = new System.Drawing.Size(55, 17);
-            this.rdoToPCTR3.TabIndex = 1;
-            this.rdoToPCTR3.Text = "To PC";
-            this.rdoToPCTR3.UseVisualStyleBackColor = true;
-            this.rdoToPCTR3.CheckedChanged += new System.EventHandler(this.rdoToPCTR3_CheckedChanged);
-            // 
-            // rdoNoConvertTR3
-            // 
-            this.rdoNoConvertTR3.AutoSize = true;
-            this.rdoNoConvertTR3.Checked = true;
-            this.rdoNoConvertTR3.Location = new System.Drawing.Point(13, 19);
-            this.rdoNoConvertTR3.Name = "rdoNoConvertTR3";
-            this.rdoNoConvertTR3.Size = new System.Drawing.Size(39, 17);
-            this.rdoNoConvertTR3.TabIndex = 0;
-            this.rdoNoConvertTR3.TabStop = true;
-            this.rdoNoConvertTR3.Text = "No";
-            this.rdoNoConvertTR3.UseVisualStyleBackColor = true;
-            this.rdoNoConvertTR3.CheckedChanged += new System.EventHandler(this.rdoNoConvertTR3_CheckedChanged);
             // 
             // btnSelectAllTR3
             // 
@@ -705,6 +639,11 @@ namespace TombExtract
             this.tsmiBrowseDestinationFile.Text = "Browse destination file...";
             this.tsmiBrowseDestinationFile.Click += new System.EventHandler(this.tsmiBrowseDestinationFile_Click);
             // 
+            // tsmiFileSeparator
+            // 
+            this.tsmiFileSeparator.Name = "tsmiFileSeparator";
+            this.tsmiFileSeparator.Size = new System.Drawing.Size(199, 6);
+            // 
             // tsmiExtract
             // 
             this.tsmiExtract.Enabled = false;
@@ -713,10 +652,10 @@ namespace TombExtract
             this.tsmiExtract.Text = "Extract";
             this.tsmiExtract.Click += new System.EventHandler(this.tsmiExtract_Click);
             // 
-            // tsmiFileSeparator
+            // tsmiFileSeparator2
             // 
-            this.tsmiFileSeparator.Name = "tsmiFileSeparator";
-            this.tsmiFileSeparator.Size = new System.Drawing.Size(199, 6);
+            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
+            this.tsmiFileSeparator2.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmiExit
             // 
@@ -779,11 +718,6 @@ namespace TombExtract
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
             // 
-            // tsmiFileSeparator2
-            // 
-            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
-            this.tsmiFileSeparator2.Size = new System.Drawing.Size(199, 6);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -802,21 +736,16 @@ namespace TombExtract
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tomb Raider I-III Remastered Savegame Extractor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlFilePaths.ResumeLayout(false);
             this.pnlFilePaths.PerformLayout();
             this.tabGame.ResumeLayout(false);
             this.tpTR1.ResumeLayout(false);
             this.tpTR1.PerformLayout();
-            this.grpConvertTR1.ResumeLayout(false);
-            this.grpConvertTR1.PerformLayout();
             this.tpTR2.ResumeLayout(false);
             this.tpTR2.PerformLayout();
-            this.grpConvertTR2.ResumeLayout(false);
-            this.grpConvertTR2.PerformLayout();
             this.tpTR3.ResumeLayout(false);
             this.tpTR3.PerformLayout();
-            this.grpConvertTR3.ResumeLayout(false);
-            this.grpConvertTR3.PerformLayout();
             this.tsrToolStrip.ResumeLayout(false);
             this.tsrToolStrip.PerformLayout();
             this.ssrStatusStrip.ResumeLayout(false);
@@ -860,21 +789,9 @@ namespace TombExtract
         private System.Windows.Forms.Label lblDestinationSavegamesTR3;
         private System.Windows.Forms.Label lblSourceSavegamesTR3;
         private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR3;
-        private System.Windows.Forms.GroupBox grpConvertTR1;
-        private System.Windows.Forms.RadioButton rdoToPS4TR1;
-        private System.Windows.Forms.RadioButton rdoToPCTR1;
-        private System.Windows.Forms.RadioButton rdoNoConvertTR1;
         private System.Windows.Forms.Button btnSelectAllTR1;
         private System.Windows.Forms.Button btnSelectAllTR2;
         private System.Windows.Forms.Button btnSelectAllTR3;
-        private System.Windows.Forms.GroupBox grpConvertTR2;
-        private System.Windows.Forms.RadioButton rdoToPS4TR2;
-        private System.Windows.Forms.RadioButton rdoToPCTR2;
-        private System.Windows.Forms.RadioButton rdoNoConvertTR2;
-        private System.Windows.Forms.GroupBox grpConvertTR3;
-        private System.Windows.Forms.RadioButton rdoToPS4TR3;
-        private System.Windows.Forms.RadioButton rdoToPCTR3;
-        private System.Windows.Forms.RadioButton rdoNoConvertTR3;
         private System.Windows.Forms.CheckBox chkBackupOnWrite;
         private System.Windows.Forms.Button btnAboutTR1;
         private System.Windows.Forms.Button btnAboutTR2;
@@ -893,6 +810,12 @@ namespace TombExtract
         private System.Windows.Forms.ToolStripStatusLabel slblStatus;
         private System.Windows.Forms.ToolStripMenuItem tsmiExtract;
         private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator2;
+        private System.Windows.Forms.ComboBox cmbConversionTR3;
+        private System.Windows.Forms.Label lblConvertTR3;
+        private System.Windows.Forms.Label lblConvertTR1;
+        private System.Windows.Forms.ComboBox cmbConversionTR1;
+        private System.Windows.Forms.Label lblConvertTR2;
+        private System.Windows.Forms.ComboBox cmbConversionTR2;
     }
 }
 

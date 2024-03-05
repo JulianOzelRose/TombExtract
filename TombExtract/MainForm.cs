@@ -28,6 +28,13 @@ namespace TombExtract
         // Destination path
         private string savegameDestinationPath;
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            cmbConversionTR1.SelectedIndex = 0;
+            cmbConversionTR2.SelectedIndex = 0;
+            cmbConversionTR3.SelectedIndex = 0;
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (TR1.IsWriting() || TR2.IsWriting() || TR3.IsWriting())
@@ -78,9 +85,9 @@ namespace TombExtract
             cklSourceSavegamesTR2.Enabled = false;
             cklSourceSavegamesTR3.Enabled = false;
 
-            grpConvertTR1.Enabled = false;
-            grpConvertTR2.Enabled = false;
-            grpConvertTR3.Enabled = false;
+            cmbConversionTR1.Enabled = false;
+            cmbConversionTR2.Enabled = false;
+            cmbConversionTR3.Enabled = false;
 
             btnBrowseDestinationFile.Enabled = false;
             btnBrowseSourceFile.Enabled = false;
@@ -269,11 +276,10 @@ namespace TombExtract
 
                 TR1.SetProgressForm(progressForm);
 
-                TR1.WriteSavegamesToDestination(selectedSavegames, rdoNoConvertTR1, rdoToPCTR1, rdoToPS4TR1,
-                    cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3,
-                    btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile,
+                TR1.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
+                    btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
                     btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
-                    slblStatus, tsmiExtract);
+                    slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3);
             }
         }
 
@@ -326,11 +332,10 @@ namespace TombExtract
 
                 TR2.SetProgressForm(progressForm);
 
-                TR2.WriteSavegamesToDestination(selectedSavegames, rdoNoConvertTR2, rdoToPCTR2, rdoToPS4TR2,
-                    cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3,
-                    btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile,
+                TR2.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
+                    btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
                     btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR2, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
-                    slblStatus, tsmiExtract);
+                    slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3);
             }
         }
 
@@ -383,11 +388,10 @@ namespace TombExtract
 
                 TR3.SetProgressForm(progressForm);
 
-                TR3.WriteSavegamesToDestination(selectedSavegames, rdoNoConvertTR3, rdoToPCTR3, rdoToPS4TR3,
-                    cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3,
-                    btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, grpConvertTR1, grpConvertTR2, grpConvertTR3, btnBrowseSourceFile,
+                TR3.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
+                    btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
                     btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
-                    slblStatus, tsmiExtract);
+                    slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3);
             }
         }
 
@@ -448,159 +452,6 @@ namespace TombExtract
             aboutForm.ShowDialog();
         }
 
-        private void rdoNoConvertTR1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR1.Checked)
-            {
-                btnExtractTR1.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR1.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoNoConvertTR2.Checked = rdoNoConvertTR1.Checked;
-            rdoNoConvertTR3.Checked = rdoNoConvertTR1.Checked;
-        }
-
-        private void rdoToPCTR1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR1.Checked)
-            {
-                btnExtractTR1.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR1.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoToPCTR2.Checked = rdoToPCTR1.Checked;
-            rdoToPCTR3.Checked = rdoToPCTR1.Checked;
-        }
-
-        private void rdoToPS4TR1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR1.Checked)
-            {
-                btnExtractTR1.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR1.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoToPS4TR2.Checked = rdoToPS4TR1.Checked;
-            rdoToPS4TR3.Checked = rdoToPS4TR1.Checked;
-        }
-
-        private void rdoNoConvertTR2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR2.Checked)
-            {
-                btnExtractTR2.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR2.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoNoConvertTR1.Checked = rdoNoConvertTR2.Checked;
-            rdoNoConvertTR3.Checked = rdoNoConvertTR2.Checked;
-        }
-
-        private void rdoToPCTR2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR2.Checked)
-            {
-                btnExtractTR2.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR2.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoToPCTR1.Checked = rdoToPCTR2.Checked;
-            rdoToPCTR3.Checked = rdoToPCTR2.Checked;
-        }
-
-        private void rdoToPS4TR2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR2.Checked)
-            {
-                btnExtractTR2.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR2.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoToPS4TR1.Checked = rdoToPS4TR2.Checked;
-            rdoToPS4TR3.Checked = rdoToPS4TR2.Checked;
-        }
-
-        private void rdoNoConvertTR3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR3.Checked)
-            {
-                btnExtractTR3.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR3.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoNoConvertTR1.Checked = rdoNoConvertTR3.Checked;
-            rdoNoConvertTR2.Checked = rdoNoConvertTR3.Checked;
-        }
-
-        private void rdoToPCTR3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR3.Checked)
-            {
-                btnExtractTR3.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR3.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoToPCTR1.Checked = rdoToPCTR3.Checked;
-            rdoToPCTR2.Checked = rdoToPCTR3.Checked;
-        }
-
-        private void rdoToPS4TR3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoNoConvertTR3.Checked)
-            {
-                btnExtractTR3.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR3.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-
-            rdoToPS4TR1.Checked = rdoToPS4TR3.Checked;
-            rdoToPS4TR2.Checked = rdoToPS4TR3.Checked;
-        }
-
         private void tsmiBrowseSourceFile_Click(object sender, EventArgs e)
         {
             BrowseSourceFile();
@@ -645,6 +496,69 @@ namespace TombExtract
             else if (tabGame.SelectedIndex == TAB_TR3)
             {
                 ExtractSavegamesTR3();
+            }
+        }
+
+        private void cmbConversionTR1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbConversionTR2.SelectedIndex = cmbConversionTR1.SelectedIndex;
+            cmbConversionTR3.SelectedIndex = cmbConversionTR1.SelectedIndex;
+
+            if (cmbConversionTR1.SelectedIndex == 0)
+            {
+                btnExtractTR1.Text = "Extract";
+                btnExtractTR2.Text = "Extract";
+                btnExtractTR3.Text = "Extract";
+                tsmiExtract.Text = "Extract";
+            }
+            else
+            {
+                btnExtractTR1.Text = "Convert";
+                btnExtractTR2.Text = "Convert";
+                btnExtractTR3.Text = "Convert";
+                tsmiExtract.Text = "Convert";
+            }
+        }
+
+        private void cmbConversionTR2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbConversionTR1.SelectedIndex = cmbConversionTR2.SelectedIndex;
+            cmbConversionTR3.SelectedIndex = cmbConversionTR2.SelectedIndex;
+
+            if (cmbConversionTR2.SelectedIndex == 0)
+            {
+                btnExtractTR1.Text = "Extract";
+                btnExtractTR2.Text = "Extract";
+                btnExtractTR3.Text = "Extract";
+                tsmiExtract.Text = "Extract";
+            }
+            else
+            {
+                btnExtractTR1.Text = "Convert";
+                btnExtractTR2.Text = "Convert";
+                btnExtractTR3.Text = "Convert";
+                tsmiExtract.Text = "Convert";
+            }
+        }
+
+        private void cmbConversionTR3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbConversionTR1.SelectedIndex = cmbConversionTR3.SelectedIndex;
+            cmbConversionTR2.SelectedIndex = cmbConversionTR3.SelectedIndex;
+
+            if (cmbConversionTR3.SelectedIndex == 0)
+            {
+                btnExtractTR1.Text = "Extract";
+                btnExtractTR2.Text = "Extract";
+                btnExtractTR3.Text = "Extract";
+                tsmiExtract.Text = "Extract";
+            }
+            else
+            {
+                btnExtractTR1.Text = "Convert";
+                btnExtractTR2.Text = "Convert";
+                btnExtractTR3.Text = "Convert";
+                tsmiExtract.Text = "Convert";
             }
         }
     }
