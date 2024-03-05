@@ -1,12 +1,14 @@
-﻿namespace TombExtract
+﻿using System;
+
+namespace TombExtract
 {
     public class Savegame
     {
         public int Offset { get; set; }
-        public int Number { get; set; }
+        public Int32 Number { get; set; }
         public string Name { get; set; }
 
-        public Savegame(int savegameOffset, int saveNumber, string levelName)
+        public Savegame(int savegameOffset, Int32 saveNumber, string levelName)
         {
             Number = saveNumber;
             Name = levelName;
