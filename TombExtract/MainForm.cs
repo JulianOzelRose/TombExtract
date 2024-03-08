@@ -268,6 +268,8 @@ namespace TombExtract
                     CreateBackup();
                 }
 
+                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
+
                 DisableButtons();
 
                 progressForm = new ProgressForm();
@@ -324,6 +326,8 @@ namespace TombExtract
                     CreateBackup();
                 }
 
+                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
+
                 DisableButtons();
 
                 progressForm = new ProgressForm();
@@ -379,6 +383,8 @@ namespace TombExtract
                 {
                     CreateBackup();
                 }
+
+                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
 
                 DisableButtons();
 
