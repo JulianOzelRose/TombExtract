@@ -11,6 +11,7 @@ namespace TombExtract
         private string savegameSourcePath;
         private string savegameDestinationPath;
 
+        private const int gameModeOffset = 0x008;
         private const int saveNumberOffset = 0x00C;
         private const int levelIndexOffset = 0x62C;
 
@@ -61,6 +62,12 @@ namespace TombExtract
             return (Int32)(byte1 + (byte2 << 8) + (byte3 << 16) + (byte4 << 24));
         }
 
+        private GameMode GetGameMode(string path, int savegameOffset)
+        {
+            int gameMode = ReadByte(path, savegameOffset + gameModeOffset);
+            return gameMode == 0 ? GameMode.Normal : GameMode.Plus;
+        }
+
         private Int32 GetSaveNumber(string path, int savegameOffset)
         {
             return ReadInt32(path, savegameOffset + saveNumberOffset);
@@ -108,8 +115,9 @@ namespace TombExtract
                 {
                     Int32 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
                     string levelName = levelNames[levelIndex];
+                    GameMode gameMode = GetGameMode(savegameSourcePath, currentSavegameOffset);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName);
+                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                     cklSavegames.Items.Add(savegame);
                 }
             }
@@ -129,8 +137,9 @@ namespace TombExtract
                 {
                     Int32 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
                     string levelName = levelNames[levelIndex];
+                    GameMode gameMode = GetGameMode(savegameDestinationPath, currentSavegameOffset);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName);
+                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                     lstSavegames.Items.Add(savegame);
                 }
                 else
