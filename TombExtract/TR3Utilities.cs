@@ -315,7 +315,7 @@ namespace TombExtract
             {
                 for (int i = 0; i < savegames.Count; i++)
                 {
-                    progressForm.UpdateStatusMessage($"Copying '{savegames[i].Name} - {savegames[i].Number}'...");
+                    progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
                     int currentSavegameOffset = savegames[i].Offset;
 
@@ -329,7 +329,7 @@ namespace TombExtract
 
                     if (PS4_TO_PC)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to PC...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -347,7 +347,7 @@ namespace TombExtract
                     }
                     else if (PC_TO_PS4)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to to PS4...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PS4...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -365,7 +365,7 @@ namespace TombExtract
                     }
                     if (SWITCH_TO_PC)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to PC...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -383,7 +383,7 @@ namespace TombExtract
                     }
                     if (PC_TO_SWITCH)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to Switch...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Switch...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -401,7 +401,7 @@ namespace TombExtract
                     }
                     else if (PS4_TO_SWITCH)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to Switch...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Switch...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -410,7 +410,7 @@ namespace TombExtract
                     }
                     else if (SWITCH_TO_PS4)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to PS4...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -419,7 +419,7 @@ namespace TombExtract
                     }
                     else if (NO_CONVERT)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i].Name} - {savegames[i].Number}' to destination...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
