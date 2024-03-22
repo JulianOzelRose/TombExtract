@@ -8,16 +8,20 @@ namespace TombExtract
 {
     class TR3Utilities
     {
+        // Paths
         private string savegameSourcePath;
         private string savegameDestinationPath;
 
+        // Offsets
         private const int gameModeOffset = 0x008;
         private const int saveNumberOffset = 0x00C;
         private const int levelIndexOffset = 0x8D6;
 
+        // Iterators
         private const int BASE_SAVEGAME_OFFSET_TR3 = 0xE2000;
         private const int SAVEGAME_ITERATOR = 0x3800;
 
+        // Conversion
         private bool PS4_TO_PC = false;
         private bool PC_TO_PS4 = false;
         private bool SWITCH_TO_PC = false;
@@ -26,11 +30,10 @@ namespace TombExtract
         private bool PS4_TO_SWITCH = false;
         private bool SWITCH_TO_PS4 = false;
 
+        // Misc
         private int totalSavegames = 0;
-
         private BackgroundWorker bgWorker;
         private ProgressForm progressForm;
-
         private bool isWriting = false;
 
         private byte ReadByte(string path, int offset)
@@ -179,7 +182,8 @@ namespace TombExtract
             Button btnExtractTR2, Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
             Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR3,
             ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
-            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3)
+            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3,
+            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3)
         {
             isWriting = true;
 
@@ -223,7 +227,8 @@ namespace TombExtract
             bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, cklSourceSavegamesTR1, cklSourceSavegamesTR2,
                 cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
                 btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3, tsmiBrowseSourceFile,
-                tsmiBrowseDestinationFile, slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3);
+                tsmiBrowseDestinationFile, slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1,
+                btnManageSlotsTR2, btnManageSlotsTR3);
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
@@ -247,7 +252,7 @@ namespace TombExtract
             Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite,
             ListBox lstDestinationSavegamesTR3, ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile,
             ToolStripStatusLabel slblStatus, ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1,
-            ComboBox cmbConversionTR2, ComboBox cmbConversionTR3)
+            ComboBox cmbConversionTR2, ComboBox cmbConversionTR3, Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3)
         {
             progressForm.Close();
 
@@ -293,6 +298,10 @@ namespace TombExtract
             btnExtractTR1.Enabled = true;
             btnExtractTR2.Enabled = true;
             btnExtractTR3.Enabled = true;
+
+            btnManageSlotsTR1.Enabled = true;
+            btnManageSlotsTR2.Enabled = true;
+            btnManageSlotsTR3.Enabled = true;
 
             btnBrowseSourceFile.Enabled = true;
             btnBrowseDestinationFile.Enabled = true;

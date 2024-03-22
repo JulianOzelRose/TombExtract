@@ -14,6 +14,9 @@ namespace TombExtract
         public Int32 Number { get; set; }
         public string Name { get; set; }
         public GameMode Mode { get; set; }
+        public bool IsEmptySlot { get; set; }
+        public int Slot { get; set; }
+        public byte[] SavegameBytes { get; set; }
 
         public Savegame(int savegameOffset, Int32 saveNumber, string levelName, GameMode gameMode)
         {
@@ -21,12 +24,22 @@ namespace TombExtract
             Name = levelName;
             Offset = savegameOffset;
             Mode = gameMode;
+            IsEmptySlot = false;
+        }
+
+        public void SetIsEmptySlot(bool isEmpty)
+        {
+            IsEmptySlot = isEmpty;
+        }
+
+        public void SetSlot(int slot)
+        {
+            Slot = slot;
         }
 
         public override string ToString()
         {
-            string modeSuffix = Mode == GameMode.Plus ? "+" : "";
-            return $"{Name}{modeSuffix} - {Number}";
+            return !IsEmptySlot ? $"{Name}{(Mode == GameMode.Plus ? "+" : "")} - {Number}" : "Empty Slot";
         }
     }
 }

@@ -40,6 +40,7 @@ namespace TombExtract
             this.txtSourceFilePath = new System.Windows.Forms.TextBox();
             this.tabGame = new System.Windows.Forms.TabControl();
             this.tpTR1 = new System.Windows.Forms.TabPage();
+            this.btnManageSlotsTR1 = new System.Windows.Forms.Button();
             this.lblConvertTR1 = new System.Windows.Forms.Label();
             this.cmbConversionTR1 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR1 = new System.Windows.Forms.Button();
@@ -52,6 +53,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR1 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR1 = new System.Windows.Forms.CheckedListBox();
             this.tpTR2 = new System.Windows.Forms.TabPage();
+            this.btnManageSlotsTR2 = new System.Windows.Forms.Button();
             this.lblConvertTR2 = new System.Windows.Forms.Label();
             this.cmbConversionTR2 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR2 = new System.Windows.Forms.Button();
@@ -64,6 +66,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR2 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR2 = new System.Windows.Forms.CheckedListBox();
             this.tpTR3 = new System.Windows.Forms.TabPage();
+            this.btnManageSlotsTR3 = new System.Windows.Forms.Button();
             this.lblConvertTR3 = new System.Windows.Forms.Label();
             this.cmbConversionTR3 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR3 = new System.Windows.Forms.Button();
@@ -131,7 +134,7 @@ namespace TombExtract
             this.btnBrowseDestinationFile.Name = "btnBrowseDestinationFile";
             this.btnBrowseDestinationFile.Size = new System.Drawing.Size(29, 23);
             this.btnBrowseDestinationFile.TabIndex = 5;
-            this.btnBrowseDestinationFile.Text = "...";
+            this.btnBrowseDestinationFile.Text = "📁";
             this.btnBrowseDestinationFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBrowseDestinationFile.UseVisualStyleBackColor = true;
             this.btnBrowseDestinationFile.Click += new System.EventHandler(this.btnBrowseDestinationFile_Click);
@@ -142,7 +145,7 @@ namespace TombExtract
             this.btnBrowseSourceFile.Name = "btnBrowseSourceFile";
             this.btnBrowseSourceFile.Size = new System.Drawing.Size(29, 23);
             this.btnBrowseSourceFile.TabIndex = 4;
-            this.btnBrowseSourceFile.Text = "...";
+            this.btnBrowseSourceFile.Text = "📁";
             this.btnBrowseSourceFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBrowseSourceFile.UseVisualStyleBackColor = true;
             this.btnBrowseSourceFile.Click += new System.EventHandler(this.btnBrowseSourceFile_Click);
@@ -196,6 +199,7 @@ namespace TombExtract
             // 
             // tpTR1
             // 
+            this.tpTR1.Controls.Add(this.btnManageSlotsTR1);
             this.tpTR1.Controls.Add(this.lblConvertTR1);
             this.tpTR1.Controls.Add(this.cmbConversionTR1);
             this.tpTR1.Controls.Add(this.btnAboutTR1);
@@ -214,6 +218,17 @@ namespace TombExtract
             this.tpTR1.TabIndex = 0;
             this.tpTR1.Text = "Tomb Raider I";
             this.tpTR1.UseVisualStyleBackColor = true;
+            // 
+            // btnManageSlotsTR1
+            // 
+            this.btnManageSlotsTR1.Enabled = false;
+            this.btnManageSlotsTR1.Location = new System.Drawing.Point(464, 11);
+            this.btnManageSlotsTR1.Name = "btnManageSlotsTR1";
+            this.btnManageSlotsTR1.Size = new System.Drawing.Size(96, 23);
+            this.btnManageSlotsTR1.TabIndex = 34;
+            this.btnManageSlotsTR1.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR1.UseVisualStyleBackColor = true;
+            this.btnManageSlotsTR1.Click += new System.EventHandler(this.btnManageSlotsTR1_Click);
             // 
             // lblConvertTR1
             // 
@@ -255,11 +270,11 @@ namespace TombExtract
             // btnSelectAllTR1
             // 
             this.btnSelectAllTR1.Enabled = false;
-            this.btnSelectAllTR1.Location = new System.Drawing.Point(178, 11);
+            this.btnSelectAllTR1.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR1.Name = "btnSelectAllTR1";
-            this.btnSelectAllTR1.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAllTR1.Size = new System.Drawing.Size(96, 23);
             this.btnSelectAllTR1.TabIndex = 22;
-            this.btnSelectAllTR1.Text = "Select All";
+            this.btnSelectAllTR1.Text = "☑️ Select All";
             this.btnSelectAllTR1.UseVisualStyleBackColor = true;
             this.btnSelectAllTR1.Click += new System.EventHandler(this.btnSelectAllTR1_Click);
             // 
@@ -330,6 +345,7 @@ namespace TombExtract
             // 
             // tpTR2
             // 
+            this.tpTR2.Controls.Add(this.btnManageSlotsTR2);
             this.tpTR2.Controls.Add(this.lblConvertTR2);
             this.tpTR2.Controls.Add(this.cmbConversionTR2);
             this.tpTR2.Controls.Add(this.btnAboutTR2);
@@ -348,6 +364,17 @@ namespace TombExtract
             this.tpTR2.TabIndex = 1;
             this.tpTR2.Text = "Tomb Raider II";
             this.tpTR2.UseVisualStyleBackColor = true;
+            // 
+            // btnManageSlotsTR2
+            // 
+            this.btnManageSlotsTR2.Enabled = false;
+            this.btnManageSlotsTR2.Location = new System.Drawing.Point(464, 11);
+            this.btnManageSlotsTR2.Name = "btnManageSlotsTR2";
+            this.btnManageSlotsTR2.Size = new System.Drawing.Size(96, 23);
+            this.btnManageSlotsTR2.TabIndex = 35;
+            this.btnManageSlotsTR2.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR2.UseVisualStyleBackColor = true;
+            this.btnManageSlotsTR2.Click += new System.EventHandler(this.btnManageSlotsTR2_Click);
             // 
             // lblConvertTR2
             // 
@@ -389,11 +416,11 @@ namespace TombExtract
             // btnSelectAllTR2
             // 
             this.btnSelectAllTR2.Enabled = false;
-            this.btnSelectAllTR2.Location = new System.Drawing.Point(178, 11);
+            this.btnSelectAllTR2.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR2.Name = "btnSelectAllTR2";
-            this.btnSelectAllTR2.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAllTR2.Size = new System.Drawing.Size(96, 23);
             this.btnSelectAllTR2.TabIndex = 23;
-            this.btnSelectAllTR2.Text = "Select All";
+            this.btnSelectAllTR2.Text = "☑️ Select All";
             this.btnSelectAllTR2.UseVisualStyleBackColor = true;
             this.btnSelectAllTR2.Click += new System.EventHandler(this.btnSelectAllTR2_Click);
             // 
@@ -464,6 +491,7 @@ namespace TombExtract
             // 
             // tpTR3
             // 
+            this.tpTR3.Controls.Add(this.btnManageSlotsTR3);
             this.tpTR3.Controls.Add(this.lblConvertTR3);
             this.tpTR3.Controls.Add(this.cmbConversionTR3);
             this.tpTR3.Controls.Add(this.btnAboutTR3);
@@ -481,6 +509,17 @@ namespace TombExtract
             this.tpTR3.TabIndex = 2;
             this.tpTR3.Text = "Tomb Raider III";
             this.tpTR3.UseVisualStyleBackColor = true;
+            // 
+            // btnManageSlotsTR3
+            // 
+            this.btnManageSlotsTR3.Enabled = false;
+            this.btnManageSlotsTR3.Location = new System.Drawing.Point(464, 11);
+            this.btnManageSlotsTR3.Name = "btnManageSlotsTR3";
+            this.btnManageSlotsTR3.Size = new System.Drawing.Size(96, 23);
+            this.btnManageSlotsTR3.TabIndex = 35;
+            this.btnManageSlotsTR3.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR3.UseVisualStyleBackColor = true;
+            this.btnManageSlotsTR3.Click += new System.EventHandler(this.btnManageSlotsTR3_Click);
             // 
             // lblConvertTR3
             // 
@@ -522,11 +561,11 @@ namespace TombExtract
             // btnSelectAllTR3
             // 
             this.btnSelectAllTR3.Enabled = false;
-            this.btnSelectAllTR3.Location = new System.Drawing.Point(178, 11);
+            this.btnSelectAllTR3.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR3.Name = "btnSelectAllTR3";
-            this.btnSelectAllTR3.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAllTR3.Size = new System.Drawing.Size(96, 23);
             this.btnSelectAllTR3.TabIndex = 28;
-            this.btnSelectAllTR3.Text = "Select All";
+            this.btnSelectAllTR3.Text = "☑️ Select All";
             this.btnSelectAllTR3.UseVisualStyleBackColor = true;
             this.btnSelectAllTR3.Click += new System.EventHandler(this.btnSelectAllTR3_Click);
             // 
@@ -734,7 +773,7 @@ namespace TombExtract
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tomb Raider I-III Remastered Savegame Extractor";
+            this.Text = "Tomb Raider I-III Remastered Savegame Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlFilePaths.ResumeLayout(false);
@@ -816,6 +855,9 @@ namespace TombExtract
         private System.Windows.Forms.ComboBox cmbConversionTR1;
         private System.Windows.Forms.Label lblConvertTR2;
         private System.Windows.Forms.ComboBox cmbConversionTR2;
+        private System.Windows.Forms.Button btnManageSlotsTR1;
+        private System.Windows.Forms.Button btnManageSlotsTR2;
+        private System.Windows.Forms.Button btnManageSlotsTR3;
     }
 }
 
