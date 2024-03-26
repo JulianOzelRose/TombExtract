@@ -199,31 +199,38 @@ namespace TombExtract
         {
             lstSavegames.Items.Clear();
 
-            for (int i = 0; i < 32; i++)
+            try
             {
-                int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
-
-                byte levelIndex = GetLevelIndex(currentSavegameOffset);
-
-                if (levelIndex >= 1 && levelIndex <= 19)
+                for (int i = 0; i < 32; i++)
                 {
-                    Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
-                    string levelName = levelNamesTR1[levelIndex];
-                    GameMode gameMode = GetGameMode(currentSavegameOffset);
-                    int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                    savegame.SetSlot(slot);
-                    lstSavegames.Items.Add(savegame);
+                    byte levelIndex = GetLevelIndex(currentSavegameOffset);
+
+                    if (levelIndex >= 1 && levelIndex <= 19)
+                    {
+                        Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
+                        string levelName = levelNamesTR1[levelIndex];
+                        GameMode gameMode = GetGameMode(currentSavegameOffset);
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        savegame.SetSlot(slot);
+                        lstSavegames.Items.Add(savegame);
+                    }
+                    else
+                    {
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
+                        savegame.SetIsEmptySlot(true);
+                        savegame.SetSlot(slot);
+                        lstSavegames.Items.Add(savegame);
+                    }
                 }
-                else
-                {
-                    Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
-                    int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
-                    savegame.SetIsEmptySlot(true);
-                    savegame.SetSlot(slot);
-                    lstSavegames.Items.Add(savegame);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -231,31 +238,38 @@ namespace TombExtract
         {
             lstSavegames.Items.Clear();
 
-            for (int i = 0; i < 32; i++)
+            try
             {
-                int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
-
-                byte levelIndex = GetLevelIndex(currentSavegameOffset);
-
-                if (levelIndex >= 1 && levelIndex <= 23)
+                for (int i = 0; i < 32; i++)
                 {
-                    Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
-                    string levelName = levelNamesTR2[levelIndex];
-                    GameMode gameMode = GetGameMode(currentSavegameOffset);
-                    int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                    savegame.SetSlot(slot);
-                    lstSavegames.Items.Add(savegame);
+                    byte levelIndex = GetLevelIndex(currentSavegameOffset);
+
+                    if (levelIndex >= 1 && levelIndex <= 23)
+                    {
+                        Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
+                        string levelName = levelNamesTR2[levelIndex];
+                        GameMode gameMode = GetGameMode(currentSavegameOffset);
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        savegame.SetSlot(slot);
+                        lstSavegames.Items.Add(savegame);
+                    }
+                    else
+                    {
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
+                        savegame.SetIsEmptySlot(true);
+                        savegame.SetSlot(slot);
+                        lstSavegames.Items.Add(savegame);
+                    }
                 }
-                else
-                {
-                    Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
-                    int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
-                    savegame.SetIsEmptySlot(true);
-                    savegame.SetSlot(slot);
-                    lstSavegames.Items.Add(savegame);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -263,31 +277,38 @@ namespace TombExtract
         {
             lstSavegames.Items.Clear();
 
-            for (int i = 0; i < 32; i++)
+            try
             {
-                int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
-
-                byte levelIndex = GetLevelIndex(currentSavegameOffset);
-
-                if (levelIndex >= 1 && levelIndex <= 26)
+                for (int i = 0; i < 32; i++)
                 {
-                    Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
-                    string levelName = levelNamesTR3[levelIndex];
-                    GameMode gameMode = GetGameMode(currentSavegameOffset);
-                    int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                    savegame.SetSlot(slot);
-                    lstSavegames.Items.Add(savegame);
+                    byte levelIndex = GetLevelIndex(currentSavegameOffset);
+
+                    if (levelIndex >= 1 && levelIndex <= 26)
+                    {
+                        Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
+                        string levelName = levelNamesTR3[levelIndex];
+                        GameMode gameMode = GetGameMode(currentSavegameOffset);
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        savegame.SetSlot(slot);
+                        lstSavegames.Items.Add(savegame);
+                    }
+                    else
+                    {
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
+                        savegame.SetIsEmptySlot(true);
+                        savegame.SetSlot(slot);
+                        lstSavegames.Items.Add(savegame);
+                    }
                 }
-                else
-                {
-                    Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
-                    int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
-                    savegame.SetIsEmptySlot(true);
-                    savegame.SetSlot(slot);
-                    lstSavegames.Items.Add(savegame);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -331,6 +352,12 @@ namespace TombExtract
             }
         }
 
+        private void UpdateProgressBar(object sender, ProgressChangedEventArgs e)
+        {
+            progressForm.UpdateProgressBar(e.ProgressPercentage);
+            progressForm.UpdatePercentage(e.ProgressPercentage);
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (lstSavegames.SelectedItem == null)
@@ -353,46 +380,54 @@ namespace TombExtract
                 return;
             }
 
-            if (backupOnWrite)
-            {
-                CreateBackup();
-            }
-
-            File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
-
             slblStatus.Text = $"Deleting savegame...";
 
             BackgroundWorker backgroundWorker = new BackgroundWorker();
 
             backgroundWorker.DoWork += (s, args) =>
             {
-                Savegame selectedSavegame = (Savegame)args.Argument;
-                string deletedSavegameString = selectedSavegame.ToString();
-
                 isWriting = true;
 
-                for (int offset = selectedSavegame.Offset; offset < (selectedSavegame.Offset + SAVEGAME_ITERATOR); offset++)
+                if (backupOnWrite)
                 {
-                    WriteByte(offset, 0);
+                    CreateBackup();
                 }
 
-                args.Result = deletedSavegameString;
+                try
+                {
+                    Savegame selectedSavegame = (Savegame)args.Argument;
+                    string deletedSavegameString = selectedSavegame.ToString();
+
+                    File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
+
+                    for (int offset = selectedSavegame.Offset; offset < (selectedSavegame.Offset + SAVEGAME_ITERATOR); offset++)
+                    {
+                        WriteByte(offset, 0);
+                    }
+
+                    args.Result = deletedSavegameString;
+                }
+                catch (Exception ex)
+                {
+                    args.Result = ex;
+                }
             };
 
             backgroundWorker.RunWorkerCompleted += (s, args) =>
             {
                 EnableButtons();
+                isWriting = false;
 
-                if (args.Error != null)
+                if (args.Error != null || args.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while deleting savegame: {args.Error.Message}",
+                    MessageBox.Show($"Error occurred while deleting savegame.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     slblStatus.Text = $"Error occurred while deleting savegame";
                 }
                 else if (args.Cancelled)
                 {
-                    MessageBox.Show($"Operation cancelled",
+                    MessageBox.Show($"Operation cancelled.",
                         "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     slblStatus.Text = $"Savegame deletion cancelled";
@@ -401,25 +436,17 @@ namespace TombExtract
                 {
                     string deletedSavegameString = (string)args.Result;
 
-                    MessageBox.Show($"Successfully deleted savegame: '{deletedSavegameString}'",
+                    MessageBox.Show($"Successfully deleted '{deletedSavegameString}'",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     slblStatus.Text = $"Successfully deleted savegame";
 
                     PopulateSavegamesConditionaly();
                 }
-
-                isWriting = false;
             };
 
             DisableButtons();
             backgroundWorker.RunWorkerAsync(lstSavegames.SelectedItem);
-        }
-
-        private void UpdateProgressBar(object sender, ProgressChangedEventArgs e)
-        {
-            progressForm.UpdateProgressBar(e.ProgressPercentage);
-            progressForm.UpdatePercentage(e.ProgressPercentage);
         }
 
         private void ReorderSavegamesTR1(List<Savegame> savegamesToMove)
@@ -433,45 +460,52 @@ namespace TombExtract
                 CreateBackup();
             }
 
-            File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
-
             slblStatus.Text = $"Reordering savegames...";
 
             bgWorker.DoWork += (sender, e) =>
             {
-                for (int i = 0; i < lstSavegames.Items.Count; i++)
+                try
                 {
-                    Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
+                    File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
-
-                    if (currentSavegame.Slot != i)
+                    for (int i = 0; i < lstSavegames.Items.Count; i++)
                     {
-                        byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                        Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                        for (int offset = 0; offset < savegameBytes.Length; offset++)
+                        progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
+
+                        if (currentSavegame.Slot != i)
                         {
-                            savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                            byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                            for (int offset = 0; offset < savegameBytes.Length; offset++)
+                            {
+                                savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                            }
+
+                            currentSavegame.SavegameBytes = savegameBytes;
+
+                            currentSavegame.Slot = i;
+                            currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
+
+                            savegamesToMove.Add(currentSavegame);
                         }
 
-                        currentSavegame.SavegameBytes = savegameBytes;
-
-                        currentSavegame.Slot = i;
-                        currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
-
-                        savegamesToMove.Add(currentSavegame);
+                        int progressPercentage = (i * 100) / lstSavegames.Items.Count;
+                        bgWorker.ReportProgress(progressPercentage);
                     }
 
-                    int progressPercentage = (i * 100) / lstSavegames.Items.Count;
-                    bgWorker.ReportProgress(progressPercentage);
-                }
-
-                foreach (var savegame in savegamesToMove)
-                {
-                    for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                    foreach (var savegame in savegamesToMove)
                     {
-                        WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
+                        for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                        {
+                            WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    e.Result = ex;
                 }
             };
 
@@ -483,13 +517,29 @@ namespace TombExtract
             bgWorker.RunWorkerCompleted += (sender, e) =>
             {
                 progressForm.Close();
-
-                MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                slblStatus.Text = $"Successfully reordered savegames";
-
                 isWriting = false;
+
+                if (e.Error != null || e.Result is Exception)
+                {
+                    MessageBox.Show($"Error occurred while reordering savegames.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    slblStatus.Text = $"Error occurred while reordering savegames";
+                }
+                else if (e.Cancelled)
+                {
+                    MessageBox.Show($"Operation was cancelled.",
+                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    slblStatus.Text = $"Savegame reordering cancelled";
+                }
+                else
+                {
+                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    slblStatus.Text = $"Successfully reordered savegames";
+                }
 
                 PopulateSavegamesTR1();
                 EnableButtons();
@@ -509,45 +559,52 @@ namespace TombExtract
                 CreateBackup();
             }
 
-            File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
-
             slblStatus.Text = $"Reordering savegames...";
 
             bgWorker.DoWork += (sender, e) =>
             {
-                for (int i = 0; i < lstSavegames.Items.Count; i++)
+                try
                 {
-                    Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
+                    File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
-
-                    if (currentSavegame.Slot != i)
+                    for (int i = 0; i < lstSavegames.Items.Count; i++)
                     {
-                        byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                        Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                        for (int offset = 0; offset < savegameBytes.Length; offset++)
+                        progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
+
+                        if (currentSavegame.Slot != i)
                         {
-                            savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                            byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                            for (int offset = 0; offset < savegameBytes.Length; offset++)
+                            {
+                                savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                            }
+
+                            currentSavegame.SavegameBytes = savegameBytes;
+
+                            currentSavegame.Slot = i;
+                            currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
+
+                            savegamesToMove.Add(currentSavegame);
                         }
 
-                        currentSavegame.SavegameBytes = savegameBytes;
-
-                        currentSavegame.Slot = i;
-                        currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
-
-                        savegamesToMove.Add(currentSavegame);
+                        int progressPercentage = (i * 100) / lstSavegames.Items.Count;
+                        bgWorker.ReportProgress(progressPercentage);
                     }
 
-                    int progressPercentage = (i * 100) / lstSavegames.Items.Count;
-                    bgWorker.ReportProgress(progressPercentage);
-                }
-
-                foreach (var savegame in savegamesToMove)
-                {
-                    for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                    foreach (var savegame in savegamesToMove)
                     {
-                        WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
+                        for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                        {
+                            WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    e.Result = ex;
                 }
             };
 
@@ -559,13 +616,29 @@ namespace TombExtract
             bgWorker.RunWorkerCompleted += (sender, e) =>
             {
                 progressForm.Close();
-
-                MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                slblStatus.Text = $"Successfully reordered savegames";
-
                 isWriting = false;
+
+                if (e.Error != null || e.Result is Exception)
+                {
+                    MessageBox.Show($"Error occurred while reordering savegames.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    slblStatus.Text = $"Error occurred while reordering savegames";
+                }
+                else if (e.Cancelled)
+                {
+                    MessageBox.Show($"Operation was cancelled.",
+                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    slblStatus.Text = $"Savegame reordering cancelled";
+                }
+                else
+                {
+                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    slblStatus.Text = $"Successfully reordered savegames";
+                }
 
                 PopulateSavegamesTR2();
                 EnableButtons();
@@ -585,45 +658,52 @@ namespace TombExtract
                 CreateBackup();
             }
 
-            File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
-
             slblStatus.Text = $"Reordering savegames...";
 
             bgWorker.DoWork += (sender, e) =>
             {
-                for (int i = 0; i < lstSavegames.Items.Count; i++)
+                try
                 {
-                    Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
+                    File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
-
-                    if (currentSavegame.Slot != i)
+                    for (int i = 0; i < lstSavegames.Items.Count; i++)
                     {
-                        byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                        Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                        for (int offset = 0; offset < savegameBytes.Length; offset++)
+                        progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
+
+                        if (currentSavegame.Slot != i)
                         {
-                            savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                            byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                            for (int offset = 0; offset < savegameBytes.Length; offset++)
+                            {
+                                savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                            }
+
+                            currentSavegame.SavegameBytes = savegameBytes;
+
+                            currentSavegame.Slot = i;
+                            currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
+
+                            savegamesToMove.Add(currentSavegame);
                         }
 
-                        currentSavegame.SavegameBytes = savegameBytes;
-
-                        currentSavegame.Slot = i;
-                        currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
-
-                        savegamesToMove.Add(currentSavegame);
+                        int progressPercentage = (i * 100) / lstSavegames.Items.Count;
+                        bgWorker.ReportProgress(progressPercentage);
                     }
 
-                    int progressPercentage = (i * 100) / lstSavegames.Items.Count;
-                    bgWorker.ReportProgress(progressPercentage);
-                }
-
-                foreach (var savegame in savegamesToMove)
-                {
-                    for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                    foreach (var savegame in savegamesToMove)
                     {
-                        WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
+                        for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                        {
+                            WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    e.Result = ex;
                 }
             };
 
@@ -635,13 +715,29 @@ namespace TombExtract
             bgWorker.RunWorkerCompleted += (sender, e) =>
             {
                 progressForm.Close();
-
-                MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                slblStatus.Text = $"Successfully reordered savegames";
-
                 isWriting = false;
+
+                if (e.Error != null || e.Result is Exception)
+                {
+                    MessageBox.Show($"Error occurred while reordering savegames.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    slblStatus.Text = $"Error occurred while reordering savegames";
+                }
+                else if (e.Cancelled)
+                {
+                    MessageBox.Show($"Operation was cancelled.",
+                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    slblStatus.Text = $"Savegame reordering cancelled";
+                }
+                else
+                {
+                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    slblStatus.Text = $"Successfully reordered savegames";
+                }
 
                 PopulateSavegamesTR3();
                 EnableButtons();
@@ -659,25 +755,20 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.Show();
 
             isWriting = true;
 
             if (CURRENT_TAB == TAB_TR1)
             {
-                progressForm.Show();
-
                 ReorderSavegamesTR1(savegamesToMove);
             }
             else if (CURRENT_TAB == TAB_TR2)
             {
-                progressForm.Show();
-
                 ReorderSavegamesTR2(savegamesToMove);
             }
             else if (CURRENT_TAB == TAB_TR3)
             {
-                progressForm.Show();
-
                 ReorderSavegamesTR3(savegamesToMove);
             }
         }
