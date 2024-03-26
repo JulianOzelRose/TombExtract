@@ -117,7 +117,7 @@ namespace TombExtract
                                     cklSourceSavegamesTR1.Items.Count > 0 ||
                                     cklSourceSavegamesTR1.Items.Count > 0) && !string.IsNullOrEmpty(txtDestinationFilePath.Text));
 
-            chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtSourceFilePath.Text) && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
+            chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
 
             btnManageSlotsTR1.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
             btnManageSlotsTR2.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
@@ -424,8 +424,6 @@ namespace TombExtract
                     CreateBackup();
                 }
 
-                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
-
                 DisableButtons();
 
                 progressForm = new ProgressForm();
@@ -483,8 +481,6 @@ namespace TombExtract
                     CreateBackup();
                 }
 
-                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
-
                 DisableButtons();
 
                 progressForm = new ProgressForm();
@@ -541,8 +537,6 @@ namespace TombExtract
                 {
                     CreateBackup();
                 }
-
-                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
 
                 DisableButtons();
 

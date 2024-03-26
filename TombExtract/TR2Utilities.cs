@@ -112,21 +112,28 @@ namespace TombExtract
         {
             cklSavegames.Items.Clear();
 
-            for (int i = 0; i < 32; i++)
+            try
             {
-                int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
-
-                byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset);
-
-                if (levelIndex >= 1 && levelIndex <= 23)
+                for (int i = 0; i < 32; i++)
                 {
-                    Int32 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
-                    string levelName = levelNames[levelIndex];
-                    GameMode gameMode = GetGameMode(savegameSourcePath, currentSavegameOffset);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                    cklSavegames.Items.Add(savegame);
+                    byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset);
+
+                    if (levelIndex >= 1 && levelIndex <= 23)
+                    {
+                        Int32 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
+                        string levelName = levelNames[levelIndex];
+                        GameMode gameMode = GetGameMode(savegameSourcePath, currentSavegameOffset);
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        cklSavegames.Items.Add(savegame);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -134,25 +141,32 @@ namespace TombExtract
         {
             lstSavegames.Items.Clear();
 
-            for (int i = 0; i < 32; i++)
+            try
             {
-                int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
-
-                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
-
-                if (levelIndex >= 1 && levelIndex <= 23)
+                for (int i = 0; i < 32; i++)
                 {
-                    Int32 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
-                    string levelName = levelNames[levelIndex];
-                    GameMode gameMode = GetGameMode(savegameDestinationPath, currentSavegameOffset);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
 
-                    Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                    lstSavegames.Items.Add(savegame);
+                    byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
+
+                    if (levelIndex >= 1 && levelIndex <= 23)
+                    {
+                        Int32 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
+                        string levelName = levelNames[levelIndex];
+                        GameMode gameMode = GetGameMode(savegameDestinationPath, currentSavegameOffset);
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        lstSavegames.Items.Add(savegame);
+                    }
+                    else
+                    {
+                        lstSavegames.Items.Add("Empty Slot");
+                    }
                 }
-                else
-                {
-                    lstSavegames.Items.Add("Empty Slot");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -160,15 +174,22 @@ namespace TombExtract
         {
             int numOverwrites = 0;
 
-            for (int i = 0; i < savegames.Count; i++)
+            try
             {
-                int currentSavegameOffset = savegames[i].Offset;
-                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
-
-                if (levelIndex >= 1 && levelIndex <= 23)
+                for (int i = 0; i < savegames.Count; i++)
                 {
-                    numOverwrites++;
+                    int currentSavegameOffset = savegames[i].Offset;
+                    byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
+
+                    if (levelIndex >= 1 && levelIndex <= 23)
+                    {
+                        numOverwrites++;
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return 0;
             }
 
             return numOverwrites;
@@ -229,18 +250,10 @@ namespace TombExtract
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
-            try
-            {
-                string operation = NO_CONVERT ? "Extracting" : "Converting";
-                slblStatus.Text = $"{operation} savegames...";
-                bgWorker.RunWorkerAsync(savegames);
-            }
-            catch (Exception ex)
-            {
-                string operation = NO_CONVERT ? "extracting" : "converting";
-                slblStatus.Text = $"Error {operation} savegames.";
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            string operation = NO_CONVERT ? "Extracting" : "Converting";
+            slblStatus.Text = $"{operation} savegames...";
+
+            bgWorker.RunWorkerAsync(savegames);
         }
 
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e, CheckedListBox cklSourceSavegamesTR1,
@@ -253,10 +266,17 @@ namespace TombExtract
         {
             progressForm.Close();
 
-            if (e.Error != null)
+            if (e.Error != null || (e.Result != null && e.Result is Exception))
             {
-                slblStatus.Text = $"Error transferring savegames.";
-                MessageBox.Show(e.Error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Exception exception = e.Error as Exception ?? e.Result as Exception;
+                string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
+
+                string operation;
+                if (NO_CONVERT) operation = "transferred";
+                else operation = "converting";
+
+                slblStatus.Text = $"Error {operation} savegames.";
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (e.Cancelled)
             {
@@ -266,10 +286,8 @@ namespace TombExtract
             else
             {
                 string operation;
-
                 if (NO_CONVERT) operation = "transferred";
                 else operation = "converted and transferred";
-
                 string savegamesText = totalSavegames == 1 ? "savegame" : "savegames";
 
                 slblStatus.Text = $"Successfully {operation} {totalSavegames} {savegamesText} to destination file.";
@@ -319,6 +337,8 @@ namespace TombExtract
 
             try
             {
+                File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
+
                 for (int i = 0; i < savegames.Count; i++)
                 {
                     progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
@@ -439,7 +459,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.Result = ex;
             }
         }
 
