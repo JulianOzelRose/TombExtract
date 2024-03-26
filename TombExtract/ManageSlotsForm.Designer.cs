@@ -46,6 +46,7 @@ namespace TombExtract
             this.lstSavegames.Name = "lstSavegames";
             this.lstSavegames.Size = new System.Drawing.Size(243, 316);
             this.lstSavegames.TabIndex = 0;
+            this.lstSavegames.SelectedIndexChanged += new System.EventHandler(this.lstSavegames_SelectedIndexChanged);
             // 
             // btnApply
             // 
@@ -69,6 +70,7 @@ namespace TombExtract
             // 
             // btnMoveUp
             // 
+            this.btnMoveUp.Enabled = false;
             this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveUp.Location = new System.Drawing.Point(261, 12);
             this.btnMoveUp.Name = "btnMoveUp";
@@ -80,6 +82,7 @@ namespace TombExtract
             // 
             // btnMoveDown
             // 
+            this.btnMoveDown.Enabled = false;
             this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveDown.Location = new System.Drawing.Point(261, 48);
             this.btnMoveDown.Name = "btnMoveDown";
@@ -91,6 +94,7 @@ namespace TombExtract
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(261, 172);
             this.btnDelete.Name = "btnDelete";

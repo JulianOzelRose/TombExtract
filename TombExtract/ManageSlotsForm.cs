@@ -190,9 +190,6 @@ namespace TombExtract
 
         private void EnableButtons()
         {
-            btnMoveUp.Enabled = true;
-            btnMoveDown.Enabled = true;
-            btnDelete.Enabled = true;
             btnApply.Enabled = true;
             btnClose.Enabled = true;
             btnRefresh.Enabled = true;
@@ -302,6 +299,10 @@ namespace TombExtract
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             PopulateSavegamesConditionaly();
+
+            btnMoveUp.Enabled = false;
+            btnMoveDown.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         private void btnMoveUp_Click(object sender, EventArgs e)
@@ -345,7 +346,7 @@ namespace TombExtract
             }
 
             DialogResult result = MessageBox.Show($"Are you sure you wish to delete '{(Savegame)lstSavegames.SelectedItem}'?",
-                "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
             if (result == DialogResult.No)
             {
@@ -679,6 +680,15 @@ namespace TombExtract
 
                 ReorderSavegamesTR3(savegamesToMove);
             }
+        }
+
+        private void lstSavegames_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = lstSavegames.SelectedIndex;
+
+            btnMoveUp.Enabled = (selectedIndex != -1 && selectedIndex >= 1);
+            btnMoveDown.Enabled = (selectedIndex != -1 && selectedIndex < 31);
+            btnDelete.Enabled = (selectedIndex != -1 && lstSavegames.SelectedItem.ToString() != "Empty Slot");
         }
 
         private readonly Dictionary<byte, string> levelNamesTR1 = new Dictionary<byte, string>()
