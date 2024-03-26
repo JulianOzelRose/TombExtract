@@ -103,94 +103,8 @@ namespace TombExtract
             chkBackupOnWrite.Enabled = false;
         }
 
-        private bool IsValidSavegame(string path)
+        private void EnableButtonsConditionally()
         {
-            FileInfo fileInfo = new FileInfo(path);
-            return fileInfo.Length >= 0x152004;
-        }
-
-        private void BrowseSourceFile()
-        {
-            using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
-            {
-                fileBrowserDialog.InitialDirectory = "C:\\";
-                fileBrowserDialog.Title = "Select source savegame file";
-                fileBrowserDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
-
-                if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    if (!IsValidSavegame(fileBrowserDialog.FileName))
-                    {
-                        MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    txtSourceFilePath.Text = fileBrowserDialog.FileName;
-
-                    TR1.SetSavegameSourcePath(fileBrowserDialog.FileName);
-                    TR1.PopulateSourceSavegames(cklSourceSavegamesTR1);
-
-                    TR2.SetSavegameSourcePath(fileBrowserDialog.FileName);
-                    TR2.PopulateSourceSavegames(cklSourceSavegamesTR2);
-
-                    TR3.SetSavegameSourcePath(fileBrowserDialog.FileName);
-                    TR3.PopulateSourceSavegames(cklSourceSavegamesTR3);
-
-                    int numSaves = cklSourceSavegamesTR1.Items.Count +
-                                   cklSourceSavegamesTR2.Items.Count +
-                                   cklSourceSavegamesTR3.Items.Count;
-
-                    slblStatus.Text = $"{numSaves} savegames found in \"{fileBrowserDialog.FileName}\"";
-                }
-            }
-
-            btnExtractTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-            btnExtractTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-            btnExtractTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-
-            btnSelectAllTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0;
-            btnSelectAllTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0;
-            btnSelectAllTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0;
-
-            tsmiExtract.Enabled = ((cklSourceSavegamesTR1.Items.Count > 0 ||
-                                    cklSourceSavegamesTR1.Items.Count > 0 ||
-                                    cklSourceSavegamesTR1.Items.Count > 0) && !string.IsNullOrEmpty(txtDestinationFilePath.Text));
-
-            chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtSourceFilePath.Text) && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-        }
-
-        private void BrowseDestinationFile()
-        {
-            using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
-            {
-                fileBrowserDialog.InitialDirectory = "C:\\";
-                fileBrowserDialog.Title = "Select destination savegame file";
-                fileBrowserDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
-
-                if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    if (!IsValidSavegame(fileBrowserDialog.FileName))
-                    {
-                        MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    txtDestinationFilePath.Text = fileBrowserDialog.FileName;
-                    savegameDestinationPath = fileBrowserDialog.FileName;
-
-                    TR1.SetSavegameDestinationPath(fileBrowserDialog.FileName);
-                    TR1.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
-
-                    TR2.SetSavegameDestinationPath(fileBrowserDialog.FileName);
-                    TR2.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
-
-                    TR3.SetSavegameDestinationPath(fileBrowserDialog.FileName);
-                    TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
-
-                    slblStatus.Text = $"Opened destination file: \"{fileBrowserDialog.FileName}\"";
-                }
-            }
-
             btnExtractTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
             btnExtractTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
             btnExtractTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
@@ -205,9 +119,243 @@ namespace TombExtract
 
             chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtSourceFilePath.Text) && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
 
-            btnManageSlotsTR1.Enabled = true;
-            btnManageSlotsTR2.Enabled = true;
-            btnManageSlotsTR3.Enabled = true;
+            btnManageSlotsTR1.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
+            btnManageSlotsTR2.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
+            btnManageSlotsTR3.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
+        }
+
+        private bool IsValidSavegame(string path)
+        {
+            FileInfo fileInfo = new FileInfo(path);
+
+            if (fileInfo.Extension.ToLower() != ".dat")
+            {
+                return false;
+            }
+
+            return fileInfo.Length >= 0x152004;
+        }
+
+        private void SetSourceFile(string path)
+        {
+            if (!IsValidSavegame(path))
+            {
+                MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            txtSourceFilePath.Text = path;
+
+            TR1.SetSavegameSourcePath(path);
+            TR1.PopulateSourceSavegames(cklSourceSavegamesTR1);
+
+            TR2.SetSavegameSourcePath(path);
+            TR2.PopulateSourceSavegames(cklSourceSavegamesTR2);
+
+            TR3.SetSavegameSourcePath(path);
+            TR3.PopulateSourceSavegames(cklSourceSavegamesTR3);
+
+            EnableButtonsConditionally();
+
+            int numSaves = cklSourceSavegamesTR1.Items.Count +
+                           cklSourceSavegamesTR2.Items.Count +
+                           cklSourceSavegamesTR3.Items.Count;
+
+            slblStatus.Text = $"{numSaves} savegames found in \"{path}\"";
+        }
+
+        private void SetDestinationFile(string path)
+        {
+            if (!IsValidSavegame(path))
+            {
+                MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            txtDestinationFilePath.Text = path;
+            savegameDestinationPath = path;
+
+            TR1.SetSavegameDestinationPath(path);
+            TR1.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
+
+            TR2.SetSavegameDestinationPath(path);
+            TR2.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
+
+            TR3.SetSavegameDestinationPath(path);
+            TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
+
+            EnableButtonsConditionally();
+
+            slblStatus.Text = $"Opened destination file: \"{path}\"";
+        }
+
+        private void cklSourceSavegamesTR1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string filePath = files[0];
+
+                SetSourceFile(filePath);
+            }
+        }
+
+        private void cklSourceSavegamesTR1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lstDestinationSavegamesTR1_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string filePath = files[0];
+
+                SetDestinationFile(filePath);
+            }
+        }
+
+        private void lstDestinationSavegamesTR1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void cklSourceSavegamesTR2_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string filePath = files[0];
+
+                SetSourceFile(filePath);
+            }
+        }
+
+        private void cklSourceSavegamesTR2_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lstDestinationSavegamesTR2_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string filePath = files[0];
+
+                SetDestinationFile(filePath);
+            }
+        }
+
+        private void lstDestinationSavegamesTR2_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void cklSourceSavegamesTR3_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string filePath = files[0];
+
+                SetSourceFile(filePath);
+            }
+        }
+
+        private void cklSourceSavegamesTR3_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lstDestinationSavegamesTR3_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string filePath = files[0];
+
+                SetDestinationFile(filePath);
+            }
+        }
+
+        private void lstDestinationSavegamesTR3_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void BrowseSourceFile()
+        {
+            using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
+            {
+                fileBrowserDialog.InitialDirectory = "C:\\";
+                fileBrowserDialog.Title = "Select source savegame file";
+                fileBrowserDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
+
+                if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    SetSourceFile(fileBrowserDialog.FileName);
+                }
+            }
+        }
+
+        private void BrowseDestinationFile()
+        {
+            using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
+            {
+                fileBrowserDialog.InitialDirectory = "C:\\";
+                fileBrowserDialog.Title = "Select destination savegame file";
+                fileBrowserDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
+
+                if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    SetDestinationFile(fileBrowserDialog.FileName);
+                }
+            }
         }
 
         private void btnBrowseSourceFile_Click(object sender, EventArgs e)

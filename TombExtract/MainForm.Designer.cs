@@ -290,11 +290,14 @@ namespace TombExtract
             // 
             // lstDestinationSavegamesTR1
             // 
+            this.lstDestinationSavegamesTR1.AllowDrop = true;
             this.lstDestinationSavegamesTR1.FormattingEnabled = true;
             this.lstDestinationSavegamesTR1.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR1.Name = "lstDestinationSavegamesTR1";
             this.lstDestinationSavegamesTR1.Size = new System.Drawing.Size(238, 303);
             this.lstDestinationSavegamesTR1.TabIndex = 17;
+            this.lstDestinationSavegamesTR1.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR1_DragDrop);
+            this.lstDestinationSavegamesTR1.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR1_DragEnter);
             // 
             // btnExitTR1
             // 
@@ -337,11 +340,14 @@ namespace TombExtract
             // 
             // cklSourceSavegamesTR1
             // 
+            this.cklSourceSavegamesTR1.AllowDrop = true;
             this.cklSourceSavegamesTR1.FormattingEnabled = true;
             this.cklSourceSavegamesTR1.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR1.Name = "cklSourceSavegamesTR1";
             this.cklSourceSavegamesTR1.Size = new System.Drawing.Size(238, 304);
             this.cklSourceSavegamesTR1.TabIndex = 12;
+            this.cklSourceSavegamesTR1.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR1_DragDrop);
+            this.cklSourceSavegamesTR1.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR1_DragEnter);
             // 
             // tpTR2
             // 
@@ -436,11 +442,14 @@ namespace TombExtract
             // 
             // lstDestinationSavegamesTR2
             // 
+            this.lstDestinationSavegamesTR2.AllowDrop = true;
             this.lstDestinationSavegamesTR2.FormattingEnabled = true;
             this.lstDestinationSavegamesTR2.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR2.Name = "lstDestinationSavegamesTR2";
             this.lstDestinationSavegamesTR2.Size = new System.Drawing.Size(238, 303);
             this.lstDestinationSavegamesTR2.TabIndex = 10;
+            this.lstDestinationSavegamesTR2.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR2_DragDrop);
+            this.lstDestinationSavegamesTR2.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR2_DragEnter);
             // 
             // btnExitTR2
             // 
@@ -483,11 +492,14 @@ namespace TombExtract
             // 
             // cklSourceSavegamesTR2
             // 
+            this.cklSourceSavegamesTR2.AllowDrop = true;
             this.cklSourceSavegamesTR2.FormattingEnabled = true;
             this.cklSourceSavegamesTR2.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR2.Name = "cklSourceSavegamesTR2";
             this.cklSourceSavegamesTR2.Size = new System.Drawing.Size(238, 304);
             this.cklSourceSavegamesTR2.TabIndex = 0;
+            this.cklSourceSavegamesTR2.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR2_DragDrop);
+            this.cklSourceSavegamesTR2.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR2_DragEnter);
             // 
             // tpTR3
             // 
@@ -581,11 +593,14 @@ namespace TombExtract
             // 
             // lstDestinationSavegamesTR3
             // 
+            this.lstDestinationSavegamesTR3.AllowDrop = true;
             this.lstDestinationSavegamesTR3.FormattingEnabled = true;
             this.lstDestinationSavegamesTR3.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR3.Name = "lstDestinationSavegamesTR3";
             this.lstDestinationSavegamesTR3.Size = new System.Drawing.Size(238, 303);
             this.lstDestinationSavegamesTR3.TabIndex = 26;
+            this.lstDestinationSavegamesTR3.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR3_DragDrop);
+            this.lstDestinationSavegamesTR3.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR3_DragEnter);
             // 
             // btnExitTR3
             // 
@@ -628,11 +643,14 @@ namespace TombExtract
             // 
             // cklSourceSavegamesTR3
             // 
+            this.cklSourceSavegamesTR3.AllowDrop = true;
             this.cklSourceSavegamesTR3.FormattingEnabled = true;
             this.cklSourceSavegamesTR3.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR3.Name = "cklSourceSavegamesTR3";
             this.cklSourceSavegamesTR3.Size = new System.Drawing.Size(238, 304);
             this.cklSourceSavegamesTR3.TabIndex = 21;
+            this.cklSourceSavegamesTR3.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR3_DragDrop);
+            this.cklSourceSavegamesTR3.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR3_DragEnter);
             // 
             // tsrToolStrip
             // 
