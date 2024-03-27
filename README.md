@@ -31,4 +31,4 @@ Use the up and down arrows at the top to reorder the savegames to different slot
 When you are done reordering your savegames, click "Apply", and a progress display will appear to show how far along the process is.
 Again, it is recommended that you check the "Backup before writing" option in the main window before deleting or reordering savegames as a precautionary measure.
 
-![Manage Slots Form](https://github.com/JulianOzelRose/TombExtract/assets/95890436/397c81ca-baf2-4b41-a09f-3382fa990c04)
+![Manage Slots Form](https://github.com/JulianOzelRose/TombExtract/assets/95890436/c9174799-9fd9-4c7c-96d8-1d2d6bc6485b)
