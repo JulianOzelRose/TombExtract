@@ -170,22 +170,15 @@ namespace TombExtract
         {
             int numOverwrites = 0;
 
-            try
+            for (int i = 0; i < savegames.Count; i++)
             {
-                for (int i = 0; i < savegames.Count; i++)
-                {
-                    int currentSavegameOffset = savegames[i].Offset;
-                    byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
+                int currentSavegameOffset = savegames[i].Offset;
+                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
 
-                    if (levelIndex >= 1 && levelIndex <= 19)
-                    {
-                        numOverwrites++;
-                    }
+                if (levelIndex >= 1 && levelIndex <= 19)
+                {
+                    numOverwrites++;
                 }
-            }
-            catch (Exception)
-            {
-                return 0;
             }
 
             return numOverwrites;
@@ -416,7 +409,7 @@ namespace TombExtract
                     }
                     else if (PC_TO_SWITCH)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Switch...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Nintendo Switch...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {
@@ -438,7 +431,7 @@ namespace TombExtract
                     }
                     else if (PS4_TO_SWITCH)
                     {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Switch...");
+                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                         {

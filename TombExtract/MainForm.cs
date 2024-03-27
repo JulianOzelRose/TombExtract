@@ -25,8 +25,9 @@ namespace TombExtract
         // Progress form
         private static ProgressForm progressForm;
 
-        // Destination path
+        // Savegame paths
         private string savegameDestinationPath;
+        private string savegameSourcePath;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -105,23 +106,25 @@ namespace TombExtract
 
         private void EnableButtonsConditionally()
         {
-            btnExtractTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-            btnExtractTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-            btnExtractTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
+            bool isDestinationFilePresent = !string.IsNullOrEmpty(savegameDestinationPath) && File.Exists(savegameDestinationPath);
 
-            btnSelectAllTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-            btnSelectAllTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
-            btnSelectAllTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && !string.IsNullOrEmpty(txtDestinationFilePath.Text);
+            btnExtractTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && isDestinationFilePresent;
+            btnExtractTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && isDestinationFilePresent;
+            btnExtractTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && isDestinationFilePresent;
+
+            btnSelectAllTR1.Enabled = cklSourceSavegamesTR1.Items.Count > 0 && isDestinationFilePresent;
+            btnSelectAllTR2.Enabled = cklSourceSavegamesTR2.Items.Count > 0 && isDestinationFilePresent;
+            btnSelectAllTR3.Enabled = cklSourceSavegamesTR3.Items.Count > 0 && isDestinationFilePresent;
 
             tsmiExtract.Enabled = ((cklSourceSavegamesTR1.Items.Count > 0 ||
                                     cklSourceSavegamesTR1.Items.Count > 0 ||
-                                    cklSourceSavegamesTR1.Items.Count > 0) && !string.IsNullOrEmpty(txtDestinationFilePath.Text));
+                                    cklSourceSavegamesTR1.Items.Count > 0) && isDestinationFilePresent);
 
-            chkBackupOnWrite.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
+            chkBackupOnWrite.Enabled = isDestinationFilePresent;
 
-            btnManageSlotsTR1.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
-            btnManageSlotsTR2.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
-            btnManageSlotsTR3.Enabled = !string.IsNullOrEmpty(txtDestinationFilePath.Text) && File.Exists((txtDestinationFilePath.Text));
+            btnManageSlotsTR1.Enabled = isDestinationFilePresent;
+            btnManageSlotsTR2.Enabled = isDestinationFilePresent;
+            btnManageSlotsTR3.Enabled = isDestinationFilePresent;
         }
 
         private bool IsValidSavegame(string path)
@@ -145,6 +148,7 @@ namespace TombExtract
             }
 
             txtSourceFilePath.Text = path;
+            savegameSourcePath = path;
 
             TR1.SetSavegameSourcePath(path);
             TR1.PopulateSourceSavegames(cklSourceSavegamesTR1);
@@ -337,7 +341,6 @@ namespace TombExtract
 
                 if (fileBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-
                     SetSourceFile(fileBrowserDialog.FileName);
                 }
             }
@@ -403,41 +406,52 @@ namespace TombExtract
             if (selectedSavegames.Count == 0)
             {
                 MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            if (!File.Exists(savegameSourcePath))
             {
-                int numOverwrites = TR1.GetNumOverwrites(selectedSavegames);
-
-                if (numOverwrites > 0)
-                {
-                    DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
-                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
-                if (chkBackupOnWrite.Checked)
-                {
-                    CreateBackup();
-                }
-
-                DisableButtons();
-
-                progressForm = new ProgressForm();
-                progressForm.Owner = this;
-                progressForm.Show();
-
-                TR1.SetProgressForm(progressForm);
-
-                TR1.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
-                    btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
-                    btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
-                    slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
-                    btnManageSlotsTR3);
+                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            if (!File.Exists(savegameDestinationPath))
+            {
+                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int numOverwrites = TR1.GetNumOverwrites(selectedSavegames);
+
+            if (numOverwrites > 0)
+            {
+                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            if (chkBackupOnWrite.Checked)
+            {
+                CreateBackup();
+            }
+
+            DisableButtons();
+
+            progressForm = new ProgressForm();
+            progressForm.Owner = this;
+            progressForm.Show();
+
+            TR1.SetProgressForm(progressForm);
+
+            TR1.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
+                btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
+                btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
+                slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
+                btnManageSlotsTR3);
         }
 
         private void ExtractSavegamesTR2()
@@ -460,41 +474,52 @@ namespace TombExtract
             if (selectedSavegames.Count == 0)
             {
                 MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            if (!File.Exists(savegameSourcePath))
             {
-                int numOverwrites = TR2.GetNumOverwrites(selectedSavegames);
-
-                if (numOverwrites > 0)
-                {
-                    DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
-                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
-                if (chkBackupOnWrite.Checked)
-                {
-                    CreateBackup();
-                }
-
-                DisableButtons();
-
-                progressForm = new ProgressForm();
-                progressForm.Owner = this;
-                progressForm.Show();
-
-                TR2.SetProgressForm(progressForm);
-
-                TR2.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
-                    btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
-                    btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR2, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
-                    slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
-                    btnManageSlotsTR3);
+                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            if (!File.Exists(savegameDestinationPath))
+            {
+                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int numOverwrites = TR2.GetNumOverwrites(selectedSavegames);
+
+            if (numOverwrites > 0)
+            {
+                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            if (chkBackupOnWrite.Checked)
+            {
+                CreateBackup();
+            }
+
+            DisableButtons();
+
+            progressForm = new ProgressForm();
+            progressForm.Owner = this;
+            progressForm.Show();
+
+            TR2.SetProgressForm(progressForm);
+
+            TR2.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
+                btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
+                btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR2, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
+                slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
+                btnManageSlotsTR3);
         }
 
         private void ExtractSavegamesTR3()
@@ -517,41 +542,52 @@ namespace TombExtract
             if (selectedSavegames.Count == 0)
             {
                 MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            if (!File.Exists(savegameSourcePath))
             {
-                int numOverwrites = TR3.GetNumOverwrites(selectedSavegames);
-
-                if (numOverwrites > 0)
-                {
-                    DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
-                        "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
-                if (chkBackupOnWrite.Checked)
-                {
-                    CreateBackup();
-                }
-
-                DisableButtons();
-
-                progressForm = new ProgressForm();
-                progressForm.Owner = this;
-                progressForm.Show();
-
-                TR3.SetProgressForm(progressForm);
-
-                TR3.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
-                    btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
-                    btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
-                    slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
-                    btnManageSlotsTR3);
+                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            if (!File.Exists(savegameDestinationPath))
+            {
+                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int numOverwrites = TR3.GetNumOverwrites(selectedSavegames);
+
+            if (numOverwrites > 0)
+            {
+                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            if (chkBackupOnWrite.Checked)
+            {
+                CreateBackup();
+            }
+
+            DisableButtons();
+
+            progressForm = new ProgressForm();
+            progressForm.Owner = this;
+            progressForm.Show();
+
+            TR3.SetProgressForm(progressForm);
+
+            TR3.WriteSavegamesToDestination(selectedSavegames, cklSourceSavegamesTR1, cklSourceSavegamesTR2, cklSourceSavegamesTR3,
+                btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
+                btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
+                slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
+                btnManageSlotsTR3);
         }
 
         private void btnExtractTR1_Click(object sender, EventArgs e)
