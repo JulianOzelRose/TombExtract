@@ -1,6 +1,6 @@
 # Tomb Raider I-III Remastered Savegame Manager
-This is a savegame manager tool for Tomb Raider I-III Remastered. It includes the ability to transfer individual savegames from one file to another, to convert
-to and from PC/PS4/Nintendo Switch format, and to delete and reorder savegames. Useful for downloading savegames from the Internet without having to replace your entire savegame file,
+This is a savegame manager tool for Tomb Raider I-III Remastered. It includes the ability to transfer individual savegames between files, to convert
+to PC/PS4/Nintendo Switch format, and to delete or reorder savegames. Useful for downloading savegames from the Internet without having to replace your entire savegame file,
 or transferring savegames to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider I-III Remastered,
 check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
