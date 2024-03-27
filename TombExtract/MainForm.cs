@@ -100,6 +100,7 @@ namespace TombExtract
             tsmiBrowseSourceFile.Enabled = false;
             tsmiBrowseDestinationFile.Enabled = false;
             tsmiExtract.Enabled = false;
+            tsmiBackupDestinationFile.Enabled = false;
 
             chkBackupOnWrite.Enabled = false;
         }
@@ -121,6 +122,7 @@ namespace TombExtract
                                     cklSourceSavegamesTR1.Items.Count > 0) && isDestinationFilePresent);
 
             chkBackupOnWrite.Enabled = isDestinationFilePresent;
+            tsmiBackupDestinationFile.Enabled = isDestinationFilePresent;
 
             btnManageSlotsTR1.Enabled = isDestinationFilePresent;
             btnManageSlotsTR2.Enabled = isDestinationFilePresent;
@@ -451,7 +453,7 @@ namespace TombExtract
                 btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
                 btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
                 slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
-                btnManageSlotsTR3);
+                btnManageSlotsTR3, tsmiBackupDestinationFile);
         }
 
         private void ExtractSavegamesTR2()
@@ -519,7 +521,7 @@ namespace TombExtract
                 btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
                 btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR2, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
                 slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
-                btnManageSlotsTR3);
+                btnManageSlotsTR3, tsmiBackupDestinationFile);
         }
 
         private void ExtractSavegamesTR3()
@@ -587,7 +589,7 @@ namespace TombExtract
                 btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3, btnBrowseSourceFile,
                 btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR3, tsmiBrowseSourceFile, tsmiBrowseDestinationFile,
                 slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2,
-                btnManageSlotsTR3);
+                btnManageSlotsTR3, tsmiBackupDestinationFile);
         }
 
         private void btnExtractTR1_Click(object sender, EventArgs e)
@@ -655,6 +657,11 @@ namespace TombExtract
         private void tsmiBrowseDestinationFile_Click(object sender, EventArgs e)
         {
             BrowseDestinationFile();
+        }
+
+        private void tsmiBackupDestinationFile_Click(object sender, EventArgs e)
+        {
+            CreateBackup();
         }
 
         private void tsmiExit_Click(object sender, EventArgs e)

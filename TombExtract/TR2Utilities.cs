@@ -194,7 +194,7 @@ namespace TombExtract
             Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR2,
             ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
             ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3,
-            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3)
+            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
         {
             isWriting = true;
 
@@ -248,7 +248,7 @@ namespace TombExtract
                 cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
                 btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR2, tsmiBrowseSourceFile,
                 tsmiBrowseDestinationFile, slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1,
-                btnManageSlotsTR2, btnManageSlotsTR3);
+                btnManageSlotsTR2, btnManageSlotsTR3, tsmiBackupDestinationFile);
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
@@ -264,7 +264,7 @@ namespace TombExtract
             Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR2,
             ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
             ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3,
-            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3)
+            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
         {
             progressForm.Close();
 
@@ -326,6 +326,7 @@ namespace TombExtract
             tsmiBrowseSourceFile.Enabled = true;
             tsmiBrowseDestinationFile.Enabled = true;
             tsmiExtract.Enabled = true;
+            tsmiBackupDestinationFile.Enabled = true;
 
             chkBackupOnWrite.Enabled = true;
 

@@ -92,6 +92,8 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsmiBackupDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFileSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -672,8 +674,10 @@ namespace TombExtract
             this.tsmiBrowseSourceFile,
             this.tsmiBrowseDestinationFile,
             this.tsmiFileSeparator,
-            this.tsmiExtract,
+            this.tsmiBackupDestinationFile,
             this.tsmiFileSeparator2,
+            this.tsmiExtract,
+            this.tsmiFileSeparator3,
             this.tsmiExit});
             this.tsddbFile.Image = ((System.Drawing.Image)(resources.GetObject("tsddbFile.Image")));
             this.tsddbFile.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -774,6 +778,19 @@ namespace TombExtract
             this.slblStatus.Name = "slblStatus";
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
+            // 
+            // tsmiBackupDestinationFile
+            // 
+            this.tsmiBackupDestinationFile.Enabled = false;
+            this.tsmiBackupDestinationFile.Name = "tsmiBackupDestinationFile";
+            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(202, 22);
+            this.tsmiBackupDestinationFile.Text = "Backup destination file";
+            this.tsmiBackupDestinationFile.Click += new System.EventHandler(this.tsmiBackupDestinationFile_Click);
+            // 
+            // tsmiFileSeparator3
+            // 
+            this.tsmiFileSeparator3.Name = "tsmiFileSeparator3";
+            this.tsmiFileSeparator3.Size = new System.Drawing.Size(199, 6);
             // 
             // MainForm
             // 
@@ -876,6 +893,8 @@ namespace TombExtract
         private System.Windows.Forms.Button btnManageSlotsTR1;
         private System.Windows.Forms.Button btnManageSlotsTR2;
         private System.Windows.Forms.Button btnManageSlotsTR3;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBackupDestinationFile;
+        private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator3;
     }
 }
 
