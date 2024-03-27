@@ -215,15 +215,18 @@ namespace TombExtract
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                        savegame.SetSlot(slot);
+                        savegame.Slot = slot;
+
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
-                        savegame.SetIsEmptySlot(true);
-                        savegame.SetSlot(slot);
+
+                        savegame.IsEmptySlot = true;
+                        savegame.Slot = slot;
+
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -254,15 +257,18 @@ namespace TombExtract
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                        savegame.SetSlot(slot);
+                        savegame.Slot = slot;
+
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
-                        savegame.SetIsEmptySlot(true);
-                        savegame.SetSlot(slot);
+
+                        savegame.IsEmptySlot = true;
+                        savegame.Slot = slot;
+
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -293,15 +299,18 @@ namespace TombExtract
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
-                        savegame.SetSlot(slot);
+                        savegame.Slot = slot;
+
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.Normal);
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
-                        savegame.SetIsEmptySlot(true);
-                        savegame.SetSlot(slot);
+
+                        savegame.IsEmptySlot = true;
+                        savegame.Slot = slot;
+
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -423,23 +432,23 @@ namespace TombExtract
                     MessageBox.Show($"Error occurred while deleting savegame.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    slblStatus.Text = $"Error occurred while deleting savegame";
+                    slblStatus.Text = $"Error occurred while deleting savegame.";
                 }
                 else if (args.Cancelled)
                 {
                     MessageBox.Show($"Operation cancelled.",
                         "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Savegame deletion cancelled";
+                    slblStatus.Text = $"Savegame deletion cancelled.";
                 }
                 else
                 {
                     string deletedSavegameString = (string)args.Result;
 
-                    MessageBox.Show($"Successfully deleted '{deletedSavegameString}'",
+                    MessageBox.Show($"Successfully deleted '{deletedSavegameString}'.",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Successfully deleted savegame";
+                    slblStatus.Text = $"Successfully deleted savegame.";
 
                     PopulateSavegamesConditionaly();
                 }
@@ -472,10 +481,10 @@ namespace TombExtract
                     {
                         Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                        progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
-
                         if (currentSavegame.Slot != i)
                         {
+                            progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
+
                             byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
 
                             for (int offset = 0; offset < savegameBytes.Length; offset++)
@@ -491,16 +500,23 @@ namespace TombExtract
                             savegamesToMove.Add(currentSavegame);
                         }
 
-                        int progressPercentage = (i * 100) / lstSavegames.Items.Count;
+                        int progressPercentage = (i * 50) / lstSavegames.Items.Count;
                         bgWorker.ReportProgress(progressPercentage);
                     }
 
-                    foreach (var savegame in savegamesToMove)
+                    for (int i = 0; i < savegamesToMove.Count; i++)
                     {
+                        Savegame savegame = savegamesToMove[i];
+
+                        progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
+
                         for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
                         {
                             WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
                         }
+
+                        int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
+                        bgWorker.ReportProgress(progressPercentage);
                     }
                 }
                 catch (Exception ex)
@@ -524,21 +540,21 @@ namespace TombExtract
                     MessageBox.Show($"Error occurred while reordering savegames.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    slblStatus.Text = $"Error occurred while reordering savegames";
+                    slblStatus.Text = $"Error occurred while reordering savegames.";
                 }
                 else if (e.Cancelled)
                 {
                     MessageBox.Show($"Operation was cancelled.",
                         "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Savegame reordering cancelled";
+                    slblStatus.Text = $"Savegame reordering cancelled.";
                 }
                 else
                 {
                     MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Successfully reordered savegames";
+                    slblStatus.Text = $"Successfully reordered savegames.";
                 }
 
                 PopulateSavegamesTR1();
@@ -571,7 +587,7 @@ namespace TombExtract
                     {
                         Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                        progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
+                        progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
 
                         if (currentSavegame.Slot != i)
                         {
@@ -590,16 +606,23 @@ namespace TombExtract
                             savegamesToMove.Add(currentSavegame);
                         }
 
-                        int progressPercentage = (i * 100) / lstSavegames.Items.Count;
+                        int progressPercentage = (i * 50) / lstSavegames.Items.Count;
                         bgWorker.ReportProgress(progressPercentage);
                     }
 
-                    foreach (var savegame in savegamesToMove)
+                    for (int i = 0; i < savegamesToMove.Count; i++)
                     {
+                        Savegame savegame = savegamesToMove[i];
+
+                        progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
+
                         for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
                         {
                             WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
                         }
+
+                        int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
+                        bgWorker.ReportProgress(progressPercentage);
                     }
                 }
                 catch (Exception ex)
@@ -623,21 +646,21 @@ namespace TombExtract
                     MessageBox.Show($"Error occurred while reordering savegames.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    slblStatus.Text = $"Error occurred while reordering savegames";
+                    slblStatus.Text = $"Error occurred while reordering savegames.";
                 }
                 else if (e.Cancelled)
                 {
                     MessageBox.Show($"Operation was cancelled.",
                         "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Savegame reordering cancelled";
+                    slblStatus.Text = $"Savegame reordering cancelled.";
                 }
                 else
                 {
                     MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Successfully reordered savegames";
+                    slblStatus.Text = $"Successfully reordered savegames.";
                 }
 
                 PopulateSavegamesTR2();
@@ -670,7 +693,7 @@ namespace TombExtract
                     {
                         Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                        progressForm.UpdateStatusMessage($"Reordering '{currentSavegame}'...");
+                        progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
 
                         if (currentSavegame.Slot != i)
                         {
@@ -689,16 +712,23 @@ namespace TombExtract
                             savegamesToMove.Add(currentSavegame);
                         }
 
-                        int progressPercentage = (i * 100) / lstSavegames.Items.Count;
+                        int progressPercentage = (i * 50) / lstSavegames.Items.Count;
                         bgWorker.ReportProgress(progressPercentage);
                     }
 
-                    foreach (var savegame in savegamesToMove)
+                    for (int i = 0; i < savegamesToMove.Count; i++)
                     {
+                        Savegame savegame = savegamesToMove[i];
+
+                        progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
+
                         for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
                         {
                             WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
                         }
+
+                        int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
+                        bgWorker.ReportProgress(progressPercentage);
                     }
                 }
                 catch (Exception ex)
@@ -722,21 +752,21 @@ namespace TombExtract
                     MessageBox.Show($"Error occurred while reordering savegames.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    slblStatus.Text = $"Error occurred while reordering savegames";
+                    slblStatus.Text = $"Error occurred while reordering savegames.";
                 }
                 else if (e.Cancelled)
                 {
                     MessageBox.Show($"Operation was cancelled.",
                         "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Savegame reordering cancelled";
+                    slblStatus.Text = $"Savegame reordering cancelled.";
                 }
                 else
                 {
                     MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    slblStatus.Text = $"Successfully reordered savegames";
+                    slblStatus.Text = $"Successfully reordered savegames.";
                 }
 
                 PopulateSavegamesTR3();

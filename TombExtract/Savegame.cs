@@ -5,7 +5,8 @@ namespace TombExtract
     public enum GameMode
     {
         Normal,
-        Plus
+        Plus,
+        None
     }
 
     public class Savegame
@@ -25,16 +26,6 @@ namespace TombExtract
             Offset = savegameOffset;
             Mode = gameMode;
             IsEmptySlot = false;
-        }
-
-        public void SetIsEmptySlot(bool isEmpty)
-        {
-            IsEmptySlot = isEmpty;
-        }
-
-        public void SetSlot(int slot)
-        {
-            Slot = slot;
         }
 
         public override string ToString()

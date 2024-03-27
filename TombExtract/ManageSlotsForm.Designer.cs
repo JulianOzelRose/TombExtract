@@ -50,7 +50,7 @@ namespace TombExtract
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(218, 334);
+            this.btnApply.Location = new System.Drawing.Point(180, 334);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 1;
@@ -60,7 +60,7 @@ namespace TombExtract
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(137, 334);
+            this.btnClose.Location = new System.Drawing.Point(99, 334);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
