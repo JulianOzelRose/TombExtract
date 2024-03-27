@@ -198,6 +198,15 @@ namespace TombExtract
         {
             isWriting = true;
 
+            // Reset conversion flags
+            PS4_TO_PC = false;
+            PC_TO_PS4 = false;
+            SWITCH_TO_PC = false;
+            NO_CONVERT = false;
+            PC_TO_SWITCH = false;
+            PS4_TO_SWITCH = false;
+            SWITCH_TO_PS4 = false;
+
             int conversion = cmbConversionTR2.SelectedIndex;
 
             if (conversion == 0)
