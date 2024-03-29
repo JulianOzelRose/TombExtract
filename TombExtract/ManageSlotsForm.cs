@@ -807,9 +807,12 @@ namespace TombExtract
         {
             int selectedIndex = lstSavegames.SelectedIndex;
 
-            btnMoveUp.Enabled = (selectedIndex != -1 && selectedIndex >= 1);
-            btnMoveDown.Enabled = (selectedIndex != -1 && selectedIndex < 31);
-            btnDelete.Enabled = (selectedIndex != -1 && lstSavegames.SelectedItem.ToString() != "Empty Slot");
+            if (!isWriting)
+            {
+                btnMoveUp.Enabled = (selectedIndex != -1 && selectedIndex >= 1);
+                btnMoveDown.Enabled = (selectedIndex != -1 && selectedIndex < 31);
+                btnDelete.Enabled = (selectedIndex != -1 && lstSavegames.SelectedItem.ToString() != "Empty Slot");
+            }
         }
 
         private readonly Dictionary<byte, string> levelNamesTR1 = new Dictionary<byte, string>()
