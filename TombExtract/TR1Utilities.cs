@@ -198,9 +198,10 @@ namespace TombExtract
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1,
             Button btnExtractTR2, Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
             Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
-            ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
-            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3,
-            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
+            ListBox lstDestinationSavegamesTR2, ListBox lstDestinationSavegamesTR3, ToolStripMenuItem tsmiBrowseSourceFile,
+            ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus, ToolStripMenuItem tsmiExtract,
+            ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3, Button btnManageSlotsTR1,
+            Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
         {
             isWriting = true;
 
@@ -252,9 +253,10 @@ namespace TombExtract
 
             bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, cklSourceSavegamesTR1, cklSourceSavegamesTR2,
                 cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
-                btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, tsmiBrowseSourceFile,
-                tsmiBrowseDestinationFile, slblStatus, tsmiExtract, cmbConversionTR1, cmbConversionTR2, cmbConversionTR3,
-                btnManageSlotsTR1, btnManageSlotsTR2, btnManageSlotsTR3, tsmiBackupDestinationFile);
+                btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, lstDestinationSavegamesTR2,
+                lstDestinationSavegamesTR3, tsmiBrowseSourceFile, tsmiBrowseDestinationFile, slblStatus, tsmiExtract,
+                cmbConversionTR1, cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2, btnManageSlotsTR3,
+                tsmiBackupDestinationFile);
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
@@ -268,9 +270,10 @@ namespace TombExtract
             CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1, Button btnExtractTR2,
             Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
             Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
-            ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
-            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3,
-            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
+            ListBox lstDestinationSavegamesTR2, ListBox lstDestinationSavegamesTR3, ToolStripMenuItem tsmiBrowseSourceFile,
+            ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus, ToolStripMenuItem tsmiExtract,
+            ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3, Button btnManageSlotsTR1,
+            Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
         {
             progressForm.Close();
 
@@ -309,6 +312,10 @@ namespace TombExtract
             cklSourceSavegamesTR1.Enabled = true;
             cklSourceSavegamesTR2.Enabled = true;
             cklSourceSavegamesTR3.Enabled = true;
+
+            lstDestinationSavegamesTR1.Enabled = true;
+            lstDestinationSavegamesTR2.Enabled = true;
+            lstDestinationSavegamesTR3.Enabled = true;
 
             cmbConversionTR1.Enabled = true;
             cmbConversionTR2.Enabled = true;
