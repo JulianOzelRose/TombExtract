@@ -13,6 +13,7 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
+        private const int slotStatusOffset = 0x004;
         private const int gameModeOffset = 0x008;
         private const int saveNumberOffset = 0x00C;
         private const int levelIndexOffset = 0x62C;
@@ -65,6 +66,11 @@ namespace TombExtract
             return (Int32)(byte1 + (byte2 << 8) + (byte3 << 16) + (byte4 << 24));
         }
 
+        private bool IsSavegamePresent(string path, int savegameOffset)
+        {
+            return ReadByte(path, savegameOffset + slotStatusOffset) != 0;
+        }
+
         private GameMode GetGameMode(string path, int savegameOffset)
         {
             int gameMode = ReadByte(path, savegameOffset + gameModeOffset);
@@ -115,8 +121,9 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
 
                     byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset);
+                    bool savegamePresent = IsSavegamePresent(savegameSourcePath, currentSavegameOffset);
 
-                    if (levelIndex >= 1 && levelIndex <= 19)
+                    if (savegamePresent && levelNames.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
                         string levelName = levelNames[levelIndex];
@@ -144,8 +151,9 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
 
                     byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
+                    bool savegamePresent = IsSavegamePresent(savegameDestinationPath, currentSavegameOffset);
 
-                    if (levelIndex >= 1 && levelIndex <= 19)
+                    if (savegamePresent && levelNames.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
                         string levelName = levelNames[levelIndex];
@@ -173,9 +181,11 @@ namespace TombExtract
             for (int i = 0; i < savegames.Count; i++)
             {
                 int currentSavegameOffset = savegames[i].Offset;
-                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
 
-                if (levelIndex >= 1 && levelIndex <= 19)
+                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
+                bool savegamePresent = IsSavegamePresent(savegameDestinationPath, currentSavegameOffset);
+
+                if (savegamePresent && levelNames.ContainsKey(levelIndex))
                 {
                     numOverwrites++;
                 }

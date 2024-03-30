@@ -18,6 +18,7 @@ namespace TombExtract
         private string savegamePath;
 
         // Offsets
+        private const int slotStatusOffset = 0x004;
         private const int gameModeOffset = 0x008;
         private const int saveNumberOffset = 0x00C;
         private int levelIndexOffset;
@@ -162,6 +163,11 @@ namespace TombExtract
             return (Int32)(byte1 + (byte2 << 8) + (byte3 << 16) + (byte4 << 24));
         }
 
+        private bool IsSavegamePresent(int savegameOffset)
+        {
+            return ReadByte(savegameOffset + slotStatusOffset) != 0;
+        }
+
         private byte GetLevelIndex(int savegameOffset)
         {
             return ReadByte(savegameOffset + levelIndexOffset);
@@ -206,8 +212,9 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
 
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
+                    bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
 
-                    if (levelIndex >= 1 && levelIndex <= 19)
+                    if (savegamePresent && levelNamesTR1.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
                         string levelName = levelNamesTR1[levelIndex];
@@ -248,8 +255,9 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
 
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
+                    bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
 
-                    if (levelIndex >= 1 && levelIndex <= 23)
+                    if (savegamePresent && levelNamesTR2.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
                         string levelName = levelNamesTR2[levelIndex];
@@ -290,8 +298,9 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
 
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
+                    bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
 
-                    if (levelIndex >= 1 && levelIndex <= 26)
+                    if (savegamePresent && levelNamesTR3.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
                         string levelName = levelNamesTR3[levelIndex];
