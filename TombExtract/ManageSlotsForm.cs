@@ -143,16 +143,6 @@ namespace TombExtract
             }
         }
 
-        private void WriteByte(int offset, byte value)
-        {
-            using (FileStream saveFile = new FileStream(savegamePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
-            {
-                saveFile.Seek(offset, SeekOrigin.Begin);
-                byte[] byteData = { value };
-                saveFile.Write(byteData, 0, byteData.Length);
-            }
-        }
-
         private Int32 ReadInt32(int offset)
         {
             byte byte1 = ReadByte(offset);
@@ -400,9 +390,9 @@ namespace TombExtract
 
             slblStatus.Text = $"Deleting savegame...";
 
-            BackgroundWorker backgroundWorker = new BackgroundWorker();
+            BackgroundWorker bgWorker = new BackgroundWorker();
 
-            backgroundWorker.DoWork += (s, args) =>
+            bgWorker.DoWork += (s, args) =>
             {
                 isWriting = true;
 
@@ -418,9 +408,13 @@ namespace TombExtract
 
                     File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    for (int offset = selectedSavegame.Offset; offset < (selectedSavegame.Offset + SAVEGAME_ITERATOR); offset++)
+                    using (FileStream saveFile = new FileStream(savegamePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                     {
-                        WriteByte(offset, 0);
+                        for (int offset = selectedSavegame.Offset; offset < (selectedSavegame.Offset + SAVEGAME_ITERATOR); offset++)
+                        {
+                            saveFile.Seek(offset, SeekOrigin.Begin);
+                            saveFile.WriteByte(0);
+                        }
                     }
 
                     args.Result = deletedSavegameString;
@@ -431,7 +425,7 @@ namespace TombExtract
                 }
             };
 
-            backgroundWorker.RunWorkerCompleted += (s, args) =>
+            bgWorker.RunWorkerCompleted += (s, args) =>
             {
                 EnableButtons();
                 isWriting = false;
@@ -464,7 +458,7 @@ namespace TombExtract
             };
 
             DisableButtons();
-            backgroundWorker.RunWorkerAsync(lstSavegames.SelectedItem);
+            bgWorker.RunWorkerAsync(lstSavegames.SelectedItem);
         }
 
         private void ReorderSavegamesTR1(List<Savegame> savegamesToMove)
@@ -486,46 +480,52 @@ namespace TombExtract
                 {
                     File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    for (int i = 0; i < lstSavegames.Items.Count; i++)
+                    using (FileStream saveFile = new FileStream(savegamePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
-
-                        if (currentSavegame.Slot != i)
+                        for (int i = 0; i < lstSavegames.Items.Count; i++)
                         {
-                            progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
+                            Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                            byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
-
-                            for (int offset = 0; offset < savegameBytes.Length; offset++)
+                            if (currentSavegame.Slot != i)
                             {
-                                savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                                progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
+
+                                byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                                for (int offset = 0; offset < savegameBytes.Length; offset++)
+                                {
+                                    saveFile.Seek(currentSavegame.Offset + offset, SeekOrigin.Begin);
+                                    byte currentByte = (byte)saveFile.ReadByte();
+
+                                    savegameBytes[offset] = currentByte;
+                                }
+
+                                currentSavegame.SavegameBytes = savegameBytes;
+
+                                currentSavegame.Slot = i;
+                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
+
+                                savegamesToMove.Add(currentSavegame);
+                            }
+                        }
+
+                        for (int i = 0; i < savegamesToMove.Count; i++)
+                        {
+                            Savegame savegame = savegamesToMove[i];
+
+                            progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
+
+                            for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                            {
+                                byte[] currentByte = { savegame.SavegameBytes[offset] };
+
+                                saveFile.Seek(savegame.Offset + offset, SeekOrigin.Begin);
+                                saveFile.Write(currentByte, 0, currentByte.Length);
                             }
 
-                            currentSavegame.SavegameBytes = savegameBytes;
-
-                            currentSavegame.Slot = i;
-                            currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
-
-                            savegamesToMove.Add(currentSavegame);
+                            int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
+                            bgWorker.ReportProgress(progressPercentage);
                         }
-
-                        int progressPercentage = (i * 50) / lstSavegames.Items.Count;
-                        bgWorker.ReportProgress(progressPercentage);
-                    }
-
-                    for (int i = 0; i < savegamesToMove.Count; i++)
-                    {
-                        Savegame savegame = savegamesToMove[i];
-
-                        progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
-
-                        for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
-                        {
-                            WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
-                        }
-
-                        int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
-                        bgWorker.ReportProgress(progressPercentage);
                     }
                 }
                 catch (Exception ex)
@@ -592,46 +592,55 @@ namespace TombExtract
                 {
                     File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    for (int i = 0; i < lstSavegames.Items.Count; i++)
+                    using (FileStream saveFile = new FileStream(savegamePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
-
-                        progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
-
-                        if (currentSavegame.Slot != i)
+                        for (int i = 0; i < lstSavegames.Items.Count; i++)
                         {
-                            byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                            Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                            for (int offset = 0; offset < savegameBytes.Length; offset++)
+                            progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
+
+                            if (currentSavegame.Slot != i)
                             {
-                                savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                                byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                                for (int offset = 0; offset < savegameBytes.Length; offset++)
+                                {
+                                    saveFile.Seek(currentSavegame.Offset + offset, SeekOrigin.Begin);
+                                    byte currentByte = (byte)saveFile.ReadByte();
+
+                                    savegameBytes[offset] = currentByte;
+                                }
+
+                                currentSavegame.SavegameBytes = savegameBytes;
+
+                                currentSavegame.Slot = i;
+                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
+
+                                savegamesToMove.Add(currentSavegame);
                             }
 
-                            currentSavegame.SavegameBytes = savegameBytes;
-
-                            currentSavegame.Slot = i;
-                            currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
-
-                            savegamesToMove.Add(currentSavegame);
+                            int progressPercentage = (i * 50) / lstSavegames.Items.Count;
+                            bgWorker.ReportProgress(progressPercentage);
                         }
 
-                        int progressPercentage = (i * 50) / lstSavegames.Items.Count;
-                        bgWorker.ReportProgress(progressPercentage);
-                    }
-
-                    for (int i = 0; i < savegamesToMove.Count; i++)
-                    {
-                        Savegame savegame = savegamesToMove[i];
-
-                        progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
-
-                        for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                        for (int i = 0; i < savegamesToMove.Count; i++)
                         {
-                            WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
-                        }
+                            Savegame savegame = savegamesToMove[i];
 
-                        int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
-                        bgWorker.ReportProgress(progressPercentage);
+                            progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
+
+                            for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                            {
+                                byte[] currentByte = { savegame.SavegameBytes[offset] };
+
+                                saveFile.Seek(savegame.Offset + offset, SeekOrigin.Begin);
+                                saveFile.Write(currentByte, 0, currentByte.Length);
+                            }
+
+                            int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
+                            bgWorker.ReportProgress(progressPercentage);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -698,46 +707,55 @@ namespace TombExtract
                 {
                     File.SetAttributes(savegamePath, File.GetAttributes(savegamePath) & ~FileAttributes.ReadOnly);
 
-                    for (int i = 0; i < lstSavegames.Items.Count; i++)
+                    using (FileStream saveFile = new FileStream(savegamePath, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
-                        Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
-
-                        progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
-
-                        if (currentSavegame.Slot != i)
+                        for (int i = 0; i < lstSavegames.Items.Count; i++)
                         {
-                            byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                            Savegame currentSavegame = (Savegame)lstSavegames.Items[i];
 
-                            for (int offset = 0; offset < savegameBytes.Length; offset++)
+                            progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
+
+                            if (currentSavegame.Slot != i)
                             {
-                                savegameBytes[offset] = ReadByte(currentSavegame.Offset + offset);
+                                byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                                for (int offset = 0; offset < savegameBytes.Length; offset++)
+                                {
+                                    saveFile.Seek(currentSavegame.Offset + offset, SeekOrigin.Begin);
+                                    byte currentByte = (byte)saveFile.ReadByte();
+
+                                    savegameBytes[offset] = currentByte;
+                                }
+
+                                currentSavegame.SavegameBytes = savegameBytes;
+
+                                currentSavegame.Slot = i;
+                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
+
+                                savegamesToMove.Add(currentSavegame);
                             }
 
-                            currentSavegame.SavegameBytes = savegameBytes;
-
-                            currentSavegame.Slot = i;
-                            currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
-
-                            savegamesToMove.Add(currentSavegame);
+                            int progressPercentage = (i * 50) / lstSavegames.Items.Count;
+                            bgWorker.ReportProgress(progressPercentage);
                         }
 
-                        int progressPercentage = (i * 50) / lstSavegames.Items.Count;
-                        bgWorker.ReportProgress(progressPercentage);
-                    }
-
-                    for (int i = 0; i < savegamesToMove.Count; i++)
-                    {
-                        Savegame savegame = savegamesToMove[i];
-
-                        progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
-
-                        for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                        for (int i = 0; i < savegamesToMove.Count; i++)
                         {
-                            WriteByte(savegame.Offset + offset, savegame.SavegameBytes[offset]);
-                        }
+                            Savegame savegame = savegamesToMove[i];
 
-                        int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
-                        bgWorker.ReportProgress(progressPercentage);
+                            progressForm.UpdateStatusMessage($"Moving '{savegame}' to Slot {savegame.Slot + 1}...");
+
+                            for (int offset = 0; offset < savegame.SavegameBytes.Length; offset++)
+                            {
+                                byte[] currentByte = { savegame.SavegameBytes[offset] };
+
+                                saveFile.Seek(savegame.Offset + offset, SeekOrigin.Begin);
+                                saveFile.Write(currentByte, 0, currentByte.Length);
+                            }
+
+                            int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
+                            bgWorker.ReportProgress(progressPercentage);
+                        }
                     }
                 }
                 catch (Exception ex)

@@ -46,16 +46,6 @@ namespace TombExtract
             }
         }
 
-        private void WriteByte(string path, int offset, byte value)
-        {
-            using (FileStream saveFile = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
-            {
-                saveFile.Seek(offset, SeekOrigin.Begin);
-                byte[] byteData = { value };
-                saveFile.Write(byteData, 0, byteData.Length);
-            }
-        }
-
         private Int32 ReadInt32(string path, int offset)
         {
             byte byte1 = ReadByte(path, offset);
@@ -104,10 +94,10 @@ namespace TombExtract
             { 13, "Natla's Mines"           },
             { 14, "Atlantis"                },
             { 15, "The Great Pyramid"       },
-            { 16,  "Return to Egypt"        },
-            { 17,  "Temple of the Cat"      },
-            { 18,  "Atlantean Stronghold"   },
-            { 19,  "The Hive"               },
+            { 16, "Return to Egypt"         },
+            { 17, "Temple of the Cat"       },
+            { 18, "Atlantean Stronghold"    },
+            { 19, "The Hive"                },
         };
 
         public void PopulateSourceSavegames(CheckedListBox cklSavegames)
@@ -260,8 +250,7 @@ namespace TombExtract
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
-            string operation = NO_CONVERT ? "Extracting" : "Converting";
-            slblStatus.Text = $"{operation} savegames...";
+            slblStatus.Text = $"{(NO_CONVERT ? "Extracting" : "Converting")} savegames...";
 
             bgWorker.RunWorkerAsync(savegames);
         }
@@ -282,29 +271,25 @@ namespace TombExtract
                 Exception exception = e.Error as Exception ?? e.Result as Exception;
                 string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
 
-                string operation;
-                if (NO_CONVERT) operation = "transferred";
-                else operation = "converting";
-
-                slblStatus.Text = $"Error {operation} savegames.";
                 MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                slblStatus.Text = $"Error {(NO_CONVERT ? "transferred" : "converting")} savegames.";
             }
             else if (e.Cancelled)
             {
-                slblStatus.Text = $"Transfer canceled.";
                 MessageBox.Show("Operation was cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                slblStatus.Text = $"{(NO_CONVERT ? "Transfer" : "Conversion")} canceled.";
             }
             else
             {
-                string operation;
-                if (NO_CONVERT) operation = "transferred";
-                else operation = "converted and transferred";
-                string savegamesText = totalSavegames == 1 ? "savegame" : "savegames";
+                MessageBox.Show($"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
+                    $"{totalSavegames} savegame(s) to destination file.",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                slblStatus.Text = $"Successfully {operation} {totalSavegames} {savegamesText} to destination file.";
+                slblStatus.Text = $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
+                    $"{totalSavegames} savegame(s) to destination file.";
 
-                MessageBox.Show($"Successfully {operation} {totalSavegames} Tomb Raider I {savegamesText} to destination file.",
-                                "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             isWriting = false;
@@ -352,140 +337,192 @@ namespace TombExtract
 
             try
             {
+                using (FileStream sourceFile = new FileStream(savegameSourcePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    int savegamesCopied = 0;
+
+                    for (int i = 0; i < savegames.Count; i++)
+                    {
+                        progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
+
+                        int currentSavegameOffset = savegames[i].Offset;
+                        byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        {
+                            sourceFile.Seek(offset, SeekOrigin.Begin);
+                            byte currentByte = (byte)sourceFile.ReadByte();
+                            savegameBytes[j] = currentByte;
+                        }
+
+                        savegames[i].SavegameBytes = savegameBytes;
+
+                        savegamesCopied++;
+
+                        int copyProgress = (int)((double)savegamesCopied / totalSavegames * 50);
+                        bgWorker.ReportProgress(copyProgress);
+                    }
+                }
+
                 File.SetAttributes(savegameDestinationPath, File.GetAttributes(savegameDestinationPath) & ~FileAttributes.ReadOnly);
 
-                for (int i = 0; i < savegames.Count; i++)
+                using (FileStream destinationFile = new FileStream(savegameDestinationPath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                 {
-                    progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
+                    int savegamesWritten = 0;
 
-                    int currentSavegameOffset = savegames[i].Offset;
-
-                    byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
-
-                    for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                    for (int i = 0; i < savegames.Count; i++)
                     {
-                        byte currentByte = ReadByte(savegameSourcePath, offset);
-                        savegameBytes[j] = currentByte;
-                    }
+                        progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
-                    if (PS4_TO_PC)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+                        int currentSavegameOffset = savegames[i].Offset;
+                        byte[] savegameBytes = savegames[i].SavegameBytes;
 
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        if (NO_CONVERT)
                         {
-                            int currentRelativeOffset = offset - currentSavegameOffset;
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
-                            if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                             {
-                                WriteByte(savegameDestinationPath, (offset + 1), savegameBytes[j]);
-                            }
-                            else if (currentRelativeOffset >= 0x6B0)
-                            {
-                                WriteByte(savegameDestinationPath, (offset + 4), savegameBytes[j]);
-                            }
-                            else
-                            {
-                                WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                                byte[] currentByte = { savegameBytes[j] };
+
+                                destinationFile.Seek(offset, SeekOrigin.Begin);
+                                destinationFile.Write(currentByte, 0, currentByte.Length);
                             }
                         }
-                    }
-                    else if (PC_TO_PS4)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PS4...");
-
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        else if (PC_TO_PS4)
                         {
-                            int currentRelativeOffset = offset - currentSavegameOffset;
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PS4...");
 
-                            if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                             {
-                                WriteByte(savegameDestinationPath, (offset - 1), savegameBytes[j]);
-                            }
-                            else if (currentRelativeOffset >= 0x6B0)
-                            {
-                                WriteByte(savegameDestinationPath, (offset - 4), savegameBytes[j]);
-                            }
-                            else
-                            {
-                                WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte[] currentByte = { savegameBytes[j] };
+
+                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                {
+                                    destinationFile.Seek(offset - 1, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else if (currentRelativeOffset >= 0x6B0)
+                                {
+                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
                             }
                         }
-                    }
-                    else if (SWITCH_TO_PC)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PC...");
-
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        else if (PC_TO_SWITCH)
                         {
-                            int currentRelativeOffset = offset - currentSavegameOffset;
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Nintendo Switch...");
 
-                            if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                             {
-                                WriteByte(savegameDestinationPath, (offset + 1), savegameBytes[j]);
-                            }
-                            else if (currentRelativeOffset >= 0x6B0)
-                            {
-                                WriteByte(savegameDestinationPath, (offset + 4), savegameBytes[j]);
-                            }
-                            else
-                            {
-                                WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte[] currentByte = { savegameBytes[j] };
+
+                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                {
+                                    destinationFile.Seek(offset - 1, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else if (currentRelativeOffset >= 0x6B0)
+                                {
+                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
                             }
                         }
-                    }
-                    else if (PC_TO_SWITCH)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Nintendo Switch...");
-
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        else if (PS4_TO_PC)
                         {
-                            int currentRelativeOffset = offset - currentSavegameOffset;
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
-                            if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                             {
-                                WriteByte(savegameDestinationPath, (offset - 1), savegameBytes[j]);
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte[] currentByte = { savegameBytes[j] };
+
+                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                {
+                                    destinationFile.Seek(offset + 1, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else if (currentRelativeOffset >= 0x6B0)
+                                {
+                                    destinationFile.Seek(offset + 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
                             }
-                            else if (currentRelativeOffset >= 0x6B0)
+                        }
+                        else if (PS4_TO_SWITCH)
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Nintendo Switch...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                             {
-                                WriteByte(savegameDestinationPath, (offset - 4), savegameBytes[j]);
+                                byte[] currentByte = { savegameBytes[j] };
+
+                                destinationFile.Seek(offset, SeekOrigin.Begin);
+                                destinationFile.Write(currentByte, 0, currentByte.Length);
                             }
-                            else
+                        }
+                        else if (SWITCH_TO_PC)
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
                             {
-                                WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte[] currentByte = { savegameBytes[j] };
+
+                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                {
+                                    destinationFile.Seek(offset + 1, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else if (currentRelativeOffset >= 0x6B0)
+                                {
+                                    destinationFile.Seek(offset + 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
                             }
                         }
-                    }
-                    else if (PS4_TO_SWITCH)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
-
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                        else if (SWITCH_TO_PS4)
                         {
-                            WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
-                        }
-                    }
-                    else if (SWITCH_TO_PS4)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PS4...");
 
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
-                        {
-                            WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
-                        }
-                    }
-                    else if (NO_CONVERT)
-                    {
-                        progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
+                            {
+                                byte[] currentByte = { savegameBytes[j] };
 
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_ITERATOR; offset++, j++)
-                        {
-                            WriteByte(savegameDestinationPath, offset, savegameBytes[j]);
+                                destinationFile.Seek(offset, SeekOrigin.Begin);
+                                destinationFile.Write(currentByte, 0, currentByte.Length);
+                            }
                         }
-                    }
 
-                    int progressPercentage = (i + 1) * 100 / totalSavegames;
-                    bgWorker.ReportProgress(progressPercentage);
+                        savegamesWritten++;
+
+                        int writeProgress = (int)((double)savegamesWritten / totalSavegames * 50);
+                        bgWorker.ReportProgress(50 + writeProgress);
+                    }
                 }
             }
             catch (Exception ex)
