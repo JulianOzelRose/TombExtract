@@ -18,8 +18,7 @@ accounts with Tomb Raider I-III Remastered, there may be multiple folders.
 
 ## Extracting and converting savegames
 Use the checklist on the left to select which savegames you would like to transfer. The combo box below the check list allows you to specify whether or not you would like to convert your savegames.
-Select the relevant conversion, or leave it at "No" to transfer them as is. Click "Extract" to transfer the savegames, and the program will begin extraction. If you are transferring many savegames,
-it may take a minute or two to complete. The progress display will indicate how far along the process is.
+Select the relevant conversion, or leave it at "No" to transfer them as is. Click "Extract" to transfer the savegames, and the program will begin extraction. The progress display will indicate how far along the process is.
 
 If you are trying to convert from PS4, you must first decrypt the savegame file using [Apollo Save Tool](https://github.com/bucanero/apollo-ps4). For Nintendo Switch savegames, you can either use
 [EdZion](https://github.com/WerWolv/EdiZon) or [Goldleaf](https://github.com/XorTroll/Goldleaf) to extract the savegame file from your console. You can find more detailed information on how to do this
