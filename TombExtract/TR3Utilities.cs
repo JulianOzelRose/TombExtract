@@ -210,33 +210,33 @@ namespace TombExtract
             PS4_TO_SWITCH = false;
             SWITCH_TO_PS4 = false;
 
-            int conversion = cmbConversionTR3.SelectedIndex;
+            int conversionNumber = cmbConversionTR3.SelectedIndex;
 
-            if (conversion == 0)
+            if (conversionNumber == 0)
             {
                 NO_CONVERT = true;
             }
-            else if (conversion == 1)
+            else if (conversionNumber == 1)
             {
                 PC_TO_PS4 = true;
             }
-            else if (conversion == 2)
-            {
-                PS4_TO_PC = true;
-            }
-            else if (conversion == 3)
-            {
-                SWITCH_TO_PC = true;
-            }
-            else if (conversion == 4)
+            else if (conversionNumber == 2)
             {
                 PC_TO_SWITCH = true;
             }
-            else if (conversion == 5)
+            else if (conversionNumber == 3)
+            {
+                PS4_TO_PC = true;
+            }
+            else if (conversionNumber == 4)
             {
                 PS4_TO_SWITCH = true;
             }
-            else if (conversion == 6)
+            else if (conversionNumber == 5)
+            {
+                SWITCH_TO_PC = true;
+            }
+            else if (conversionNumber == 6)
             {
                 SWITCH_TO_PS4 = true;
             }

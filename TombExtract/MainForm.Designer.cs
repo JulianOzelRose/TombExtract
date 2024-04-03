@@ -83,8 +83,10 @@ namespace TombExtract
             this.tsmiBrowseSourceFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBrowseDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBackupDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiFileSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsddbHelp = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,8 +94,6 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tsmiBackupDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiFileSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -248,10 +248,10 @@ namespace TombExtract
             this.cmbConversionTR1.Items.AddRange(new object[] {
             "No",
             "PC → PS4",
-            "PS4 → PC",
-            "Nintendo Switch → PC",
             "PC → Nintendo Switch",
+            "PS4 → PC",
             "PS4 → Nintendo Switch",
+            "Nintendo Switch → PC",
             "Nintendo Switch → PS4"});
             this.cmbConversionTR1.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR1.Name = "cmbConversionTR1";
@@ -400,10 +400,10 @@ namespace TombExtract
             this.cmbConversionTR2.Items.AddRange(new object[] {
             "No",
             "PC → PS4",
-            "PS4 → PC",
-            "Nintendo Switch → PC",
             "PC → Nintendo Switch",
+            "PS4 → PC",
             "PS4 → Nintendo Switch",
+            "Nintendo Switch → PC",
             "Nintendo Switch → PS4"});
             this.cmbConversionTR2.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR2.Name = "cmbConversionTR2";
@@ -551,10 +551,10 @@ namespace TombExtract
             this.cmbConversionTR3.Items.AddRange(new object[] {
             "No",
             "PC → PS4",
-            "PS4 → PC",
-            "Nintendo Switch → PC",
             "PC → Nintendo Switch",
+            "PS4 → PC",
             "PS4 → Nintendo Switch",
+            "Nintendo Switch → PC",
             "Nintendo Switch → PS4"});
             this.cmbConversionTR3.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR3.Name = "cmbConversionTR3";
@@ -705,6 +705,19 @@ namespace TombExtract
             this.tsmiFileSeparator.Name = "tsmiFileSeparator";
             this.tsmiFileSeparator.Size = new System.Drawing.Size(199, 6);
             // 
+            // tsmiBackupDestinationFile
+            // 
+            this.tsmiBackupDestinationFile.Enabled = false;
+            this.tsmiBackupDestinationFile.Name = "tsmiBackupDestinationFile";
+            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(202, 22);
+            this.tsmiBackupDestinationFile.Text = "Backup destination file";
+            this.tsmiBackupDestinationFile.Click += new System.EventHandler(this.tsmiBackupDestinationFile_Click);
+            // 
+            // tsmiFileSeparator2
+            // 
+            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
+            this.tsmiFileSeparator2.Size = new System.Drawing.Size(199, 6);
+            // 
             // tsmiExtract
             // 
             this.tsmiExtract.Enabled = false;
@@ -713,10 +726,10 @@ namespace TombExtract
             this.tsmiExtract.Text = "Extract";
             this.tsmiExtract.Click += new System.EventHandler(this.tsmiExtract_Click);
             // 
-            // tsmiFileSeparator2
+            // tsmiFileSeparator3
             // 
-            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
-            this.tsmiFileSeparator2.Size = new System.Drawing.Size(199, 6);
+            this.tsmiFileSeparator3.Name = "tsmiFileSeparator3";
+            this.tsmiFileSeparator3.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmiExit
             // 
@@ -778,19 +791,6 @@ namespace TombExtract
             this.slblStatus.Name = "slblStatus";
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
-            // 
-            // tsmiBackupDestinationFile
-            // 
-            this.tsmiBackupDestinationFile.Enabled = false;
-            this.tsmiBackupDestinationFile.Name = "tsmiBackupDestinationFile";
-            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(202, 22);
-            this.tsmiBackupDestinationFile.Text = "Backup destination file";
-            this.tsmiBackupDestinationFile.Click += new System.EventHandler(this.tsmiBackupDestinationFile_Click);
-            // 
-            // tsmiFileSeparator3
-            // 
-            this.tsmiFileSeparator3.Name = "tsmiFileSeparator3";
-            this.tsmiFileSeparator3.Size = new System.Drawing.Size(199, 6);
             // 
             // MainForm
             // 
