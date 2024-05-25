@@ -431,7 +431,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
@@ -499,7 +499,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
@@ -567,7 +567,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegames. Are you sure you wish to proceed?",
+                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)

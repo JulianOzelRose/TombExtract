@@ -252,7 +252,7 @@ namespace TombExtract
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
-            slblStatus.Text = $"{(NO_CONVERT ? "Extracting" : "Converting")} savegames...";
+            slblStatus.Text = $"{(NO_CONVERT ? "Extracting" : "Converting")} savegame(s)...";
 
             bgWorker.RunWorkerAsync(savegames);
         }
@@ -275,7 +275,7 @@ namespace TombExtract
 
                 MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                slblStatus.Text = $"Error {(NO_CONVERT ? "transferred" : "converting")} savegames.";
+                slblStatus.Text = $"Error {(NO_CONVERT ? "transferred" : "converting")} savegame(s).";
             }
             else if (e.Cancelled)
             {
