@@ -18,16 +18,17 @@ namespace TombExtract
         private string savegamePath;
 
         // Offsets
-        private const int slotStatusOffset = 0x004;
-        private const int gameModeOffset = 0x008;
-        private const int saveNumberOffset = 0x00C;
+        private const int SLOT_STATUS_OFFSET = 0x004;
+        private const int GAME_MODE_OFFSET = 0x008;
+        private const int SAVE_NUMBER_OFFSET = 0x00C;
         private int levelIndexOffset;
 
-        // Iterators
+        // Savegame constants
         private const int BASE_SAVEGAME_OFFSET_TR1 = 0x2000;
         private const int BASE_SAVEGAME_OFFSET_TR2 = 0x72000;
         private const int BASE_SAVEGAME_OFFSET_TR3 = 0xE2000;
-        private const int SAVEGAME_ITERATOR = 0x3800;
+        private const int SAVEGAME_SIZE = 0x3800;
+        private const int MAX_SAVEGAMES = 32;
 
         // Misc
         private ProgressForm progressForm;
@@ -155,7 +156,7 @@ namespace TombExtract
 
         private bool IsSavegamePresent(int savegameOffset)
         {
-            return ReadByte(savegameOffset + slotStatusOffset) != 0;
+            return ReadByte(savegameOffset + SLOT_STATUS_OFFSET) != 0;
         }
 
         private byte GetLevelIndex(int savegameOffset)
@@ -165,12 +166,12 @@ namespace TombExtract
 
         private Int32 GetSaveNumber(int savegameOffset)
         {
-            return ReadInt32(savegameOffset + saveNumberOffset);
+            return ReadInt32(savegameOffset + SAVE_NUMBER_OFFSET);
         }
 
         private GameMode GetGameMode(int savegameOffset)
         {
-            int gameMode = ReadByte(savegameOffset + gameModeOffset);
+            int gameMode = ReadByte(savegameOffset + GAME_MODE_OFFSET);
             return gameMode == 0 ? GameMode.Normal : GameMode.Plus;
         }
 
@@ -197,9 +198,9 @@ namespace TombExtract
 
             try
             {
-                for (int i = 0; i < 32; i++)
+                for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_SIZE);
 
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
                     bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
@@ -209,7 +210,7 @@ namespace TombExtract
                         Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
                         string levelName = levelNamesTR1[levelIndex];
                         GameMode gameMode = GetGameMode(currentSavegameOffset);
-                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_SIZE;
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                         savegame.Slot = slot;
@@ -219,7 +220,7 @@ namespace TombExtract
                     else
                     {
                         Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_ITERATOR;
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_SIZE;
 
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
@@ -240,9 +241,9 @@ namespace TombExtract
 
             try
             {
-                for (int i = 0; i < 32; i++)
+                for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_SIZE);
 
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
                     bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
@@ -252,7 +253,7 @@ namespace TombExtract
                         Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
                         string levelName = levelNamesTR2[levelIndex];
                         GameMode gameMode = GetGameMode(currentSavegameOffset);
-                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_SIZE;
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                         savegame.Slot = slot;
@@ -262,7 +263,7 @@ namespace TombExtract
                     else
                     {
                         Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_ITERATOR;
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_SIZE;
 
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
@@ -283,9 +284,9 @@ namespace TombExtract
 
             try
             {
-                for (int i = 0; i < 32; i++)
+                for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
 
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
                     bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
@@ -295,7 +296,7 @@ namespace TombExtract
                         Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
                         string levelName = levelNamesTR3[levelIndex];
                         GameMode gameMode = GetGameMode(currentSavegameOffset);
-                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_SIZE;
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                         savegame.Slot = slot;
@@ -305,7 +306,7 @@ namespace TombExtract
                     else
                     {
                         Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_ITERATOR;
+                        int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_SIZE;
 
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
@@ -410,7 +411,7 @@ namespace TombExtract
 
                     using (FileStream saveFile = new FileStream(savegamePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                     {
-                        for (int offset = selectedSavegame.Offset; offset < (selectedSavegame.Offset + SAVEGAME_ITERATOR); offset++)
+                        for (int offset = selectedSavegame.Offset; offset < (selectedSavegame.Offset + SAVEGAME_SIZE); offset++)
                         {
                             saveFile.Seek(offset, SeekOrigin.Begin);
                             saveFile.WriteByte(0);
@@ -490,7 +491,7 @@ namespace TombExtract
                             {
                                 progressForm.UpdateStatusMessage($"Copying '{currentSavegame}'...");
 
-                                byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                                byte[] savegameBytes = new byte[SAVEGAME_SIZE];
 
                                 for (int offset = 0; offset < savegameBytes.Length; offset++)
                                 {
@@ -503,7 +504,7 @@ namespace TombExtract
                                 currentSavegame.SavegameBytes = savegameBytes;
 
                                 currentSavegame.Slot = i;
-                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_ITERATOR);
+                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR1 + (i * SAVEGAME_SIZE);
 
                                 savegamesToMove.Add(currentSavegame);
                             }
@@ -602,7 +603,7 @@ namespace TombExtract
 
                             if (currentSavegame.Slot != i)
                             {
-                                byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                                byte[] savegameBytes = new byte[SAVEGAME_SIZE];
 
                                 for (int offset = 0; offset < savegameBytes.Length; offset++)
                                 {
@@ -615,7 +616,7 @@ namespace TombExtract
                                 currentSavegame.SavegameBytes = savegameBytes;
 
                                 currentSavegame.Slot = i;
-                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_ITERATOR);
+                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR2 + (i * SAVEGAME_SIZE);
 
                                 savegamesToMove.Add(currentSavegame);
                             }
@@ -717,7 +718,7 @@ namespace TombExtract
 
                             if (currentSavegame.Slot != i)
                             {
-                                byte[] savegameBytes = new byte[SAVEGAME_ITERATOR];
+                                byte[] savegameBytes = new byte[SAVEGAME_SIZE];
 
                                 for (int offset = 0; offset < savegameBytes.Length; offset++)
                                 {
@@ -730,7 +731,7 @@ namespace TombExtract
                                 currentSavegame.SavegameBytes = savegameBytes;
 
                                 currentSavegame.Slot = i;
-                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_ITERATOR);
+                                currentSavegame.Offset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
 
                                 savegamesToMove.Add(currentSavegame);
                             }
