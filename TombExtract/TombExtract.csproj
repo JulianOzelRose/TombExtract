@@ -138,6 +138,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AboutBackground.jpg" />
     <Content Include="bin\x64\Release\TombExtract.exe" />
   </ItemGroup>
   <ItemGroup>

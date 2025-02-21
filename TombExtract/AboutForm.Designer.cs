@@ -30,7 +30,6 @@ namespace TombExtract
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
-            this.btnOK = new System.Windows.Forms.Button();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblVersionNumber = new System.Windows.Forms.Label();
@@ -38,78 +37,78 @@ namespace TombExtract
             this.lblMore = new System.Windows.Forms.Label();
             this.llbGitHub = new System.Windows.Forms.LinkLabel();
             this.picTombExtract = new System.Windows.Forms.PictureBox();
-            this.grpInfo = new System.Windows.Forms.GroupBox();
+            this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picTombExtract)).BeginInit();
-            this.grpInfo.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(134, 349);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(92, 30);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
-            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(17, 68);
+            this.lblVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lblVersion.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.ForeColor = System.Drawing.Color.White;
+            this.lblVersion.Location = new System.Drawing.Point(27, 252);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(57, 16);
+            this.lblVersion.Size = new System.Drawing.Size(61, 20);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "Version:";
             // 
             // lblAuthor
             // 
             this.lblAuthor.AutoSize = true;
-            this.lblAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAuthor.Location = new System.Drawing.Point(17, 33);
+            this.lblAuthor.BackColor = System.Drawing.Color.Transparent;
+            this.lblAuthor.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuthor.ForeColor = System.Drawing.Color.White;
+            this.lblAuthor.Location = new System.Drawing.Point(27, 217);
             this.lblAuthor.Name = "lblAuthor";
-            this.lblAuthor.Size = new System.Drawing.Size(49, 16);
+            this.lblAuthor.Size = new System.Drawing.Size(54, 20);
             this.lblAuthor.TabIndex = 3;
             this.lblAuthor.Text = "Author:";
             // 
             // lblVersionNumber
             // 
             this.lblVersionNumber.AutoSize = true;
-            this.lblVersionNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersionNumber.Location = new System.Drawing.Point(277, 68);
+            this.lblVersionNumber.BackColor = System.Drawing.Color.Transparent;
+            this.lblVersionNumber.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersionNumber.ForeColor = System.Drawing.Color.White;
+            this.lblVersionNumber.Location = new System.Drawing.Point(288, 252);
             this.lblVersionNumber.Name = "lblVersionNumber";
-            this.lblVersionNumber.Size = new System.Drawing.Size(39, 16);
+            this.lblVersionNumber.Size = new System.Drawing.Size(45, 20);
             this.lblVersionNumber.TabIndex = 4;
             this.lblVersionNumber.Text = "v2.02";
             // 
             // lblAuthorName
             // 
             this.lblAuthorName.AutoSize = true;
-            this.lblAuthorName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAuthorName.Location = new System.Drawing.Point(207, 33);
+            this.lblAuthorName.BackColor = System.Drawing.Color.Transparent;
+            this.lblAuthorName.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuthorName.ForeColor = System.Drawing.Color.White;
+            this.lblAuthorName.Location = new System.Drawing.Point(225, 217);
             this.lblAuthorName.Name = "lblAuthorName";
-            this.lblAuthorName.Size = new System.Drawing.Size(109, 16);
+            this.lblAuthorName.Size = new System.Drawing.Size(112, 20);
             this.lblAuthorName.TabIndex = 5;
             this.lblAuthorName.Text = "Julian Ozel Rose";
             // 
             // lblMore
             // 
             this.lblMore.AutoSize = true;
-            this.lblMore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMore.Location = new System.Drawing.Point(17, 103);
+            this.lblMore.BackColor = System.Drawing.Color.Transparent;
+            this.lblMore.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMore.ForeColor = System.Drawing.Color.White;
+            this.lblMore.Location = new System.Drawing.Point(28, 287);
             this.lblMore.Name = "lblMore";
-            this.lblMore.Size = new System.Drawing.Size(42, 16);
+            this.lblMore.Size = new System.Drawing.Size(45, 20);
             this.lblMore.TabIndex = 6;
             this.lblMore.Text = "More:";
             // 
             // llbGitHub
             // 
             this.llbGitHub.AutoSize = true;
-            this.llbGitHub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llbGitHub.Location = new System.Drawing.Point(267, 103);
+            this.llbGitHub.BackColor = System.Drawing.Color.Transparent;
+            this.llbGitHub.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llbGitHub.Location = new System.Drawing.Point(281, 287);
             this.llbGitHub.Name = "llbGitHub";
-            this.llbGitHub.Size = new System.Drawing.Size(49, 16);
+            this.llbGitHub.Size = new System.Drawing.Size(52, 20);
             this.llbGitHub.TabIndex = 7;
             this.llbGitHub.TabStop = true;
             this.llbGitHub.Text = "GitHub";
@@ -118,6 +117,7 @@ namespace TombExtract
             // 
             // picTombExtract
             // 
+            this.picTombExtract.BackColor = System.Drawing.Color.Transparent;
             this.picTombExtract.Image = global::TombExtract.Properties.Resources.AboutImage;
             this.picTombExtract.Location = new System.Drawing.Point(12, 12);
             this.picTombExtract.Name = "picTombExtract";
@@ -125,30 +125,37 @@ namespace TombExtract
             this.picTombExtract.TabIndex = 0;
             this.picTombExtract.TabStop = false;
             // 
-            // grpInfo
+            // btnOK
             // 
-            this.grpInfo.Controls.Add(this.lblAuthor);
-            this.grpInfo.Controls.Add(this.llbGitHub);
-            this.grpInfo.Controls.Add(this.lblVersion);
-            this.grpInfo.Controls.Add(this.lblVersionNumber);
-            this.grpInfo.Controls.Add(this.lblAuthorName);
-            this.grpInfo.Controls.Add(this.lblMore);
-            this.grpInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpInfo.Location = new System.Drawing.Point(12, 190);
-            this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(332, 150);
-            this.grpInfo.TabIndex = 8;
-            this.grpInfo.TabStop = false;
-            this.grpInfo.Text = "Info";
+            this.btnOK.BackColor = System.Drawing.Color.Transparent;
+            this.btnOK.FlatAppearance.BorderSize = 2;
+            this.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Impact", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.ForeColor = System.Drawing.Color.Yellow;
+            this.btnOK.Location = new System.Drawing.Point(95, 331);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(155, 47);
+            this.btnOK.TabIndex = 24;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::TombExtract.Properties.Resources.AboutBackground;
             this.ClientSize = new System.Drawing.Size(357, 390);
-            this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.llbGitHub);
+            this.Controls.Add(this.lblMore);
+            this.Controls.Add(this.lblAuthor);
+            this.Controls.Add(this.lblVersion);
+            this.Controls.Add(this.lblVersionNumber);
             this.Controls.Add(this.picTombExtract);
+            this.Controls.Add(this.lblAuthorName);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -158,22 +165,20 @@ namespace TombExtract
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
             ((System.ComponentModel.ISupportInitialize)(this.picTombExtract)).EndInit();
-            this.grpInfo.ResumeLayout(false);
-            this.grpInfo.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox picTombExtract;
-        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblAuthor;
         private System.Windows.Forms.Label lblVersionNumber;
         private System.Windows.Forms.Label lblAuthorName;
         private System.Windows.Forms.Label lblMore;
         private System.Windows.Forms.LinkLabel llbGitHub;
-        private System.Windows.Forms.GroupBox grpInfo;
+        private System.Windows.Forms.Button btnOK;
     }
 }

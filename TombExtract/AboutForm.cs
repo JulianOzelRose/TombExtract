@@ -10,11 +10,6 @@ namespace TombExtract
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void llbGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/JulianOzelRose");
@@ -28,6 +23,11 @@ namespace TombExtract
                 toolTip.InitialDelay = 500;
                 toolTip.SetToolTip(linkLabel, "https://github.com/JulianOzelRose");
             }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
