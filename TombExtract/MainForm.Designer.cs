@@ -78,19 +78,54 @@ namespace TombExtract
             this.lblDestinationSavegamesTR3 = new System.Windows.Forms.Label();
             this.lblSourceSavegamesTR3 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR3 = new System.Windows.Forms.CheckedListBox();
+            this.tpTR4 = new System.Windows.Forms.TabPage();
+            this.btnManageSlotsTR4 = new System.Windows.Forms.Button();
+            this.btnAboutTR4 = new System.Windows.Forms.Button();
+            this.btnSelectAllTR4 = new System.Windows.Forms.Button();
+            this.lblArrowTR4 = new System.Windows.Forms.Label();
+            this.lstDestinationSavegamesTR4 = new System.Windows.Forms.ListBox();
+            this.btnExitTR4 = new System.Windows.Forms.Button();
+            this.btnExtractTR4 = new System.Windows.Forms.Button();
+            this.lblDestinationSavegamesTR4 = new System.Windows.Forms.Label();
+            this.lblSourceSavegamesTR4 = new System.Windows.Forms.Label();
+            this.cklSourceSavegamesTR4 = new System.Windows.Forms.CheckedListBox();
+            this.tpTR5 = new System.Windows.Forms.TabPage();
+            this.btnManageSlotsTR5 = new System.Windows.Forms.Button();
+            this.btnAboutTR5 = new System.Windows.Forms.Button();
+            this.btnSelectAllTR5 = new System.Windows.Forms.Button();
+            this.lblArrowTR5 = new System.Windows.Forms.Label();
+            this.lstDestinationSavegamesTR5 = new System.Windows.Forms.ListBox();
+            this.btnExitTR5 = new System.Windows.Forms.Button();
+            this.btnExtractTR5 = new System.Windows.Forms.Button();
+            this.lblDestinationSavegamesTR5 = new System.Windows.Forms.Label();
+            this.lblSourceSavegamesTR5 = new System.Windows.Forms.Label();
+            this.cklSourceSavegamesTR5 = new System.Windows.Forms.CheckedListBox();
+            this.tpTR6 = new System.Windows.Forms.TabPage();
+            this.btnManageSlotsTR6 = new System.Windows.Forms.Button();
+            this.btnAboutTR6 = new System.Windows.Forms.Button();
+            this.btnSelectAllTR6 = new System.Windows.Forms.Button();
+            this.lblArrowTR6 = new System.Windows.Forms.Label();
+            this.lstDestinationSavegamesTR6 = new System.Windows.Forms.ListBox();
+            this.btnExitTR6 = new System.Windows.Forms.Button();
+            this.btnExtractTR6 = new System.Windows.Forms.Button();
+            this.lblDestinationSavegamesTR6 = new System.Windows.Forms.Label();
+            this.lblSourceSavegamesTR6 = new System.Windows.Forms.Label();
+            this.cklSourceSavegamesTR6 = new System.Windows.Forms.CheckedListBox();
             this.tsrToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsmiBrowseSourceFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBrowseDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBrowseTRXSourceFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBrowseTRXDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiBackupDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBrowseTRX2SourceFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBrowseTRX2DestinationFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiBackupDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsddbHelp = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSendFeedback = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -99,6 +134,9 @@ namespace TombExtract
             this.tpTR1.SuspendLayout();
             this.tpTR2.SuspendLayout();
             this.tpTR3.SuspendLayout();
+            this.tpTR4.SuspendLayout();
+            this.tpTR5.SuspendLayout();
+            this.tpTR6.SuspendLayout();
             this.tsrToolStrip.SuspendLayout();
             this.ssrStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -157,18 +195,18 @@ namespace TombExtract
             this.lblDestinationFile.AutoSize = true;
             this.lblDestinationFile.Location = new System.Drawing.Point(305, 6);
             this.lblDestinationFile.Name = "lblDestinationFile";
-            this.lblDestinationFile.Size = new System.Drawing.Size(79, 13);
+            this.lblDestinationFile.Size = new System.Drawing.Size(159, 13);
             this.lblDestinationFile.TabIndex = 3;
-            this.lblDestinationFile.Text = "Destination file:";
+            this.lblDestinationFile.Text = "Tomb Raider I-III destination file:";
             // 
             // lblSourceFile
             // 
             this.lblSourceFile.AutoSize = true;
             this.lblSourceFile.Location = new System.Drawing.Point(10, 6);
             this.lblSourceFile.Name = "lblSourceFile";
-            this.lblSourceFile.Size = new System.Drawing.Size(60, 13);
+            this.lblSourceFile.Size = new System.Drawing.Size(140, 13);
             this.lblSourceFile.TabIndex = 2;
-            this.lblSourceFile.Text = "Source file:";
+            this.lblSourceFile.Text = "Tomb Raider I-III source file:";
             // 
             // txtDestinationFilePath
             // 
@@ -191,13 +229,18 @@ namespace TombExtract
             this.tabGame.Controls.Add(this.tpTR1);
             this.tabGame.Controls.Add(this.tpTR2);
             this.tabGame.Controls.Add(this.tpTR3);
-            this.tabGame.ItemSize = new System.Drawing.Size(194, 22);
+            this.tabGame.Controls.Add(this.tpTR4);
+            this.tabGame.Controls.Add(this.tpTR5);
+            this.tabGame.Controls.Add(this.tpTR6);
+            this.tabGame.ItemSize = new System.Drawing.Size(193, 22);
             this.tabGame.Location = new System.Drawing.Point(5, 104);
+            this.tabGame.Multiline = true;
             this.tabGame.Name = "tabGame";
             this.tabGame.SelectedIndex = 0;
-            this.tabGame.Size = new System.Drawing.Size(586, 426);
+            this.tabGame.Size = new System.Drawing.Size(586, 449);
             this.tabGame.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabGame.TabIndex = 1;
+            this.tabGame.SelectedIndexChanged += new System.EventHandler(this.tabGame_SelectedIndexChanged);
             // 
             // tpTR1
             // 
@@ -213,10 +256,10 @@ namespace TombExtract
             this.tpTR1.Controls.Add(this.lblDestinationSavegamesTR1);
             this.tpTR1.Controls.Add(this.lblSourceSavegamesTR1);
             this.tpTR1.Controls.Add(this.cklSourceSavegamesTR1);
-            this.tpTR1.Location = new System.Drawing.Point(4, 26);
+            this.tpTR1.Location = new System.Drawing.Point(4, 48);
             this.tpTR1.Name = "tpTR1";
             this.tpTR1.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTR1.Size = new System.Drawing.Size(578, 396);
+            this.tpTR1.Size = new System.Drawing.Size(578, 397);
             this.tpTR1.TabIndex = 0;
             this.tpTR1.Text = "Tomb Raider I";
             this.tpTR1.UseVisualStyleBackColor = true;
@@ -365,10 +408,10 @@ namespace TombExtract
             this.tpTR2.Controls.Add(this.lblDestinationSavegamesTR2);
             this.tpTR2.Controls.Add(this.lblSourceSavegamesTR2);
             this.tpTR2.Controls.Add(this.cklSourceSavegamesTR2);
-            this.tpTR2.Location = new System.Drawing.Point(4, 26);
+            this.tpTR2.Location = new System.Drawing.Point(4, 48);
             this.tpTR2.Name = "tpTR2";
             this.tpTR2.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTR2.Size = new System.Drawing.Size(578, 396);
+            this.tpTR2.Size = new System.Drawing.Size(578, 397);
             this.tpTR2.TabIndex = 1;
             this.tpTR2.Text = "Tomb Raider II";
             this.tpTR2.UseVisualStyleBackColor = true;
@@ -517,9 +560,9 @@ namespace TombExtract
             this.tpTR3.Controls.Add(this.lblDestinationSavegamesTR3);
             this.tpTR3.Controls.Add(this.lblSourceSavegamesTR3);
             this.tpTR3.Controls.Add(this.cklSourceSavegamesTR3);
-            this.tpTR3.Location = new System.Drawing.Point(4, 26);
+            this.tpTR3.Location = new System.Drawing.Point(4, 48);
             this.tpTR3.Name = "tpTR3";
-            this.tpTR3.Size = new System.Drawing.Size(578, 396);
+            this.tpTR3.Size = new System.Drawing.Size(578, 397);
             this.tpTR3.TabIndex = 2;
             this.tpTR3.Text = "Tomb Raider III";
             this.tpTR3.UseVisualStyleBackColor = true;
@@ -654,6 +697,372 @@ namespace TombExtract
             this.cklSourceSavegamesTR3.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR3_DragDrop);
             this.cklSourceSavegamesTR3.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR3_DragEnter);
             // 
+            // tpTR4
+            // 
+            this.tpTR4.Controls.Add(this.btnManageSlotsTR4);
+            this.tpTR4.Controls.Add(this.btnAboutTR4);
+            this.tpTR4.Controls.Add(this.btnSelectAllTR4);
+            this.tpTR4.Controls.Add(this.lblArrowTR4);
+            this.tpTR4.Controls.Add(this.lstDestinationSavegamesTR4);
+            this.tpTR4.Controls.Add(this.btnExitTR4);
+            this.tpTR4.Controls.Add(this.btnExtractTR4);
+            this.tpTR4.Controls.Add(this.lblDestinationSavegamesTR4);
+            this.tpTR4.Controls.Add(this.lblSourceSavegamesTR4);
+            this.tpTR4.Controls.Add(this.cklSourceSavegamesTR4);
+            this.tpTR4.Location = new System.Drawing.Point(4, 48);
+            this.tpTR4.Name = "tpTR4";
+            this.tpTR4.Size = new System.Drawing.Size(578, 397);
+            this.tpTR4.TabIndex = 3;
+            this.tpTR4.Text = "Tomb Raider IV";
+            this.tpTR4.UseVisualStyleBackColor = true;
+            // 
+            // btnManageSlotsTR4
+            // 
+            this.btnManageSlotsTR4.Enabled = false;
+            this.btnManageSlotsTR4.Location = new System.Drawing.Point(464, 11);
+            this.btnManageSlotsTR4.Name = "btnManageSlotsTR4";
+            this.btnManageSlotsTR4.Size = new System.Drawing.Size(96, 23);
+            this.btnManageSlotsTR4.TabIndex = 46;
+            this.btnManageSlotsTR4.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR4.UseVisualStyleBackColor = true;
+            this.btnManageSlotsTR4.Click += new System.EventHandler(this.btnManageSlotsTR4_Click);
+            // 
+            // btnAboutTR4
+            // 
+            this.btnAboutTR4.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR4.Name = "btnAboutTR4";
+            this.btnAboutTR4.Size = new System.Drawing.Size(75, 23);
+            this.btnAboutTR4.TabIndex = 45;
+            this.btnAboutTR4.Text = "About";
+            this.btnAboutTR4.UseVisualStyleBackColor = true;
+            this.btnAboutTR4.Click += new System.EventHandler(this.btnAboutTR4_Click);
+            // 
+            // btnSelectAllTR4
+            // 
+            this.btnSelectAllTR4.Enabled = false;
+            this.btnSelectAllTR4.Location = new System.Drawing.Point(157, 11);
+            this.btnSelectAllTR4.Name = "btnSelectAllTR4";
+            this.btnSelectAllTR4.Size = new System.Drawing.Size(96, 23);
+            this.btnSelectAllTR4.TabIndex = 44;
+            this.btnSelectAllTR4.Text = "☑️ Select All";
+            this.btnSelectAllTR4.UseVisualStyleBackColor = true;
+            this.btnSelectAllTR4.Click += new System.EventHandler(this.btnSelectAllTR4_Click);
+            // 
+            // lblArrowTR4
+            // 
+            this.lblArrowTR4.AutoSize = true;
+            this.lblArrowTR4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR4.Location = new System.Drawing.Point(277, 180);
+            this.lblArrowTR4.Name = "lblArrowTR4";
+            this.lblArrowTR4.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR4.TabIndex = 43;
+            this.lblArrowTR4.Text = "→";
+            // 
+            // lstDestinationSavegamesTR4
+            // 
+            this.lstDestinationSavegamesTR4.AllowDrop = true;
+            this.lstDestinationSavegamesTR4.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR4.Location = new System.Drawing.Point(322, 37);
+            this.lstDestinationSavegamesTR4.Name = "lstDestinationSavegamesTR4";
+            this.lstDestinationSavegamesTR4.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR4.TabIndex = 42;
+            this.lstDestinationSavegamesTR4.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR4_DragDrop);
+            this.lstDestinationSavegamesTR4.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR4_DragEnter);
+            // 
+            // btnExitTR4
+            // 
+            this.btnExitTR4.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR4.Name = "btnExitTR4";
+            this.btnExitTR4.Size = new System.Drawing.Size(75, 23);
+            this.btnExitTR4.TabIndex = 41;
+            this.btnExitTR4.Text = "Exit";
+            this.btnExitTR4.UseVisualStyleBackColor = true;
+            this.btnExitTR4.Click += new System.EventHandler(this.btnExitTR4_Click);
+            // 
+            // btnExtractTR4
+            // 
+            this.btnExtractTR4.Enabled = false;
+            this.btnExtractTR4.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR4.Name = "btnExtractTR4";
+            this.btnExtractTR4.Size = new System.Drawing.Size(75, 23);
+            this.btnExtractTR4.TabIndex = 40;
+            this.btnExtractTR4.Text = "Extract";
+            this.btnExtractTR4.UseVisualStyleBackColor = true;
+            this.btnExtractTR4.Click += new System.EventHandler(this.btnExtractTR4_Click);
+            // 
+            // lblDestinationSavegamesTR4
+            // 
+            this.lblDestinationSavegamesTR4.AutoSize = true;
+            this.lblDestinationSavegamesTR4.Location = new System.Drawing.Point(320, 16);
+            this.lblDestinationSavegamesTR4.Name = "lblDestinationSavegamesTR4";
+            this.lblDestinationSavegamesTR4.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR4.TabIndex = 39;
+            this.lblDestinationSavegamesTR4.Text = "Destination savegames:";
+            // 
+            // lblSourceSavegamesTR4
+            // 
+            this.lblSourceSavegamesTR4.AutoSize = true;
+            this.lblSourceSavegamesTR4.Location = new System.Drawing.Point(14, 16);
+            this.lblSourceSavegamesTR4.Name = "lblSourceSavegamesTR4";
+            this.lblSourceSavegamesTR4.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR4.TabIndex = 38;
+            this.lblSourceSavegamesTR4.Text = "Source savegames:";
+            // 
+            // cklSourceSavegamesTR4
+            // 
+            this.cklSourceSavegamesTR4.AllowDrop = true;
+            this.cklSourceSavegamesTR4.FormattingEnabled = true;
+            this.cklSourceSavegamesTR4.Location = new System.Drawing.Point(15, 37);
+            this.cklSourceSavegamesTR4.Name = "cklSourceSavegamesTR4";
+            this.cklSourceSavegamesTR4.Size = new System.Drawing.Size(238, 304);
+            this.cklSourceSavegamesTR4.TabIndex = 37;
+            this.cklSourceSavegamesTR4.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR4_DragDrop);
+            this.cklSourceSavegamesTR4.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR4_DragEnter);
+            // 
+            // tpTR5
+            // 
+            this.tpTR5.Controls.Add(this.btnManageSlotsTR5);
+            this.tpTR5.Controls.Add(this.btnAboutTR5);
+            this.tpTR5.Controls.Add(this.btnSelectAllTR5);
+            this.tpTR5.Controls.Add(this.lblArrowTR5);
+            this.tpTR5.Controls.Add(this.lstDestinationSavegamesTR5);
+            this.tpTR5.Controls.Add(this.btnExitTR5);
+            this.tpTR5.Controls.Add(this.btnExtractTR5);
+            this.tpTR5.Controls.Add(this.lblDestinationSavegamesTR5);
+            this.tpTR5.Controls.Add(this.lblSourceSavegamesTR5);
+            this.tpTR5.Controls.Add(this.cklSourceSavegamesTR5);
+            this.tpTR5.Location = new System.Drawing.Point(4, 48);
+            this.tpTR5.Name = "tpTR5";
+            this.tpTR5.Size = new System.Drawing.Size(578, 397);
+            this.tpTR5.TabIndex = 4;
+            this.tpTR5.Text = "Tomb Raider V";
+            this.tpTR5.UseVisualStyleBackColor = true;
+            // 
+            // btnManageSlotsTR5
+            // 
+            this.btnManageSlotsTR5.Enabled = false;
+            this.btnManageSlotsTR5.Location = new System.Drawing.Point(464, 11);
+            this.btnManageSlotsTR5.Name = "btnManageSlotsTR5";
+            this.btnManageSlotsTR5.Size = new System.Drawing.Size(96, 23);
+            this.btnManageSlotsTR5.TabIndex = 57;
+            this.btnManageSlotsTR5.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR5.UseVisualStyleBackColor = true;
+            this.btnManageSlotsTR5.Click += new System.EventHandler(this.btnManageSlotsTR5_Click);
+            // 
+            // btnAboutTR5
+            // 
+            this.btnAboutTR5.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR5.Name = "btnAboutTR5";
+            this.btnAboutTR5.Size = new System.Drawing.Size(75, 23);
+            this.btnAboutTR5.TabIndex = 56;
+            this.btnAboutTR5.Text = "About";
+            this.btnAboutTR5.UseVisualStyleBackColor = true;
+            this.btnAboutTR5.Click += new System.EventHandler(this.btnAboutTR5_Click);
+            // 
+            // btnSelectAllTR5
+            // 
+            this.btnSelectAllTR5.Enabled = false;
+            this.btnSelectAllTR5.Location = new System.Drawing.Point(157, 11);
+            this.btnSelectAllTR5.Name = "btnSelectAllTR5";
+            this.btnSelectAllTR5.Size = new System.Drawing.Size(96, 23);
+            this.btnSelectAllTR5.TabIndex = 55;
+            this.btnSelectAllTR5.Text = "☑️ Select All";
+            this.btnSelectAllTR5.UseVisualStyleBackColor = true;
+            this.btnSelectAllTR5.Click += new System.EventHandler(this.btnSelectAllTR5_Click);
+            // 
+            // lblArrowTR5
+            // 
+            this.lblArrowTR5.AutoSize = true;
+            this.lblArrowTR5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR5.Location = new System.Drawing.Point(277, 180);
+            this.lblArrowTR5.Name = "lblArrowTR5";
+            this.lblArrowTR5.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR5.TabIndex = 54;
+            this.lblArrowTR5.Text = "→";
+            // 
+            // lstDestinationSavegamesTR5
+            // 
+            this.lstDestinationSavegamesTR5.AllowDrop = true;
+            this.lstDestinationSavegamesTR5.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR5.Location = new System.Drawing.Point(322, 37);
+            this.lstDestinationSavegamesTR5.Name = "lstDestinationSavegamesTR5";
+            this.lstDestinationSavegamesTR5.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR5.TabIndex = 53;
+            this.lstDestinationSavegamesTR5.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR5_DragDrop);
+            this.lstDestinationSavegamesTR5.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR5_DragEnter);
+            // 
+            // btnExitTR5
+            // 
+            this.btnExitTR5.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR5.Name = "btnExitTR5";
+            this.btnExitTR5.Size = new System.Drawing.Size(75, 23);
+            this.btnExitTR5.TabIndex = 52;
+            this.btnExitTR5.Text = "Exit";
+            this.btnExitTR5.UseVisualStyleBackColor = true;
+            this.btnExitTR5.Click += new System.EventHandler(this.btnExitTR5_Click);
+            // 
+            // btnExtractTR5
+            // 
+            this.btnExtractTR5.Enabled = false;
+            this.btnExtractTR5.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR5.Name = "btnExtractTR5";
+            this.btnExtractTR5.Size = new System.Drawing.Size(75, 23);
+            this.btnExtractTR5.TabIndex = 51;
+            this.btnExtractTR5.Text = "Extract";
+            this.btnExtractTR5.UseVisualStyleBackColor = true;
+            this.btnExtractTR5.Click += new System.EventHandler(this.btnExtractTR5_Click);
+            // 
+            // lblDestinationSavegamesTR5
+            // 
+            this.lblDestinationSavegamesTR5.AutoSize = true;
+            this.lblDestinationSavegamesTR5.Location = new System.Drawing.Point(320, 16);
+            this.lblDestinationSavegamesTR5.Name = "lblDestinationSavegamesTR5";
+            this.lblDestinationSavegamesTR5.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR5.TabIndex = 50;
+            this.lblDestinationSavegamesTR5.Text = "Destination savegames:";
+            // 
+            // lblSourceSavegamesTR5
+            // 
+            this.lblSourceSavegamesTR5.AutoSize = true;
+            this.lblSourceSavegamesTR5.Location = new System.Drawing.Point(14, 16);
+            this.lblSourceSavegamesTR5.Name = "lblSourceSavegamesTR5";
+            this.lblSourceSavegamesTR5.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR5.TabIndex = 49;
+            this.lblSourceSavegamesTR5.Text = "Source savegames:";
+            // 
+            // cklSourceSavegamesTR5
+            // 
+            this.cklSourceSavegamesTR5.AllowDrop = true;
+            this.cklSourceSavegamesTR5.FormattingEnabled = true;
+            this.cklSourceSavegamesTR5.Location = new System.Drawing.Point(15, 37);
+            this.cklSourceSavegamesTR5.Name = "cklSourceSavegamesTR5";
+            this.cklSourceSavegamesTR5.Size = new System.Drawing.Size(238, 304);
+            this.cklSourceSavegamesTR5.TabIndex = 48;
+            this.cklSourceSavegamesTR5.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR5_DragDrop);
+            this.cklSourceSavegamesTR5.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR5_DragEnter);
+            // 
+            // tpTR6
+            // 
+            this.tpTR6.Controls.Add(this.btnManageSlotsTR6);
+            this.tpTR6.Controls.Add(this.btnAboutTR6);
+            this.tpTR6.Controls.Add(this.btnSelectAllTR6);
+            this.tpTR6.Controls.Add(this.lblArrowTR6);
+            this.tpTR6.Controls.Add(this.lstDestinationSavegamesTR6);
+            this.tpTR6.Controls.Add(this.btnExitTR6);
+            this.tpTR6.Controls.Add(this.btnExtractTR6);
+            this.tpTR6.Controls.Add(this.lblDestinationSavegamesTR6);
+            this.tpTR6.Controls.Add(this.lblSourceSavegamesTR6);
+            this.tpTR6.Controls.Add(this.cklSourceSavegamesTR6);
+            this.tpTR6.Location = new System.Drawing.Point(4, 48);
+            this.tpTR6.Name = "tpTR6";
+            this.tpTR6.Size = new System.Drawing.Size(578, 397);
+            this.tpTR6.TabIndex = 5;
+            this.tpTR6.Text = "Tomb Raider VI";
+            this.tpTR6.UseVisualStyleBackColor = true;
+            // 
+            // btnManageSlotsTR6
+            // 
+            this.btnManageSlotsTR6.Enabled = false;
+            this.btnManageSlotsTR6.Location = new System.Drawing.Point(464, 11);
+            this.btnManageSlotsTR6.Name = "btnManageSlotsTR6";
+            this.btnManageSlotsTR6.Size = new System.Drawing.Size(96, 23);
+            this.btnManageSlotsTR6.TabIndex = 68;
+            this.btnManageSlotsTR6.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR6.UseVisualStyleBackColor = true;
+            this.btnManageSlotsTR6.Click += new System.EventHandler(this.btnManageSlotsTR6_Click);
+            // 
+            // btnAboutTR6
+            // 
+            this.btnAboutTR6.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR6.Name = "btnAboutTR6";
+            this.btnAboutTR6.Size = new System.Drawing.Size(75, 23);
+            this.btnAboutTR6.TabIndex = 67;
+            this.btnAboutTR6.Text = "About";
+            this.btnAboutTR6.UseVisualStyleBackColor = true;
+            this.btnAboutTR6.Click += new System.EventHandler(this.btnAboutTR6_Click);
+            // 
+            // btnSelectAllTR6
+            // 
+            this.btnSelectAllTR6.Enabled = false;
+            this.btnSelectAllTR6.Location = new System.Drawing.Point(157, 11);
+            this.btnSelectAllTR6.Name = "btnSelectAllTR6";
+            this.btnSelectAllTR6.Size = new System.Drawing.Size(96, 23);
+            this.btnSelectAllTR6.TabIndex = 66;
+            this.btnSelectAllTR6.Text = "☑️ Select All";
+            this.btnSelectAllTR6.UseVisualStyleBackColor = true;
+            this.btnSelectAllTR6.Click += new System.EventHandler(this.btnSelectAllTR6_Click);
+            // 
+            // lblArrowTR6
+            // 
+            this.lblArrowTR6.AutoSize = true;
+            this.lblArrowTR6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR6.Location = new System.Drawing.Point(277, 180);
+            this.lblArrowTR6.Name = "lblArrowTR6";
+            this.lblArrowTR6.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR6.TabIndex = 65;
+            this.lblArrowTR6.Text = "→";
+            // 
+            // lstDestinationSavegamesTR6
+            // 
+            this.lstDestinationSavegamesTR6.AllowDrop = true;
+            this.lstDestinationSavegamesTR6.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR6.Location = new System.Drawing.Point(322, 37);
+            this.lstDestinationSavegamesTR6.Name = "lstDestinationSavegamesTR6";
+            this.lstDestinationSavegamesTR6.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR6.TabIndex = 64;
+            this.lstDestinationSavegamesTR6.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR6_DragDrop);
+            this.lstDestinationSavegamesTR6.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR6_DragEnter);
+            // 
+            // btnExitTR6
+            // 
+            this.btnExitTR6.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR6.Name = "btnExitTR6";
+            this.btnExitTR6.Size = new System.Drawing.Size(75, 23);
+            this.btnExitTR6.TabIndex = 63;
+            this.btnExitTR6.Text = "Exit";
+            this.btnExitTR6.UseVisualStyleBackColor = true;
+            this.btnExitTR6.Click += new System.EventHandler(this.btnExitTR6_Click);
+            // 
+            // btnExtractTR6
+            // 
+            this.btnExtractTR6.Enabled = false;
+            this.btnExtractTR6.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR6.Name = "btnExtractTR6";
+            this.btnExtractTR6.Size = new System.Drawing.Size(75, 23);
+            this.btnExtractTR6.TabIndex = 62;
+            this.btnExtractTR6.Text = "Extract";
+            this.btnExtractTR6.UseVisualStyleBackColor = true;
+            this.btnExtractTR6.Click += new System.EventHandler(this.btnExtractTR6_Click);
+            // 
+            // lblDestinationSavegamesTR6
+            // 
+            this.lblDestinationSavegamesTR6.AutoSize = true;
+            this.lblDestinationSavegamesTR6.Location = new System.Drawing.Point(320, 16);
+            this.lblDestinationSavegamesTR6.Name = "lblDestinationSavegamesTR6";
+            this.lblDestinationSavegamesTR6.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR6.TabIndex = 61;
+            this.lblDestinationSavegamesTR6.Text = "Destination savegames:";
+            // 
+            // lblSourceSavegamesTR6
+            // 
+            this.lblSourceSavegamesTR6.AutoSize = true;
+            this.lblSourceSavegamesTR6.Location = new System.Drawing.Point(14, 16);
+            this.lblSourceSavegamesTR6.Name = "lblSourceSavegamesTR6";
+            this.lblSourceSavegamesTR6.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR6.TabIndex = 60;
+            this.lblSourceSavegamesTR6.Text = "Source savegames:";
+            // 
+            // cklSourceSavegamesTR6
+            // 
+            this.cklSourceSavegamesTR6.AllowDrop = true;
+            this.cklSourceSavegamesTR6.FormattingEnabled = true;
+            this.cklSourceSavegamesTR6.Location = new System.Drawing.Point(15, 37);
+            this.cklSourceSavegamesTR6.Name = "cklSourceSavegamesTR6";
+            this.cklSourceSavegamesTR6.Size = new System.Drawing.Size(238, 304);
+            this.cklSourceSavegamesTR6.TabIndex = 59;
+            this.cklSourceSavegamesTR6.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR6_DragDrop);
+            this.cklSourceSavegamesTR6.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR6_DragEnter);
+            // 
             // tsrToolStrip
             // 
             this.tsrToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -662,7 +1071,7 @@ namespace TombExtract
             this.tsddbHelp});
             this.tsrToolStrip.Location = new System.Drawing.Point(0, 0);
             this.tsrToolStrip.Name = "tsrToolStrip";
-            this.tsrToolStrip.Size = new System.Drawing.Size(595, 25);
+            this.tsrToolStrip.Size = new System.Drawing.Size(594, 25);
             this.tsrToolStrip.TabIndex = 2;
             this.tsrToolStrip.Text = "toolStrip1";
             // 
@@ -671,11 +1080,13 @@ namespace TombExtract
             this.tsddbFile.AutoToolTip = false;
             this.tsddbFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsddbFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiBrowseSourceFile,
-            this.tsmiBrowseDestinationFile,
+            this.tsmiBrowseTRXSourceFile,
+            this.tsmiBrowseTRXDestinationFile,
             this.tsmiFileSeparator,
-            this.tsmiBackupDestinationFile,
+            this.tsmiBrowseTRX2SourceFile,
+            this.tsmiBrowseTRX2DestinationFile,
             this.tsmiFileSeparator2,
+            this.tsmiBackupDestinationFile,
             this.tsmiExtract,
             this.tsmiFileSeparator3,
             this.tsmiExit});
@@ -686,55 +1097,69 @@ namespace TombExtract
             this.tsddbFile.Size = new System.Drawing.Size(29, 22);
             this.tsddbFile.Text = "File";
             // 
-            // tsmiBrowseSourceFile
+            // tsmiBrowseTRXSourceFile
             // 
-            this.tsmiBrowseSourceFile.Name = "tsmiBrowseSourceFile";
-            this.tsmiBrowseSourceFile.Size = new System.Drawing.Size(202, 22);
-            this.tsmiBrowseSourceFile.Text = "Browse source file...";
-            this.tsmiBrowseSourceFile.Click += new System.EventHandler(this.tsmiBrowseSourceFile_Click);
+            this.tsmiBrowseTRXSourceFile.Name = "tsmiBrowseTRXSourceFile";
+            this.tsmiBrowseTRXSourceFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRXSourceFile.Text = "Select Tomb Raider I-III source file...";
+            this.tsmiBrowseTRXSourceFile.Click += new System.EventHandler(this.tsmiBrowseTRXSourceFile_Click);
             // 
-            // tsmiBrowseDestinationFile
+            // tsmiBrowseTRXDestinationFile
             // 
-            this.tsmiBrowseDestinationFile.Name = "tsmiBrowseDestinationFile";
-            this.tsmiBrowseDestinationFile.Size = new System.Drawing.Size(202, 22);
-            this.tsmiBrowseDestinationFile.Text = "Browse destination file...";
-            this.tsmiBrowseDestinationFile.Click += new System.EventHandler(this.tsmiBrowseDestinationFile_Click);
+            this.tsmiBrowseTRXDestinationFile.Name = "tsmiBrowseTRXDestinationFile";
+            this.tsmiBrowseTRXDestinationFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRXDestinationFile.Text = "Select Tomb Raider I-III destination file...";
+            this.tsmiBrowseTRXDestinationFile.Click += new System.EventHandler(this.tsmiBrowseTRXDestinationFile_Click);
             // 
             // tsmiFileSeparator
             // 
             this.tsmiFileSeparator.Name = "tsmiFileSeparator";
-            this.tsmiFileSeparator.Size = new System.Drawing.Size(199, 6);
+            this.tsmiFileSeparator.Size = new System.Drawing.Size(289, 6);
+            // 
+            // tsmiBrowseTRX2SourceFile
+            // 
+            this.tsmiBrowseTRX2SourceFile.Name = "tsmiBrowseTRX2SourceFile";
+            this.tsmiBrowseTRX2SourceFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRX2SourceFile.Text = "Select Tomb Raider IV-VI source file...";
+            this.tsmiBrowseTRX2SourceFile.Click += new System.EventHandler(this.tsmiBrowseTRX2SourceFile_Click);
+            // 
+            // tsmiBrowseTRX2DestinationFile
+            // 
+            this.tsmiBrowseTRX2DestinationFile.Name = "tsmiBrowseTRX2DestinationFile";
+            this.tsmiBrowseTRX2DestinationFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRX2DestinationFile.Text = "Select Tomb Raider IV-VI destination file...";
+            this.tsmiBrowseTRX2DestinationFile.Click += new System.EventHandler(this.tsmiBrowseTRX2DestinationFile_Click);
+            // 
+            // tsmiFileSeparator2
+            // 
+            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
+            this.tsmiFileSeparator2.Size = new System.Drawing.Size(289, 6);
             // 
             // tsmiBackupDestinationFile
             // 
             this.tsmiBackupDestinationFile.Enabled = false;
             this.tsmiBackupDestinationFile.Name = "tsmiBackupDestinationFile";
-            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(202, 22);
+            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(292, 22);
             this.tsmiBackupDestinationFile.Text = "Backup destination file";
             this.tsmiBackupDestinationFile.Click += new System.EventHandler(this.tsmiBackupDestinationFile_Click);
-            // 
-            // tsmiFileSeparator2
-            // 
-            this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
-            this.tsmiFileSeparator2.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmiExtract
             // 
             this.tsmiExtract.Enabled = false;
             this.tsmiExtract.Name = "tsmiExtract";
-            this.tsmiExtract.Size = new System.Drawing.Size(202, 22);
+            this.tsmiExtract.Size = new System.Drawing.Size(292, 22);
             this.tsmiExtract.Text = "Extract";
             this.tsmiExtract.Click += new System.EventHandler(this.tsmiExtract_Click);
             // 
             // tsmiFileSeparator3
             // 
             this.tsmiFileSeparator3.Name = "tsmiFileSeparator3";
-            this.tsmiFileSeparator3.Size = new System.Drawing.Size(199, 6);
+            this.tsmiFileSeparator3.Size = new System.Drawing.Size(289, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(202, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(292, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -744,7 +1169,7 @@ namespace TombExtract
             this.tsddbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsddbHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiViewReadme,
-            this.tsmiSendFeedback,
+            this.tsmiReportBug,
             this.tsmiAbout});
             this.tsddbHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsddbHelp.Image")));
             this.tsddbHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -756,21 +1181,21 @@ namespace TombExtract
             // tsmiViewReadme
             // 
             this.tsmiViewReadme.Name = "tsmiViewReadme";
-            this.tsmiViewReadme.Size = new System.Drawing.Size(153, 22);
+            this.tsmiViewReadme.Size = new System.Drawing.Size(148, 22);
             this.tsmiViewReadme.Text = "View README";
             this.tsmiViewReadme.Click += new System.EventHandler(this.tsmiViewReadme_Click);
             // 
-            // tsmiSendFeedback
+            // tsmiReportBug
             // 
-            this.tsmiSendFeedback.Name = "tsmiSendFeedback";
-            this.tsmiSendFeedback.Size = new System.Drawing.Size(153, 22);
-            this.tsmiSendFeedback.Text = "Send Feedback";
-            this.tsmiSendFeedback.Click += new System.EventHandler(this.tsmiSendFeedback_Click);
+            this.tsmiReportBug.Name = "tsmiReportBug";
+            this.tsmiReportBug.Size = new System.Drawing.Size(148, 22);
+            this.tsmiReportBug.Text = "Report a Bug";
+            this.tsmiReportBug.Click += new System.EventHandler(this.tsmiReportBug_Click);
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(153, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(148, 22);
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -778,10 +1203,10 @@ namespace TombExtract
             // 
             this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.slblStatus});
-            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 533);
+            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 557);
             this.ssrStatusStrip.Name = "ssrStatusStrip";
             this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ssrStatusStrip.Size = new System.Drawing.Size(595, 22);
+            this.ssrStatusStrip.Size = new System.Drawing.Size(594, 22);
             this.ssrStatusStrip.SizingGrip = false;
             this.ssrStatusStrip.TabIndex = 3;
             this.ssrStatusStrip.Text = "statusStrip1";
@@ -797,7 +1222,7 @@ namespace TombExtract
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(595, 555);
+            this.ClientSize = new System.Drawing.Size(594, 579);
             this.Controls.Add(this.ssrStatusStrip);
             this.Controls.Add(this.tsrToolStrip);
             this.Controls.Add(this.tabGame);
@@ -808,7 +1233,7 @@ namespace TombExtract
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tomb Raider I-III Remastered Savegame Manager";
+            this.Text = "Tomb Raider Remastered Savegame Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlFilePaths.ResumeLayout(false);
@@ -820,6 +1245,12 @@ namespace TombExtract
             this.tpTR2.PerformLayout();
             this.tpTR3.ResumeLayout(false);
             this.tpTR3.PerformLayout();
+            this.tpTR4.ResumeLayout(false);
+            this.tpTR4.PerformLayout();
+            this.tpTR5.ResumeLayout(false);
+            this.tpTR5.PerformLayout();
+            this.tpTR6.ResumeLayout(false);
+            this.tpTR6.PerformLayout();
             this.tsrToolStrip.ResumeLayout(false);
             this.tsrToolStrip.PerformLayout();
             this.ssrStatusStrip.ResumeLayout(false);
@@ -875,10 +1306,10 @@ namespace TombExtract
         private System.Windows.Forms.ToolStripDropDownButton tsddbHelp;
         private System.Windows.Forms.StatusStrip ssrStatusStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiViewReadme;
-        private System.Windows.Forms.ToolStripMenuItem tsmiSendFeedback;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReportBug;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
-        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseSourceFile;
-        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseDestinationFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRXSourceFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRXDestinationFile;
         private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator;
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
         private System.Windows.Forms.ToolStripStatusLabel slblStatus;
@@ -895,6 +1326,41 @@ namespace TombExtract
         private System.Windows.Forms.Button btnManageSlotsTR3;
         private System.Windows.Forms.ToolStripMenuItem tsmiBackupDestinationFile;
         private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator3;
+        private System.Windows.Forms.TabPage tpTR4;
+        private System.Windows.Forms.TabPage tpTR5;
+        private System.Windows.Forms.TabPage tpTR6;
+        private System.Windows.Forms.Button btnManageSlotsTR4;
+        private System.Windows.Forms.Button btnAboutTR4;
+        private System.Windows.Forms.Button btnSelectAllTR4;
+        private System.Windows.Forms.Label lblArrowTR4;
+        private System.Windows.Forms.ListBox lstDestinationSavegamesTR4;
+        private System.Windows.Forms.Button btnExitTR4;
+        private System.Windows.Forms.Button btnExtractTR4;
+        private System.Windows.Forms.Label lblDestinationSavegamesTR4;
+        private System.Windows.Forms.Label lblSourceSavegamesTR4;
+        private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR4;
+        private System.Windows.Forms.Button btnManageSlotsTR5;
+        private System.Windows.Forms.Button btnAboutTR5;
+        private System.Windows.Forms.Button btnSelectAllTR5;
+        private System.Windows.Forms.Label lblArrowTR5;
+        private System.Windows.Forms.ListBox lstDestinationSavegamesTR5;
+        private System.Windows.Forms.Button btnExitTR5;
+        private System.Windows.Forms.Button btnExtractTR5;
+        private System.Windows.Forms.Label lblDestinationSavegamesTR5;
+        private System.Windows.Forms.Label lblSourceSavegamesTR5;
+        private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR5;
+        private System.Windows.Forms.Button btnManageSlotsTR6;
+        private System.Windows.Forms.Button btnAboutTR6;
+        private System.Windows.Forms.Button btnSelectAllTR6;
+        private System.Windows.Forms.Label lblArrowTR6;
+        private System.Windows.Forms.ListBox lstDestinationSavegamesTR6;
+        private System.Windows.Forms.Button btnExitTR6;
+        private System.Windows.Forms.Button btnExtractTR6;
+        private System.Windows.Forms.Label lblDestinationSavegamesTR6;
+        private System.Windows.Forms.Label lblSourceSavegamesTR6;
+        private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR6;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRX2SourceFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRX2DestinationFile;
     }
 }
 

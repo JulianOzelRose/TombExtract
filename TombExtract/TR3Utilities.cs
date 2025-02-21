@@ -191,14 +191,7 @@ namespace TombExtract
             return numOverwrites;
         }
 
-        public void WriteSavegamesToDestination(List<Savegame> savegames, CheckedListBox cklSourceSavegamesTR1,
-            CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1,
-            Button btnExtractTR2, Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
-            Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite, ListBox lstDestinationSavegamesTR1,
-            ListBox lstDestinationSavegamesTR2, ListBox lstDestinationSavegamesTR3, ToolStripMenuItem tsmiBrowseSourceFile,
-            ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus, ToolStripMenuItem tsmiExtract,
-            ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3, Button btnManageSlotsTR1,
-            Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
+        public void WriteSavegamesToDestination(List<Savegame> savegames, ListBox lstDestinationSavegames, ToolStripStatusLabel slblStatus, ComboBox cmbConversion)
         {
             isWriting = true;
 
@@ -211,7 +204,7 @@ namespace TombExtract
             PS4_TO_SWITCH = false;
             SWITCH_TO_PS4 = false;
 
-            int conversionNumber = cmbConversionTR3.SelectedIndex;
+            int conversionNumber = cmbConversion.SelectedIndex;
 
             if (conversionNumber == 0)
             {
@@ -248,11 +241,7 @@ namespace TombExtract
             bgWorker.WorkerReportsProgress = true;
             bgWorker.DoWork += WriteSavegamesBackground;
 
-            bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, cklSourceSavegamesTR1, cklSourceSavegamesTR2,
-                cklSourceSavegamesTR3, btnExtractTR1, btnExtractTR2, btnExtractTR3, btnSelectAllTR1, btnSelectAllTR2, btnSelectAllTR3,
-                btnBrowseSourceFile, btnBrowseDestinationFile, chkBackupOnWrite, lstDestinationSavegamesTR1, lstDestinationSavegamesTR2,
-                lstDestinationSavegamesTR3, tsmiBrowseSourceFile, tsmiBrowseDestinationFile, slblStatus, tsmiExtract, cmbConversionTR1,
-                cmbConversionTR2, cmbConversionTR3, btnManageSlotsTR1, btnManageSlotsTR2, btnManageSlotsTR3, tsmiBackupDestinationFile);
+            bgWorker.RunWorkerCompleted += (sender, e) => bgWorker_RunWorkerCompleted(sender, e, lstDestinationSavegames, slblStatus);
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
@@ -261,16 +250,10 @@ namespace TombExtract
             bgWorker.RunWorkerAsync(savegames);
         }
 
-        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e, CheckedListBox cklSourceSavegamesTR1,
-            CheckedListBox cklSourceSavegamesTR2, CheckedListBox cklSourceSavegamesTR3, Button btnExtractTR1, Button btnExtractTR2,
-            Button btnExtractTR3, Button btnSelectAllTR1, Button btnSelectAllTR2, Button btnSelectAllTR3,
-            Button btnBrowseSourceFile, Button btnBrowseDestinationFile, CheckBox chkBackupOnWrite,
-            ListBox lstDestinationSavegamesTR1, ListBox lstDestinationSavegamesTR2, ListBox lstDestinationSavegamesTR3,
-            ToolStripMenuItem tsmiBrowseSourceFile, ToolStripMenuItem tsmiBrowseDestinationFile, ToolStripStatusLabel slblStatus,
-            ToolStripMenuItem tsmiExtract, ComboBox cmbConversionTR1, ComboBox cmbConversionTR2, ComboBox cmbConversionTR3,
-            Button btnManageSlotsTR1, Button btnManageSlotsTR2, Button btnManageSlotsTR3, ToolStripMenuItem tsmiBackupDestinationFile)
+        private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e, ListBox lstDestinationSavegames, ToolStripStatusLabel slblStatus)
         {
             progressForm.Close();
+            isWriting = false;
 
             if (e.Error != null || (e.Result != null && e.Result is Exception))
             {
@@ -279,7 +262,7 @@ namespace TombExtract
 
                 MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                slblStatus.Text = $"Error {(NO_CONVERT ? "transferred" : "converting")} savegame(s).";
+                slblStatus.Text = $"Error {(NO_CONVERT ? "transferring" : "converting")} savegame(s).";
             }
             else if (e.Cancelled)
             {
@@ -298,43 +281,7 @@ namespace TombExtract
 
             }
 
-            isWriting = false;
-
-            cklSourceSavegamesTR1.Enabled = true;
-            cklSourceSavegamesTR2.Enabled = true;
-            cklSourceSavegamesTR3.Enabled = true;
-
-            lstDestinationSavegamesTR1.Enabled = true;
-            lstDestinationSavegamesTR2.Enabled = true;
-            lstDestinationSavegamesTR3.Enabled = true;
-
-            cmbConversionTR1.Enabled = true;
-            cmbConversionTR2.Enabled = true;
-            cmbConversionTR3.Enabled = true;
-
-            btnSelectAllTR1.Enabled = true;
-            btnSelectAllTR2.Enabled = true;
-            btnSelectAllTR3.Enabled = true;
-
-            btnExtractTR1.Enabled = true;
-            btnExtractTR2.Enabled = true;
-            btnExtractTR3.Enabled = true;
-
-            btnManageSlotsTR1.Enabled = true;
-            btnManageSlotsTR2.Enabled = true;
-            btnManageSlotsTR3.Enabled = true;
-
-            btnBrowseSourceFile.Enabled = true;
-            btnBrowseDestinationFile.Enabled = true;
-
-            tsmiBrowseSourceFile.Enabled = true;
-            tsmiBrowseDestinationFile.Enabled = true;
-            tsmiExtract.Enabled = true;
-            tsmiBackupDestinationFile.Enabled = true;
-
-            chkBackupOnWrite.Enabled = true;
-
-            PopulateDestinationSavegames(lstDestinationSavegamesTR3);
+            PopulateDestinationSavegames(lstDestinationSavegames);
         }
 
 

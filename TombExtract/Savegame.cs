@@ -18,19 +18,28 @@ namespace TombExtract
         public bool IsEmptySlot { get; set; }
         public int Slot { get; set; }
         public byte[] SavegameBytes { get; set; }
+        public bool UseStoredName { get; set; }
 
-        public Savegame(int savegameOffset, Int32 saveNumber, string levelName, GameMode gameMode)
+        public Savegame(int savegameOffset, Int32 saveNumber, string levelName, GameMode gameMode, bool useStoredName = false)
         {
             Number = saveNumber;
             Name = levelName;
             Offset = savegameOffset;
             Mode = gameMode;
             IsEmptySlot = false;
+            UseStoredName = useStoredName;
         }
 
         public override string ToString()
         {
-            return !IsEmptySlot ? $"{Name}{(Mode == GameMode.Plus ? "+" : "")} - {Number}" : "Empty Slot";
+            if (IsEmptySlot) return "Empty Slot";
+
+            if (UseStoredName)
+            {
+                return Name;
+            }
+
+            return $"{Name}{(Mode == GameMode.Plus ? "+" : "")} - {Number}";
         }
     }
 }
