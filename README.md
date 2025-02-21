@@ -1,24 +1,29 @@
-# Tomb Raider I-III Remastered Savegame Manager
-This is a savegame manager tool for Tomb Raider I-III Remastered. It includes the ability to transfer individual savegames between files, to convert
+# Tomb Raider Remastered Savegame Manager
+This is a savegame manager tool for Tomb Raider Remastered. It includes the ability to transfer individual savegames between files, to convert
 to PC/PS4/Nintendo Switch format, and to delete or reorder savegames. Useful for downloading savegames from the Internet without having to replace your entire savegame file,
-or transferring savegames to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider I-III Remastered,
+or transferring savegames to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider Remastered,
 check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-![TombExtract-UI](https://github.com/JulianOzelRose/TombExtract/assets/95890436/123be6e3-8877-4216-a76d-07c7cb25fa6f)
+![TombExtract-UI](https://github.com/user-attachments/assets/2c9f10e4-f3ea-4757-81c7-5fb8764c0090)
 
 ## Installation and use
 To use this program, simply navigate to the [Releases](https://github.com/JulianOzelRose/TombExtract/releases)
 page, then download the .exe of the latest version under "Assets". Once downloaded, click the browse button next to source file textbox to select the savegame source. Then click the browse button
 next to the destination file to select your savegame file. Alternatively, you can just drag and drop your savegame file onto the savegame list box, and it will populate. Your main savegame file should be located in:
 
+#### Tomb Raider I-III Remastered
+`C:\Users\USERNAME\AppData\Roaming\TRX\77777777777777777\savegame.dat`
+
+#### Tomb Raider IV-VI Remastered
 `C:\Users\USERNAME\AppData\Roaming\TRX\77777777777777777\savegame.dat`
 
 Just replace "USERNAME" with your username, and "77777777777777777" with whatever numeric ID you see in that folder. The numeric ID is your Steam Community ID, so if you have multiple Steam
-accounts with Tomb Raider I-III Remastered, there may be multiple folders.
+accounts with Tomb Raider Remastered, there may be multiple folders.
 
 ## Extracting and converting savegames
 Use the checklist on the left to select which savegames you would like to transfer. The combo box below the check list allows you to specify whether or not you would like to convert your savegames.
 Select the relevant conversion, or leave it at "No" to transfer them as is. Click "Extract" to transfer the savegames, and the program will begin extraction. The progress display will indicate how far along the process is.
+Platform conversion for Tomb Raider IV-VI is not supported at this time.
 
 If you are trying to convert from PS4, you must first decrypt the savegame file using [Apollo Save Tool](https://github.com/bucanero/apollo-ps4). For Nintendo Switch savegames, you can either use
 [EdZion](https://github.com/WerWolv/EdiZon) or [Goldleaf](https://github.com/XorTroll/Goldleaf) to extract the savegame file from your console. You can find more detailed information on how to do this
