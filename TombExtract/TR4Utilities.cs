@@ -305,10 +305,10 @@ namespace TombExtract
             }
             else
             {
-                MessageBox.Show($"Successfully converted and transferred {totalSavegames} savegame(s) to destination file.",
+                MessageBox.Show($"Successfully transferred {totalSavegames} savegame(s) to destination file.",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                slblStatus.Text = $"Successfully converted and transferred {totalSavegames} savegame(s) to destination file.";
+                slblStatus.Text = $"Successfully transferred {totalSavegames} savegame(s) to destination file.";
             }
 
             PopulateDestinationSavegames(lstDestinationSavegamesTR4);
