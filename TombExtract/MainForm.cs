@@ -41,7 +41,6 @@ namespace TombExtract
 
         // Savegame file sizes
         private const int SAVEGAME_FILE_SIZE_TRX = 0x152004;
-        private const int SAVEGAME_FILE_SIZE_TRX2 = 0x3DCA04;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -160,18 +159,6 @@ namespace TombExtract
             return fileInfo.Length >= SAVEGAME_FILE_SIZE_TRX;
         }
 
-        private bool IsValidSavegameTRX2(string path)
-        {
-            FileInfo fileInfo = new FileInfo(path);
-
-            if (fileInfo.Extension.ToLower() != ".dat")
-            {
-                return false;
-            }
-
-            return fileInfo.Length >= SAVEGAME_FILE_SIZE_TRX2;
-        }
-
         private void SetSourceFileTRX(string path)
         {
             if (!IsValidSavegameTRX(path))
@@ -203,7 +190,7 @@ namespace TombExtract
 
         private void SetSourceFileTRX2(string path)
         {
-            if (!IsValidSavegameTRX2(path))
+            if (!IsValidSavegameTRX(path))
             {
                 MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -257,7 +244,7 @@ namespace TombExtract
 
         private void SetDestinationFileTRX2(string path)
         {
-            if (!IsValidSavegameTRX2(path))
+            if (!IsValidSavegameTRX(path))
             {
                 MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
