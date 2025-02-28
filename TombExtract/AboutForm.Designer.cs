@@ -75,7 +75,7 @@ namespace TombExtract
             this.lblVersionNumber.Name = "lblVersionNumber";
             this.lblVersionNumber.Size = new System.Drawing.Size(46, 20);
             this.lblVersionNumber.TabIndex = 4;
-            this.lblVersionNumber.Text = "v3.05";
+            this.lblVersionNumber.Text = "v3.06";
             // 
             // lblAuthorName
             // 
