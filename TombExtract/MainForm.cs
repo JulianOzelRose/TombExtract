@@ -148,7 +148,7 @@ namespace TombExtract
             tsmiBackupDestinationFile.Enabled = isDestinationFilePresent;
         }
 
-        private bool IsValidSavegame(string path)
+        private bool IsValidSavegameTRX(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
 
@@ -157,14 +157,24 @@ namespace TombExtract
                 return false;
             }
 
-            int minFileSize = IsTRXTabSelected() ? SAVEGAME_FILE_SIZE_TRX : SAVEGAME_FILE_SIZE_TRX2;
+            return fileInfo.Length >= SAVEGAME_FILE_SIZE_TRX;
+        }
 
-            return fileInfo.Length >= minFileSize;
+        private bool IsValidSavegameTRX2(string path)
+        {
+            FileInfo fileInfo = new FileInfo(path);
+
+            if (fileInfo.Extension.ToLower() != ".dat")
+            {
+                return false;
+            }
+
+            return fileInfo.Length >= SAVEGAME_FILE_SIZE_TRX2;
         }
 
         private void SetSourceFileTRX(string path)
         {
-            if (!IsValidSavegame(path))
+            if (!IsValidSavegameTRX(path))
             {
                 MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -193,7 +203,7 @@ namespace TombExtract
 
         private void SetSourceFileTRX2(string path)
         {
-            if (!IsValidSavegame(path))
+            if (!IsValidSavegameTRX2(path))
             {
                 MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -222,7 +232,7 @@ namespace TombExtract
 
         private void SetDestinationFileTRX(string path)
         {
-            if (!IsValidSavegame(path))
+            if (!IsValidSavegameTRX(path))
             {
                 MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -247,7 +257,7 @@ namespace TombExtract
 
         private void SetDestinationFileTRX2(string path)
         {
-            if (!IsValidSavegame(path))
+            if (!IsValidSavegameTRX2(path))
             {
                 MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
