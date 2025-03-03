@@ -1013,7 +1013,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR5.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = TR6.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
