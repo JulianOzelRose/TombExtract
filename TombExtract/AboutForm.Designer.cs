@@ -73,9 +73,9 @@ namespace TombExtract
             this.lblVersionNumber.ForeColor = System.Drawing.Color.White;
             this.lblVersionNumber.Location = new System.Drawing.Point(288, 252);
             this.lblVersionNumber.Name = "lblVersionNumber";
-            this.lblVersionNumber.Size = new System.Drawing.Size(46, 20);
+            this.lblVersionNumber.Size = new System.Drawing.Size(43, 20);
             this.lblVersionNumber.TabIndex = 4;
-            this.lblVersionNumber.Text = "v3.06";
+            this.lblVersionNumber.Text = "v3.10";
             // 
             // lblAuthorName
             // 
@@ -134,9 +134,9 @@ namespace TombExtract
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Impact", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.Color.Yellow;
-            this.btnOK.Location = new System.Drawing.Point(95, 331);
+            this.btnOK.Location = new System.Drawing.Point(106, 334);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(155, 47);
+            this.btnOK.Size = new System.Drawing.Size(136, 39);
             this.btnOK.TabIndex = 24;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
