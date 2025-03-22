@@ -73,9 +73,9 @@ namespace TombExtract
             this.lblVersionNumber.ForeColor = System.Drawing.Color.White;
             this.lblVersionNumber.Location = new System.Drawing.Point(288, 252);
             this.lblVersionNumber.Name = "lblVersionNumber";
-            this.lblVersionNumber.Size = new System.Drawing.Size(43, 20);
+            this.lblVersionNumber.Size = new System.Drawing.Size(45, 20);
             this.lblVersionNumber.TabIndex = 4;
-            this.lblVersionNumber.Text = "v3.10";
+            this.lblVersionNumber.Text = "v3.20";
             // 
             // lblAuthorName
             // 
