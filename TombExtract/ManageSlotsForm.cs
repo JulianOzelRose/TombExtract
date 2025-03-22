@@ -22,12 +22,10 @@ namespace TombExtract
 
         // Offsets
         private const int SLOT_STATUS_OFFSET = 0x004;
-        private const int GAME_MODE_OFFSET_TRX = 0x008;
-        private const int GAME_MODE_OFFSET_TRX2 = 0x01C;
-        private const int SAVE_NUMBER_OFFSET_TRX = 0x00C;
-        private const int SAVE_NUMBER_OFFSET_TRX2 = 0x008;
         private const int TR6_DISPLAY_NAME_OFFSET = 0x124;
-        private int levelIndexOffset;
+        private int GAME_MODE_OFFSET;
+        private int LEVEL_INDEX_OFFSET;
+        private int SAVE_NUMBER_OFFSET;
 
         // Savegame constants
         private const int BASE_SAVEGAME_OFFSET_TR1 = 0x2000;
@@ -117,23 +115,39 @@ namespace TombExtract
         {
             if (CURRENT_TAB == TAB_TR1)
             {
-                levelIndexOffset = 0x62C;
+                LEVEL_INDEX_OFFSET = 0x62C;
+                SAVE_NUMBER_OFFSET = 0x00C;
+                GAME_MODE_OFFSET = 0x008;
             }
             else if (CURRENT_TAB == TAB_TR2)
             {
-                levelIndexOffset = 0x628;
+                LEVEL_INDEX_OFFSET = 0x628;
+                SAVE_NUMBER_OFFSET = 0x00C;
+                GAME_MODE_OFFSET = 0x008;
             }
             else if (CURRENT_TAB == TAB_TR3)
             {
-                levelIndexOffset = 0x8D6;
+                LEVEL_INDEX_OFFSET = 0x8D6;
+                SAVE_NUMBER_OFFSET = 0x00C;
+                GAME_MODE_OFFSET = 0x008;
             }
             else if (CURRENT_TAB == TAB_TR4)
             {
-                levelIndexOffset = 0x26F;
+                LEVEL_INDEX_OFFSET = 0x26F;
+                SAVE_NUMBER_OFFSET = 0x008;
+                GAME_MODE_OFFSET = 0x01C;
             }
             else if (CURRENT_TAB == TAB_TR5)
             {
-                levelIndexOffset = 0x26F;
+                LEVEL_INDEX_OFFSET = 0x26F;
+                SAVE_NUMBER_OFFSET = 0x008;
+                GAME_MODE_OFFSET = 0x01C;
+            }
+            else if (CURRENT_TAB == TAB_TR6)
+            {
+                LEVEL_INDEX_OFFSET = 0x14;
+                SAVE_NUMBER_OFFSET = 0x11C;
+                GAME_MODE_OFFSET = 0x35C;
             }
         }
 
@@ -203,28 +217,6 @@ namespace TombExtract
             return (Int32)(byte1 + (byte2 << 8) + (byte3 << 16) + (byte4 << 24));
         }
 
-        private string ReadString(string path, int offset, int maxLength = 256)
-        {
-            using (FileStream saveFile = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                saveFile.Seek(offset, SeekOrigin.Begin);
-
-                List<byte> stringBytes = new List<byte>();
-
-                for (int i = 0; i < maxLength; i++)
-                {
-                    int readByte = saveFile.ReadByte();
-
-                    if (readByte == -1 || readByte == 0)
-                        break;
-
-                    stringBytes.Add((byte)readByte);
-                }
-
-                return System.Text.Encoding.ASCII.GetString(stringBytes.ToArray());
-            }
-        }
-
         private void WriteString(string path, int offset, string value, int maxLength = 256)
         {
             using (FileStream saveFile = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
@@ -254,18 +246,16 @@ namespace TombExtract
 
         private byte GetLevelIndex(int savegameOffset)
         {
-            return ReadByte(savegameOffset + levelIndexOffset);
+            return ReadByte(savegameOffset + LEVEL_INDEX_OFFSET);
         }
 
         private Int32 GetSaveNumber(int savegameOffset)
         {
-            int SAVE_NUMBER_OFFSET = IsTRXSavegame() ? SAVE_NUMBER_OFFSET_TRX : SAVE_NUMBER_OFFSET_TRX2;
             return ReadInt32(savegameOffset + SAVE_NUMBER_OFFSET);
         }
 
         private GameMode GetGameMode(int savegameOffset)
         {
-            int GAME_MODE_OFFSET = IsTRXSavegame() ? GAME_MODE_OFFSET_TRX : GAME_MODE_OFFSET_TRX2;
             int gameMode = ReadByte(savegameOffset + GAME_MODE_OFFSET);
             return gameMode == 0 ? GameMode.Normal : GameMode.Plus;
         }
@@ -515,16 +505,15 @@ namespace TombExtract
                     byte levelIndex = GetLevelIndex(currentSavegameOffset);
                     bool savegamePresent = IsSavegamePresent(currentSavegameOffset);
 
-                    if (savegamePresent)
+                    if (savegamePresent && levelNamesTR6.ContainsKey(levelIndex))
                     {
-                        //GameMode gameMode = GetGameMode(currentSavegameOffset);
+                        Int32 saveNumber = GetSaveNumber(currentSavegameOffset);
+                        string levelName = levelNamesTR6[levelIndex];
+                        GameMode gameMode = GetGameMode(currentSavegameOffset);
                         int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR6) / SAVEGAME_SIZE_TRX2;
-                        string savegameDisplayString = ReadString(savegamePath, currentSavegameOffset + TR6_DISPLAY_NAME_OFFSET);
 
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, savegameDisplayString, GameMode.Normal, true);
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, true);
                         savegame.Slot = slot;
-
-                        Console.WriteLine($"SLOT {slot}, OFFSET: 0x{currentSavegameOffset:X}");
 
                         lstSavegames.Items.Add(savegame);
                     }
@@ -1577,6 +1566,45 @@ namespace TombExtract
             { 11, "The 13th Floor"                       },
             { 12, "Escape with the Iris"                 },
             { 14, "Red Alert!"                           },
+        };
+
+        private readonly Dictionary<byte, string> levelNamesTR6 = new Dictionary<byte, string>()
+        {
+            {  0, "Parisian Back Streets"       },
+            {  1, "Derelict Apartment Block"    },
+            {  2, "Margot Carvier's Apartment"  },
+            {  3, "Industrial Roof Tops"        },
+            {  4, "Parisian Ghetto"             },
+            {  5, "Parisian Ghetto"             },
+            {  6, "Parisian Ghetto"             },
+            {  7, "The Serpent Rouge"           },
+            {  8, "Rennes' Pawnshop"            },
+            {  9, "Willowtree Herbalist"        },
+            { 10, "St. Aicard's Church"         },
+            { 11, "Café Metro"                  },
+            { 12, "St. Aicard's Graveyard"      },
+            { 13, "Bouchard's Hideout"          },
+            { 14, "Louvre Storm Drains"         },
+            { 15, "Louvre Galleries"            },
+            { 16, "Galleries Under Siege"       },
+            { 17, "Tomb of Ancients"            },
+            { 18, "The Archaeological Dig"      },
+            { 19, "Von Croy's Apartment"        },
+            { 20, "The Monstrum Crimescene"     },
+            { 21, "The Strahov Fortress"        },
+            { 22, "The Bio-Research Facility"   },
+            { 23, "Aquatic Research Area"       },
+            { 24, "The Sanitarium"              },
+            { 25, "Maximum Containment Area"    },
+            { 26, "The Vault of Trophies"       },
+            { 27, "Boaz Returns"                },
+            { 28, "Eckhardt's Lab"              },
+            { 29, "The Lost Domain"             },
+            { 30, "The Hall of Seasons"         },
+            { 31, "Neptune's Hall"              },
+            { 32, "Wrath of the Beast"          },
+            { 33, "The Sanctuary of Flame"      },
+            { 34, "The Breath of Hades"         },
         };
     }
 }
