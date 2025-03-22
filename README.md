@@ -4,7 +4,7 @@ to PC/PS4/Nintendo Switch format, and to delete or reorder savegames. Useful for
 or transferring savegames to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider Remastered,
 check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-![TombExtract-UI](https://github.com/user-attachments/assets/a9587a5a-88b3-45f8-ba1c-e9ce30b23f5f)
+![TombExtract-UI](https://github.com/user-attachments/assets/104f896b-ec41-4887-8b82-85efbb5edceb)
 
 ## Installation and use
 To use this program, simply navigate to the [Releases](https://github.com/JulianOzelRose/TombExtract/releases)
