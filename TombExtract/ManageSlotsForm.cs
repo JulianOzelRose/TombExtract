@@ -177,6 +177,9 @@ namespace TombExtract
             {
                 PopulateSavegamesTR6();
             }
+
+            btnCancel.Enabled = false;
+            btnReorder.Enabled = false;
         }
 
         private void CreateBackup()
@@ -265,16 +268,15 @@ namespace TombExtract
             btnMoveUp.Enabled = false;
             btnMoveDown.Enabled = false;
             btnDelete.Enabled = false;
-            btnApply.Enabled = false;
+            btnReorder.Enabled = false;
             btnClose.Enabled = false;
-            btnRefresh.Enabled = false;
+            btnNew.Enabled = false;
         }
 
         private void EnableButtons()
         {
-            btnApply.Enabled = true;
             btnClose.Enabled = true;
-            btnRefresh.Enabled = true;
+            btnNew.Enabled = true;
         }
 
         private void PopulateSavegamesTR1()
@@ -540,13 +542,35 @@ namespace TombExtract
             this.Close();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnNew_Click(object sender, EventArgs e)
         {
-            PopulateSavegamesConditionaly();
+            if (lstSavegames.SelectedItem == null)
+            {
+                return;
+            }
 
-            btnMoveUp.Enabled = false;
-            btnMoveDown.Enabled = false;
-            btnDelete.Enabled = false;
+            if (CURRENT_TAB == TAB_TR4 || CURRENT_TAB == TAB_TR5 || CURRENT_TAB == TAB_TR6)
+            {
+                string warningMessage = $"This feature is under construction for Tomb Raider IV-VI.";
+                MessageBox.Show(warningMessage, "Feature Under Construction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (lstSavegames.SelectedItem.ToString() != "Empty Slot")
+            {
+                DialogResult result = MessageBox.Show($"Are you sure you wish to overwrite '{(Savegame)lstSavegames.SelectedItem}'?",
+                    "Create Savegame", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            CreateSavegameForm createSavegameForm = new CreateSavegameForm(CURRENT_TAB, savegamePath, (lstSavegames.SelectedItem as Savegame).Slot, (lstSavegames.SelectedItem as Savegame).Offset, slblStatus);
+            createSavegameForm.ShowDialog();
+
+            PopulateSavegamesConditionaly();
         }
 
         private void btnMoveUp_Click(object sender, EventArgs e)
@@ -559,6 +583,9 @@ namespace TombExtract
                 lstSavegames.Items.RemoveAt(selectedIndex);
                 lstSavegames.Items.Insert(selectedIndex - 1, selectedSavegame);
                 lstSavegames.SelectedIndex = selectedIndex - 1;
+
+                btnReorder.Enabled = true;
+                btnCancel.Enabled = true;
             }
         }
 
@@ -572,6 +599,9 @@ namespace TombExtract
                 lstSavegames.Items.RemoveAt(selectedIndex);
                 lstSavegames.Items.Insert(selectedIndex + 1, selectedSavegame);
                 lstSavegames.SelectedIndex = selectedIndex + 1;
+
+                btnReorder.Enabled = true;
+                btnCancel.Enabled = true;
             }
         }
 
@@ -665,10 +695,7 @@ namespace TombExtract
                 {
                     string deletedSavegameString = (string)args.Result;
 
-                    MessageBox.Show($"Successfully deleted '{deletedSavegameString}'.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    slblStatus.Text = $"Successfully deleted savegame.";
+                    slblStatus.Text = $"Successfully deleted savegame: '{deletedSavegameString}'.";
 
                     PopulateSavegamesConditionaly();
                 }
@@ -1379,7 +1406,7 @@ namespace TombExtract
             bgWorker.RunWorkerAsync();
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        private void btnReorder_Click(object sender, EventArgs e)
         {
             DisableButtons();
 
@@ -1415,6 +1442,14 @@ namespace TombExtract
             {
                 ReorderSavegamesTR6(savegamesToMove);
             }
+
+            btnCancel.Enabled = false;
+            btnReorder.Enabled = false;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            PopulateSavegamesConditionaly();
         }
 
         private void lstSavegames_SelectedIndexChanged(object sender, EventArgs e)
@@ -1426,6 +1461,7 @@ namespace TombExtract
                 btnMoveUp.Enabled = (selectedIndex != -1 && selectedIndex >= 1);
                 btnMoveDown.Enabled = (selectedIndex != -1 && selectedIndex < 31);
                 btnDelete.Enabled = (selectedIndex != -1 && lstSavegames.SelectedItem.ToString() != "Empty Slot");
+                btnNew.Enabled = (selectedIndex != -1);
             }
         }
 

@@ -31,12 +31,13 @@ namespace TombExtract
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageSlotsForm));
             this.lstSavegames = new System.Windows.Forms.ListBox();
-            this.btnApply = new System.Windows.Forms.Button();
+            this.btnReorder = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstSavegames
@@ -44,23 +45,24 @@ namespace TombExtract
             this.lstSavegames.FormattingEnabled = true;
             this.lstSavegames.Location = new System.Drawing.Point(12, 12);
             this.lstSavegames.Name = "lstSavegames";
-            this.lstSavegames.Size = new System.Drawing.Size(243, 316);
+            this.lstSavegames.Size = new System.Drawing.Size(237, 316);
             this.lstSavegames.TabIndex = 0;
             this.lstSavegames.SelectedIndexChanged += new System.EventHandler(this.lstSavegames_SelectedIndexChanged);
             // 
-            // btnApply
+            // btnReorder
             // 
-            this.btnApply.Location = new System.Drawing.Point(180, 334);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(75, 23);
-            this.btnApply.TabIndex = 1;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.btnReorder.Enabled = false;
+            this.btnReorder.Location = new System.Drawing.Point(174, 334);
+            this.btnReorder.Name = "btnReorder";
+            this.btnReorder.Size = new System.Drawing.Size(75, 23);
+            this.btnReorder.TabIndex = 1;
+            this.btnReorder.Text = "Reorder";
+            this.btnReorder.UseVisualStyleBackColor = true;
+            this.btnReorder.Click += new System.EventHandler(this.btnReorder_Click);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(99, 334);
+            this.btnClose.Location = new System.Drawing.Point(12, 334);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
@@ -72,7 +74,7 @@ namespace TombExtract
             // 
             this.btnMoveUp.Enabled = false;
             this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveUp.Location = new System.Drawing.Point(261, 12);
+            this.btnMoveUp.Location = new System.Drawing.Point(256, 12);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(32, 30);
             this.btnMoveUp.TabIndex = 3;
@@ -84,7 +86,7 @@ namespace TombExtract
             // 
             this.btnMoveDown.Enabled = false;
             this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveDown.Location = new System.Drawing.Point(261, 48);
+            this.btnMoveDown.Location = new System.Drawing.Point(256, 48);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(32, 30);
             this.btnMoveDown.TabIndex = 4;
@@ -96,7 +98,7 @@ namespace TombExtract
             // 
             this.btnDelete.Enabled = false;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(261, 172);
+            this.btnDelete.Location = new System.Drawing.Point(256, 172);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(32, 30);
             this.btnDelete.TabIndex = 5;
@@ -104,28 +106,41 @@ namespace TombExtract
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnRefresh
+            // btnNew
             // 
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(261, 136);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(32, 30);
-            this.btnRefresh.TabIndex = 6;
-            this.btnRefresh.Text = "🔄";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.btnNew.Enabled = false;
+            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.Location = new System.Drawing.Point(256, 136);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(32, 30);
+            this.btnNew.TabIndex = 6;
+            this.btnNew.Text = "➕";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(93, 334);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ManageSlotsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 366);
-            this.Controls.Add(this.btnRefresh);
+            this.ClientSize = new System.Drawing.Size(296, 366);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnMoveDown);
             this.Controls.Add(this.btnMoveUp);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnApply);
+            this.Controls.Add(this.btnReorder);
             this.Controls.Add(this.lstSavegames);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -144,11 +159,12 @@ namespace TombExtract
         #endregion
 
         private System.Windows.Forms.ListBox lstSavegames;
-        private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button btnReorder;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMoveUp;
         private System.Windows.Forms.Button btnMoveDown;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
