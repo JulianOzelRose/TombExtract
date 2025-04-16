@@ -22,7 +22,6 @@ namespace TombExtract
 
         // Offsets
         private const int SLOT_STATUS_OFFSET = 0x004;
-        private const int TR6_DISPLAY_NAME_OFFSET = 0x124;
         private int GAME_MODE_OFFSET;
         private int LEVEL_INDEX_OFFSET;
         private int SAVE_NUMBER_OFFSET;
@@ -38,7 +37,6 @@ namespace TombExtract
         private const int SAVEGAME_SIZE_TRX2 = 0xA470;
         private const int MAX_SAVEGAMES = 32;
         private const int SLOT_NUMBER_OFFSET_TR6 = 0x15;
-        private const string EMPTY_SLOT_STRING_TR6 = "< Empty Slot >";
 
         // Misc
         private ProgressForm progressForm;
@@ -1347,17 +1345,6 @@ namespace TombExtract
 
                             int progressPercentage = 50 + (i * 50) / savegamesToMove.Count;
                             bgWorker.ReportProgress(progressPercentage);
-                        }
-
-                        // Ensure that any empty slots have the empty slot name written
-                        for (int i = 0; i < lstSavegames.Items.Count; i++)
-                        {
-                            Savegame savegame = (Savegame)lstSavegames.Items[i];
-
-                            if (savegame.IsEmptySlot)
-                            {
-                                WriteString(savegamePath, savegame.Offset + TR6_DISPLAY_NAME_OFFSET, EMPTY_SLOT_STRING_TR6);
-                            }
                         }
                     }
                 }
