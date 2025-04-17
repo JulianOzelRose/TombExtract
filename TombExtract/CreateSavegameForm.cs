@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TombExtract;
 
 namespace TombExtract
 {
@@ -273,7 +266,6 @@ namespace TombExtract
             { 36, "Inside the Great Pyramid"        },
             { 37, "Temple of Horus"                 },
             { 38, "Temple of Horus"                 },
-            { 39, "The Times Office"                },
             { 40, "The Times Exclusive"             },
         };
 
@@ -1260,7 +1252,339 @@ namespace TombExtract
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
                 {
-                    // TODO: Add TR4 buffers
+                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_ANGKOR_WAT_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_RACE_FOR_THE_IRIS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_TOMB_OF_SETH_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_BURIAL_CHAMBERS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_VALLEY_OF_THE_KINGS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_KV5_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_KARNAK_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_HYPOSTYLE_HALL_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_SACRED_LAKE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TOMB_OF_SEMERKHET_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_GUARDIAN_OF_SEMERKHET_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_DESERT_RAILROAD_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_ALEXANDRIA_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_COASTAL_RUINS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_PHAROS_TEMPLE_OF_ISIS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CLEOPATRAS_PALACES_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CATACOMBS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_POSEIDON_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 20, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_LOST_LIBRARY_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 21, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_HALL_OF_DEMETRIUS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 22, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITY_OF_THE_DEAD_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 23, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TRENCHES_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 24, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CHAMBERS_OF_TULUN_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 25, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_STREET_BAZAAR_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 26, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_GATE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 27, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 28, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_SPHINX_COMPLEX_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 30, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_UNDERNEATH_THE_SPHINX_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 31, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_MENKAURES_PYRAMID_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 32, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_MENKAURES_PYRAMID_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 33, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_MASTABAS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 34, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 35, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_KHUFUS_QUEENS_PYRAMIDS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 36, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 37, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_1_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 38, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_2_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 40, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_TIMES_EXCLUSIVE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
                 };
             }
             else if (CURRENT_TAB == TAB_TR5)
@@ -1297,6 +1621,25 @@ namespace TombExtract
                     return ms.ToArray();
                 }
             }
+        }
+
+        private string GetSavegameString()
+        {
+            string modeSuffix = cmbMode.SelectedIndex == 0 ? "" : "+";
+            string levelName = "";
+            string saveNumber = nudSaveNumber.Value.ToString();
+
+            if (cmbLevel.SelectedItem is LevelInfo selectedLevel)
+            {
+                levelName = selectedLevel.Name;
+            }
+
+            if (CURRENT_TAB == TAB_TR6)
+            {
+                return $"{saveNumber} - {levelName}{modeSuffix}";
+            }
+
+            return $"{levelName}{modeSuffix} - {saveNumber}";
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -1341,27 +1684,31 @@ namespace TombExtract
                     return;
                 }
 
-                // Load the premade save buffer
+                // Load the premade savegame buffer
                 byte[] buffer = LoadPremadeBuffer(resourceName);
 
-                // Write the save buffer to the correct offset
+                // Write the savegame buffer
                 using (var fs = new FileStream(savegamePath, FileMode.Open, FileAccess.Write))
                 {
                     // Write the main buffer
                     fs.Seek(savegameOffset, SeekOrigin.Begin);
                     fs.Write(buffer, 0, buffer.Length);
 
-                    // Inject the save number as Int32 at known offset
+                    // Write save number
                     fs.Seek(savegameOffset + SAVE_NUMBER_OFFSET, SeekOrigin.Begin);
                     fs.Write(BitConverter.GetBytes((int)nudSaveNumber.Value), 0, 4);
                 }
 
-                MessageBox.Show("Savegame created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string savegameString = GetSavegameString();
+
+                slblStatus.Text = $"Successfully created savegame: '{savegameString}'.";
+
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Failed to create savegame:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                slblStatus.Text = "Error creating savegame.";
             }
         }
 

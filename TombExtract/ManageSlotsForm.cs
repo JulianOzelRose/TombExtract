@@ -274,7 +274,6 @@ namespace TombExtract
         private void EnableButtons()
         {
             btnClose.Enabled = true;
-            btnNew.Enabled = true;
         }
 
         private void PopulateSavegamesTR1()
@@ -547,9 +546,16 @@ namespace TombExtract
                 return;
             }
 
-            if (CURRENT_TAB == TAB_TR4 || CURRENT_TAB == TAB_TR5 || CURRENT_TAB == TAB_TR6)
+            if (CURRENT_TAB == TAB_TR5)
             {
-                string warningMessage = $"This feature is under construction for Tomb Raider IV-VI.";
+                string warningMessage = $"This feature is under construction for Tomb Raider V.";
+                MessageBox.Show(warningMessage, "Feature Under Construction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (CURRENT_TAB == TAB_TR6)
+            {
+                string warningMessage = $"This feature is under construction for Tomb Raider VI.";
                 MessageBox.Show(warningMessage, "Feature Under Construction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
