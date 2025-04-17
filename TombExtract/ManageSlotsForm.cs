@@ -546,13 +546,6 @@ namespace TombExtract
                 return;
             }
 
-            if (CURRENT_TAB == TAB_TR5)
-            {
-                string warningMessage = $"This feature is under construction for Tomb Raider V.";
-                MessageBox.Show(warningMessage, "Feature Under Construction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (CURRENT_TAB == TAB_TR6)
             {
                 string warningMessage = $"This feature is under construction for Tomb Raider VI.";

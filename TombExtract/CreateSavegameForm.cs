@@ -1591,7 +1591,123 @@ namespace TombExtract
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
                 {
-                    // TODO: Add TR5 buffers
+                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
                 };
             }
             else if (CURRENT_TAB == TAB_TR6)
