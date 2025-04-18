@@ -402,6 +402,19 @@
     <EmbeddedResource Include="Resources\PremadeSavegames\TR5_THE_COLOSSEUM_NORMAL_PC.bin" />
     <EmbeddedResource Include="Resources\PremadeSavegames\TR5_THE_SUBMARINE_NORMAL_PC.bin" />
     <EmbeddedResource Include="Resources\PremadeSavegames\TR5_TRAJANS_MARKETS_NORMAL_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_GALLOWS_TREE_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_LABYRINTH_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_OLD_MILL_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_RED_ALERT_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_STREETS_OF_ROME_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_THE_BASE_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_THE_COLOSSEUM_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_THE_SUBMARINE_NGPLUS_PC.bin" />
+    <EmbeddedResource Include="Resources\PremadeSavegames\TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

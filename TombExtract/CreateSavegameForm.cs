@@ -1598,6 +1598,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 2, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1605,6 +1610,11 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" },
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" },
                                 }
                             },
                         }
@@ -1616,6 +1626,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 4, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1623,6 +1638,11 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" },
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NGPLUS_PC.bin" },
                                 }
                             },
                         }
@@ -1634,6 +1654,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 6, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1641,6 +1666,11 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" },
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" },
                                 }
                             },
                         }
@@ -1652,6 +1682,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 8, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1659,6 +1694,11 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" },
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NGPLUS_PC.bin" },
                                 }
                             },
                         }
@@ -1670,6 +1710,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 10, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1677,6 +1722,11 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" },
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NGPLUS_PC.bin" },
                                 }
                             },
                         }
@@ -1688,6 +1738,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 12, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1697,6 +1752,11 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" },
                                 }
                             },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" },
+                                }
+                            },
                         }
                     },
                     { 14, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -1704,6 +1764,11 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" },
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NGPLUS_PC.bin" },
                                 }
                             },
                         }
