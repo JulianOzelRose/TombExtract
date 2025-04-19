@@ -1,8 +1,7 @@
 # Tomb Raider Remastered Savegame Manager
-This is a savegame manager tool for Tomb Raider Remastered. It includes the ability to transfer individual savegames between files, to convert
-to PC/PS4/Nintendo Switch format, and to delete or reorder savegames. Useful for downloading savegames from the Internet without having to replace your entire savegame file,
-or transferring savegames to other platforms. For installation and use instructions, simply navigate to the next section below. For a savegame editor for Tomb Raider Remastered,
-check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
+TombExtract is a savegame manager for Tomb Raider Remastered. It lets you transfer individual savegames between files, convert between platforms, delete or reorder savegames, and create savegames for any level.
+Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
+For a savegame editor for Tomb Raider Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
 ![TombExtract-UI](https://github.com/user-attachments/assets/f623a7bf-0936-4291-aa07-6c1ff6b6dcf1)
 
@@ -31,8 +30,17 @@ If you are trying to convert from PS4, you must first decrypt the savegame file 
 
 ## Deleting and reordering savegames
 To delete and/or reorder savegames, load the savegame file you'd like to modify as the destination file, then click "Manage Slots".
-Use the up and down arrows at the top to reorder the savegames to different slots. Use the trash can button to delete a savegame, and the refresh button to refresh the slots.
-When you are done reordering your savegames, click "Apply", and a progress display will appear to show how far along the process is.
+Use the up and down arrows at the top to reorder the savegames to different slots.
+When you are done reordering your savegames, click "Reorder", and a progress display will appear to show how far along the process is.
+You can also use the trash can button to delete a savegame.
 Again, it is recommended that you check the "Backup before writing" option in the main window before deleting or reordering savegames as a precautionary measure.
 
-![Manage Slots Form](https://github.com/JulianOzelRose/TombExtract/assets/95890436/c9174799-9fd9-4c7c-96d8-1d2d6bc6485b)
+![ManageSlots-UI](https://github.com/user-attachments/assets/96d5b07d-94d1-4150-af36-5f9d5df3b7e1)
+
+## Level selection
+To use level selection, load the savegame file you'd like to modify as the destination file, then click "Manage Slots".
+Next, select the slot you would like to add the new savegame to, then click the large plus button on the right.
+You can then specify the level, platform, game mode, and save number you'd like. All premade savegames start at the beginning
+of the level, with the metadata (statistics, time taken, distance travelled, etc.) all wiped clean.
+
+![CreateSavegame-UI](https://github.com/user-attachments/assets/b7301494-0faf-43b2-9f69-0f06ffad8833)
