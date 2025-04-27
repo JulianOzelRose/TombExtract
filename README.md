@@ -1,7 +1,7 @@
 # Tomb Raider Remastered Savegame Manager
-TombExtract is a savegame manager for Tomb Raider Remastered. It lets you transfer individual savegames between files, convert between platforms, delete or reorder savegames, and create savegames for any level.
+This is a savegame manager for Tomb Raider I-VI Remastered. It lets you transfer individual savegames between files, convert between platforms, delete or reorder savegames, and create savegames for any level.
 Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
-For a savegame editor for Tomb Raider Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
+For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
 ![TombExtract-UI](https://github.com/user-attachments/assets/f623a7bf-0936-4291-aa07-6c1ff6b6dcf1)
 
