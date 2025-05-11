@@ -1233,7 +1233,7 @@ namespace TombExtract
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tomb Raider Remastered Savegame Manager";
+            this.Text = "Tomb Raider I-VI Remastered Savegame Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pnlFilePaths.ResumeLayout(false);
