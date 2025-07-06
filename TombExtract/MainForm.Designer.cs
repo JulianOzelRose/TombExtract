@@ -129,6 +129,9 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblConvertTR4 = new System.Windows.Forms.Label();
+            this.lblConvertTR5 = new System.Windows.Forms.Label();
+            this.lblConvertTR6 = new System.Windows.Forms.Label();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -699,6 +702,7 @@ namespace TombExtract
             // 
             // tpTR4
             // 
+            this.tpTR4.Controls.Add(this.lblConvertTR4);
             this.tpTR4.Controls.Add(this.btnManageSlotsTR4);
             this.tpTR4.Controls.Add(this.btnAboutTR4);
             this.tpTR4.Controls.Add(this.btnSelectAllTR4);
@@ -821,6 +825,7 @@ namespace TombExtract
             // 
             // tpTR5
             // 
+            this.tpTR5.Controls.Add(this.lblConvertTR5);
             this.tpTR5.Controls.Add(this.btnManageSlotsTR5);
             this.tpTR5.Controls.Add(this.btnAboutTR5);
             this.tpTR5.Controls.Add(this.btnSelectAllTR5);
@@ -943,6 +948,7 @@ namespace TombExtract
             // 
             // tpTR6
             // 
+            this.tpTR6.Controls.Add(this.lblConvertTR6);
             this.tpTR6.Controls.Add(this.btnManageSlotsTR6);
             this.tpTR6.Controls.Add(this.btnAboutTR6);
             this.tpTR6.Controls.Add(this.btnSelectAllTR6);
@@ -1217,6 +1223,33 @@ namespace TombExtract
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
             // 
+            // lblConvertTR4
+            // 
+            this.lblConvertTR4.AutoSize = true;
+            this.lblConvertTR4.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR4.Name = "lblConvertTR4";
+            this.lblConvertTR4.Size = new System.Drawing.Size(185, 13);
+            this.lblConvertTR4.TabIndex = 47;
+            this.lblConvertTR4.Text = "Conversion not necessary for this title.";
+            // 
+            // lblConvertTR5
+            // 
+            this.lblConvertTR5.AutoSize = true;
+            this.lblConvertTR5.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR5.Name = "lblConvertTR5";
+            this.lblConvertTR5.Size = new System.Drawing.Size(185, 13);
+            this.lblConvertTR5.TabIndex = 58;
+            this.lblConvertTR5.Text = "Conversion not necessary for this title.";
+            // 
+            // lblConvertTR6
+            // 
+            this.lblConvertTR6.AutoSize = true;
+            this.lblConvertTR6.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR6.Name = "lblConvertTR6";
+            this.lblConvertTR6.Size = new System.Drawing.Size(185, 13);
+            this.lblConvertTR6.TabIndex = 69;
+            this.lblConvertTR6.Text = "Conversion not necessary for this title.";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1361,6 +1394,9 @@ namespace TombExtract
         private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR6;
         private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRX2SourceFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRX2DestinationFile;
+        private System.Windows.Forms.Label lblConvertTR4;
+        private System.Windows.Forms.Label lblConvertTR5;
+        private System.Windows.Forms.Label lblConvertTR6;
     }
 }
 
