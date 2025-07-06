@@ -3,7 +3,8 @@ This is a savegame manager for Tomb Raider I-VI Remastered. It lets you transfer
 Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
 For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-![TombExtract-UI](https://github.com/user-attachments/assets/f623a7bf-0936-4291-aa07-6c1ff6b6dcf1)
+![TombExtract-UI](https://github.com/user-attachments/assets/623f173f-5df6-4178-b11f-a32b7fe9354e)
+
 
 ## Installation and use
 To use this program, simply navigate to the [Releases](https://github.com/JulianOzelRose/TombExtract/releases)
@@ -22,7 +23,7 @@ accounts with Tomb Raider Remastered, there may be multiple folders.
 ## Extracting and converting savegames
 Use the checklist on the left to select which savegames you would like to transfer. The combo box below the check list allows you to specify whether or not you would like to convert your savegames.
 Select the relevant conversion, or leave it at "No" to transfer them as is. Click "Extract" to transfer the savegames, and the program will begin extraction. The progress display will indicate how far along the process is.
-Platform conversion for Tomb Raider IV-VI is not supported at this time.
+Platform conversion is not required for Tomb Raider IV-VI.
 
 If you are trying to convert from PS4, you must first decrypt the savegame file using [Apollo Save Tool](https://github.com/bucanero/apollo-ps4). For Nintendo Switch savegames, you can either use
 [EdZion](https://github.com/WerWolv/EdiZon) or [Goldleaf](https://github.com/XorTroll/Goldleaf) to extract the savegame file from your console. You can find more detailed information on how to do this
