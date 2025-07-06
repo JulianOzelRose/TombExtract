@@ -1,4 +1,4 @@
-# Tomb Raider Remastered Savegame Manager
+# Tomb Raider I-VI Remastered Savegame Manager
 This is a savegame manager for Tomb Raider I-VI Remastered. It lets you transfer individual savegames between files, convert between platforms, delete or reorder savegames, and create savegames for any level.
 Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
 For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
