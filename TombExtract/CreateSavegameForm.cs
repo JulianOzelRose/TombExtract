@@ -1257,6 +1257,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_ANGKOR_WAT_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_ANGKOR_WAT_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1266,6 +1267,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_RACE_FOR_THE_IRIS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_RACE_FOR_THE_IRIS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1275,6 +1277,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_TOMB_OF_SETH_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_TOMB_OF_SETH_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1284,6 +1287,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_BURIAL_CHAMBERS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_BURIAL_CHAMBERS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1293,6 +1297,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_VALLEY_OF_THE_KINGS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_VALLEY_OF_THE_KINGS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1302,6 +1307,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_KV5_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_KV5_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1311,6 +1317,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_KARNAK_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_KARNAK_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1320,6 +1327,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_HYPOSTYLE_HALL_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_HYPOSTYLE_HALL_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1329,6 +1337,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_SACRED_LAKE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_SACRED_LAKE_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1338,6 +1347,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TOMB_OF_SEMERKHET_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TOMB_OF_SEMERKHET_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1347,6 +1357,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_GUARDIAN_OF_SEMERKHET_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_GUARDIAN_OF_SEMERKHET_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1356,6 +1367,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_DESERT_RAILROAD_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_DESERT_RAILROAD_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1365,6 +1377,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_ALEXANDRIA_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_ALEXANDRIA_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1374,6 +1387,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_COASTAL_RUINS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_COASTAL_RUINS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1383,6 +1397,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_PHAROS_TEMPLE_OF_ISIS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_PHAROS_TEMPLE_OF_ISIS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1392,6 +1407,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CLEOPATRAS_PALACES_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CLEOPATRAS_PALACES_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1401,6 +1417,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CATACOMBS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CATACOMBS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1410,6 +1427,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_POSEIDON_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_POSEIDON_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1419,6 +1437,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_LOST_LIBRARY_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_LOST_LIBRARY_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1428,6 +1447,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_HALL_OF_DEMETRIUS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_HALL_OF_DEMETRIUS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1437,6 +1457,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITY_OF_THE_DEAD_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CITY_OF_THE_DEAD_NORMAL_PC.bin" },
                                 }
                             },
                         }
@@ -1446,6 +1467,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TRENCHES_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TRENCHES_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1455,6 +1477,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CHAMBERS_OF_TULUN_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CHAMBERS_OF_TULUN_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1464,6 +1487,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_STREET_BAZAAR_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_STREET_BAZAAR_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1473,6 +1497,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_GATE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_GATE_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1482,6 +1507,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1491,6 +1517,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_SPHINX_COMPLEX_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_SPHINX_COMPLEX_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1500,6 +1527,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_UNDERNEATH_THE_SPHINX_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_UNDERNEATH_THE_SPHINX_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1509,6 +1537,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_MENKAURES_PYRAMID_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_MENKAURES_PYRAMID_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1518,6 +1547,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_MENKAURES_PYRAMID_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_MENKAURES_PYRAMID_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1527,6 +1557,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_MASTABAS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_MASTABAS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1536,6 +1567,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_PYRAMID_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1545,6 +1577,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_KHUFUS_QUEENS_PYRAMIDS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_KHUFUS_QUEENS_PYRAMIDS_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1554,6 +1587,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_THE_GREAT_PYRAMID_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1563,6 +1597,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_1_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_1_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1572,6 +1607,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_2_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_2_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1581,6 +1617,7 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_TIMES_EXCLUSIVE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_TIMES_EXCLUSIVE_NORMAL_PC.bin" }
                                 }
                             },
                         }
@@ -1596,11 +1633,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1610,11 +1649,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1624,11 +1665,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1638,11 +1681,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1652,11 +1697,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1666,11 +1713,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1680,11 +1729,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1694,11 +1745,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1708,11 +1761,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1722,11 +1777,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1736,11 +1793,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1750,11 +1809,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" }
                                 }
                             },
                         }
@@ -1764,11 +1825,13 @@ namespace TombExtract
                             { GameMode.Normal, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" }
                                 }
                             },
                             { GameMode.Plus, new Dictionary<string, string>()
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NGPLUS_PC.bin" }
                                 }
                             },
                         }
