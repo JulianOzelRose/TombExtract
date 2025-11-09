@@ -38,95 +38,29 @@ namespace TombExtract
         private ProgressForm progressForm;
         private bool isWriting = false;
 
-        private byte ReadByte(string path, int offset)
-        {
-            using (FileStream saveFile = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                saveFile.Seek(offset, SeekOrigin.Begin);
-                return (byte)saveFile.ReadByte();
-            }
-        }
-
-        private Int32 ReadInt32(string path, int offset)
-        {
-            byte byte1 = ReadByte(path, offset);
-            byte byte2 = ReadByte(path, offset + 1);
-            byte byte3 = ReadByte(path, offset + 2);
-            byte byte4 = ReadByte(path, offset + 3);
-
-            return (Int32)(byte1 + (byte2 << 8) + (byte3 << 16) + (byte4 << 24));
-        }
-
-        private bool IsSavegamePresent(string path, int savegameOffset)
-        {
-            return ReadByte(path, savegameOffset + SLOT_STATUS_OFFSET) != 0;
-        }
-
-        private GameMode GetGameMode(string path, int savegameOffset)
-        {
-            int gameMode = ReadByte(path, savegameOffset + GAME_MODE_OFFSET);
-            return gameMode == 0 ? GameMode.Normal : GameMode.Plus;
-        }
-
-        private Int32 GetSaveNumber(string path, int savegameOffset)
-        {
-            return ReadInt32(path, savegameOffset + SAVE_NUMBER_OFFSET);
-        }
-
-        private byte GetLevelIndex(string path, int savegameOffset)
-        {
-            return ReadByte(path, savegameOffset + LEVEL_INDEX_OFFSET);
-        }
-
-        private readonly Dictionary<byte, string> levelNames = new Dictionary<byte, string>()
-        {
-            {  1, "Jungle"                      },
-            {  2, "Temple Ruins"                },
-            {  3, "The River Ganges"            },
-            {  4, "Caves of Kaliya"             },
-            {  5, "Coastal Village"             },
-            {  6, "Crash Site"                  },
-            {  7, "Madubu Gorge"                },
-            {  8, "Temple of Puna"              },
-            {  9, "Thames Wharf"                },
-            { 10, "Aldwych"                     },
-            { 11, "Lud's Gate"                  },
-            { 12, "City"                        },
-            { 13, "Nevada Desert"               },
-            { 14, "High Security Compound"      },
-            { 15, "Area 51"                     },
-            { 16, "Antarctica"                  },
-            { 17, "RX-Tech Mines"               },
-            { 18, "Lost City of Tinnos"         },
-            { 19, "Meteorite Cavern"            },
-            { 20, "All Hallows"                 },
-            { 21, "Highland Fling"              },
-            { 22, "Willard's Lair"              },
-            { 23, "Shakespeare Cliff"           },
-            { 24, "Sleeping with the Fishes"    },
-            { 25, "It's a Madhouse!"            },
-            { 26, "Reunion"                     },
-        };
-
         public void PopulateSourceSavegames(CheckedListBox cklSavegames)
         {
             cklSavegames.Items.Clear();
 
             try
             {
+                byte[] fileData = File.ReadAllBytes(savegameSourcePath);
+
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
 
-                    byte levelIndex = GetLevelIndex(savegameSourcePath, currentSavegameOffset);
-                    bool savegamePresent = IsSavegamePresent(savegameSourcePath, currentSavegameOffset);
+                    byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
 
-                    if (savegamePresent && levelNames.ContainsKey(levelIndex))
+                    bool savegamePresent = slotStatus != 0;
+
+                    if (savegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
-                        Int32 saveNumber = GetSaveNumber(savegameSourcePath, currentSavegameOffset);
-                        string levelName = levelNames[levelIndex];
-                        GameMode gameMode = GetGameMode(savegameSourcePath, currentSavegameOffset);
+                        Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
+                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
 
+                        string levelName = LevelNames.TR3[levelIndex];
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                         cklSavegames.Items.Add(savegame);
                     }
@@ -144,19 +78,23 @@ namespace TombExtract
 
             try
             {
+                byte[] fileData = File.ReadAllBytes(savegameDestinationPath);
+
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
 
-                    byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
-                    bool savegamePresent = IsSavegamePresent(savegameDestinationPath, currentSavegameOffset);
+                    byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
 
-                    if (savegamePresent && levelNames.ContainsKey(levelIndex))
+                    bool savegamePresent = slotStatus != 0;
+
+                    if (savegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
-                        Int32 saveNumber = GetSaveNumber(savegameDestinationPath, currentSavegameOffset);
-                        string levelName = levelNames[levelIndex];
-                        GameMode gameMode = GetGameMode(savegameDestinationPath, currentSavegameOffset);
+                        Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
+                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
 
+                        string levelName = LevelNames.TR3[levelIndex];
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
                         lstSavegames.Items.Add(savegame);
                     }
@@ -176,16 +114,29 @@ namespace TombExtract
         {
             int numOverwrites = 0;
 
-            for (int i = 0; i < savegames.Count; i++)
+            try
             {
-                int currentSavegameOffset = savegames[i].Offset;
-                byte levelIndex = GetLevelIndex(savegameDestinationPath, currentSavegameOffset);
-                bool savegamePresent = IsSavegamePresent(savegameDestinationPath, currentSavegameOffset);
+                byte[] fileData = File.ReadAllBytes(savegameDestinationPath);
 
-                if (savegamePresent && levelNames.ContainsKey(levelIndex))
+                for (int i = 0; i < savegames.Count; i++)
                 {
-                    numOverwrites++;
+                    int currentSavegameOffset = savegames[i].Offset;
+
+                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+
+                    bool savegamePresent = slotStatus != 0;
+
+                    if (savegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
+                    {
+                        numOverwrites++;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
             }
 
             return numOverwrites;
@@ -291,7 +242,7 @@ namespace TombExtract
 
             try
             {
-                using (FileStream saveFile = new FileStream(savegameSourcePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (FileStream sourceFile = new FileStream(savegameSourcePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     int savegamesCopied = 0;
 
@@ -304,8 +255,8 @@ namespace TombExtract
 
                         for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
                         {
-                            saveFile.Seek(offset, SeekOrigin.Begin);
-                            byte currentByte = (byte)saveFile.ReadByte();
+                            sourceFile.Seek(offset, SeekOrigin.Begin);
+                            byte currentByte = (byte)sourceFile.ReadByte();
                             savegameBytes[j] = currentByte;
                         }
 
