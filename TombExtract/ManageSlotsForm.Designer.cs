@@ -48,6 +48,7 @@ namespace TombExtract
             this.lstSavegames.Size = new System.Drawing.Size(237, 316);
             this.lstSavegames.TabIndex = 0;
             this.lstSavegames.SelectedIndexChanged += new System.EventHandler(this.lstSavegames_SelectedIndexChanged);
+            this.lstSavegames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstSavegames_KeyDown);
             // 
             // btnReorder
             // 

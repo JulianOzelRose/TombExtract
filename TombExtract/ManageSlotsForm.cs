@@ -22,6 +22,7 @@ namespace TombExtract
 
         // Offsets
         private const int SLOT_STATUS_OFFSET = 0x004;
+        private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
         private int GAME_MODE_OFFSET;
         private int LEVEL_INDEX_OFFSET;
         private int SAVE_NUMBER_OFFSET;
@@ -36,7 +37,6 @@ namespace TombExtract
         private const int SAVEGAME_SIZE_TRX = 0x3800;
         private const int SAVEGAME_SIZE_TRX2 = 0xA470;
         private const int MAX_SAVEGAMES = 32;
-        private const int SLOT_NUMBER_OFFSET_TR6 = 0x15;
 
         // Misc
         private ProgressForm progressForm;
@@ -1404,6 +1404,16 @@ namespace TombExtract
                 btnMoveDown.Enabled = (selectedIndex != -1 && selectedIndex < 31);
                 btnDelete.Enabled = (selectedIndex != -1 && lstSavegames.SelectedItem.ToString() != "Empty Slot");
                 btnNew.Enabled = (selectedIndex != -1);
+            }
+        }
+
+        private void lstSavegames_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete &&
+                lstSavegames.SelectedIndex >= 0 &&
+                lstSavegames.SelectedItem?.ToString() != "Empty Slot")
+            {
+                btnDelete_Click(btnDelete, EventArgs.Empty);
             }
         }
     }
