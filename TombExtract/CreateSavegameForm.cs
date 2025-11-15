@@ -161,8 +161,13 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
-                            // Add GameMode.Plus
                         }
                     },
                     { 2, new Dictionary<GameMode, Dictionary<string, string>>()
@@ -171,6 +176,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }
@@ -182,6 +193,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -191,6 +208,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }
@@ -202,6 +225,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -211,6 +240,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }
@@ -222,6 +257,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                        { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -231,6 +272,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }
@@ -242,6 +289,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -251,6 +304,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }
@@ -262,6 +321,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -271,6 +336,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }
@@ -282,6 +353,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -292,6 +369,12 @@ namespace TombExtract
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NORMAL_PS4_SWITCH.bin" }
                                 }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NGPLUS_PS4_SWITCH.bin" }
+                                }
                             }
                         }
                     },
@@ -301,6 +384,12 @@ namespace TombExtract
                                 {
                                     { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
                                     { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NORMAL_PS4_SWITCH.bin" }
+                                }
+                            },
+                            { GameMode.Plus, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NGPLUS_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NGPLUS_PS4_SWITCH.bin" }
                                 }
                             }
                         }

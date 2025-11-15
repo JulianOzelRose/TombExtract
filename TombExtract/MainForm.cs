@@ -13,12 +13,12 @@ namespace TombExtract
         }
 
         // Utils
-        readonly TR1Utilities TR1 = new TR1Utilities();
-        readonly TR2Utilities TR2 = new TR2Utilities();
-        readonly TR3Utilities TR3 = new TR3Utilities();
-        readonly TR4Utilities TR4 = new TR4Utilities();
-        readonly TR5Utilities TR5 = new TR5Utilities();
-        readonly TR6Utilities TR6 = new TR6Utilities();
+        private readonly TR1Utilities TR1 = new TR1Utilities();
+        private readonly TR2Utilities TR2 = new TR2Utilities();
+        private readonly TR3Utilities TR3 = new TR3Utilities();
+        private readonly TR4Utilities TR4 = new TR4Utilities();
+        private readonly TR5Utilities TR5 = new TR5Utilities();
+        private readonly TR6Utilities TR6 = new TR6Utilities();
 
         // Tabs
         private const int TAB_TR1 = 0;
@@ -69,18 +69,14 @@ namespace TombExtract
             return TR1.IsWriting() || TR2.IsWriting() || TR3.IsWriting() || TR4.IsWriting() || TR5.IsWriting() || TR6.IsWriting();
         }
 
+        private bool IsTRXTabSelected()
+        {
+            return tabGame.SelectedIndex == TAB_TR1 || tabGame.SelectedIndex == TAB_TR2 || tabGame.SelectedIndex == TAB_TR3;
+        }
+
         private void CreateBackup()
         {
-            string savegameDestinationPath = "";
-
-            if (IsTRXTabSelected())
-            {
-                savegameDestinationPath = savegameDestinationPathTRX;
-            }
-            else
-            {
-                savegameDestinationPath = savegameDestinationPathTRX2;
-            }
+            string savegameDestinationPath = IsTRXTabSelected() ? savegameDestinationPathTRX : savegameDestinationPathTRX2;
 
             if (!string.IsNullOrEmpty(savegameDestinationPath) && File.Exists(savegameDestinationPath))
             {
@@ -1492,11 +1488,6 @@ namespace TombExtract
             manageSlotsForm.ShowDialog();
 
             TR6.PopulateDestinationSavegames(lstDestinationSavegamesTR6);
-        }
-
-        private bool IsTRXTabSelected()
-        {
-            return tabGame.SelectedIndex == TAB_TR1 || tabGame.SelectedIndex == TAB_TR2 || tabGame.SelectedIndex == TAB_TR3;
         }
 
         private void tabGame_SelectedIndexChanged(object sender, EventArgs e)
