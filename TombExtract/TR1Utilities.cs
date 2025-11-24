@@ -295,7 +295,7 @@ namespace TombExtract
                         }
                         else if (PC_TO_PS4)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PS4...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
                             {
@@ -321,7 +321,7 @@ namespace TombExtract
                         }
                         else if (PC_TO_SWITCH)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Nintendo Switch...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
                             {
@@ -373,7 +373,7 @@ namespace TombExtract
                         }
                         else if (PS4_TO_SWITCH)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to Nintendo Switch...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
                             {
@@ -411,7 +411,7 @@ namespace TombExtract
                         }
                         else if (SWITCH_TO_PS4)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to to PS4...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
                             {
