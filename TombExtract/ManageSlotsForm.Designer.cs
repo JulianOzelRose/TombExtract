@@ -59,7 +59,7 @@ namespace TombExtract
             this.btnReorder.Location = new System.Drawing.Point(174, 337);
             this.btnReorder.Name = "btnReorder";
             this.btnReorder.Size = new System.Drawing.Size(75, 23);
-            this.btnReorder.TabIndex = 1;
+            this.btnReorder.TabIndex = 7;
             this.btnReorder.Text = "Reorder";
             this.btnReorder.UseVisualStyleBackColor = true;
             this.btnReorder.Click += new System.EventHandler(this.btnReorder_Click);
@@ -70,7 +70,7 @@ namespace TombExtract
             this.btnClose.Location = new System.Drawing.Point(12, 337);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 2;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -82,7 +82,7 @@ namespace TombExtract
             this.btnMoveUp.Location = new System.Drawing.Point(256, 12);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(32, 30);
-            this.btnMoveUp.TabIndex = 3;
+            this.btnMoveUp.TabIndex = 1;
             this.btnMoveUp.Text = "↑";
             this.btnMoveUp.UseVisualStyleBackColor = true;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
@@ -94,7 +94,7 @@ namespace TombExtract
             this.btnMoveDown.Location = new System.Drawing.Point(256, 48);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(32, 30);
-            this.btnMoveDown.TabIndex = 4;
+            this.btnMoveDown.TabIndex = 2;
             this.btnMoveDown.Text = "↓";
             this.btnMoveDown.UseVisualStyleBackColor = true;
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
@@ -106,7 +106,7 @@ namespace TombExtract
             this.btnDelete.Location = new System.Drawing.Point(256, 172);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(32, 30);
-            this.btnDelete.TabIndex = 5;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "🗑️";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -118,7 +118,7 @@ namespace TombExtract
             this.btnNew.Location = new System.Drawing.Point(256, 136);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(32, 30);
-            this.btnNew.TabIndex = 6;
+            this.btnNew.TabIndex = 3;
             this.btnNew.Text = "➕";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -130,7 +130,7 @@ namespace TombExtract
             this.btnCancel.Location = new System.Drawing.Point(93, 337);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

@@ -39,7 +39,7 @@ namespace TombExtract
             this.prgOverall.Location = new System.Drawing.Point(15, 31);
             this.prgOverall.Name = "prgOverall";
             this.prgOverall.Size = new System.Drawing.Size(421, 23);
-            this.prgOverall.TabIndex = 1;
+            this.prgOverall.TabIndex = 2;
             // 
             // lblStatus
             // 
@@ -48,7 +48,7 @@ namespace TombExtract
             this.lblStatus.Location = new System.Drawing.Point(15, 9);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(110, 15);
-            this.lblStatus.TabIndex = 4;
+            this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "Preparing to copy...";
             // 
             // lblPercentage
@@ -56,17 +56,17 @@ namespace TombExtract
             this.lblPercentage.AutoSize = true;
             this.lblPercentage.BackColor = System.Drawing.SystemColors.Control;
             this.lblPercentage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentage.Location = new System.Drawing.Point(415, 9);
+            this.lblPercentage.Location = new System.Drawing.Point(409, 9);
             this.lblPercentage.Name = "lblPercentage";
             this.lblPercentage.Size = new System.Drawing.Size(23, 15);
-            this.lblPercentage.TabIndex = 5;
+            this.lblPercentage.TabIndex = 1;
             this.lblPercentage.Text = "0%";
             // 
             // ProgressForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 68);
+            this.ClientSize = new System.Drawing.Size(453, 65);
             this.ControlBox = false;
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.lblStatus);

@@ -159,7 +159,7 @@ namespace TombExtract
             this.pnlFilePaths.Location = new System.Drawing.Point(5, 29);
             this.pnlFilePaths.Name = "pnlFilePaths";
             this.pnlFilePaths.Size = new System.Drawing.Size(583, 71);
-            this.pnlFilePaths.TabIndex = 0;
+            this.pnlFilePaths.TabIndex = 1;
             // 
             // chkBackupOnWrite
             // 
@@ -188,7 +188,7 @@ namespace TombExtract
             this.btnBrowseSourceFile.Location = new System.Drawing.Point(250, 24);
             this.btnBrowseSourceFile.Name = "btnBrowseSourceFile";
             this.btnBrowseSourceFile.Size = new System.Drawing.Size(29, 23);
-            this.btnBrowseSourceFile.TabIndex = 4;
+            this.btnBrowseSourceFile.TabIndex = 3;
             this.btnBrowseSourceFile.Text = "📁";
             this.btnBrowseSourceFile.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBrowseSourceFile.UseVisualStyleBackColor = true;
@@ -200,7 +200,7 @@ namespace TombExtract
             this.lblDestinationFile.Location = new System.Drawing.Point(305, 6);
             this.lblDestinationFile.Name = "lblDestinationFile";
             this.lblDestinationFile.Size = new System.Drawing.Size(178, 15);
-            this.lblDestinationFile.TabIndex = 3;
+            this.lblDestinationFile.TabIndex = 1;
             this.lblDestinationFile.Text = "Tomb Raider I-III destination file:";
             // 
             // lblSourceFile
@@ -209,7 +209,7 @@ namespace TombExtract
             this.lblSourceFile.Location = new System.Drawing.Point(10, 6);
             this.lblSourceFile.Name = "lblSourceFile";
             this.lblSourceFile.Size = new System.Drawing.Size(154, 15);
-            this.lblSourceFile.TabIndex = 2;
+            this.lblSourceFile.TabIndex = 0;
             this.lblSourceFile.Text = "Tomb Raider I-III source file:";
             // 
             // txtDestinationFilePath
@@ -218,7 +218,7 @@ namespace TombExtract
             this.txtDestinationFilePath.Name = "txtDestinationFilePath";
             this.txtDestinationFilePath.ReadOnly = true;
             this.txtDestinationFilePath.Size = new System.Drawing.Size(231, 23);
-            this.txtDestinationFilePath.TabIndex = 1;
+            this.txtDestinationFilePath.TabIndex = 4;
             // 
             // txtSourceFilePath
             // 
@@ -226,7 +226,7 @@ namespace TombExtract
             this.txtSourceFilePath.Name = "txtSourceFilePath";
             this.txtSourceFilePath.ReadOnly = true;
             this.txtSourceFilePath.Size = new System.Drawing.Size(231, 23);
-            this.txtSourceFilePath.TabIndex = 0;
+            this.txtSourceFilePath.TabIndex = 2;
             // 
             // tabGame
             // 
@@ -244,7 +244,7 @@ namespace TombExtract
             this.tabGame.SelectedIndex = 0;
             this.tabGame.Size = new System.Drawing.Size(586, 449);
             this.tabGame.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabGame.TabIndex = 1;
+            this.tabGame.TabIndex = 2;
             this.tabGame.SelectedIndexChanged += new System.EventHandler(this.tabGame_SelectedIndexChanged);
             // 
             // tpTR1
@@ -275,7 +275,7 @@ namespace TombExtract
             this.btnManageSlotsTR1.Location = new System.Drawing.Point(464, 11);
             this.btnManageSlotsTR1.Name = "btnManageSlotsTR1";
             this.btnManageSlotsTR1.Size = new System.Drawing.Size(96, 23);
-            this.btnManageSlotsTR1.TabIndex = 34;
+            this.btnManageSlotsTR1.TabIndex = 3;
             this.btnManageSlotsTR1.Text = "🔧 Manage Slots";
             this.btnManageSlotsTR1.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR1.Click += new System.EventHandler(this.btnManageSlotsTR1_Click);
@@ -286,7 +286,7 @@ namespace TombExtract
             this.lblConvertTR1.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR1.Name = "lblConvertTR1";
             this.lblConvertTR1.Size = new System.Drawing.Size(52, 15);
-            this.lblConvertTR1.TabIndex = 33;
+            this.lblConvertTR1.TabIndex = 6;
             this.lblConvertTR1.Text = "Convert:";
             // 
             // cmbConversionTR1
@@ -304,7 +304,7 @@ namespace TombExtract
             this.cmbConversionTR1.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR1.Name = "cmbConversionTR1";
             this.cmbConversionTR1.Size = new System.Drawing.Size(186, 23);
-            this.cmbConversionTR1.TabIndex = 32;
+            this.cmbConversionTR1.TabIndex = 7;
             this.cmbConversionTR1.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR1_SelectedIndexChanged);
             // 
             // btnAboutTR1
@@ -312,7 +312,7 @@ namespace TombExtract
             this.btnAboutTR1.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR1.Name = "btnAboutTR1";
             this.btnAboutTR1.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutTR1.TabIndex = 23;
+            this.btnAboutTR1.TabIndex = 9;
             this.btnAboutTR1.Text = "About";
             this.btnAboutTR1.UseVisualStyleBackColor = true;
             this.btnAboutTR1.Click += new System.EventHandler(this.btnAboutTR1_Click);
@@ -323,7 +323,7 @@ namespace TombExtract
             this.btnSelectAllTR1.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR1.Name = "btnSelectAllTR1";
             this.btnSelectAllTR1.Size = new System.Drawing.Size(96, 23);
-            this.btnSelectAllTR1.TabIndex = 22;
+            this.btnSelectAllTR1.TabIndex = 1;
             this.btnSelectAllTR1.Text = "☑️ Select All";
             this.btnSelectAllTR1.UseVisualStyleBackColor = true;
             this.btnSelectAllTR1.Click += new System.EventHandler(this.btnSelectAllTR1_Click);
@@ -346,7 +346,7 @@ namespace TombExtract
             this.lstDestinationSavegamesTR1.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR1.Name = "lstDestinationSavegamesTR1";
             this.lstDestinationSavegamesTR1.Size = new System.Drawing.Size(238, 289);
-            this.lstDestinationSavegamesTR1.TabIndex = 17;
+            this.lstDestinationSavegamesTR1.TabIndex = 5;
             this.lstDestinationSavegamesTR1.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR1_DragDrop);
             this.lstDestinationSavegamesTR1.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR1_DragEnter);
             // 
@@ -355,7 +355,7 @@ namespace TombExtract
             this.btnExitTR1.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR1.Name = "btnExitTR1";
             this.btnExitTR1.Size = new System.Drawing.Size(75, 23);
-            this.btnExitTR1.TabIndex = 16;
+            this.btnExitTR1.TabIndex = 8;
             this.btnExitTR1.Text = "Exit";
             this.btnExitTR1.UseVisualStyleBackColor = true;
             this.btnExitTR1.Click += new System.EventHandler(this.btnExitTR1_Click);
@@ -366,7 +366,7 @@ namespace TombExtract
             this.btnExtractTR1.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR1.Name = "btnExtractTR1";
             this.btnExtractTR1.Size = new System.Drawing.Size(75, 23);
-            this.btnExtractTR1.TabIndex = 15;
+            this.btnExtractTR1.TabIndex = 10;
             this.btnExtractTR1.Text = "Extract";
             this.btnExtractTR1.UseVisualStyleBackColor = true;
             this.btnExtractTR1.Click += new System.EventHandler(this.btnExtractTR1_Click);
@@ -377,7 +377,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR1.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR1.Name = "lblDestinationSavegamesTR1";
             this.lblDestinationSavegamesTR1.Size = new System.Drawing.Size(131, 15);
-            this.lblDestinationSavegamesTR1.TabIndex = 14;
+            this.lblDestinationSavegamesTR1.TabIndex = 2;
             this.lblDestinationSavegamesTR1.Text = "Destination savegames:";
             // 
             // lblSourceSavegamesTR1
@@ -386,7 +386,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR1.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR1.Name = "lblSourceSavegamesTR1";
             this.lblSourceSavegamesTR1.Size = new System.Drawing.Size(107, 15);
-            this.lblSourceSavegamesTR1.TabIndex = 13;
+            this.lblSourceSavegamesTR1.TabIndex = 0;
             this.lblSourceSavegamesTR1.Text = "Source savegames:";
             // 
             // cklSourceSavegamesTR1
@@ -395,8 +395,8 @@ namespace TombExtract
             this.cklSourceSavegamesTR1.FormattingEnabled = true;
             this.cklSourceSavegamesTR1.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR1.Name = "cklSourceSavegamesTR1";
-            this.cklSourceSavegamesTR1.Size = new System.Drawing.Size(238, 304);
-            this.cklSourceSavegamesTR1.TabIndex = 12;
+            this.cklSourceSavegamesTR1.Size = new System.Drawing.Size(238, 292);
+            this.cklSourceSavegamesTR1.TabIndex = 4;
             this.cklSourceSavegamesTR1.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR1_DragDrop);
             this.cklSourceSavegamesTR1.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR1_DragEnter);
             // 
@@ -428,7 +428,7 @@ namespace TombExtract
             this.btnManageSlotsTR2.Location = new System.Drawing.Point(464, 11);
             this.btnManageSlotsTR2.Name = "btnManageSlotsTR2";
             this.btnManageSlotsTR2.Size = new System.Drawing.Size(96, 23);
-            this.btnManageSlotsTR2.TabIndex = 35;
+            this.btnManageSlotsTR2.TabIndex = 3;
             this.btnManageSlotsTR2.Text = "🔧 Manage Slots";
             this.btnManageSlotsTR2.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR2.Click += new System.EventHandler(this.btnManageSlotsTR2_Click);
@@ -439,7 +439,7 @@ namespace TombExtract
             this.lblConvertTR2.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR2.Name = "lblConvertTR2";
             this.lblConvertTR2.Size = new System.Drawing.Size(52, 15);
-            this.lblConvertTR2.TabIndex = 33;
+            this.lblConvertTR2.TabIndex = 6;
             this.lblConvertTR2.Text = "Convert:";
             // 
             // cmbConversionTR2
@@ -457,7 +457,7 @@ namespace TombExtract
             this.cmbConversionTR2.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR2.Name = "cmbConversionTR2";
             this.cmbConversionTR2.Size = new System.Drawing.Size(186, 23);
-            this.cmbConversionTR2.TabIndex = 32;
+            this.cmbConversionTR2.TabIndex = 7;
             this.cmbConversionTR2.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR2_SelectedIndexChanged);
             // 
             // btnAboutTR2
@@ -465,7 +465,7 @@ namespace TombExtract
             this.btnAboutTR2.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR2.Name = "btnAboutTR2";
             this.btnAboutTR2.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutTR2.TabIndex = 25;
+            this.btnAboutTR2.TabIndex = 9;
             this.btnAboutTR2.Text = "About";
             this.btnAboutTR2.UseVisualStyleBackColor = true;
             this.btnAboutTR2.Click += new System.EventHandler(this.btnAboutTR2_Click);
@@ -476,7 +476,7 @@ namespace TombExtract
             this.btnSelectAllTR2.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR2.Name = "btnSelectAllTR2";
             this.btnSelectAllTR2.Size = new System.Drawing.Size(96, 23);
-            this.btnSelectAllTR2.TabIndex = 23;
+            this.btnSelectAllTR2.TabIndex = 1;
             this.btnSelectAllTR2.Text = "☑️ Select All";
             this.btnSelectAllTR2.UseVisualStyleBackColor = true;
             this.btnSelectAllTR2.Click += new System.EventHandler(this.btnSelectAllTR2_Click);
@@ -499,7 +499,7 @@ namespace TombExtract
             this.lstDestinationSavegamesTR2.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR2.Name = "lstDestinationSavegamesTR2";
             this.lstDestinationSavegamesTR2.Size = new System.Drawing.Size(238, 289);
-            this.lstDestinationSavegamesTR2.TabIndex = 10;
+            this.lstDestinationSavegamesTR2.TabIndex = 5;
             this.lstDestinationSavegamesTR2.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR2_DragDrop);
             this.lstDestinationSavegamesTR2.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR2_DragEnter);
             // 
@@ -508,7 +508,7 @@ namespace TombExtract
             this.btnExitTR2.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR2.Name = "btnExitTR2";
             this.btnExitTR2.Size = new System.Drawing.Size(75, 23);
-            this.btnExitTR2.TabIndex = 9;
+            this.btnExitTR2.TabIndex = 8;
             this.btnExitTR2.Text = "Exit";
             this.btnExitTR2.UseVisualStyleBackColor = true;
             this.btnExitTR2.Click += new System.EventHandler(this.btnExitTR2_Click);
@@ -519,7 +519,7 @@ namespace TombExtract
             this.btnExtractTR2.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR2.Name = "btnExtractTR2";
             this.btnExtractTR2.Size = new System.Drawing.Size(75, 23);
-            this.btnExtractTR2.TabIndex = 8;
+            this.btnExtractTR2.TabIndex = 10;
             this.btnExtractTR2.Text = "Extract";
             this.btnExtractTR2.UseVisualStyleBackColor = true;
             this.btnExtractTR2.Click += new System.EventHandler(this.btnExtractTR2_Click);
@@ -530,7 +530,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR2.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR2.Name = "lblDestinationSavegamesTR2";
             this.lblDestinationSavegamesTR2.Size = new System.Drawing.Size(131, 15);
-            this.lblDestinationSavegamesTR2.TabIndex = 7;
+            this.lblDestinationSavegamesTR2.TabIndex = 2;
             this.lblDestinationSavegamesTR2.Text = "Destination savegames:";
             // 
             // lblSourceSavegamesTR2
@@ -539,7 +539,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR2.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR2.Name = "lblSourceSavegamesTR2";
             this.lblSourceSavegamesTR2.Size = new System.Drawing.Size(107, 15);
-            this.lblSourceSavegamesTR2.TabIndex = 6;
+            this.lblSourceSavegamesTR2.TabIndex = 0;
             this.lblSourceSavegamesTR2.Text = "Source savegames:";
             // 
             // cklSourceSavegamesTR2
@@ -548,8 +548,8 @@ namespace TombExtract
             this.cklSourceSavegamesTR2.FormattingEnabled = true;
             this.cklSourceSavegamesTR2.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR2.Name = "cklSourceSavegamesTR2";
-            this.cklSourceSavegamesTR2.Size = new System.Drawing.Size(238, 304);
-            this.cklSourceSavegamesTR2.TabIndex = 0;
+            this.cklSourceSavegamesTR2.Size = new System.Drawing.Size(238, 292);
+            this.cklSourceSavegamesTR2.TabIndex = 4;
             this.cklSourceSavegamesTR2.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR2_DragDrop);
             this.cklSourceSavegamesTR2.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR2_DragEnter);
             // 
@@ -580,7 +580,7 @@ namespace TombExtract
             this.btnManageSlotsTR3.Location = new System.Drawing.Point(464, 11);
             this.btnManageSlotsTR3.Name = "btnManageSlotsTR3";
             this.btnManageSlotsTR3.Size = new System.Drawing.Size(96, 23);
-            this.btnManageSlotsTR3.TabIndex = 35;
+            this.btnManageSlotsTR3.TabIndex = 3;
             this.btnManageSlotsTR3.Text = "🔧 Manage Slots";
             this.btnManageSlotsTR3.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR3.Click += new System.EventHandler(this.btnManageSlotsTR3_Click);
@@ -591,7 +591,7 @@ namespace TombExtract
             this.lblConvertTR3.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR3.Name = "lblConvertTR3";
             this.lblConvertTR3.Size = new System.Drawing.Size(52, 15);
-            this.lblConvertTR3.TabIndex = 31;
+            this.lblConvertTR3.TabIndex = 6;
             this.lblConvertTR3.Text = "Convert:";
             // 
             // cmbConversionTR3
@@ -609,7 +609,7 @@ namespace TombExtract
             this.cmbConversionTR3.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR3.Name = "cmbConversionTR3";
             this.cmbConversionTR3.Size = new System.Drawing.Size(186, 23);
-            this.cmbConversionTR3.TabIndex = 0;
+            this.cmbConversionTR3.TabIndex = 7;
             this.cmbConversionTR3.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR3_SelectedIndexChanged);
             // 
             // btnAboutTR3
@@ -617,7 +617,7 @@ namespace TombExtract
             this.btnAboutTR3.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR3.Name = "btnAboutTR3";
             this.btnAboutTR3.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutTR3.TabIndex = 30;
+            this.btnAboutTR3.TabIndex = 9;
             this.btnAboutTR3.Text = "About";
             this.btnAboutTR3.UseVisualStyleBackColor = true;
             this.btnAboutTR3.Click += new System.EventHandler(this.btnAboutTR3_Click);
@@ -628,7 +628,7 @@ namespace TombExtract
             this.btnSelectAllTR3.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR3.Name = "btnSelectAllTR3";
             this.btnSelectAllTR3.Size = new System.Drawing.Size(96, 23);
-            this.btnSelectAllTR3.TabIndex = 28;
+            this.btnSelectAllTR3.TabIndex = 1;
             this.btnSelectAllTR3.Text = "☑️ Select All";
             this.btnSelectAllTR3.UseVisualStyleBackColor = true;
             this.btnSelectAllTR3.Click += new System.EventHandler(this.btnSelectAllTR3_Click);
@@ -651,7 +651,7 @@ namespace TombExtract
             this.lstDestinationSavegamesTR3.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR3.Name = "lstDestinationSavegamesTR3";
             this.lstDestinationSavegamesTR3.Size = new System.Drawing.Size(238, 289);
-            this.lstDestinationSavegamesTR3.TabIndex = 26;
+            this.lstDestinationSavegamesTR3.TabIndex = 5;
             this.lstDestinationSavegamesTR3.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR3_DragDrop);
             this.lstDestinationSavegamesTR3.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR3_DragEnter);
             // 
@@ -660,7 +660,7 @@ namespace TombExtract
             this.btnExitTR3.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR3.Name = "btnExitTR3";
             this.btnExitTR3.Size = new System.Drawing.Size(75, 23);
-            this.btnExitTR3.TabIndex = 25;
+            this.btnExitTR3.TabIndex = 8;
             this.btnExitTR3.Text = "Exit";
             this.btnExitTR3.UseVisualStyleBackColor = true;
             this.btnExitTR3.Click += new System.EventHandler(this.btnExitTR3_Click);
@@ -671,7 +671,7 @@ namespace TombExtract
             this.btnExtractTR3.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR3.Name = "btnExtractTR3";
             this.btnExtractTR3.Size = new System.Drawing.Size(75, 23);
-            this.btnExtractTR3.TabIndex = 24;
+            this.btnExtractTR3.TabIndex = 10;
             this.btnExtractTR3.Text = "Extract";
             this.btnExtractTR3.UseVisualStyleBackColor = true;
             this.btnExtractTR3.Click += new System.EventHandler(this.btnExtractTR3_Click);
@@ -682,7 +682,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR3.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR3.Name = "lblDestinationSavegamesTR3";
             this.lblDestinationSavegamesTR3.Size = new System.Drawing.Size(131, 15);
-            this.lblDestinationSavegamesTR3.TabIndex = 23;
+            this.lblDestinationSavegamesTR3.TabIndex = 2;
             this.lblDestinationSavegamesTR3.Text = "Destination savegames:";
             // 
             // lblSourceSavegamesTR3
@@ -691,7 +691,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR3.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR3.Name = "lblSourceSavegamesTR3";
             this.lblSourceSavegamesTR3.Size = new System.Drawing.Size(107, 15);
-            this.lblSourceSavegamesTR3.TabIndex = 22;
+            this.lblSourceSavegamesTR3.TabIndex = 0;
             this.lblSourceSavegamesTR3.Text = "Source savegames:";
             // 
             // cklSourceSavegamesTR3
@@ -700,8 +700,8 @@ namespace TombExtract
             this.cklSourceSavegamesTR3.FormattingEnabled = true;
             this.cklSourceSavegamesTR3.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR3.Name = "cklSourceSavegamesTR3";
-            this.cklSourceSavegamesTR3.Size = new System.Drawing.Size(238, 304);
-            this.cklSourceSavegamesTR3.TabIndex = 21;
+            this.cklSourceSavegamesTR3.Size = new System.Drawing.Size(238, 292);
+            this.cklSourceSavegamesTR3.TabIndex = 4;
             this.cklSourceSavegamesTR3.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR3_DragDrop);
             this.cklSourceSavegamesTR3.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR3_DragEnter);
             // 
@@ -731,7 +731,7 @@ namespace TombExtract
             this.lblConvertTR4.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR4.Name = "lblConvertTR4";
             this.lblConvertTR4.Size = new System.Drawing.Size(208, 15);
-            this.lblConvertTR4.TabIndex = 47;
+            this.lblConvertTR4.TabIndex = 6;
             this.lblConvertTR4.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR4
@@ -740,7 +740,7 @@ namespace TombExtract
             this.btnManageSlotsTR4.Location = new System.Drawing.Point(464, 11);
             this.btnManageSlotsTR4.Name = "btnManageSlotsTR4";
             this.btnManageSlotsTR4.Size = new System.Drawing.Size(96, 23);
-            this.btnManageSlotsTR4.TabIndex = 46;
+            this.btnManageSlotsTR4.TabIndex = 3;
             this.btnManageSlotsTR4.Text = "🔧 Manage Slots";
             this.btnManageSlotsTR4.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR4.Click += new System.EventHandler(this.btnManageSlotsTR4_Click);
@@ -750,7 +750,7 @@ namespace TombExtract
             this.btnAboutTR4.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR4.Name = "btnAboutTR4";
             this.btnAboutTR4.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutTR4.TabIndex = 45;
+            this.btnAboutTR4.TabIndex = 8;
             this.btnAboutTR4.Text = "About";
             this.btnAboutTR4.UseVisualStyleBackColor = true;
             this.btnAboutTR4.Click += new System.EventHandler(this.btnAboutTR4_Click);
@@ -761,7 +761,7 @@ namespace TombExtract
             this.btnSelectAllTR4.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR4.Name = "btnSelectAllTR4";
             this.btnSelectAllTR4.Size = new System.Drawing.Size(96, 23);
-            this.btnSelectAllTR4.TabIndex = 44;
+            this.btnSelectAllTR4.TabIndex = 1;
             this.btnSelectAllTR4.Text = "☑️ Select All";
             this.btnSelectAllTR4.UseVisualStyleBackColor = true;
             this.btnSelectAllTR4.Click += new System.EventHandler(this.btnSelectAllTR4_Click);
@@ -784,7 +784,7 @@ namespace TombExtract
             this.lstDestinationSavegamesTR4.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR4.Name = "lstDestinationSavegamesTR4";
             this.lstDestinationSavegamesTR4.Size = new System.Drawing.Size(238, 289);
-            this.lstDestinationSavegamesTR4.TabIndex = 42;
+            this.lstDestinationSavegamesTR4.TabIndex = 5;
             this.lstDestinationSavegamesTR4.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR4_DragDrop);
             this.lstDestinationSavegamesTR4.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR4_DragEnter);
             // 
@@ -793,7 +793,7 @@ namespace TombExtract
             this.btnExitTR4.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR4.Name = "btnExitTR4";
             this.btnExitTR4.Size = new System.Drawing.Size(75, 23);
-            this.btnExitTR4.TabIndex = 41;
+            this.btnExitTR4.TabIndex = 7;
             this.btnExitTR4.Text = "Exit";
             this.btnExitTR4.UseVisualStyleBackColor = true;
             this.btnExitTR4.Click += new System.EventHandler(this.btnExitTR4_Click);
@@ -804,7 +804,7 @@ namespace TombExtract
             this.btnExtractTR4.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR4.Name = "btnExtractTR4";
             this.btnExtractTR4.Size = new System.Drawing.Size(75, 23);
-            this.btnExtractTR4.TabIndex = 40;
+            this.btnExtractTR4.TabIndex = 9;
             this.btnExtractTR4.Text = "Extract";
             this.btnExtractTR4.UseVisualStyleBackColor = true;
             this.btnExtractTR4.Click += new System.EventHandler(this.btnExtractTR4_Click);
@@ -815,7 +815,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR4.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR4.Name = "lblDestinationSavegamesTR4";
             this.lblDestinationSavegamesTR4.Size = new System.Drawing.Size(131, 15);
-            this.lblDestinationSavegamesTR4.TabIndex = 39;
+            this.lblDestinationSavegamesTR4.TabIndex = 2;
             this.lblDestinationSavegamesTR4.Text = "Destination savegames:";
             // 
             // lblSourceSavegamesTR4
@@ -824,7 +824,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR4.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR4.Name = "lblSourceSavegamesTR4";
             this.lblSourceSavegamesTR4.Size = new System.Drawing.Size(107, 15);
-            this.lblSourceSavegamesTR4.TabIndex = 38;
+            this.lblSourceSavegamesTR4.TabIndex = 0;
             this.lblSourceSavegamesTR4.Text = "Source savegames:";
             // 
             // cklSourceSavegamesTR4
@@ -833,8 +833,8 @@ namespace TombExtract
             this.cklSourceSavegamesTR4.FormattingEnabled = true;
             this.cklSourceSavegamesTR4.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR4.Name = "cklSourceSavegamesTR4";
-            this.cklSourceSavegamesTR4.Size = new System.Drawing.Size(238, 304);
-            this.cklSourceSavegamesTR4.TabIndex = 37;
+            this.cklSourceSavegamesTR4.Size = new System.Drawing.Size(238, 292);
+            this.cklSourceSavegamesTR4.TabIndex = 4;
             this.cklSourceSavegamesTR4.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR4_DragDrop);
             this.cklSourceSavegamesTR4.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR4_DragEnter);
             // 
@@ -864,7 +864,7 @@ namespace TombExtract
             this.lblConvertTR5.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR5.Name = "lblConvertTR5";
             this.lblConvertTR5.Size = new System.Drawing.Size(208, 15);
-            this.lblConvertTR5.TabIndex = 58;
+            this.lblConvertTR5.TabIndex = 6;
             this.lblConvertTR5.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR5
@@ -873,7 +873,7 @@ namespace TombExtract
             this.btnManageSlotsTR5.Location = new System.Drawing.Point(464, 11);
             this.btnManageSlotsTR5.Name = "btnManageSlotsTR5";
             this.btnManageSlotsTR5.Size = new System.Drawing.Size(96, 23);
-            this.btnManageSlotsTR5.TabIndex = 57;
+            this.btnManageSlotsTR5.TabIndex = 3;
             this.btnManageSlotsTR5.Text = "🔧 Manage Slots";
             this.btnManageSlotsTR5.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR5.Click += new System.EventHandler(this.btnManageSlotsTR5_Click);
@@ -883,7 +883,7 @@ namespace TombExtract
             this.btnAboutTR5.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR5.Name = "btnAboutTR5";
             this.btnAboutTR5.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutTR5.TabIndex = 56;
+            this.btnAboutTR5.TabIndex = 8;
             this.btnAboutTR5.Text = "About";
             this.btnAboutTR5.UseVisualStyleBackColor = true;
             this.btnAboutTR5.Click += new System.EventHandler(this.btnAboutTR5_Click);
@@ -894,7 +894,7 @@ namespace TombExtract
             this.btnSelectAllTR5.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR5.Name = "btnSelectAllTR5";
             this.btnSelectAllTR5.Size = new System.Drawing.Size(96, 23);
-            this.btnSelectAllTR5.TabIndex = 55;
+            this.btnSelectAllTR5.TabIndex = 1;
             this.btnSelectAllTR5.Text = "☑️ Select All";
             this.btnSelectAllTR5.UseVisualStyleBackColor = true;
             this.btnSelectAllTR5.Click += new System.EventHandler(this.btnSelectAllTR5_Click);
@@ -917,7 +917,7 @@ namespace TombExtract
             this.lstDestinationSavegamesTR5.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR5.Name = "lstDestinationSavegamesTR5";
             this.lstDestinationSavegamesTR5.Size = new System.Drawing.Size(238, 289);
-            this.lstDestinationSavegamesTR5.TabIndex = 53;
+            this.lstDestinationSavegamesTR5.TabIndex = 5;
             this.lstDestinationSavegamesTR5.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR5_DragDrop);
             this.lstDestinationSavegamesTR5.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR5_DragEnter);
             // 
@@ -926,7 +926,7 @@ namespace TombExtract
             this.btnExitTR5.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR5.Name = "btnExitTR5";
             this.btnExitTR5.Size = new System.Drawing.Size(75, 23);
-            this.btnExitTR5.TabIndex = 52;
+            this.btnExitTR5.TabIndex = 7;
             this.btnExitTR5.Text = "Exit";
             this.btnExitTR5.UseVisualStyleBackColor = true;
             this.btnExitTR5.Click += new System.EventHandler(this.btnExitTR5_Click);
@@ -937,7 +937,7 @@ namespace TombExtract
             this.btnExtractTR5.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR5.Name = "btnExtractTR5";
             this.btnExtractTR5.Size = new System.Drawing.Size(75, 23);
-            this.btnExtractTR5.TabIndex = 51;
+            this.btnExtractTR5.TabIndex = 9;
             this.btnExtractTR5.Text = "Extract";
             this.btnExtractTR5.UseVisualStyleBackColor = true;
             this.btnExtractTR5.Click += new System.EventHandler(this.btnExtractTR5_Click);
@@ -948,7 +948,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR5.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR5.Name = "lblDestinationSavegamesTR5";
             this.lblDestinationSavegamesTR5.Size = new System.Drawing.Size(131, 15);
-            this.lblDestinationSavegamesTR5.TabIndex = 50;
+            this.lblDestinationSavegamesTR5.TabIndex = 2;
             this.lblDestinationSavegamesTR5.Text = "Destination savegames:";
             // 
             // lblSourceSavegamesTR5
@@ -957,7 +957,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR5.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR5.Name = "lblSourceSavegamesTR5";
             this.lblSourceSavegamesTR5.Size = new System.Drawing.Size(107, 15);
-            this.lblSourceSavegamesTR5.TabIndex = 49;
+            this.lblSourceSavegamesTR5.TabIndex = 0;
             this.lblSourceSavegamesTR5.Text = "Source savegames:";
             // 
             // cklSourceSavegamesTR5
@@ -966,8 +966,8 @@ namespace TombExtract
             this.cklSourceSavegamesTR5.FormattingEnabled = true;
             this.cklSourceSavegamesTR5.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR5.Name = "cklSourceSavegamesTR5";
-            this.cklSourceSavegamesTR5.Size = new System.Drawing.Size(238, 304);
-            this.cklSourceSavegamesTR5.TabIndex = 48;
+            this.cklSourceSavegamesTR5.Size = new System.Drawing.Size(238, 292);
+            this.cklSourceSavegamesTR5.TabIndex = 4;
             this.cklSourceSavegamesTR5.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR5_DragDrop);
             this.cklSourceSavegamesTR5.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR5_DragEnter);
             // 
@@ -997,7 +997,7 @@ namespace TombExtract
             this.lblConvertTR6.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR6.Name = "lblConvertTR6";
             this.lblConvertTR6.Size = new System.Drawing.Size(208, 15);
-            this.lblConvertTR6.TabIndex = 69;
+            this.lblConvertTR6.TabIndex = 6;
             this.lblConvertTR6.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR6
@@ -1006,7 +1006,7 @@ namespace TombExtract
             this.btnManageSlotsTR6.Location = new System.Drawing.Point(464, 11);
             this.btnManageSlotsTR6.Name = "btnManageSlotsTR6";
             this.btnManageSlotsTR6.Size = new System.Drawing.Size(96, 23);
-            this.btnManageSlotsTR6.TabIndex = 68;
+            this.btnManageSlotsTR6.TabIndex = 3;
             this.btnManageSlotsTR6.Text = "🔧 Manage Slots";
             this.btnManageSlotsTR6.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR6.Click += new System.EventHandler(this.btnManageSlotsTR6_Click);
@@ -1016,7 +1016,7 @@ namespace TombExtract
             this.btnAboutTR6.Location = new System.Drawing.Point(403, 356);
             this.btnAboutTR6.Name = "btnAboutTR6";
             this.btnAboutTR6.Size = new System.Drawing.Size(75, 23);
-            this.btnAboutTR6.TabIndex = 67;
+            this.btnAboutTR6.TabIndex = 8;
             this.btnAboutTR6.Text = "About";
             this.btnAboutTR6.UseVisualStyleBackColor = true;
             this.btnAboutTR6.Click += new System.EventHandler(this.btnAboutTR6_Click);
@@ -1027,7 +1027,7 @@ namespace TombExtract
             this.btnSelectAllTR6.Location = new System.Drawing.Point(157, 11);
             this.btnSelectAllTR6.Name = "btnSelectAllTR6";
             this.btnSelectAllTR6.Size = new System.Drawing.Size(96, 23);
-            this.btnSelectAllTR6.TabIndex = 66;
+            this.btnSelectAllTR6.TabIndex = 1;
             this.btnSelectAllTR6.Text = "☑️ Select All";
             this.btnSelectAllTR6.UseVisualStyleBackColor = true;
             this.btnSelectAllTR6.Click += new System.EventHandler(this.btnSelectAllTR6_Click);
@@ -1050,7 +1050,7 @@ namespace TombExtract
             this.lstDestinationSavegamesTR6.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR6.Name = "lstDestinationSavegamesTR6";
             this.lstDestinationSavegamesTR6.Size = new System.Drawing.Size(238, 289);
-            this.lstDestinationSavegamesTR6.TabIndex = 64;
+            this.lstDestinationSavegamesTR6.TabIndex = 5;
             this.lstDestinationSavegamesTR6.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR6_DragDrop);
             this.lstDestinationSavegamesTR6.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR6_DragEnter);
             // 
@@ -1059,7 +1059,7 @@ namespace TombExtract
             this.btnExitTR6.Location = new System.Drawing.Point(322, 356);
             this.btnExitTR6.Name = "btnExitTR6";
             this.btnExitTR6.Size = new System.Drawing.Size(75, 23);
-            this.btnExitTR6.TabIndex = 63;
+            this.btnExitTR6.TabIndex = 7;
             this.btnExitTR6.Text = "Exit";
             this.btnExitTR6.UseVisualStyleBackColor = true;
             this.btnExitTR6.Click += new System.EventHandler(this.btnExitTR6_Click);
@@ -1070,7 +1070,7 @@ namespace TombExtract
             this.btnExtractTR6.Location = new System.Drawing.Point(485, 356);
             this.btnExtractTR6.Name = "btnExtractTR6";
             this.btnExtractTR6.Size = new System.Drawing.Size(75, 23);
-            this.btnExtractTR6.TabIndex = 62;
+            this.btnExtractTR6.TabIndex = 9;
             this.btnExtractTR6.Text = "Extract";
             this.btnExtractTR6.UseVisualStyleBackColor = true;
             this.btnExtractTR6.Click += new System.EventHandler(this.btnExtractTR6_Click);
@@ -1081,7 +1081,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR6.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR6.Name = "lblDestinationSavegamesTR6";
             this.lblDestinationSavegamesTR6.Size = new System.Drawing.Size(131, 15);
-            this.lblDestinationSavegamesTR6.TabIndex = 61;
+            this.lblDestinationSavegamesTR6.TabIndex = 2;
             this.lblDestinationSavegamesTR6.Text = "Destination savegames:";
             // 
             // lblSourceSavegamesTR6
@@ -1090,7 +1090,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR6.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR6.Name = "lblSourceSavegamesTR6";
             this.lblSourceSavegamesTR6.Size = new System.Drawing.Size(107, 15);
-            this.lblSourceSavegamesTR6.TabIndex = 60;
+            this.lblSourceSavegamesTR6.TabIndex = 0;
             this.lblSourceSavegamesTR6.Text = "Source savegames:";
             // 
             // cklSourceSavegamesTR6
@@ -1099,8 +1099,8 @@ namespace TombExtract
             this.cklSourceSavegamesTR6.FormattingEnabled = true;
             this.cklSourceSavegamesTR6.Location = new System.Drawing.Point(15, 37);
             this.cklSourceSavegamesTR6.Name = "cklSourceSavegamesTR6";
-            this.cklSourceSavegamesTR6.Size = new System.Drawing.Size(238, 304);
-            this.cklSourceSavegamesTR6.TabIndex = 59;
+            this.cklSourceSavegamesTR6.Size = new System.Drawing.Size(238, 292);
+            this.cklSourceSavegamesTR6.TabIndex = 4;
             this.cklSourceSavegamesTR6.DragDrop += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR6_DragDrop);
             this.cklSourceSavegamesTR6.DragEnter += new System.Windows.Forms.DragEventHandler(this.cklSourceSavegamesTR6_DragEnter);
             // 
@@ -1113,7 +1113,7 @@ namespace TombExtract
             this.tsrToolStrip.Location = new System.Drawing.Point(0, 0);
             this.tsrToolStrip.Name = "tsrToolStrip";
             this.tsrToolStrip.Size = new System.Drawing.Size(594, 25);
-            this.tsrToolStrip.TabIndex = 2;
+            this.tsrToolStrip.TabIndex = 0;
             this.tsrToolStrip.Text = "toolStrip1";
             // 
             // tsddbFile

@@ -60,7 +60,7 @@
             this.lblMode.Location = new System.Drawing.Point(16, 43);
             this.lblMode.Name = "lblMode";
             this.lblMode.Size = new System.Drawing.Size(41, 15);
-            this.lblMode.TabIndex = 1;
+            this.lblMode.TabIndex = 2;
             this.lblMode.Text = "Mode:";
             // 
             // lblSaveNumber
@@ -70,7 +70,7 @@
             this.lblSaveNumber.Location = new System.Drawing.Point(16, 95);
             this.lblSaveNumber.Name = "lblSaveNumber";
             this.lblSaveNumber.Size = new System.Drawing.Size(81, 15);
-            this.lblSaveNumber.TabIndex = 2;
+            this.lblSaveNumber.TabIndex = 6;
             this.lblSaveNumber.Text = "Save Number:";
             // 
             // cmbLevel
@@ -81,7 +81,7 @@
             this.cmbLevel.Location = new System.Drawing.Point(175, 17);
             this.cmbLevel.Name = "cmbLevel";
             this.cmbLevel.Size = new System.Drawing.Size(183, 23);
-            this.cmbLevel.TabIndex = 3;
+            this.cmbLevel.TabIndex = 1;
             this.cmbLevel.SelectedIndexChanged += new System.EventHandler(this.cmbLevel_SelectedIndexChanged);
             // 
             // cmbMode
@@ -95,7 +95,7 @@
             this.cmbMode.Location = new System.Drawing.Point(240, 43);
             this.cmbMode.Name = "cmbMode";
             this.cmbMode.Size = new System.Drawing.Size(118, 23);
-            this.cmbMode.TabIndex = 4;
+            this.cmbMode.TabIndex = 3;
             this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.cmbMode_SelectedIndexChanged);
             // 
             // nudSaveNumber
@@ -109,7 +109,7 @@
             0});
             this.nudSaveNumber.Name = "nudSaveNumber";
             this.nudSaveNumber.Size = new System.Drawing.Size(53, 23);
-            this.nudSaveNumber.TabIndex = 5;
+            this.nudSaveNumber.TabIndex = 7;
             this.nudSaveNumber.Value = new decimal(new int[] {
             1,
             0,
@@ -122,7 +122,7 @@
             this.btnCancel.Location = new System.Drawing.Point(109, 143);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 16;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -133,7 +133,7 @@
             this.btnCreate.Location = new System.Drawing.Point(190, 143);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
-            this.btnCreate.TabIndex = 17;
+            this.btnCreate.TabIndex = 10;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -150,7 +150,7 @@
             this.cmbPlatform.Location = new System.Drawing.Point(240, 69);
             this.cmbPlatform.Name = "cmbPlatform";
             this.cmbPlatform.Size = new System.Drawing.Size(118, 23);
-            this.cmbPlatform.TabIndex = 18;
+            this.cmbPlatform.TabIndex = 5;
             // 
             // lblPlatform
             // 
@@ -159,7 +159,7 @@
             this.lblPlatform.Location = new System.Drawing.Point(16, 69);
             this.lblPlatform.Name = "lblPlatform";
             this.lblPlatform.Size = new System.Drawing.Size(56, 15);
-            this.lblPlatform.TabIndex = 19;
+            this.lblPlatform.TabIndex = 4;
             this.lblPlatform.Text = "Platform:";
             // 
             // lblSeparator
@@ -169,7 +169,7 @@
             this.lblSeparator.Location = new System.Drawing.Point(16, 132);
             this.lblSeparator.Name = "lblSeparator";
             this.lblSeparator.Size = new System.Drawing.Size(344, 2);
-            this.lblSeparator.TabIndex = 20;
+            this.lblSeparator.TabIndex = 8;
             // 
             // CreateSavegameForm
             // 
