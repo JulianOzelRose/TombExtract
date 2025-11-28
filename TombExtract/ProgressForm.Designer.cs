@@ -44,9 +44,10 @@ namespace TombExtract
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(15, 9);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(99, 13);
+            this.lblStatus.Size = new System.Drawing.Size(110, 15);
             this.lblStatus.TabIndex = 4;
             this.lblStatus.Text = "Preparing to copy...";
             // 
@@ -54,9 +55,10 @@ namespace TombExtract
             // 
             this.lblPercentage.AutoSize = true;
             this.lblPercentage.BackColor = System.Drawing.SystemColors.Control;
+            this.lblPercentage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPercentage.Location = new System.Drawing.Point(415, 9);
             this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(21, 13);
+            this.lblPercentage.Size = new System.Drawing.Size(23, 15);
             this.lblPercentage.TabIndex = 5;
             this.lblPercentage.Text = "0%";
             // 
@@ -64,11 +66,12 @@ namespace TombExtract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 72);
+            this.ClientSize = new System.Drawing.Size(446, 68);
             this.ControlBox = false;
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.prgOverall);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

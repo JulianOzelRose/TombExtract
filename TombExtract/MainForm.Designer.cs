@@ -79,6 +79,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR3 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR3 = new System.Windows.Forms.CheckedListBox();
             this.tpTR4 = new System.Windows.Forms.TabPage();
+            this.lblConvertTR4 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR4 = new System.Windows.Forms.Button();
             this.btnAboutTR4 = new System.Windows.Forms.Button();
             this.btnSelectAllTR4 = new System.Windows.Forms.Button();
@@ -90,6 +91,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR4 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR4 = new System.Windows.Forms.CheckedListBox();
             this.tpTR5 = new System.Windows.Forms.TabPage();
+            this.lblConvertTR5 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR5 = new System.Windows.Forms.Button();
             this.btnAboutTR5 = new System.Windows.Forms.Button();
             this.btnSelectAllTR5 = new System.Windows.Forms.Button();
@@ -101,6 +103,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR5 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR5 = new System.Windows.Forms.CheckedListBox();
             this.tpTR6 = new System.Windows.Forms.TabPage();
+            this.lblConvertTR6 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR6 = new System.Windows.Forms.Button();
             this.btnAboutTR6 = new System.Windows.Forms.Button();
             this.btnSelectAllTR6 = new System.Windows.Forms.Button();
@@ -129,9 +132,6 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConvertTR4 = new System.Windows.Forms.Label();
-            this.lblConvertTR5 = new System.Windows.Forms.Label();
-            this.lblConvertTR6 = new System.Windows.Forms.Label();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -155,6 +155,7 @@ namespace TombExtract
             this.pnlFilePaths.Controls.Add(this.lblSourceFile);
             this.pnlFilePaths.Controls.Add(this.txtDestinationFilePath);
             this.pnlFilePaths.Controls.Add(this.txtSourceFilePath);
+            this.pnlFilePaths.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlFilePaths.Location = new System.Drawing.Point(5, 29);
             this.pnlFilePaths.Name = "pnlFilePaths";
             this.pnlFilePaths.Size = new System.Drawing.Size(583, 71);
@@ -164,9 +165,9 @@ namespace TombExtract
             // 
             this.chkBackupOnWrite.AutoSize = true;
             this.chkBackupOnWrite.Enabled = false;
-            this.chkBackupOnWrite.Location = new System.Drawing.Point(308, 49);
+            this.chkBackupOnWrite.Location = new System.Drawing.Point(310, 49);
             this.chkBackupOnWrite.Name = "chkBackupOnWrite";
-            this.chkBackupOnWrite.Size = new System.Drawing.Size(129, 17);
+            this.chkBackupOnWrite.Size = new System.Drawing.Size(142, 19);
             this.chkBackupOnWrite.TabIndex = 6;
             this.chkBackupOnWrite.Text = "Backup before writing";
             this.chkBackupOnWrite.UseVisualStyleBackColor = true;
@@ -198,7 +199,7 @@ namespace TombExtract
             this.lblDestinationFile.AutoSize = true;
             this.lblDestinationFile.Location = new System.Drawing.Point(305, 6);
             this.lblDestinationFile.Name = "lblDestinationFile";
-            this.lblDestinationFile.Size = new System.Drawing.Size(159, 13);
+            this.lblDestinationFile.Size = new System.Drawing.Size(178, 15);
             this.lblDestinationFile.TabIndex = 3;
             this.lblDestinationFile.Text = "Tomb Raider I-III destination file:";
             // 
@@ -207,7 +208,7 @@ namespace TombExtract
             this.lblSourceFile.AutoSize = true;
             this.lblSourceFile.Location = new System.Drawing.Point(10, 6);
             this.lblSourceFile.Name = "lblSourceFile";
-            this.lblSourceFile.Size = new System.Drawing.Size(140, 13);
+            this.lblSourceFile.Size = new System.Drawing.Size(154, 15);
             this.lblSourceFile.TabIndex = 2;
             this.lblSourceFile.Text = "Tomb Raider I-III source file:";
             // 
@@ -216,7 +217,7 @@ namespace TombExtract
             this.txtDestinationFilePath.Location = new System.Drawing.Point(308, 25);
             this.txtDestinationFilePath.Name = "txtDestinationFilePath";
             this.txtDestinationFilePath.ReadOnly = true;
-            this.txtDestinationFilePath.Size = new System.Drawing.Size(231, 20);
+            this.txtDestinationFilePath.Size = new System.Drawing.Size(231, 23);
             this.txtDestinationFilePath.TabIndex = 1;
             // 
             // txtSourceFilePath
@@ -224,7 +225,7 @@ namespace TombExtract
             this.txtSourceFilePath.Location = new System.Drawing.Point(13, 25);
             this.txtSourceFilePath.Name = "txtSourceFilePath";
             this.txtSourceFilePath.ReadOnly = true;
-            this.txtSourceFilePath.Size = new System.Drawing.Size(231, 20);
+            this.txtSourceFilePath.Size = new System.Drawing.Size(231, 23);
             this.txtSourceFilePath.TabIndex = 0;
             // 
             // tabGame
@@ -235,6 +236,7 @@ namespace TombExtract
             this.tabGame.Controls.Add(this.tpTR4);
             this.tabGame.Controls.Add(this.tpTR5);
             this.tabGame.Controls.Add(this.tpTR6);
+            this.tabGame.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabGame.ItemSize = new System.Drawing.Size(193, 22);
             this.tabGame.Location = new System.Drawing.Point(5, 104);
             this.tabGame.Multiline = true;
@@ -283,7 +285,7 @@ namespace TombExtract
             this.lblConvertTR1.AutoSize = true;
             this.lblConvertTR1.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR1.Name = "lblConvertTR1";
-            this.lblConvertTR1.Size = new System.Drawing.Size(47, 13);
+            this.lblConvertTR1.Size = new System.Drawing.Size(52, 15);
             this.lblConvertTR1.TabIndex = 33;
             this.lblConvertTR1.Text = "Convert:";
             // 
@@ -301,7 +303,7 @@ namespace TombExtract
             "Nintendo Switch → PS4"});
             this.cmbConversionTR1.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR1.Name = "cmbConversionTR1";
-            this.cmbConversionTR1.Size = new System.Drawing.Size(186, 21);
+            this.cmbConversionTR1.Size = new System.Drawing.Size(186, 23);
             this.cmbConversionTR1.TabIndex = 32;
             this.cmbConversionTR1.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR1_SelectedIndexChanged);
             // 
@@ -329,10 +331,10 @@ namespace TombExtract
             // lblArrowTR1
             // 
             this.lblArrowTR1.AutoSize = true;
-            this.lblArrowTR1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR1.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR1.Name = "lblArrowTR1";
-            this.lblArrowTR1.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR1.Size = new System.Drawing.Size(24, 21);
             this.lblArrowTR1.TabIndex = 18;
             this.lblArrowTR1.Text = "→";
             // 
@@ -340,9 +342,10 @@ namespace TombExtract
             // 
             this.lstDestinationSavegamesTR1.AllowDrop = true;
             this.lstDestinationSavegamesTR1.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR1.ItemHeight = 15;
             this.lstDestinationSavegamesTR1.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR1.Name = "lstDestinationSavegamesTR1";
-            this.lstDestinationSavegamesTR1.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR1.Size = new System.Drawing.Size(238, 289);
             this.lstDestinationSavegamesTR1.TabIndex = 17;
             this.lstDestinationSavegamesTR1.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR1_DragDrop);
             this.lstDestinationSavegamesTR1.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR1_DragEnter);
@@ -373,7 +376,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR1.AutoSize = true;
             this.lblDestinationSavegamesTR1.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR1.Name = "lblDestinationSavegamesTR1";
-            this.lblDestinationSavegamesTR1.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR1.Size = new System.Drawing.Size(131, 15);
             this.lblDestinationSavegamesTR1.TabIndex = 14;
             this.lblDestinationSavegamesTR1.Text = "Destination savegames:";
             // 
@@ -382,7 +385,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR1.AutoSize = true;
             this.lblSourceSavegamesTR1.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR1.Name = "lblSourceSavegamesTR1";
-            this.lblSourceSavegamesTR1.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR1.Size = new System.Drawing.Size(107, 15);
             this.lblSourceSavegamesTR1.TabIndex = 13;
             this.lblSourceSavegamesTR1.Text = "Source savegames:";
             // 
@@ -435,7 +438,7 @@ namespace TombExtract
             this.lblConvertTR2.AutoSize = true;
             this.lblConvertTR2.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR2.Name = "lblConvertTR2";
-            this.lblConvertTR2.Size = new System.Drawing.Size(47, 13);
+            this.lblConvertTR2.Size = new System.Drawing.Size(52, 15);
             this.lblConvertTR2.TabIndex = 33;
             this.lblConvertTR2.Text = "Convert:";
             // 
@@ -453,7 +456,7 @@ namespace TombExtract
             "Nintendo Switch → PS4"});
             this.cmbConversionTR2.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR2.Name = "cmbConversionTR2";
-            this.cmbConversionTR2.Size = new System.Drawing.Size(186, 21);
+            this.cmbConversionTR2.Size = new System.Drawing.Size(186, 23);
             this.cmbConversionTR2.TabIndex = 32;
             this.cmbConversionTR2.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR2_SelectedIndexChanged);
             // 
@@ -481,10 +484,10 @@ namespace TombExtract
             // lblArrowTR2
             // 
             this.lblArrowTR2.AutoSize = true;
-            this.lblArrowTR2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR2.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR2.Name = "lblArrowTR2";
-            this.lblArrowTR2.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR2.Size = new System.Drawing.Size(24, 21);
             this.lblArrowTR2.TabIndex = 11;
             this.lblArrowTR2.Text = "→";
             // 
@@ -492,9 +495,10 @@ namespace TombExtract
             // 
             this.lstDestinationSavegamesTR2.AllowDrop = true;
             this.lstDestinationSavegamesTR2.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR2.ItemHeight = 15;
             this.lstDestinationSavegamesTR2.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR2.Name = "lstDestinationSavegamesTR2";
-            this.lstDestinationSavegamesTR2.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR2.Size = new System.Drawing.Size(238, 289);
             this.lstDestinationSavegamesTR2.TabIndex = 10;
             this.lstDestinationSavegamesTR2.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR2_DragDrop);
             this.lstDestinationSavegamesTR2.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR2_DragEnter);
@@ -525,7 +529,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR2.AutoSize = true;
             this.lblDestinationSavegamesTR2.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR2.Name = "lblDestinationSavegamesTR2";
-            this.lblDestinationSavegamesTR2.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR2.Size = new System.Drawing.Size(131, 15);
             this.lblDestinationSavegamesTR2.TabIndex = 7;
             this.lblDestinationSavegamesTR2.Text = "Destination savegames:";
             // 
@@ -534,7 +538,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR2.AutoSize = true;
             this.lblSourceSavegamesTR2.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR2.Name = "lblSourceSavegamesTR2";
-            this.lblSourceSavegamesTR2.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR2.Size = new System.Drawing.Size(107, 15);
             this.lblSourceSavegamesTR2.TabIndex = 6;
             this.lblSourceSavegamesTR2.Text = "Source savegames:";
             // 
@@ -586,7 +590,7 @@ namespace TombExtract
             this.lblConvertTR3.AutoSize = true;
             this.lblConvertTR3.Location = new System.Drawing.Point(14, 359);
             this.lblConvertTR3.Name = "lblConvertTR3";
-            this.lblConvertTR3.Size = new System.Drawing.Size(47, 13);
+            this.lblConvertTR3.Size = new System.Drawing.Size(52, 15);
             this.lblConvertTR3.TabIndex = 31;
             this.lblConvertTR3.Text = "Convert:";
             // 
@@ -604,7 +608,7 @@ namespace TombExtract
             "Nintendo Switch → PS4"});
             this.cmbConversionTR3.Location = new System.Drawing.Point(67, 356);
             this.cmbConversionTR3.Name = "cmbConversionTR3";
-            this.cmbConversionTR3.Size = new System.Drawing.Size(186, 21);
+            this.cmbConversionTR3.Size = new System.Drawing.Size(186, 23);
             this.cmbConversionTR3.TabIndex = 0;
             this.cmbConversionTR3.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR3_SelectedIndexChanged);
             // 
@@ -632,10 +636,10 @@ namespace TombExtract
             // lblArrowTR3
             // 
             this.lblArrowTR3.AutoSize = true;
-            this.lblArrowTR3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR3.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR3.Name = "lblArrowTR3";
-            this.lblArrowTR3.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR3.Size = new System.Drawing.Size(24, 21);
             this.lblArrowTR3.TabIndex = 27;
             this.lblArrowTR3.Text = "→";
             // 
@@ -643,9 +647,10 @@ namespace TombExtract
             // 
             this.lstDestinationSavegamesTR3.AllowDrop = true;
             this.lstDestinationSavegamesTR3.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR3.ItemHeight = 15;
             this.lstDestinationSavegamesTR3.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR3.Name = "lstDestinationSavegamesTR3";
-            this.lstDestinationSavegamesTR3.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR3.Size = new System.Drawing.Size(238, 289);
             this.lstDestinationSavegamesTR3.TabIndex = 26;
             this.lstDestinationSavegamesTR3.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR3_DragDrop);
             this.lstDestinationSavegamesTR3.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR3_DragEnter);
@@ -676,7 +681,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR3.AutoSize = true;
             this.lblDestinationSavegamesTR3.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR3.Name = "lblDestinationSavegamesTR3";
-            this.lblDestinationSavegamesTR3.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR3.Size = new System.Drawing.Size(131, 15);
             this.lblDestinationSavegamesTR3.TabIndex = 23;
             this.lblDestinationSavegamesTR3.Text = "Destination savegames:";
             // 
@@ -685,7 +690,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR3.AutoSize = true;
             this.lblSourceSavegamesTR3.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR3.Name = "lblSourceSavegamesTR3";
-            this.lblSourceSavegamesTR3.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR3.Size = new System.Drawing.Size(107, 15);
             this.lblSourceSavegamesTR3.TabIndex = 22;
             this.lblSourceSavegamesTR3.Text = "Source savegames:";
             // 
@@ -719,6 +724,15 @@ namespace TombExtract
             this.tpTR4.TabIndex = 3;
             this.tpTR4.Text = "Tomb Raider IV";
             this.tpTR4.UseVisualStyleBackColor = true;
+            // 
+            // lblConvertTR4
+            // 
+            this.lblConvertTR4.AutoSize = true;
+            this.lblConvertTR4.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR4.Name = "lblConvertTR4";
+            this.lblConvertTR4.Size = new System.Drawing.Size(208, 15);
+            this.lblConvertTR4.TabIndex = 47;
+            this.lblConvertTR4.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR4
             // 
@@ -755,10 +769,10 @@ namespace TombExtract
             // lblArrowTR4
             // 
             this.lblArrowTR4.AutoSize = true;
-            this.lblArrowTR4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR4.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR4.Name = "lblArrowTR4";
-            this.lblArrowTR4.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR4.Size = new System.Drawing.Size(24, 21);
             this.lblArrowTR4.TabIndex = 43;
             this.lblArrowTR4.Text = "→";
             // 
@@ -766,9 +780,10 @@ namespace TombExtract
             // 
             this.lstDestinationSavegamesTR4.AllowDrop = true;
             this.lstDestinationSavegamesTR4.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR4.ItemHeight = 15;
             this.lstDestinationSavegamesTR4.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR4.Name = "lstDestinationSavegamesTR4";
-            this.lstDestinationSavegamesTR4.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR4.Size = new System.Drawing.Size(238, 289);
             this.lstDestinationSavegamesTR4.TabIndex = 42;
             this.lstDestinationSavegamesTR4.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR4_DragDrop);
             this.lstDestinationSavegamesTR4.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR4_DragEnter);
@@ -799,7 +814,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR4.AutoSize = true;
             this.lblDestinationSavegamesTR4.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR4.Name = "lblDestinationSavegamesTR4";
-            this.lblDestinationSavegamesTR4.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR4.Size = new System.Drawing.Size(131, 15);
             this.lblDestinationSavegamesTR4.TabIndex = 39;
             this.lblDestinationSavegamesTR4.Text = "Destination savegames:";
             // 
@@ -808,7 +823,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR4.AutoSize = true;
             this.lblSourceSavegamesTR4.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR4.Name = "lblSourceSavegamesTR4";
-            this.lblSourceSavegamesTR4.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR4.Size = new System.Drawing.Size(107, 15);
             this.lblSourceSavegamesTR4.TabIndex = 38;
             this.lblSourceSavegamesTR4.Text = "Source savegames:";
             // 
@@ -842,6 +857,15 @@ namespace TombExtract
             this.tpTR5.TabIndex = 4;
             this.tpTR5.Text = "Tomb Raider V";
             this.tpTR5.UseVisualStyleBackColor = true;
+            // 
+            // lblConvertTR5
+            // 
+            this.lblConvertTR5.AutoSize = true;
+            this.lblConvertTR5.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR5.Name = "lblConvertTR5";
+            this.lblConvertTR5.Size = new System.Drawing.Size(208, 15);
+            this.lblConvertTR5.TabIndex = 58;
+            this.lblConvertTR5.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR5
             // 
@@ -878,10 +902,10 @@ namespace TombExtract
             // lblArrowTR5
             // 
             this.lblArrowTR5.AutoSize = true;
-            this.lblArrowTR5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR5.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR5.Name = "lblArrowTR5";
-            this.lblArrowTR5.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR5.Size = new System.Drawing.Size(24, 21);
             this.lblArrowTR5.TabIndex = 54;
             this.lblArrowTR5.Text = "→";
             // 
@@ -889,9 +913,10 @@ namespace TombExtract
             // 
             this.lstDestinationSavegamesTR5.AllowDrop = true;
             this.lstDestinationSavegamesTR5.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR5.ItemHeight = 15;
             this.lstDestinationSavegamesTR5.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR5.Name = "lstDestinationSavegamesTR5";
-            this.lstDestinationSavegamesTR5.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR5.Size = new System.Drawing.Size(238, 289);
             this.lstDestinationSavegamesTR5.TabIndex = 53;
             this.lstDestinationSavegamesTR5.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR5_DragDrop);
             this.lstDestinationSavegamesTR5.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR5_DragEnter);
@@ -922,7 +947,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR5.AutoSize = true;
             this.lblDestinationSavegamesTR5.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR5.Name = "lblDestinationSavegamesTR5";
-            this.lblDestinationSavegamesTR5.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR5.Size = new System.Drawing.Size(131, 15);
             this.lblDestinationSavegamesTR5.TabIndex = 50;
             this.lblDestinationSavegamesTR5.Text = "Destination savegames:";
             // 
@@ -931,7 +956,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR5.AutoSize = true;
             this.lblSourceSavegamesTR5.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR5.Name = "lblSourceSavegamesTR5";
-            this.lblSourceSavegamesTR5.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR5.Size = new System.Drawing.Size(107, 15);
             this.lblSourceSavegamesTR5.TabIndex = 49;
             this.lblSourceSavegamesTR5.Text = "Source savegames:";
             // 
@@ -965,6 +990,15 @@ namespace TombExtract
             this.tpTR6.TabIndex = 5;
             this.tpTR6.Text = "Tomb Raider VI";
             this.tpTR6.UseVisualStyleBackColor = true;
+            // 
+            // lblConvertTR6
+            // 
+            this.lblConvertTR6.AutoSize = true;
+            this.lblConvertTR6.Location = new System.Drawing.Point(14, 359);
+            this.lblConvertTR6.Name = "lblConvertTR6";
+            this.lblConvertTR6.Size = new System.Drawing.Size(208, 15);
+            this.lblConvertTR6.TabIndex = 69;
+            this.lblConvertTR6.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR6
             // 
@@ -1001,10 +1035,10 @@ namespace TombExtract
             // lblArrowTR6
             // 
             this.lblArrowTR6.AutoSize = true;
-            this.lblArrowTR6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArrowTR6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArrowTR6.Location = new System.Drawing.Point(277, 180);
             this.lblArrowTR6.Name = "lblArrowTR6";
-            this.lblArrowTR6.Size = new System.Drawing.Size(25, 20);
+            this.lblArrowTR6.Size = new System.Drawing.Size(24, 21);
             this.lblArrowTR6.TabIndex = 65;
             this.lblArrowTR6.Text = "→";
             // 
@@ -1012,9 +1046,10 @@ namespace TombExtract
             // 
             this.lstDestinationSavegamesTR6.AllowDrop = true;
             this.lstDestinationSavegamesTR6.FormattingEnabled = true;
+            this.lstDestinationSavegamesTR6.ItemHeight = 15;
             this.lstDestinationSavegamesTR6.Location = new System.Drawing.Point(322, 37);
             this.lstDestinationSavegamesTR6.Name = "lstDestinationSavegamesTR6";
-            this.lstDestinationSavegamesTR6.Size = new System.Drawing.Size(238, 303);
+            this.lstDestinationSavegamesTR6.Size = new System.Drawing.Size(238, 289);
             this.lstDestinationSavegamesTR6.TabIndex = 64;
             this.lstDestinationSavegamesTR6.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR6_DragDrop);
             this.lstDestinationSavegamesTR6.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstDestinationSavegamesTR6_DragEnter);
@@ -1045,7 +1080,7 @@ namespace TombExtract
             this.lblDestinationSavegamesTR6.AutoSize = true;
             this.lblDestinationSavegamesTR6.Location = new System.Drawing.Point(320, 16);
             this.lblDestinationSavegamesTR6.Name = "lblDestinationSavegamesTR6";
-            this.lblDestinationSavegamesTR6.Size = new System.Drawing.Size(120, 13);
+            this.lblDestinationSavegamesTR6.Size = new System.Drawing.Size(131, 15);
             this.lblDestinationSavegamesTR6.TabIndex = 61;
             this.lblDestinationSavegamesTR6.Text = "Destination savegames:";
             // 
@@ -1054,7 +1089,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR6.AutoSize = true;
             this.lblSourceSavegamesTR6.Location = new System.Drawing.Point(14, 16);
             this.lblSourceSavegamesTR6.Name = "lblSourceSavegamesTR6";
-            this.lblSourceSavegamesTR6.Size = new System.Drawing.Size(101, 13);
+            this.lblSourceSavegamesTR6.Size = new System.Drawing.Size(107, 15);
             this.lblSourceSavegamesTR6.TabIndex = 60;
             this.lblSourceSavegamesTR6.Text = "Source savegames:";
             // 
@@ -1106,46 +1141,46 @@ namespace TombExtract
             // tsmiBrowseTRXSourceFile
             // 
             this.tsmiBrowseTRXSourceFile.Name = "tsmiBrowseTRXSourceFile";
-            this.tsmiBrowseTRXSourceFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRXSourceFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRXSourceFile.Text = "Select Tomb Raider I-III source file...";
             this.tsmiBrowseTRXSourceFile.Click += new System.EventHandler(this.tsmiBrowseTRXSourceFile_Click);
             // 
             // tsmiBrowseTRXDestinationFile
             // 
             this.tsmiBrowseTRXDestinationFile.Name = "tsmiBrowseTRXDestinationFile";
-            this.tsmiBrowseTRXDestinationFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRXDestinationFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRXDestinationFile.Text = "Select Tomb Raider I-III destination file...";
             this.tsmiBrowseTRXDestinationFile.Click += new System.EventHandler(this.tsmiBrowseTRXDestinationFile_Click);
             // 
             // tsmiFileSeparator
             // 
             this.tsmiFileSeparator.Name = "tsmiFileSeparator";
-            this.tsmiFileSeparator.Size = new System.Drawing.Size(289, 6);
+            this.tsmiFileSeparator.Size = new System.Drawing.Size(290, 6);
             // 
             // tsmiBrowseTRX2SourceFile
             // 
             this.tsmiBrowseTRX2SourceFile.Name = "tsmiBrowseTRX2SourceFile";
-            this.tsmiBrowseTRX2SourceFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRX2SourceFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRX2SourceFile.Text = "Select Tomb Raider IV-VI source file...";
             this.tsmiBrowseTRX2SourceFile.Click += new System.EventHandler(this.tsmiBrowseTRX2SourceFile_Click);
             // 
             // tsmiBrowseTRX2DestinationFile
             // 
             this.tsmiBrowseTRX2DestinationFile.Name = "tsmiBrowseTRX2DestinationFile";
-            this.tsmiBrowseTRX2DestinationFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBrowseTRX2DestinationFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRX2DestinationFile.Text = "Select Tomb Raider IV-VI destination file...";
             this.tsmiBrowseTRX2DestinationFile.Click += new System.EventHandler(this.tsmiBrowseTRX2DestinationFile_Click);
             // 
             // tsmiFileSeparator2
             // 
             this.tsmiFileSeparator2.Name = "tsmiFileSeparator2";
-            this.tsmiFileSeparator2.Size = new System.Drawing.Size(289, 6);
+            this.tsmiFileSeparator2.Size = new System.Drawing.Size(290, 6);
             // 
             // tsmiBackupDestinationFile
             // 
             this.tsmiBackupDestinationFile.Enabled = false;
             this.tsmiBackupDestinationFile.Name = "tsmiBackupDestinationFile";
-            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(292, 22);
+            this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBackupDestinationFile.Text = "Backup destination file";
             this.tsmiBackupDestinationFile.Click += new System.EventHandler(this.tsmiBackupDestinationFile_Click);
             // 
@@ -1153,19 +1188,19 @@ namespace TombExtract
             // 
             this.tsmiExtract.Enabled = false;
             this.tsmiExtract.Name = "tsmiExtract";
-            this.tsmiExtract.Size = new System.Drawing.Size(292, 22);
+            this.tsmiExtract.Size = new System.Drawing.Size(293, 22);
             this.tsmiExtract.Text = "Extract";
             this.tsmiExtract.Click += new System.EventHandler(this.tsmiExtract_Click);
             // 
             // tsmiFileSeparator3
             // 
             this.tsmiFileSeparator3.Name = "tsmiFileSeparator3";
-            this.tsmiFileSeparator3.Size = new System.Drawing.Size(289, 6);
+            this.tsmiFileSeparator3.Size = new System.Drawing.Size(290, 6);
             // 
             // tsmiExit
             // 
             this.tsmiExit.Name = "tsmiExit";
-            this.tsmiExit.Size = new System.Drawing.Size(292, 22);
+            this.tsmiExit.Size = new System.Drawing.Size(293, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
             // 
@@ -1223,33 +1258,6 @@ namespace TombExtract
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
             // 
-            // lblConvertTR4
-            // 
-            this.lblConvertTR4.AutoSize = true;
-            this.lblConvertTR4.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR4.Name = "lblConvertTR4";
-            this.lblConvertTR4.Size = new System.Drawing.Size(185, 13);
-            this.lblConvertTR4.TabIndex = 47;
-            this.lblConvertTR4.Text = "Conversion not necessary for this title.";
-            // 
-            // lblConvertTR5
-            // 
-            this.lblConvertTR5.AutoSize = true;
-            this.lblConvertTR5.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR5.Name = "lblConvertTR5";
-            this.lblConvertTR5.Size = new System.Drawing.Size(185, 13);
-            this.lblConvertTR5.TabIndex = 58;
-            this.lblConvertTR5.Text = "Conversion not necessary for this title.";
-            // 
-            // lblConvertTR6
-            // 
-            this.lblConvertTR6.AutoSize = true;
-            this.lblConvertTR6.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR6.Name = "lblConvertTR6";
-            this.lblConvertTR6.Size = new System.Drawing.Size(185, 13);
-            this.lblConvertTR6.TabIndex = 69;
-            this.lblConvertTR6.Text = "Conversion not necessary for this title.";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1261,6 +1269,7 @@ namespace TombExtract
             this.Controls.Add(this.tabGame);
             this.Controls.Add(this.pnlFilePaths);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

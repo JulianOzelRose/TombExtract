@@ -46,55 +46,61 @@
             // lblLevel
             // 
             this.lblLevel.AutoSize = true;
+            this.lblLevel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLevel.Location = new System.Drawing.Point(16, 17);
             this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(36, 13);
+            this.lblLevel.Size = new System.Drawing.Size(37, 15);
             this.lblLevel.TabIndex = 0;
             this.lblLevel.Text = "Level:";
             // 
             // lblMode
             // 
             this.lblMode.AutoSize = true;
+            this.lblMode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMode.Location = new System.Drawing.Point(16, 43);
             this.lblMode.Name = "lblMode";
-            this.lblMode.Size = new System.Drawing.Size(37, 13);
+            this.lblMode.Size = new System.Drawing.Size(41, 15);
             this.lblMode.TabIndex = 1;
             this.lblMode.Text = "Mode:";
             // 
             // lblSaveNumber
             // 
             this.lblSaveNumber.AutoSize = true;
+            this.lblSaveNumber.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSaveNumber.Location = new System.Drawing.Point(16, 95);
             this.lblSaveNumber.Name = "lblSaveNumber";
-            this.lblSaveNumber.Size = new System.Drawing.Size(75, 13);
+            this.lblSaveNumber.Size = new System.Drawing.Size(81, 15);
             this.lblSaveNumber.TabIndex = 2;
             this.lblSaveNumber.Text = "Save Number:";
             // 
             // cmbLevel
             // 
             this.cmbLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLevel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLevel.FormattingEnabled = true;
             this.cmbLevel.Location = new System.Drawing.Point(175, 17);
             this.cmbLevel.Name = "cmbLevel";
-            this.cmbLevel.Size = new System.Drawing.Size(183, 21);
+            this.cmbLevel.Size = new System.Drawing.Size(183, 23);
             this.cmbLevel.TabIndex = 3;
             this.cmbLevel.SelectedIndexChanged += new System.EventHandler(this.cmbLevel_SelectedIndexChanged);
             // 
             // cmbMode
             // 
             this.cmbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMode.FormattingEnabled = true;
             this.cmbMode.Items.AddRange(new object[] {
             "New Game",
             "New Game+"});
-            this.cmbMode.Location = new System.Drawing.Point(250, 43);
+            this.cmbMode.Location = new System.Drawing.Point(240, 43);
             this.cmbMode.Name = "cmbMode";
-            this.cmbMode.Size = new System.Drawing.Size(108, 21);
+            this.cmbMode.Size = new System.Drawing.Size(118, 23);
             this.cmbMode.TabIndex = 4;
             this.cmbMode.SelectedIndexChanged += new System.EventHandler(this.cmbMode_SelectedIndexChanged);
             // 
             // nudSaveNumber
             // 
+            this.nudSaveNumber.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSaveNumber.Location = new System.Drawing.Point(305, 95);
             this.nudSaveNumber.Maximum = new decimal(new int[] {
             2147483647,
@@ -102,7 +108,7 @@
             0,
             0});
             this.nudSaveNumber.Name = "nudSaveNumber";
-            this.nudSaveNumber.Size = new System.Drawing.Size(53, 20);
+            this.nudSaveNumber.Size = new System.Drawing.Size(53, 23);
             this.nudSaveNumber.TabIndex = 5;
             this.nudSaveNumber.Value = new decimal(new int[] {
             1,
@@ -112,6 +118,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(109, 143);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -122,6 +129,7 @@
             // 
             // btnCreate
             // 
+            this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreate.Location = new System.Drawing.Point(190, 143);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
@@ -133,28 +141,31 @@
             // cmbPlatform
             // 
             this.cmbPlatform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlatform.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPlatform.FormattingEnabled = true;
             this.cmbPlatform.Items.AddRange(new object[] {
             "PC",
             "PS4",
             "Nintendo Switch"});
-            this.cmbPlatform.Location = new System.Drawing.Point(250, 69);
+            this.cmbPlatform.Location = new System.Drawing.Point(240, 69);
             this.cmbPlatform.Name = "cmbPlatform";
-            this.cmbPlatform.Size = new System.Drawing.Size(108, 21);
+            this.cmbPlatform.Size = new System.Drawing.Size(118, 23);
             this.cmbPlatform.TabIndex = 18;
             // 
             // lblPlatform
             // 
             this.lblPlatform.AutoSize = true;
+            this.lblPlatform.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlatform.Location = new System.Drawing.Point(16, 69);
             this.lblPlatform.Name = "lblPlatform";
-            this.lblPlatform.Size = new System.Drawing.Size(48, 13);
+            this.lblPlatform.Size = new System.Drawing.Size(56, 15);
             this.lblPlatform.TabIndex = 19;
             this.lblPlatform.Text = "Platform:";
             // 
             // lblSeparator
             // 
             this.lblSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSeparator.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeparator.Location = new System.Drawing.Point(16, 132);
             this.lblSeparator.Name = "lblSeparator";
             this.lblSeparator.Size = new System.Drawing.Size(344, 2);
@@ -176,6 +187,7 @@
             this.Controls.Add(this.cmbPlatform);
             this.Controls.Add(this.nudSaveNumber);
             this.Controls.Add(this.lblMode);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

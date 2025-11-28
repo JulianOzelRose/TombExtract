@@ -42,10 +42,12 @@ namespace TombExtract
             // 
             // lstSavegames
             // 
+            this.lstSavegames.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstSavegames.FormattingEnabled = true;
+            this.lstSavegames.ItemHeight = 15;
             this.lstSavegames.Location = new System.Drawing.Point(12, 12);
             this.lstSavegames.Name = "lstSavegames";
-            this.lstSavegames.Size = new System.Drawing.Size(237, 316);
+            this.lstSavegames.Size = new System.Drawing.Size(237, 319);
             this.lstSavegames.TabIndex = 0;
             this.lstSavegames.SelectedIndexChanged += new System.EventHandler(this.lstSavegames_SelectedIndexChanged);
             this.lstSavegames.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstSavegames_KeyDown);
@@ -53,7 +55,8 @@ namespace TombExtract
             // btnReorder
             // 
             this.btnReorder.Enabled = false;
-            this.btnReorder.Location = new System.Drawing.Point(174, 334);
+            this.btnReorder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReorder.Location = new System.Drawing.Point(174, 337);
             this.btnReorder.Name = "btnReorder";
             this.btnReorder.Size = new System.Drawing.Size(75, 23);
             this.btnReorder.TabIndex = 1;
@@ -63,7 +66,8 @@ namespace TombExtract
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(12, 334);
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(12, 337);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 2;
@@ -74,7 +78,7 @@ namespace TombExtract
             // btnMoveUp
             // 
             this.btnMoveUp.Enabled = false;
-            this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveUp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveUp.Location = new System.Drawing.Point(256, 12);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(32, 30);
@@ -86,7 +90,7 @@ namespace TombExtract
             // btnMoveDown
             // 
             this.btnMoveDown.Enabled = false;
-            this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveDown.Location = new System.Drawing.Point(256, 48);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(32, 30);
@@ -98,7 +102,7 @@ namespace TombExtract
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(256, 172);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(32, 30);
@@ -110,7 +114,7 @@ namespace TombExtract
             // btnNew
             // 
             this.btnNew.Enabled = false;
-            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.Location = new System.Drawing.Point(256, 136);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(32, 30);
@@ -122,7 +126,8 @@ namespace TombExtract
             // btnCancel
             // 
             this.btnCancel.Enabled = false;
-            this.btnCancel.Location = new System.Drawing.Point(93, 334);
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(93, 337);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -134,7 +139,7 @@ namespace TombExtract
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 366);
+            this.ClientSize = new System.Drawing.Size(296, 367);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnDelete);
@@ -144,6 +149,7 @@ namespace TombExtract
             this.Controls.Add(this.btnReorder);
             this.Controls.Add(this.lstSavegames);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
