@@ -3,7 +3,7 @@ This is a savegame manager for Tomb Raider I-VI Remastered. It lets you transfer
 Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
 For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-<img width="596" height="611" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/994d7600-1415-4564-a2c5-5cc09f9f2532" />
+<img width="596" height="611" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/645b9552-ce9d-45fa-8215-d5aebbc44cb1" />
 
 
 ## Installation and use
@@ -36,7 +36,7 @@ When you are done reordering your savegames, click "Reorder", and a progress dis
 You can also use the trash can button to delete a savegame.
 Again, it is recommended that you check the "Backup before writing" option in the main window before deleting or reordering savegames as a precautionary measure.
 
-<img width="298" height="398" alt="ManageSlots-UI" src="https://github.com/user-attachments/assets/8bf21e8b-8aae-441c-9b0f-35c8f346ec42" />
+<img width="298" height="399" alt="ManageSlotsForm-UI" src="https://github.com/user-attachments/assets/8b3526b9-c084-44ee-a2e1-beb31b61b101" />
 
 
 ## Level selection
@@ -45,4 +45,4 @@ Next, select the slot you would like to add the new savegame to, then click the 
 You can then specify the level, platform, game mode, and save number you'd like. All premade savegames start at the beginning
 of the level, with the metadata (statistics, time taken, distance travelled, etc.) all wiped clean.
 
-<img width="378" height="211" alt="CreateSavegame-UI" src="https://github.com/user-attachments/assets/61757f57-ee82-41be-b154-2fb861c00bec" />
+<img width="378" height="211" alt="CreateSavegameForm-UI" src="https://github.com/user-attachments/assets/1daa2fb4-d1b8-4264-a9f6-f9033b8c8df6" />
