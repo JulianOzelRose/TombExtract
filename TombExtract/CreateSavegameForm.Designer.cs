@@ -195,6 +195,7 @@
             this.Name = "CreateSavegameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Savegame";
+            this.Load += new System.EventHandler(this.CreateSavegameForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

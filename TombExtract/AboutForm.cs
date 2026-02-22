@@ -10,6 +10,14 @@ namespace TombExtract
             InitializeComponent();
         }
 
+        private void AboutForm_Load(object sender, EventArgs e)
+        {
+            if (ThemeUtilities.DARK_MODE_ENABLED)
+            {
+                ThemeUtilities.ApplyDarkTitleBar(this);
+            }
+        }
+
         private void llbGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/JulianOzelRose");

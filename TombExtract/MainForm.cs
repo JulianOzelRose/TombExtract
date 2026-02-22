@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -47,6 +48,54 @@ namespace TombExtract
             cmbConversionTR1.SelectedIndex = 0;
             cmbConversionTR2.SelectedIndex = 0;
             cmbConversionTR3.SelectedIndex = 0;
+        }
+
+        private void ApplyDarkMode()
+        {
+            ThemeUtilities.ApplyDarkMode(this);
+            ThemeUtilities.ApplyDarkTitleBar(this);
+
+            tabGame.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabGame.DrawItem -= tabGame_DrawItem;
+            tabGame.DrawItem += tabGame_DrawItem;
+
+            ThemeUtilities.DARK_MODE_ENABLED = true;
+        }
+
+        private void ApplyLightMode()
+        {
+            ThemeUtilities.ApplyLightMode(this);
+
+            tabGame.DrawItem -= tabGame_DrawItem;
+            tabGame.DrawMode = TabDrawMode.Normal;
+            this.BackColor = SystemColors.Control;
+
+            ThemeUtilities.ApplyLightTitleBar(this);
+            ThemeUtilities.DARK_MODE_ENABLED = false;
+        }
+
+        private void tabGame_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+            TabPage page = tabControl.TabPages[e.Index];
+
+            bool selected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+
+            Color backColor = selected ? ThemeUtilities.Surface : ThemeUtilities.Background;
+
+            using (SolidBrush brush = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(brush, e.Bounds);
+            }
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                page.Font,
+                e.Bounds,
+                ThemeUtilities.Text,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1164,36 +1213,42 @@ namespace TombExtract
         private void btnAboutTR1_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
         private void btnAboutTR2_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
         private void btnAboutTR3_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
         private void btnAboutTR4_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
         private void btnAboutTR5_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
         private void btnAboutTR6_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
@@ -1277,9 +1332,43 @@ namespace TombExtract
             System.Diagnostics.Process.Start("https://github.com/JulianOzelRose/TombExtract/issues");
         }
 
+        private void tsmiAlwaysOnTop_Click(object sender, EventArgs e)
+        {
+            this.TopMost = tsmiAlwaysOnTop.Checked;
+        }
+
+        private void tsmiStatusBar_Click(object sender, EventArgs e)
+        {
+            if (tsmiStatusBar.Checked)
+            {
+                ssrStatusStrip.Visible = true;
+                slblStatus.Visible = true;
+                this.Height += ssrStatusStrip.Height;
+            }
+            else
+            {
+                ssrStatusStrip.Visible = false;
+                slblStatus.Visible = false;
+                this.Height -= ssrStatusStrip.Height;
+            }
+        }
+
+        private void tsmiDarkMode_Click(object sender, EventArgs e)
+        {
+            if (tsmiDarkMode.Checked)
+            {
+                ApplyDarkMode();
+            }
+            else
+            {
+                ApplyLightMode();
+            }
+        }
+
         private void tsmiAbout_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
+            aboutForm.TopMost = TopMost;
             aboutForm.ShowDialog();
         }
 
@@ -1395,6 +1484,7 @@ namespace TombExtract
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX, tabGame.SelectedIndex,
                 slblStatus, chkBackupOnWrite.Checked);
 
+            manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
             TR1.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
@@ -1413,6 +1503,7 @@ namespace TombExtract
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX, tabGame.SelectedIndex,
                 slblStatus, chkBackupOnWrite.Checked);
 
+            manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
             TR2.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
@@ -1431,6 +1522,7 @@ namespace TombExtract
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX, tabGame.SelectedIndex,
                 slblStatus, chkBackupOnWrite.Checked);
 
+            manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
             TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
@@ -1449,6 +1541,7 @@ namespace TombExtract
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX2, tabGame.SelectedIndex,
                 slblStatus, chkBackupOnWrite.Checked);
 
+            manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
             TR4.PopulateDestinationSavegames(lstDestinationSavegamesTR4);
@@ -1467,6 +1560,7 @@ namespace TombExtract
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX2, tabGame.SelectedIndex,
                 slblStatus, chkBackupOnWrite.Checked);
 
+            manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
             TR5.PopulateDestinationSavegames(lstDestinationSavegamesTR5);
@@ -1485,6 +1579,7 @@ namespace TombExtract
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX2, tabGame.SelectedIndex,
                 slblStatus, chkBackupOnWrite.Checked);
 
+            manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
             TR6.PopulateDestinationSavegames(lstDestinationSavegamesTR6);

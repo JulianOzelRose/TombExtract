@@ -87,6 +87,12 @@ namespace TombExtract
         {
             DetermineOffsets();
             PopulateSavegamesConditionaly();
+
+            if (ThemeUtilities.DARK_MODE_ENABLED)
+            {
+                ThemeUtilities.ApplyDarkMode(this);
+                ThemeUtilities.ApplyDarkTitleBar(this);
+            }
         }
 
         private void ManageSlotsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -521,6 +527,7 @@ namespace TombExtract
             }
 
             CreateSavegameForm createSavegameForm = new CreateSavegameForm(CURRENT_TAB, savegamePath, (lstSavegames.SelectedItem as Savegame).Slot, (lstSavegames.SelectedItem as Savegame).Offset, slblStatus);
+            createSavegameForm.TopMost = TopMost;
             createSavegameForm.ShowDialog();
 
             PopulateSavegamesConditionaly();

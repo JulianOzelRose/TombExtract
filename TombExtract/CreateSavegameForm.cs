@@ -98,6 +98,15 @@ namespace TombExtract
             EnableDropdownsConditionally();
         }
 
+        private void CreateSavegameForm_Load(object sender, EventArgs e)
+        {
+            if (ThemeUtilities.DARK_MODE_ENABLED)
+            {
+                ThemeUtilities.ApplyDarkMode(this);
+                ThemeUtilities.ApplyDarkTitleBar(this);
+            }
+        }
+
         private void PopulateLevelSelectionList()
         {
             Dictionary<byte, string> selectedDict = null;

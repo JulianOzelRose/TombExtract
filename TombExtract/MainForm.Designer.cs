@@ -126,6 +126,10 @@ namespace TombExtract
             this.tsmiExtract = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFileSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsddbSettings = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tsmiAlwaysOnTop = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiStatusBar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDarkMode = new System.Windows.Forms.ToolStripMenuItem();
             this.tsddbHelp = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReportBug = new System.Windows.Forms.ToolStripMenuItem();
@@ -1109,6 +1113,7 @@ namespace TombExtract
             this.tsrToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tsrToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsddbFile,
+            this.tsddbSettings,
             this.tsddbHelp});
             this.tsrToolStrip.Location = new System.Drawing.Point(0, 0);
             this.tsrToolStrip.Name = "tsrToolStrip";
@@ -1203,6 +1208,47 @@ namespace TombExtract
             this.tsmiExit.Size = new System.Drawing.Size(293, 22);
             this.tsmiExit.Text = "Exit";
             this.tsmiExit.Click += new System.EventHandler(this.tsmiExit_Click);
+            // 
+            // tsddbSettings
+            // 
+            this.tsddbSettings.AutoToolTip = false;
+            this.tsddbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsddbSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAlwaysOnTop,
+            this.tsmiStatusBar,
+            this.tsmiDarkMode});
+            this.tsddbSettings.Image = ((System.Drawing.Image)(resources.GetObject("tsddbSettings.Image")));
+            this.tsddbSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsddbSettings.Name = "tsddbSettings";
+            this.tsddbSettings.ShowDropDownArrow = false;
+            this.tsddbSettings.Size = new System.Drawing.Size(53, 22);
+            this.tsddbSettings.Text = "Settings";
+            // 
+            // tsmiAlwaysOnTop
+            // 
+            this.tsmiAlwaysOnTop.CheckOnClick = true;
+            this.tsmiAlwaysOnTop.Name = "tsmiAlwaysOnTop";
+            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAlwaysOnTop.Text = "Always on top";
+            this.tsmiAlwaysOnTop.Click += new System.EventHandler(this.tsmiAlwaysOnTop_Click);
+            // 
+            // tsmiStatusBar
+            // 
+            this.tsmiStatusBar.Checked = true;
+            this.tsmiStatusBar.CheckOnClick = true;
+            this.tsmiStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmiStatusBar.Name = "tsmiStatusBar";
+            this.tsmiStatusBar.Size = new System.Drawing.Size(180, 22);
+            this.tsmiStatusBar.Text = "Status Bar";
+            this.tsmiStatusBar.Click += new System.EventHandler(this.tsmiStatusBar_Click);
+            // 
+            // tsmiDarkMode
+            // 
+            this.tsmiDarkMode.CheckOnClick = true;
+            this.tsmiDarkMode.Name = "tsmiDarkMode";
+            this.tsmiDarkMode.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDarkMode.Text = "Dark Mode";
+            this.tsmiDarkMode.Click += new System.EventHandler(this.tsmiDarkMode_Click);
             // 
             // tsddbHelp
             // 
@@ -1406,6 +1452,10 @@ namespace TombExtract
         private System.Windows.Forms.Label lblConvertTR4;
         private System.Windows.Forms.Label lblConvertTR5;
         private System.Windows.Forms.Label lblConvertTR6;
+        private System.Windows.Forms.ToolStripDropDownButton tsddbSettings;
+        private System.Windows.Forms.ToolStripMenuItem tsmiStatusBar;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDarkMode;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAlwaysOnTop;
     }
 }
 

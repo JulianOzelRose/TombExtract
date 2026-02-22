@@ -10,6 +10,15 @@ namespace TombExtract
             InitializeComponent();
         }
 
+        private void ProgressForm_Load(object sender, EventArgs e)
+        {
+            if (ThemeUtilities.DARK_MODE_ENABLED)
+            {
+                ThemeUtilities.ApplyDarkMode(this);
+                ThemeUtilities.ApplyDarkTitleBar(this);
+            }
+        }
+
         public void UpdateProgressBar(int newValue)
         {
             prgOverall.Value = newValue;
