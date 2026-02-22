@@ -832,6 +832,7 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
             TR1.SetProgressForm(progressForm);
@@ -893,6 +894,7 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
             TR2.SetProgressForm(progressForm);
@@ -954,6 +956,7 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
             TR3.SetProgressForm(progressForm);
@@ -1015,6 +1018,7 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
             TR4.SetProgressForm(progressForm);
@@ -1076,6 +1080,7 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
             TR5.SetProgressForm(progressForm);
@@ -1137,6 +1142,7 @@ namespace TombExtract
 
             progressForm = new ProgressForm();
             progressForm.Owner = this;
+            progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
             TR6.SetProgressForm(progressForm);
