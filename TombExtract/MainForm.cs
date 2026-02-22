@@ -43,8 +43,13 @@ namespace TombExtract
         // Savegame file sizes
         private const int SAVEGAME_FILE_SIZE_TRX = 0x152004;
 
+        // Config
+        private const string CONFIG_FILE_NAME = "TombExtract.ini";
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ReadConfigFile();
+
             cmbConversionTR1.SelectedIndex = 0;
             cmbConversionTR2.SelectedIndex = 0;
             cmbConversionTR3.SelectedIndex = 0;
@@ -98,6 +103,58 @@ namespace TombExtract
             );
         }
 
+        private void ReadConfigFile()
+        {
+            string rootFolder = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(rootFolder, CONFIG_FILE_NAME);
+
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("StatusBar"))
+                    {
+                        if (bool.TryParse(line.Substring("StatusBar=".Length), out bool statusBar))
+                        {
+                            tsmiStatusBar.Checked = statusBar;
+                            ssrStatusStrip.Visible = statusBar;
+                            slblStatus.Visible = statusBar;
+
+                            if (!statusBar)
+                            {
+                                this.Height -= ssrStatusStrip.Height;
+                            }
+                        }
+                    }
+                    else if (line.StartsWith("DarkMode="))
+                    {
+                        if (bool.TryParse(line.Substring("DarkMode=".Length), out bool darkMode) && darkMode)
+                        {
+                            ApplyDarkMode();
+                            tsmiDarkMode.Checked = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                UpdateConfigFile();
+            }
+        }
+
+        private void UpdateConfigFile()
+        {
+            string rootFolder = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(rootFolder, CONFIG_FILE_NAME);
+
+            string content = $"StatusBar={tsmiStatusBar.Checked}\n";
+            content += $"DarkMode={tsmiDarkMode.Checked}\n";
+
+            File.WriteAllText(filePath, content);
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (IsAnyWriting())
@@ -111,6 +168,8 @@ namespace TombExtract
                     e.Cancel = true;
                 }
             }
+
+            UpdateConfigFile();
         }
 
         private bool IsAnyWriting()
