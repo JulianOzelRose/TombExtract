@@ -46,3 +46,9 @@ You can then specify the level, platform, game mode, and save number you'd like.
 of the level, with the metadata (statistics, time taken, distance travelled, etc.) all wiped clean.
 
 <img width="378" height="211" alt="CreateSavegameForm-UI" src="https://github.com/user-attachments/assets/1daa2fb4-d1b8-4264-a9f6-f9033b8c8df6" />
+
+## Dark Mode
+If you prefer a darker interface, you can enable Dark Mode from the Settings menu at the top of the program.
+Please note that Dark Mode may not display correctly when using very high or very low DPI settings.
+
+<img width="596" height="589" alt="DarkMode-UI" src="https://github.com/user-attachments/assets/6c19762e-72f5-4868-ad41-0a6e817c78ba" />
