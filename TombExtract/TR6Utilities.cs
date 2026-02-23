@@ -233,20 +233,20 @@ namespace TombExtract
 
                 MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                slblStatus.Text = $"Error transferring savegame(s).";
+                slblStatus.Text = $"Error transferring savegame(s)";
             }
             else if (e.Cancelled)
             {
                 MessageBox.Show("Operation was cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                slblStatus.Text = $"Conversion canceled.";
+                slblStatus.Text = $"Conversion canceled";
             }
             else
             {
                 MessageBox.Show($"Successfully transferred {totalSavegames} savegame(s) to destination file.",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                slblStatus.Text = $"Successfully transferred {totalSavegames} savegame(s) to destination file.";
+                slblStatus.Text = $"Successfully transferred {totalSavegames} savegame(s) to destination file";
             }
 
             PopulateDestinationSavegames(lstDestinationSavegamesTR6);

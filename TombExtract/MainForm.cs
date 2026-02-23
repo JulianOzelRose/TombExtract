@@ -267,7 +267,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameTRX(path))
             {
-                MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Tomb Raider I-III savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -289,14 +289,14 @@ namespace TombExtract
                            cklSourceSavegamesTR2.Items.Count +
                            cklSourceSavegamesTR3.Items.Count;
 
-            slblStatus.Text = $"{numSaves} savegames found in \"{path}\"";
+            slblStatus.Text = $"{numSaves} savegame(s) found in \"{path}\"";
         }
 
         private void SetSourceFileTRX2(string path)
         {
             if (!IsValidSavegameTRX(path))
             {
-                MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Tomb Raider IV-VI savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -318,14 +318,14 @@ namespace TombExtract
                            cklSourceSavegamesTR5.Items.Count +
                            cklSourceSavegamesTR6.Items.Count;
 
-            slblStatus.Text = $"{numSaves} savegames found in \"{path}\"";
+            slblStatus.Text = $"{numSaves} savegame(s) found in \"{path}\"";
         }
 
         private void SetDestinationFileTRX(string path)
         {
             if (!IsValidSavegameTRX(path))
             {
-                MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Tomb Raider I-III savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -350,7 +350,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameTRX(path))
             {
-                MessageBox.Show("Invalid savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Tomb Raider IV-VI savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -796,19 +796,19 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -858,19 +858,19 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -920,19 +920,19 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -982,19 +982,19 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1044,19 +1044,19 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1106,19 +1106,19 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("No savegames selected to convert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                MessageBox.Show("Could not find savegame source file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                MessageBox.Show("Could not find savegame destination file!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
