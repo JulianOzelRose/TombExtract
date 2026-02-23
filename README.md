@@ -3,7 +3,7 @@ This is a savegame manager for Tomb Raider I-VI Remastered. It lets you transfer
 Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
 For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-<img width="596" height="611" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/645b9552-ce9d-45fa-8215-d5aebbc44cb1" />
+<img width="596" height="611" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/96079cae-3325-4fcc-b99e-af7fb2c0e189" />
 
 
 ## Installation and use
