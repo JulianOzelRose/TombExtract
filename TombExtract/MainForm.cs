@@ -79,6 +79,18 @@ namespace TombExtract
             ThemeUtilities.DARK_MODE_ENABLED = false;
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int WS_EX_COMPOSITED = 0x02000000;
+
+                var cp = base.CreateParams;
+                cp.ExStyle |= WS_EX_COMPOSITED;
+                return cp;
+            }
+        }
+
         private void tabGame_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabControl tabControl = sender as TabControl;
