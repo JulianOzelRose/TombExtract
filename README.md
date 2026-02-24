@@ -30,25 +30,25 @@ If you are trying to convert from PS4, you must first decrypt the savegame file 
 [here](https://github.com/JulianOzelRose/TombExtract/issues/1#issuecomment-1978837071). It is recommended that you check the "Backup before writing" option before transferring or converting.
 
 ## Deleting and reordering savegames
+<img width="298" height="399" alt="ManageSlotsForm-UI" src="https://github.com/user-attachments/assets/8b3526b9-c084-44ee-a2e1-beb31b61b101" />
+
 To delete and/or reorder savegames, load the savegame file you'd like to modify as the destination file, then click "Manage Slots".
 Use the up and down arrows at the top to reorder the savegames to different slots.
 When you are done reordering your savegames, click "Reorder", and a progress display will appear to show how far along the process is.
 You can also use the trash can button to delete a savegame.
 Again, it is recommended that you check the "Backup before writing" option in the main window before deleting or reordering savegames as a precautionary measure.
 
-<img width="298" height="399" alt="ManageSlotsForm-UI" src="https://github.com/user-attachments/assets/8b3526b9-c084-44ee-a2e1-beb31b61b101" />
-
 
 ## Level selection
+<img width="378" height="211" alt="CreateSavegameForm-UI" src="https://github.com/user-attachments/assets/1daa2fb4-d1b8-4264-a9f6-f9033b8c8df6" />
+
 To use level selection, load the savegame file you'd like to modify as the destination file, then click "Manage Slots".
 Next, select the slot you would like to add the new savegame to, then click the large plus button on the right.
 You can then specify the level, platform, game mode, and save number you'd like. All premade savegames start at the beginning
 of the level, with the metadata (statistics, time taken, distance travelled, etc.) all wiped clean.
 
-<img width="378" height="211" alt="CreateSavegameForm-UI" src="https://github.com/user-attachments/assets/1daa2fb4-d1b8-4264-a9f6-f9033b8c8df6" />
-
 ## Dark Mode
+<img width="596" height="589" alt="TombExtract-DarkMode-UI" src="https://github.com/user-attachments/assets/c3acbdd6-9e58-4eff-856a-239ba0e2a87f" />
+
 If you prefer a darker interface, you can enable Dark Mode from the Settings menu at the top of the program.
 Please note that Dark Mode may not display correctly when using very high or very low DPI settings.
-
-<img width="596" height="589" alt="DarkMode-UI" src="https://github.com/user-attachments/assets/6c19762e-72f5-4868-ad41-0a6e817c78ba" />
