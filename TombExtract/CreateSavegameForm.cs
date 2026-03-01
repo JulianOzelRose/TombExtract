@@ -15,6 +15,8 @@ namespace TombExtract
         private const int TAB_TR5 = 4;
         private const int TAB_TR6 = 5;
 
+        private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
+
         int SLOT_NUMBER;
         int SAVE_NUMBER_OFFSET;
         int savegameOffset;
@@ -1763,7 +1765,356 @@ namespace TombExtract
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
                 {
-                    // TODO: Add TR6 buffers
+                    { 0, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_BACK_STREETS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_BACK_STREETS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_DERELICT_APARTMENT_BLOCK_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_DERELICT_APARTMENT_BLOCK_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_MARGOT_CARVIERS_APARTMENT_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_MARGOT_CARVIERS_APARTMENT_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_INDUSTRIAL_ROOF_TOPS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_INDUSTRIAL_ROOF_TOPS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_1_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_1_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_2_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_2_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_3_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_3_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_SERPENT_ROUGE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_SERPENT_ROUGE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_RENNES_PAWNSHOP_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_RENNES_PAWNSHOP_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_WILLOWTREE_HERBALIST_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_WILLOWTREE_HERBALIST_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_CHURCH_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_CHURCH_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_CAFE_METRO_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_CAFE_METRO_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_GRAVEYARD_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_GRAVEYARD_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_BOUCHARDS_HIDEOUT_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_BOUCHARDS_HIDEOUT_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_STORM_DRAINS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_STORM_DRAINS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_GALLERIES_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_GALLERIES_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_GALLERIES_UNDER_SIEGE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_GALLERIES_UNDER_SIEGE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_TOMB_OF_ANCIENTS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_TOMB_OF_ANCIENTS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_ARCHAEOLOGICAL_DIG_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_ARCHAEOLOGICAL_DIG_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_VON_CROYS_APARTMENT_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_VON_CROYS_APARTMENT_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 20, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_MONSTRUM_CRIMESCENE_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_MONSTRUM_CRIMESCENE_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 21, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_STRAHOV_FORTRESS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_STRAHOV_FORTRESS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 22, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_BIO_RESEARCH_FACILITY_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_BIO_RESEARCH_FACILITY_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 23, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_AQUATIC_RESEARCH_AREA_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_AQUATIC_RESEARCH_AREA_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 24, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANITARIUM_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANITARIUM_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 25, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_MAXIMUM_CONTAINMENT_AREA_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_MAXIMUM_CONTAINMENT_AREA_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 26, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_VAULT_OF_TROPHIES_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_VAULT_OF_TROPHIES_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 27, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_BOAZ_RETURNS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_BOAZ_RETURNS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 28, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_ECKHARDTS_LAB_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_ECKHARDTS_LAB_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 29, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_LOST_DOMAIN_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_LOST_DOMAIN_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 30, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_HALL_OF_SEASONS_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_HALL_OF_SEASONS_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 31, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_NEPTUNES_HALL_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_NEPTUNES_HALL_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 32, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_WRATH_OF_THE_BEAST_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_WRATH_OF_THE_BEAST_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 33, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANCTUARY_OF_FLAME_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANCTUARY_OF_FLAME_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
+                    { 34, new Dictionary<GameMode, Dictionary<string, string>>()
+                        {
+                            { GameMode.Normal, new Dictionary<string, string>()
+                                {
+                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_BREATH_OF_HADES_NORMAL_PC.bin" },
+                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_BREATH_OF_HADES_NORMAL_PC.bin" },
+                                }
+                            },
+                        }
+                    },
                 };
             }
         }
@@ -1862,6 +2213,12 @@ namespace TombExtract
                     // Write save number
                     fs.Seek(savegameOffset + SAVE_NUMBER_OFFSET, SeekOrigin.Begin);
                     fs.Write(BitConverter.GetBytes((int)nudSaveNumber.Value), 0, 4);
+
+                    if (CURRENT_TAB == TAB_TR6)
+                    {
+                        fs.Seek(savegameOffset + SLOT_NUMBER_OFFSET_TR6, SeekOrigin.Begin);
+                        fs.WriteByte((byte)SLOT_NUMBER);
+                    }
                 }
 
                 string savegameString = GetSavegameString();

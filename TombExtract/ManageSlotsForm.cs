@@ -508,13 +508,6 @@ namespace TombExtract
                 return;
             }
 
-            if (CURRENT_TAB == TAB_TR6)
-            {
-                string warningMessage = $"This feature is under construction for Tomb Raider VI.";
-                MessageBox.Show(warningMessage, "Feature Under Construction", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (lstSavegames.SelectedItem.ToString() != "Empty Slot")
             {
                 DialogResult result = MessageBox.Show($"Are you sure you wish to overwrite '{(Savegame)lstSavegames.SelectedItem}'?",
