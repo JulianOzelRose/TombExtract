@@ -162,7 +162,7 @@ namespace TombExtract
             string filePath = Path.Combine(rootFolder, CONFIG_FILE_NAME);
 
             string content = $"StatusBar={tsmiStatusBar.Checked}\n";
-            content += $"DarkMode={tsmiDarkMode.Checked}\n";
+            content += $"DarkMode={tsmiDarkMode.Checked}";
 
             File.WriteAllText(filePath, content);
         }
