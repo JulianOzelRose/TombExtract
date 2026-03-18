@@ -20,8 +20,9 @@ namespace TombExtract
         public int Slot { get; set; }
         public byte[] SavegameBytes { get; set; }
         public bool SaveNumberFirst { get; set; }
+        public bool IsChallengeMode { get; set; }
 
-        public Savegame(int savegameOffset, Int32 saveNumber, string levelName, GameMode gameMode, bool saveNumberFirst = false)
+        public Savegame(int savegameOffset, Int32 saveNumber, string levelName, GameMode gameMode, bool saveNumberFirst = false, bool isChallengeMode = false)
         {
             Number = saveNumber;
             Name = levelName;
@@ -29,6 +30,7 @@ namespace TombExtract
             Mode = gameMode;
             IsEmptySlot = false;
             SaveNumberFirst = saveNumberFirst;
+            IsChallengeMode = isChallengeMode;
         }
 
         public override string ToString()
@@ -38,12 +40,15 @@ namespace TombExtract
                 return "Empty Slot";
             }
 
+            string modeSuffix = Mode == GameMode.Plus ? "+" : "";
+            string challengePrefix = IsChallengeMode ? "💀 " : "";
+
             if (SaveNumberFirst)
             {
-                return $"{Number} - {Name}{(Mode == GameMode.Plus ? "+" : "")}";
+                return $"{Number} - {Name}{modeSuffix}";
             }
 
-            return $"{Name}{(Mode == GameMode.Plus ? "+" : "")} - {Number}";
+            return $"{challengePrefix}{Name}{modeSuffix} - {Number}";
         }
     }
 

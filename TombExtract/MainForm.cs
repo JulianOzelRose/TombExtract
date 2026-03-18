@@ -43,6 +43,10 @@ namespace TombExtract
         // Savegame file sizes
         private const int SAVEGAME_FILE_SIZE_TRX = 0x152004;
 
+        // Patch-related
+        private const int SAVEGAME_VERSION_OFFSET = 0x000;
+        private const byte PATCH5_SIGNATURE = 0x3C;
+
         // Config
         private const string CONFIG_FILE_NAME = "TombExtract.ini";
 
@@ -275,6 +279,11 @@ namespace TombExtract
             return fileInfo.Length >= SAVEGAME_FILE_SIZE_TRX;
         }
 
+        public bool IsPatch5Savegame(byte[] fileData)
+        {
+            return fileData[SAVEGAME_VERSION_OFFSET] >= PATCH5_SIGNATURE;
+        }
+
         private void SetSourceFileTRX(string path)
         {
             if (!IsValidSavegameTRX(path))
@@ -300,6 +309,20 @@ namespace TombExtract
             int numSaves = cklSourceSavegamesTR1.Items.Count +
                            cklSourceSavegamesTR2.Items.Count +
                            cklSourceSavegamesTR3.Items.Count;
+
+            byte[] fileData = File.ReadAllBytes(path);
+            bool isPatch5 = IsPatch5Savegame(fileData);
+
+            if (isPatch5)
+            {
+                cmbConversionTR1.SelectedIndex = 0;
+                cmbConversionTR2.SelectedIndex = 0;
+                cmbConversionTR3.SelectedIndex = 0;
+
+                cmbConversionTR1.Enabled = false;
+                cmbConversionTR2.Enabled = false;
+                cmbConversionTR3.Enabled = false;
+            }
 
             slblStatus.Text = $"{numSaves} savegame(s) found in \"{path}\"";
         }
@@ -354,6 +377,20 @@ namespace TombExtract
             TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
 
             EnableButtonsConditionally();
+
+            byte[] fileData = File.ReadAllBytes(path);
+            bool isPatch5 = IsPatch5Savegame(fileData);
+
+            if (isPatch5)
+            {
+                cmbConversionTR1.SelectedIndex = 0;
+                cmbConversionTR2.SelectedIndex = 0;
+                cmbConversionTR3.SelectedIndex = 0;
+
+                cmbConversionTR1.Enabled = false;
+                cmbConversionTR2.Enabled = false;
+                cmbConversionTR3.Enabled = false;
+            }
 
             slblStatus.Text = $"Opened destination file: \"{path}\"";
         }

@@ -13,15 +13,24 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
+        private const int SAVEGAME_VERSION_OFFSET = 0x000;
         private const int SLOT_STATUS_OFFSET = 0x004;
         private const int GAME_MODE_OFFSET = 0x008;
         private const int SAVE_NUMBER_OFFSET = 0x00C;
         private const int LEVEL_INDEX_OFFSET = 0x8D6;
+        private const int CHALLENGE_MODE_OFFSET = 0x990;
 
         // Savegame constants
-        private const int BASE_SAVEGAME_OFFSET_TR3 = 0xE2000;
-        private const int SAVEGAME_SIZE = 0x3800;
         private const int MAX_SAVEGAMES = 32;
+        private int BASE_SAVEGAME_OFFSET_TR3;
+        private int SAVEGAME_SIZE;
+
+        // Patch-specific
+        private const byte PATCH5_SIGNATURE = 0x3C;
+        private const int BASE_SAVEGAME_OFFSET_TR3_PREPATCH = 0xE2000;
+        private const int BASE_SAVEGAME_OFFSET_TR3_PATCH5 = 0x1A2000;
+        private const int SAVEGAME_SIZE_PREPATCH = 0x3800;
+        private const int SAVEGAME_SIZE_PATCH5 = 0x6800;
 
         // Conversion
         private bool PS4_TO_PC = false;
@@ -46,6 +55,19 @@ namespace TombExtract
             {
                 byte[] fileData = File.ReadAllBytes(savegameSourcePath);
 
+                bool isPatch5 = IsPatch5Savegame(fileData);
+
+                if (isPatch5)
+                {
+                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
+                    SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                }
+                else
+                {
+                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
+                    SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                }
+
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
@@ -59,9 +81,10 @@ namespace TombExtract
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
+                        bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
 
                         string levelName = LevelNames.TR3[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
                         cklSavegames.Items.Add(savegame);
                     }
                 }
@@ -80,6 +103,19 @@ namespace TombExtract
             {
                 byte[] fileData = File.ReadAllBytes(savegameDestinationPath);
 
+                bool isPatch5 = IsPatch5Savegame(fileData);
+
+                if (isPatch5)
+                {
+                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
+                    SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                }
+                else
+                {
+                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
+                    SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                }
+
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
@@ -93,9 +129,10 @@ namespace TombExtract
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
+                        bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
 
                         string levelName = LevelNames.TR3[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
                         lstSavegames.Items.Add(savegame);
                     }
                     else
@@ -414,6 +451,11 @@ namespace TombExtract
             {
                 e.Result = ex;
             }
+        }
+
+        private bool IsPatch5Savegame(byte[] fileData)
+        {
+            return fileData[SAVEGAME_VERSION_OFFSET] >= PATCH5_SIGNATURE;
         }
 
         public bool IsWriting()
