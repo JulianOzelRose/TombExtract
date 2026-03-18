@@ -22,8 +22,10 @@ namespace TombExtract
 
         // Savegame constants
         private const int MAX_SAVEGAMES = 32;
-        private int BASE_SAVEGAME_OFFSET_TR3;
-        private int SAVEGAME_SIZE;
+        private int SOURCE_BASE_SAVEGAME_OFFSET_TR3;
+        private int DESTINATION_BASE_SAVEGAME_OFFSET_TR3;
+        private int SOURCE_SAVEGAME_SIZE;
+        private int DESTINATION_SAVEGAME_SIZE;
 
         // Patch-specific
         private const byte PATCH5_SIGNATURE = 0x3C;
@@ -40,6 +42,7 @@ namespace TombExtract
         private bool PC_TO_SWITCH = false;
         private bool PS4_TO_SWITCH = false;
         private bool SWITCH_TO_PS4 = false;
+        private bool PREPATCH_TO_PATCH5 = false;
 
         // Misc
         private int totalSavegames = 0;
@@ -59,18 +62,18 @@ namespace TombExtract
 
                 if (isPatch5)
                 {
-                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
-                    SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    SOURCE_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
+                    SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
                 }
                 else
                 {
-                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
-                    SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    SOURCE_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
+                    SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
                 }
 
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
+                    int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR3 + (i * SOURCE_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
@@ -107,18 +110,18 @@ namespace TombExtract
 
                 if (isPatch5)
                 {
-                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
-                    SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    DESTINATION_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
+                    DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
                 }
                 else
                 {
-                    BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
-                    SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    DESTINATION_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
+                    DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
                 }
 
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR3 + (i * SAVEGAME_SIZE);
+                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (i * DESTINATION_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
@@ -191,12 +194,26 @@ namespace TombExtract
             PC_TO_SWITCH = false;
             PS4_TO_SWITCH = false;
             SWITCH_TO_PS4 = false;
+            PREPATCH_TO_PATCH5 = false;
 
             int conversionNumber = cmbConversion.SelectedIndex;
 
             if (conversionNumber == 0)
             {
-                NO_CONVERT = true;
+                byte[] sourceFileData = File.ReadAllBytes(savegameSourcePath);
+                bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
+
+                byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPath);
+                bool isDestinationPatch5 = IsPatch5Savegame(destinationFileData);
+
+                if (!isSourcePatch5 && isDestinationPatch5)
+                {
+                    PREPATCH_TO_PATCH5 = true;
+                }
+                else
+                {
+                    NO_CONVERT = true;
+                }
             }
             else if (conversionNumber == 1)
             {
@@ -288,9 +305,9 @@ namespace TombExtract
                         progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
                         int currentSavegameOffset = savegames[i].Offset;
-                        byte[] savegameBytes = new byte[SAVEGAME_SIZE];
+                        byte[] savegameBytes = new byte[SOURCE_SAVEGAME_SIZE];
 
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SOURCE_SAVEGAME_SIZE; offset++, j++)
                         {
                             sourceFile.Seek(offset, SeekOrigin.Begin);
                             byte currentByte = (byte)sourceFile.ReadByte();
@@ -316,29 +333,54 @@ namespace TombExtract
                     {
                         progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
-                        int currentSavegameOffset = savegames[i].Offset;
+                        int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR3) / SOURCE_SAVEGAME_SIZE;
+                        int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
                         byte[] savegameBytes = savegames[i].SavegameBytes;
 
                         if (NO_CONVERT)
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 destinationFile.Seek(offset, SeekOrigin.Begin);
                                 destinationFile.Write(currentByte, 0, currentByte.Length);
+                            }
+                        }
+                        else if (PREPATCH_TO_PATCH5)
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Patch 5...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            {
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
+
+                                if (currentRelativeOffset >= 0x98C)
+                                {
+                                    destinationFile.Seek(offset + 0x10, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
                             }
                         }
                         else if (PC_TO_PS4)
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
                                 int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 if (currentRelativeOffset >= 0xAAA)
                                 {
@@ -356,10 +398,11 @@ namespace TombExtract
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
                                 int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 if (currentRelativeOffset >= 0xAAA)
                                 {
@@ -377,10 +420,11 @@ namespace TombExtract
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
                                 int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 if (currentRelativeOffset >= 0xAAA)
                                 {
@@ -398,9 +442,10 @@ namespace TombExtract
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 destinationFile.Seek(offset, SeekOrigin.Begin);
                                 destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -410,10 +455,11 @@ namespace TombExtract
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
                                 int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 if (currentRelativeOffset >= 0xAAA)
                                 {
@@ -431,9 +477,10 @@ namespace TombExtract
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
-                                byte[] currentByte = { savegameBytes[j] };
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
 
                                 destinationFile.Seek(offset, SeekOrigin.Begin);
                                 destinationFile.Write(currentByte, 0, currentByte.Length);
