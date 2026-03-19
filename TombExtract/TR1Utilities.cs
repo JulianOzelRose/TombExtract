@@ -22,7 +22,8 @@ namespace TombExtract
 
         // Savegame constants
         private const int MAX_SAVEGAMES = 32;
-        private int BASE_SAVEGAME_OFFSET_TR1;
+        private int SOURCE_BASE_SAVEGAME_OFFSET_TR1;
+        private int DESTINATION_BASE_SAVEGAME_OFFSET_TR1;
         private int SOURCE_SAVEGAME_SIZE;
         private int DESTINATION_SAVEGAME_SIZE;
 
@@ -61,18 +62,18 @@ namespace TombExtract
 
                 if (isPatch5)
                 {
-                    BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PATCH5;
                     SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    SOURCE_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PATCH5;
                 }
                 else
                 {
-                    BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PREPATCH;
                     SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    SOURCE_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PREPATCH;
                 }
 
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * SOURCE_SAVEGAME_SIZE);
+                    int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR1 + (i * SOURCE_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
@@ -109,18 +110,18 @@ namespace TombExtract
 
                 if (isPatch5)
                 {
-                    BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PATCH5;
                     DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    DESTINATION_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PATCH5;
                 }
                 else
                 {
-                    BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PREPATCH;
                     DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    DESTINATION_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PREPATCH;
                 }
 
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (i * DESTINATION_SAVEGAME_SIZE);
+                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR1 + (i * DESTINATION_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
@@ -159,7 +160,9 @@ namespace TombExtract
 
                 for (int i = 0; i < savegames.Count; i++)
                 {
-                    int currentSavegameOffset = savegames[i].Offset;
+                    int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR1) / SOURCE_SAVEGAME_SIZE;
+
+                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR1 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
@@ -331,8 +334,8 @@ namespace TombExtract
                     {
                         progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
-                        int slotIndex = (savegames[i].Offset - BASE_SAVEGAME_OFFSET_TR1) / SOURCE_SAVEGAME_SIZE;
-                        int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR1 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
+                        int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR1) / SOURCE_SAVEGAME_SIZE;
+                        int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR1 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
                         byte[] savegameBytes = savegames[i].SavegameBytes;
 
                         if (NO_CONVERT)
@@ -350,7 +353,7 @@ namespace TombExtract
                         }
                         else if (PREPATCH_TO_PATCH5)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Patch 5...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
@@ -520,7 +523,7 @@ namespace TombExtract
 
         private bool IsPatch5Savegame(byte[] fileData)
         {
-            return fileData[SAVEGAME_VERSION_OFFSET] >= PATCH5_SIGNATURE;
+            return fileData[SAVEGAME_VERSION_OFFSET] == PATCH5_SIGNATURE;
         }
 
         public bool IsWriting()

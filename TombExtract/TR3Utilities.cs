@@ -160,7 +160,8 @@ namespace TombExtract
 
                 for (int i = 0; i < savegames.Count; i++)
                 {
-                    int currentSavegameOffset = savegames[i].Offset;
+                    int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR3) / SOURCE_SAVEGAME_SIZE;
+                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
@@ -352,7 +353,7 @@ namespace TombExtract
                         }
                         else if (PREPATCH_TO_PATCH5)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Patch 5...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
