@@ -1236,6 +1236,20 @@ namespace TombExtract
                 return;
             }
 
+            byte[] sourceFileData = File.ReadAllBytes(savegameSourcePathTRX);
+            byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPathTRX);
+
+            bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
+            bool isDestinationPrepatch = !IsPatch5Savegame(destinationFileData);
+
+            if (isSourcePatch5 && isDestinationPrepatch)
+            {
+                MessageBox.Show("Unable to convert Patch 5 to pre-patch savegames.",
+                    "Unable to Convert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
             ExtractSavegamesTR1();
         }
 
@@ -1249,6 +1263,20 @@ namespace TombExtract
                 return;
             }
 
+            byte[] sourceFileData = File.ReadAllBytes(savegameSourcePathTRX);
+            byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPathTRX);
+
+            bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
+            bool isDestinationPrepatch = !IsPatch5Savegame(destinationFileData);
+
+            if (isSourcePatch5 && isDestinationPrepatch)
+            {
+                MessageBox.Show("Unable to convert Patch 5 to pre-patch savegames.",
+                    "Unable to Convert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
             ExtractSavegamesTR2();
         }
 
@@ -1258,6 +1286,20 @@ namespace TombExtract
             {
                 MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
                     "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            byte[] sourceFileData = File.ReadAllBytes(savegameSourcePathTRX);
+            byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPathTRX);
+
+            bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
+            bool isDestinationPrepatch = !IsPatch5Savegame(destinationFileData);
+
+            if (isSourcePatch5 && isDestinationPrepatch)
+            {
+                MessageBox.Show("Unable to convert Patch 5 to pre-patch savegames.",
+                    "Unable to Convert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return;
             }
