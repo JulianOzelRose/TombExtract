@@ -354,6 +354,10 @@ namespace TombExtract
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
+                            byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                            destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                            destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
                                 int currentRelativeOffset = offset - currentSavegameOffset;
