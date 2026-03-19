@@ -40,12 +40,14 @@ namespace TombExtract
         private string savegameDestinationPathTRX2;
         private string savegameSourcePathTRX2;
 
-        // Savegame file sizes
-        private const int SAVEGAME_FILE_SIZE_TRX = 0x152004;
-
-        // Patch-related
+        // Savegame versioning
+        private const int SAVEGAME_FILE_SIZE_TRX_PREPATCH = 0x152004;
+        private const int SAVEGAME_FILE_SIZE_TRX_PATCH5 = 0x272004;
+        private const int SAVEGAME_FILE_SIZE_TRX2 = 0x3DCA04;
         private const int SAVEGAME_VERSION_OFFSET = 0x000;
-        private const byte PATCH5_SIGNATURE = 0x3C;
+        private const byte TRX_PREPATCH_SIGNATURE = 0x3B;
+        private const byte TRX_PATCH5_SIGNATURE = 0x3C;
+        private const byte TRX2_SAVEGAME_SIGNATURE = 0x28;
 
         // Config
         private const string CONFIG_FILE_NAME = "TombExtract.ini";
@@ -270,25 +272,51 @@ namespace TombExtract
         private bool IsValidSavegameTRX(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
+            byte[] fileData = File.ReadAllBytes(path);
 
-            if (fileInfo.Extension.ToLower() != ".dat")
+            long savegameFileSize = fileInfo.Length;
+            byte savegameVersion = GetSavegameVersion(fileData);
+
+            if ((savegameVersion == TRX_PREPATCH_SIGNATURE || savegameVersion == TRX_PATCH5_SIGNATURE)
+                && (savegameFileSize >= SAVEGAME_FILE_SIZE_TRX_PREPATCH || savegameFileSize >= SAVEGAME_FILE_SIZE_TRX_PATCH5))
             {
-                return false;
+                return true;
             }
 
-            return fileInfo.Length >= SAVEGAME_FILE_SIZE_TRX;
+            return false;
+        }
+
+        private bool IsValidSavegameTRX2(string path)
+        {
+            FileInfo fileInfo = new FileInfo(path);
+            byte[] fileData = File.ReadAllBytes(path);
+
+            long savegameFileSize = fileInfo.Length;
+            byte savegameVersion = GetSavegameVersion(fileData);
+
+            if (savegameVersion == TRX2_SAVEGAME_SIGNATURE && savegameFileSize >= SAVEGAME_FILE_SIZE_TRX2)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public byte GetSavegameVersion(byte[] fileData)
+        {
+            return fileData[SAVEGAME_VERSION_OFFSET];
         }
 
         public bool IsPatch5Savegame(byte[] fileData)
         {
-            return fileData[SAVEGAME_VERSION_OFFSET] >= PATCH5_SIGNATURE;
+            return fileData[SAVEGAME_VERSION_OFFSET] == TRX_PATCH5_SIGNATURE;
         }
 
         private void SetSourceFileTRX(string path)
         {
             if (!IsValidSavegameTRX(path))
             {
-                MessageBox.Show("Invalid Tomb Raider I-III savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Not a valid Tomb Raider I-III Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -329,9 +357,9 @@ namespace TombExtract
 
         private void SetSourceFileTRX2(string path)
         {
-            if (!IsValidSavegameTRX(path))
+            if (!IsValidSavegameTRX2(path))
             {
-                MessageBox.Show("Invalid Tomb Raider IV-VI savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Not a valid Tomb Raider IV-VI Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -360,7 +388,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameTRX(path))
             {
-                MessageBox.Show("Invalid Tomb Raider I-III savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Not a valid Tomb Raider I-III Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -397,9 +425,9 @@ namespace TombExtract
 
         private void SetDestinationFileTRX2(string path)
         {
-            if (!IsValidSavegameTRX(path))
+            if (!IsValidSavegameTRX2(path))
             {
-                MessageBox.Show("Invalid Tomb Raider IV-VI savegame file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Not a valid Tomb Raider IV-VI Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
