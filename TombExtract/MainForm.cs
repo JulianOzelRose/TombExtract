@@ -14,12 +14,12 @@ namespace TombExtract
         }
 
         // Utils
-        private readonly TR1Utilities TR1 = new TR1Utilities();
-        private readonly TR2Utilities TR2 = new TR2Utilities();
-        private readonly TR3Utilities TR3 = new TR3Utilities();
-        private readonly TR4Utilities TR4 = new TR4Utilities();
-        private readonly TR5Utilities TR5 = new TR5Utilities();
-        private readonly TR6Utilities TR6 = new TR6Utilities();
+        private readonly TR1Utilities tr1Utilities = new TR1Utilities();
+        private readonly TR2Utilities tr2Utilities = new TR2Utilities();
+        private readonly TR3Utilities tr3Utilities = new TR3Utilities();
+        private readonly TR4Utilities tr4Utilities = new TR4Utilities();
+        private readonly TR5Utilities tr5Utilities = new TR5Utilities();
+        private readonly TR6Utilities tr6Utilities = new TR6Utilities();
 
         // Tabs
         private const int TAB_TR1 = 0;
@@ -192,7 +192,7 @@ namespace TombExtract
 
         private bool IsAnyWriting()
         {
-            return TR1.IsWriting() || TR2.IsWriting() || TR3.IsWriting() || TR4.IsWriting() || TR5.IsWriting() || TR6.IsWriting();
+            return tr1Utilities.IsWriting() || tr2Utilities.IsWriting() || tr3Utilities.IsWriting() || tr4Utilities.IsWriting() || tr5Utilities.IsWriting() || tr6Utilities.IsWriting();
         }
 
         private bool IsTRXTabSelected()
@@ -323,14 +323,14 @@ namespace TombExtract
             txtSourceFilePath.Text = path;
             savegameSourcePathTRX = path;
 
-            TR1.SetSavegameSourcePath(path);
-            TR1.PopulateSourceSavegames(cklSourceSavegamesTR1);
+            tr1Utilities.SetSavegameSourcePath(path);
+            tr1Utilities.PopulateSourceSavegames(cklSourceSavegamesTR1);
 
-            TR2.SetSavegameSourcePath(path);
-            TR2.PopulateSourceSavegames(cklSourceSavegamesTR2);
+            tr2Utilities.SetSavegameSourcePath(path);
+            tr2Utilities.PopulateSourceSavegames(cklSourceSavegamesTR2);
 
-            TR3.SetSavegameSourcePath(path);
-            TR3.PopulateSourceSavegames(cklSourceSavegamesTR3);
+            tr3Utilities.SetSavegameSourcePath(path);
+            tr3Utilities.PopulateSourceSavegames(cklSourceSavegamesTR3);
 
             EnableButtonsConditionally();
 
@@ -366,14 +366,14 @@ namespace TombExtract
             txtSourceFilePath.Text = path;
             savegameSourcePathTRX2 = path;
 
-            TR4.SetSavegameSourcePath(path);
-            TR4.PopulateSourceSavegames(cklSourceSavegamesTR4);
+            tr4Utilities.SetSavegameSourcePath(path);
+            tr4Utilities.PopulateSourceSavegames(cklSourceSavegamesTR4);
 
-            TR5.SetSavegameSourcePath(path);
-            TR5.PopulateSourceSavegames(cklSourceSavegamesTR5);
+            tr5Utilities.SetSavegameSourcePath(path);
+            tr5Utilities.PopulateSourceSavegames(cklSourceSavegamesTR5);
 
-            TR6.SetSavegameSourcePath(path);
-            TR6.PopulateSourceSavegames(cklSourceSavegamesTR6);
+            tr6Utilities.SetSavegameSourcePath(path);
+            tr6Utilities.PopulateSourceSavegames(cklSourceSavegamesTR6);
 
             EnableButtonsConditionally();
 
@@ -395,14 +395,14 @@ namespace TombExtract
             txtDestinationFilePath.Text = path;
             savegameDestinationPathTRX = path;
 
-            TR1.SetSavegameDestinationPath(path);
-            TR1.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
+            tr1Utilities.SetSavegameDestinationPath(path);
+            tr1Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
 
-            TR2.SetSavegameDestinationPath(path);
-            TR2.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
+            tr2Utilities.SetSavegameDestinationPath(path);
+            tr2Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
 
-            TR3.SetSavegameDestinationPath(path);
-            TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
+            tr3Utilities.SetSavegameDestinationPath(path);
+            tr3Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
 
             EnableButtonsConditionally();
 
@@ -434,14 +434,14 @@ namespace TombExtract
             txtDestinationFilePath.Text = path;
             savegameDestinationPathTRX2 = path;
 
-            TR4.SetSavegameDestinationPath(path);
-            TR4.PopulateDestinationSavegames(lstDestinationSavegamesTR4);
+            tr4Utilities.SetSavegameDestinationPath(path);
+            tr4Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR4);
 
-            TR5.SetSavegameDestinationPath(path);
-            TR5.PopulateDestinationSavegames(lstDestinationSavegamesTR5);
+            tr5Utilities.SetSavegameDestinationPath(path);
+            tr5Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR5);
 
-            TR6.SetSavegameDestinationPath(path);
-            TR6.PopulateDestinationSavegames(lstDestinationSavegamesTR6);
+            tr6Utilities.SetSavegameDestinationPath(path);
+            tr6Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR6);
 
             EnableButtonsConditionally();
 
@@ -889,7 +889,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR1.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = tr1Utilities.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
@@ -912,8 +912,8 @@ namespace TombExtract
             progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
-            TR1.SetProgressForm(progressForm);
-            TR1.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR1, slblStatus, cmbConversionTR1);
+            tr1Utilities.SetProgressForm(progressForm);
+            tr1Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR1, slblStatus, cmbConversionTR1);
         }
 
         private void ExtractSavegamesTR2()
@@ -951,7 +951,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR2.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = tr2Utilities.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
@@ -974,8 +974,8 @@ namespace TombExtract
             progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
-            TR2.SetProgressForm(progressForm);
-            TR2.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR2, slblStatus, cmbConversionTR2);
+            tr2Utilities.SetProgressForm(progressForm);
+            tr2Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR2, slblStatus, cmbConversionTR2);
         }
 
         private void ExtractSavegamesTR3()
@@ -1013,7 +1013,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR3.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = tr3Utilities.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
@@ -1036,8 +1036,8 @@ namespace TombExtract
             progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
-            TR3.SetProgressForm(progressForm);
-            TR3.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR3, slblStatus, cmbConversionTR3);
+            tr3Utilities.SetProgressForm(progressForm);
+            tr3Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR3, slblStatus, cmbConversionTR3);
         }
 
         private void ExtractSavegamesTR4()
@@ -1075,7 +1075,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR4.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = tr4Utilities.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
@@ -1098,8 +1098,8 @@ namespace TombExtract
             progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
-            TR4.SetProgressForm(progressForm);
-            TR4.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR4, slblStatus);
+            tr4Utilities.SetProgressForm(progressForm);
+            tr4Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR4, slblStatus);
         }
 
         private void ExtractSavegamesTR5()
@@ -1137,7 +1137,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR5.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = tr5Utilities.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
@@ -1160,8 +1160,8 @@ namespace TombExtract
             progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
-            TR5.SetProgressForm(progressForm);
-            TR5.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR5, slblStatus);
+            tr5Utilities.SetProgressForm(progressForm);
+            tr5Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR5, slblStatus);
         }
 
         private void ExtractSavegamesTR6()
@@ -1199,7 +1199,7 @@ namespace TombExtract
                 return;
             }
 
-            int numOverwrites = TR6.GetNumOverwrites(selectedSavegames);
+            int numOverwrites = tr6Utilities.GetNumOverwrites(selectedSavegames);
 
             if (numOverwrites > 0)
             {
@@ -1222,8 +1222,8 @@ namespace TombExtract
             progressForm.TopMost = tsmiAlwaysOnTop.Checked;
             progressForm.Show();
 
-            TR6.SetProgressForm(progressForm);
-            TR6.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR6, slblStatus);
+            tr6Utilities.SetProgressForm(progressForm);
+            tr6Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR6, slblStatus);
         }
 
         private void btnExtractTR1_Click(object sender, EventArgs e)
@@ -1671,7 +1671,7 @@ namespace TombExtract
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
-            TR1.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
+            tr1Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
         }
 
         private void btnManageSlotsTR2_Click(object sender, EventArgs e)
@@ -1690,7 +1690,7 @@ namespace TombExtract
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
-            TR2.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
+            tr2Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
         }
 
         private void btnManageSlotsTR3_Click(object sender, EventArgs e)
@@ -1709,7 +1709,7 @@ namespace TombExtract
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
-            TR3.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
+            tr3Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
         }
 
         private void btnManageSlotsTR4_Click(object sender, EventArgs e)
@@ -1728,7 +1728,7 @@ namespace TombExtract
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
-            TR4.PopulateDestinationSavegames(lstDestinationSavegamesTR4);
+            tr4Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR4);
         }
 
         private void btnManageSlotsTR5_Click(object sender, EventArgs e)
@@ -1747,7 +1747,7 @@ namespace TombExtract
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
-            TR5.PopulateDestinationSavegames(lstDestinationSavegamesTR5);
+            tr5Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR5);
         }
 
         private void btnManageSlotsTR6_Click(object sender, EventArgs e)
@@ -1766,7 +1766,7 @@ namespace TombExtract
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
 
-            TR6.PopulateDestinationSavegames(lstDestinationSavegamesTR6);
+            tr6Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR6);
         }
 
         private void tabGame_SelectedIndexChanged(object sender, EventArgs e)

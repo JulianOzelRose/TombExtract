@@ -364,7 +364,7 @@ namespace TombExtract
                                 byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                 byte[] currentByte = { value };
 
-                                if (currentRelativeOffset >= 0x6A0)
+                                if (currentRelativeOffset >= 0x6A0 && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
                                 {
                                     destinationFile.Seek(offset + 0x1A, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
