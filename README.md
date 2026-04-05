@@ -3,8 +3,8 @@ This is a savegame manager for Tomb Raider I-VI Remastered. It lets you transfer
 Useful for downloading savegames from the Internet without having to replace your entire savegame file, and for level selection. For installation and use instructions, simply navigate to the next section below.
 For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
-⚠️ **Patch 5 Compatibility**<br>
-The latest version of this program (v4.60+) is compatible with Patch 5 and pre-patch savegames for Tomb Raider I-III. Pre-patch to Patch 5 savegame conversion is also supported.
+ℹ️ **Patch 5 Compatibility**<br>
+The latest version of this program is compatible with Patch 5 and pre-patch savegames for Tomb Raider I-III. Pre-patch to Patch 5 savegame conversion is also supported.
 
 <img width="596" height="611" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/96079cae-3325-4fcc-b99e-af7fb2c0e189" />
 
