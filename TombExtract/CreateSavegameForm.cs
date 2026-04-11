@@ -15,7 +15,12 @@ namespace TombExtract
         private const int TAB_TR5 = 4;
         private const int TAB_TR6 = 5;
 
+        private const int SAVEGAME_VERSION_OFFSET = 0x000;
         private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
+
+        private const int SAVEGAME_SIZE_TRX_PATCH5 = 0x6800;
+        private const int SAVEGAME_SIZE_TRX_PREPATCH = 0x3800;
+        private const byte PATCH5_SIGNATURE = 0x3C;
 
         int SLOT_NUMBER;
         int SAVE_NUMBER_OFFSET;
@@ -2158,6 +2163,63 @@ namespace TombExtract
             return $"{levelName}{modeSuffix} - {saveNumber}";
         }
 
+        private bool IsTRXSavegame()
+        {
+            return CURRENT_TAB == TAB_TR1 || CURRENT_TAB == TAB_TR2 || CURRENT_TAB == TAB_TR3;
+        }
+
+        private bool IsTR1Savegame()
+        {
+            return CURRENT_TAB == TAB_TR1;
+        }
+
+        private bool IsTR2Savegame()
+        {
+            return CURRENT_TAB == TAB_TR2;
+        }
+
+        private bool IsTR3Savegame()
+        {
+            return CURRENT_TAB == TAB_TR3;
+        }
+
+        private bool IsTR6Savegame()
+        {
+            return CURRENT_TAB == TAB_TR6;
+        }
+
+        private bool IsPatch5Savegame(byte[] fileData)
+        {
+            return fileData[SAVEGAME_VERSION_OFFSET] == PATCH5_SIGNATURE;
+        }
+
+        private byte[] ConvertTRXSavegameToPatch5(byte[] buffer)
+        {
+            byte[] convertedBuffer = new byte[SAVEGAME_SIZE_TRX_PATCH5];
+
+            if (IsTR1Savegame())
+            {
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6E0);
+                Array.Copy(buffer, 0x6E0, convertedBuffer, 0x6E0 + 0x13, buffer.Length - 0x6E0);
+            }
+            else if (IsTR2Savegame())
+            {
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6A0);
+                Array.Copy(buffer, 0x6A0, convertedBuffer, 0x6A0 + 0x1A, buffer.Length - 0x6A0);
+            }
+            else if (IsTR3Savegame())
+            {
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x98C);
+                Array.Copy(buffer, 0x98C, convertedBuffer, 0x98C + 0x10, buffer.Length - 0x98C);
+            }
+            else
+            {
+                return buffer;
+            }
+
+            return convertedBuffer;
+        }
+
         private void btnCreate_Click(object sender, EventArgs e)
         {
             try
@@ -2203,6 +2265,20 @@ namespace TombExtract
                 // Load the premade savegame buffer
                 byte[] buffer = LoadPremadeBuffer(resourceName);
 
+                bool isTR6Savegame = IsTR6Savegame();
+                bool isTRXSavegame = IsTRXSavegame();
+
+                if (isTRXSavegame)
+                {
+                    byte[] fileData = File.ReadAllBytes(savegamePath);
+                    bool isPatch5 = IsPatch5Savegame(fileData);
+
+                    if (isPatch5)
+                    {
+                        buffer = ConvertTRXSavegameToPatch5(buffer);
+                    }
+                }
+
                 // Write the savegame buffer
                 using (var fs = new FileStream(savegamePath, FileMode.Open, FileAccess.Write))
                 {
@@ -2214,7 +2290,7 @@ namespace TombExtract
                     fs.Seek(savegameOffset + SAVE_NUMBER_OFFSET, SeekOrigin.Begin);
                     fs.Write(BitConverter.GetBytes((int)nudSaveNumber.Value), 0, 4);
 
-                    if (CURRENT_TAB == TAB_TR6)
+                    if (isTR6Savegame)
                     {
                         fs.Seek(savegameOffset + SLOT_NUMBER_OFFSET_TR6, SeekOrigin.Begin);
                         fs.WriteByte((byte)SLOT_NUMBER);

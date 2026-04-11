@@ -575,18 +575,6 @@ namespace TombExtract
                 return;
             }
 
-            if (IsTRXSavegame())
-            {
-                byte[] fileData = File.ReadAllBytes(savegamePath);
-                bool isPatch5 = IsPatch5Savegame(fileData);
-
-                if (isPatch5)
-                {
-                    MessageBox.Show("Savegame creation is not supported for Patch 5.", "Feature Unsupported", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
-
             if (lstSavegames.SelectedItem.ToString() != "Empty Slot")
             {
                 DialogResult result = MessageBox.Show($"Are you sure you wish to overwrite '{(Savegame)lstSavegames.SelectedItem}'?",
