@@ -13,42 +13,58 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
-        private const int SAVEGAME_VERSION_OFFSET = 0x000;
+        private const int SAVEFILE_VERSION_OFFSET = 0x000;
         private const int SLOT_STATUS_OFFSET = 0x004;
         private const int GAME_MODE_OFFSET = 0x008;
         private const int SAVE_NUMBER_OFFSET = 0x00C;
-        private const int LEVEL_INDEX_OFFSET = 0x628;
-        private const int CHALLENGE_MODE_OFFSET = 0x6B0;
+        private const int LEVEL_INDEX_OFFSET_PREPATCH = 0x628;
+
+        // Platform or patch-dependent offsets
+        private int SOURCE_LEVEL_INDEX_OFFSET;
+        private int DESTINATION_LEVEL_INDEX_OFFSET;
+        private int SOURCE_CHALLENGE_MODE_OFFSET;
+        private int DESTINATION_CHALLENGE_MODE_OFFSET;
+
+        // PC offsets
+        private const int LEVEL_INDEX_OFFSET_PC = 0x628;
+        private const int SAVEGAME_VERSION_OFFSET_PC = 0x6A8;
+        private const int CHALLENGE_MODE_RNG_SEED_OFFSET_PC = 0x6AC;
+        private const int CHALLENGE_MODE_OFFSET_PC = 0x6B0;
+
+        // Android offsets
+        private const int LEVEL_INDEX_OFFSET_ANDROID = 0x658;
+        private const int SAVEGAME_VERSION_OFFSET_ANDROID = 0x6D4;
+        private const int CHALLENGE_MODE_RNG_SEED_OFFSET_ANDROID = 0x6D8;
+        private const int CHALLENGE_MODE_OFFSET_ANDROID = 0x6DC;
 
         // Savegame constants
         private const int MAX_SAVEGAMES = 32;
+        private const int CHALLENGE_MODE_PARAM_BLOCK_SIZE = 0xC;
         private int SOURCE_BASE_SAVEGAME_OFFSET_TR2;
         private int DESTINATION_BASE_SAVEGAME_OFFSET_TR2;
         private int SOURCE_SAVEGAME_SIZE;
         private int DESTINATION_SAVEGAME_SIZE;
 
         // Patch-specific
-        private const byte PATCH5_SIGNATURE = 0x3C;
         private const int BASE_SAVEGAME_OFFSET_TR2_PREPATCH = 0x72000;
         private const int BASE_SAVEGAME_OFFSET_TR2_PATCH5 = 0xD2000;
         private const int SAVEGAME_SIZE_PREPATCH = 0x3800;
         private const int SAVEGAME_SIZE_PATCH5 = 0x6800;
-
-        // Conversion
-        private bool PS4_TO_PC = false;
-        private bool PC_TO_PS4 = false;
-        private bool SWITCH_TO_PC = false;
-        private bool NO_CONVERT = false;
-        private bool PC_TO_SWITCH = false;
-        private bool PS4_TO_SWITCH = false;
-        private bool SWITCH_TO_PS4 = false;
-        private bool PREPATCH_TO_PATCH5 = false;
+        private const byte SAVEFILE_PREPATCH = 0x3B;
+        private const byte SAVEFILE_PATCH5 = 0x3C;
 
         // Misc
         private int totalSavegames = 0;
         private BackgroundWorker bgWorker;
         private ProgressForm progressForm;
         private bool isWriting = false;
+        private bool isSourcePrepatch;
+        private bool isDestinationPatch5;
+        private bool NO_CONVERT = false;
+
+        // Platform
+        Platform sourcePlatform;
+        Platform destinationPlatform;
 
         public void PopulateSourceSavegames(CheckedListBox cklSavegames)
         {
@@ -56,26 +72,43 @@ namespace TombExtract
 
             try
             {
+                if (string.IsNullOrEmpty(savegameSourcePath) || !File.Exists(savegameSourcePath))
+                {
+                    return;
+                }
+
                 byte[] fileData = File.ReadAllBytes(savegameSourcePath);
 
-                bool isPatch5 = IsPatch5Savegame(fileData);
+                bool isPatch5 = IsPatch5SavegameFile(fileData);
 
                 if (isPatch5)
                 {
-                    SOURCE_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PATCH5;
                     SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    SOURCE_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PATCH5;
+
+                    if (sourcePlatform == Platform.PC)
+                    {
+                        SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PC;
+                        SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PC;
+                    }
+                    else if (sourcePlatform == Platform.Android)
+                    {
+                        SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
+                        SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
+                    }
                 }
                 else
                 {
-                    SOURCE_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PREPATCH;
                     SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    SOURCE_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PREPATCH;
+                    SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PREPATCH;
                 }
 
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR2 + (i * SOURCE_SAVEGAME_SIZE);
 
-                    byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+                    byte levelIndex = fileData[currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET];
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
 
                     bool savegamePresent = slotStatus != 0;
@@ -84,7 +117,7 @@ namespace TombExtract
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-                        bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
+                        bool isChallengeMode = fileData[currentSavegameOffset + SOURCE_CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
 
                         string levelName = LevelNames.TR2[levelIndex];
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
@@ -104,26 +137,43 @@ namespace TombExtract
 
             try
             {
+                if (string.IsNullOrEmpty(savegameDestinationPath) || !File.Exists(savegameDestinationPath))
+                {
+                    return;
+                }
+
                 byte[] fileData = File.ReadAllBytes(savegameDestinationPath);
 
-                bool isPatch5 = IsPatch5Savegame(fileData);
+                bool isPatch5 = IsPatch5SavegameFile(fileData);
 
                 if (isPatch5)
                 {
-                    DESTINATION_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PATCH5;
                     DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    DESTINATION_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PATCH5;
+
+                    if (destinationPlatform == Platform.PC)
+                    {
+                        DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PC;
+                        DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PC;
+                    }
+                    else if (destinationPlatform == Platform.Android)
+                    {
+                        DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
+                        DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
+                    }
                 }
                 else
                 {
-                    DESTINATION_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PREPATCH;
                     DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    DESTINATION_BASE_SAVEGAME_OFFSET_TR2 = BASE_SAVEGAME_OFFSET_TR2_PREPATCH;
+                    DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PREPATCH;
                 }
 
                 for (int i = 0; i < MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR2 + (i * DESTINATION_SAVEGAME_SIZE);
 
-                    byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+                    byte levelIndex = fileData[currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET];
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
 
                     bool savegamePresent = slotStatus != 0;
@@ -132,7 +182,7 @@ namespace TombExtract
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-                        bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
+                        bool isChallengeMode = fileData[currentSavegameOffset + DESTINATION_CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
 
                         string levelName = LevelNames.TR2[levelIndex];
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
@@ -164,7 +214,7 @@ namespace TombExtract
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR2 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
                     byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
-                    byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+                    byte levelIndex = fileData[currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET];
 
                     bool savegamePresent = slotStatus != 0;
 
@@ -187,58 +237,23 @@ namespace TombExtract
         {
             isWriting = true;
 
-            // Reset conversion flags
-            PS4_TO_PC = false;
-            PC_TO_PS4 = false;
-            SWITCH_TO_PC = false;
-            NO_CONVERT = false;
-            PC_TO_SWITCH = false;
-            PS4_TO_SWITCH = false;
-            SWITCH_TO_PS4 = false;
-            PREPATCH_TO_PATCH5 = false;
+            byte[] sourceFileData = File.ReadAllBytes(savegameSourcePath);
+            isSourcePrepatch = IsPrepatchSavegameFile(sourceFileData);
 
-            int conversionNumber = cmbConversion.SelectedIndex;
+            byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPath);
+            isDestinationPatch5 = IsPatch5SavegameFile(destinationFileData);
 
-            if (conversionNumber == 0)
+            if (isSourcePrepatch && isDestinationPatch5)
             {
-                byte[] sourceFileData = File.ReadAllBytes(savegameSourcePath);
-                bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
-
-                byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPath);
-                bool isDestinationPatch5 = IsPatch5Savegame(destinationFileData);
-
-                if (!isSourcePatch5 && isDestinationPatch5)
-                {
-                    PREPATCH_TO_PATCH5 = true;
-                }
-                else
-                {
-                    NO_CONVERT = true;
-                }
+                NO_CONVERT = false;
             }
-            else if (conversionNumber == 1)
+            else if (sourcePlatform == destinationPlatform)
             {
-                PC_TO_PS4 = true;
+                NO_CONVERT = true;
             }
-            else if (conversionNumber == 2)
+            else
             {
-                PC_TO_SWITCH = true;
-            }
-            else if (conversionNumber == 3)
-            {
-                PS4_TO_PC = true;
-            }
-            else if (conversionNumber == 4)
-            {
-                PS4_TO_SWITCH = true;
-            }
-            else if (conversionNumber == 5)
-            {
-                SWITCH_TO_PC = true;
-            }
-            else if (conversionNumber == 6)
-            {
-                SWITCH_TO_PS4 = true;
+                NO_CONVERT = false;
             }
 
             totalSavegames = savegames.Count;
@@ -337,23 +352,121 @@ namespace TombExtract
                         int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR2 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
                         byte[] savegameBytes = savegames[i].SavegameBytes;
 
-                        if (NO_CONVERT)
+                        if (sourcePlatform == Platform.PC && destinationPlatform == Platform.PC)
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
+                            if (isSourcePrepatch && isDestinationPatch5)    // PRE-PATCH -> PATCH 5
+                            {
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
+
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                                {
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x6A0 && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
+                                    {
+                                        destinationFile.Seek(offset + 0x1A, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
+
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                                {
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                            }
+                        }
+                        else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.PlayStation4) // PC -> PS4
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
+                                int currentRelativeOffset = offset - currentSavegameOffset;
                                 byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                 byte[] currentByte = { value };
 
-                                destinationFile.Seek(offset, SeekOrigin.Begin);
-                                destinationFile.Write(currentByte, 0, currentByte.Length);
+                                if (currentRelativeOffset >= 0x690)
+                                {
+                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                            }
+
+                        }
+                        else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.NintendoSwitch)  // PC -> NS
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            {
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
+
+                                if (currentRelativeOffset >= 0x690)
+                                {
+                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                            }
+
+                        }
+                        else if (sourcePlatform == Platform.PlayStation4 && destinationPlatform == Platform.PC) // PS4 -> PC
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            {
+                                int currentRelativeOffset = offset - currentSavegameOffset;
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
+
+                                if (currentRelativeOffset >= 0x690)
+                                {
+                                    destinationFile.Seek(offset + 4, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else
+                                {
+                                    destinationFile.Seek(offset, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
                             }
                         }
-                        else if (PREPATCH_TO_PATCH5)
+                        else if (sourcePlatform == Platform.Android && destinationPlatform == Platform.PC) // Android -> PC
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
+                            // ZERO BUFFER
                             byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
                             destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
                             destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
@@ -364,9 +477,19 @@ namespace TombExtract
                                 byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                 byte[] currentByte = { value };
 
-                                if (currentRelativeOffset >= 0x6A0 && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
+                                if (currentRelativeOffset >= 0x640 && currentRelativeOffset < 0x658)
                                 {
-                                    destinationFile.Seek(offset + 0x1A, SeekOrigin.Begin);
+                                    destinationFile.Seek(offset - 0x30, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else if (currentRelativeOffset >= 0x658 && currentRelativeOffset < 0x6F3)
+                                {
+                                    destinationFile.Seek(offset - 0x2C, SeekOrigin.Begin);
+                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                }
+                                else if (currentRelativeOffset >= 0x6F3 && currentRelativeOffset <= SAVEGAME_SIZE_PATCH5)
+                                {
+                                    destinationFile.Seek(offset - 0x37, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
                                 else
@@ -375,76 +498,118 @@ namespace TombExtract
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
                             }
+
+                            // Force critical fields last
+                            destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_PC, SeekOrigin.Begin);
+                            destinationFile.WriteByte(savegameBytes[LEVEL_INDEX_OFFSET_ANDROID]);
                         }
-                        else if (PC_TO_PS4)
+                        else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android) // PC -> Android
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            if (isSourcePrepatch && isDestinationPatch5)
                             {
-                                int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Android...");
 
-                                if (currentRelativeOffset >= 0x690)
+                                // ZERO BUFFER
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                // INTERMEDIATE PATCH 5 PC BUFFER
+                                byte[] migratedPatch5Buffer = new byte[SAVEGAME_SIZE_PATCH5];
+
+                                // PREPATCH -> PATCH 5 PC MIGRATION
+                                for (int j = 0; j < SAVEGAME_SIZE_PREPATCH; j++)
                                 {
-                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+
+                                    if (j >= 0x6B4)
+                                    {
+                                        migratedPatch5Buffer[j + 0x0C] = value;
+                                    }
+                                    else
+                                    {
+                                        migratedPatch5Buffer[j] = value;
+                                    }
                                 }
-                                else
+
+                                // PATCH 5 PC -> ANDROID
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
-                                    destinationFile.Seek(offset, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+
+                                    byte value = j < migratedPatch5Buffer.Length ? migratedPatch5Buffer[j] : (byte)0;
+
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x610 && currentRelativeOffset < 0x628)
+                                    {
+                                        destinationFile.Seek(offset + 0x30, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else if (currentRelativeOffset >= 0x628 && currentRelativeOffset < 0x6BC)
+                                    {
+                                        destinationFile.Seek(offset + 0x2C, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else if (currentRelativeOffset >= 0x6BC && currentRelativeOffset <= SAVEGAME_SIZE_PATCH5)
+                                    {
+                                        destinationFile.Seek(offset + 0x37, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
+
+                                // Force critical fields last
+                                destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_ANDROID, SeekOrigin.Begin);
+                                destinationFile.WriteByte(migratedPatch5Buffer[LEVEL_INDEX_OFFSET_PC]);
                             }
-
-                        }
-                        else if (PC_TO_SWITCH)
-                        {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            else if (!isSourcePrepatch && isDestinationPatch5)
                             {
-                                int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Android...");
 
-                                if (currentRelativeOffset >= 0x690)
+                                // ZERO BUFFER
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
-                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x610 && currentRelativeOffset < 0x628)
+                                    {
+                                        destinationFile.Seek(offset + 0x30, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else if (currentRelativeOffset >= 0x628 && currentRelativeOffset < 0x6BC)
+                                    {
+                                        destinationFile.Seek(offset + 0x2C, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else if (currentRelativeOffset >= 0x6BC && currentRelativeOffset <= SAVEGAME_SIZE_PATCH5)
+                                    {
+                                        destinationFile.Seek(offset + 0x37, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
-                                else
-                                {
-                                    destinationFile.Seek(offset, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
-                                }
+
+                                // Force critical fields last
+                                destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_ANDROID, SeekOrigin.Begin);
+                                destinationFile.WriteByte(savegameBytes[LEVEL_INDEX_OFFSET_PC]);
                             }
-
                         }
-                        else if (PS4_TO_PC)
-                        {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
-                            {
-                                int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
-
-                                if (currentRelativeOffset >= 0x690)
-                                {
-                                    destinationFile.Seek(offset + 4, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
-                                }
-                                else
-                                {
-                                    destinationFile.Seek(offset, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
-                                }
-                            }
-                        }
-                        else if (PS4_TO_SWITCH)
+                        else if (sourcePlatform == Platform.PlayStation4 && destinationPlatform == Platform.NintendoSwitch) // PS4 -> Switch
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
 
@@ -457,7 +622,7 @@ namespace TombExtract
                                 destinationFile.Write(currentByte, 0, currentByte.Length);
                             }
                         }
-                        else if (SWITCH_TO_PC)
+                        else if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform == Platform.PC)  // NS -> PC
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
@@ -479,9 +644,22 @@ namespace TombExtract
                                 }
                             }
                         }
-                        else if (SWITCH_TO_PS4)
+                        else if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform == Platform.PlayStation4) // NS -> PS4
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            {
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
+
+                                destinationFile.Seek(offset, SeekOrigin.Begin);
+                                destinationFile.Write(currentByte, 0, currentByte.Length);
+                            }
+                        }
+                        else
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
@@ -506,9 +684,14 @@ namespace TombExtract
             }
         }
 
-        private bool IsPatch5Savegame(byte[] fileData)
+        private bool IsPrepatchSavegameFile(byte[] fileData)
         {
-            return fileData[SAVEGAME_VERSION_OFFSET] >= PATCH5_SIGNATURE;
+            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_PREPATCH;
+        }
+
+        private bool IsPatch5SavegameFile(byte[] fileData)
+        {
+            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_PATCH5;
         }
 
         public bool IsWriting()
@@ -535,6 +718,16 @@ namespace TombExtract
         public void SetSavegameDestinationPath(string path)
         {
             savegameDestinationPath = path;
+        }
+
+        public void SetSourceFormat(Platform platform)
+        {
+            sourcePlatform = platform;
+        }
+
+        public void SetDestinationFormat(Platform platform)
+        {
+            destinationPlatform = platform;
         }
     }
 }

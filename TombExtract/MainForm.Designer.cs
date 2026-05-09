@@ -41,8 +41,6 @@ namespace TombExtract
             this.tabGame = new System.Windows.Forms.TabControl();
             this.tpTR1 = new System.Windows.Forms.TabPage();
             this.btnManageSlotsTR1 = new System.Windows.Forms.Button();
-            this.lblConvertTR1 = new System.Windows.Forms.Label();
-            this.cmbConversionTR1 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR1 = new System.Windows.Forms.Button();
             this.btnSelectAllTR1 = new System.Windows.Forms.Button();
             this.lblArrowTR1 = new System.Windows.Forms.Label();
@@ -54,8 +52,6 @@ namespace TombExtract
             this.cklSourceSavegamesTR1 = new System.Windows.Forms.CheckedListBox();
             this.tpTR2 = new System.Windows.Forms.TabPage();
             this.btnManageSlotsTR2 = new System.Windows.Forms.Button();
-            this.lblConvertTR2 = new System.Windows.Forms.Label();
-            this.cmbConversionTR2 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR2 = new System.Windows.Forms.Button();
             this.btnSelectAllTR2 = new System.Windows.Forms.Button();
             this.lblArrowTR2 = new System.Windows.Forms.Label();
@@ -67,8 +63,6 @@ namespace TombExtract
             this.cklSourceSavegamesTR2 = new System.Windows.Forms.CheckedListBox();
             this.tpTR3 = new System.Windows.Forms.TabPage();
             this.btnManageSlotsTR3 = new System.Windows.Forms.Button();
-            this.lblConvertTR3 = new System.Windows.Forms.Label();
-            this.cmbConversionTR3 = new System.Windows.Forms.ComboBox();
             this.btnAboutTR3 = new System.Windows.Forms.Button();
             this.btnSelectAllTR3 = new System.Windows.Forms.Button();
             this.lblArrowTR3 = new System.Windows.Forms.Label();
@@ -136,6 +130,18 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblSourceFormatTR1 = new System.Windows.Forms.Label();
+            this.cmbSourceFormatTR1 = new System.Windows.Forms.ComboBox();
+            this.cmbDestinationFormatTR1 = new System.Windows.Forms.ComboBox();
+            this.lblDestinationFormatTR1 = new System.Windows.Forms.Label();
+            this.cmbDestinationFormatTR2 = new System.Windows.Forms.ComboBox();
+            this.lblDestinationFormatTR2 = new System.Windows.Forms.Label();
+            this.cmbSourceFormatTR2 = new System.Windows.Forms.ComboBox();
+            this.lblSourceFormatTR2 = new System.Windows.Forms.Label();
+            this.cmbDestinationFormatTR3 = new System.Windows.Forms.ComboBox();
+            this.lblDestinationFormatTR3 = new System.Windows.Forms.Label();
+            this.cmbSourceFormatTR3 = new System.Windows.Forms.ComboBox();
+            this.lblSourceFormatTR3 = new System.Windows.Forms.Label();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -246,16 +252,18 @@ namespace TombExtract
             this.tabGame.Multiline = true;
             this.tabGame.Name = "tabGame";
             this.tabGame.SelectedIndex = 0;
-            this.tabGame.Size = new System.Drawing.Size(586, 449);
+            this.tabGame.Size = new System.Drawing.Size(586, 468);
             this.tabGame.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabGame.TabIndex = 2;
             this.tabGame.SelectedIndexChanged += new System.EventHandler(this.tabGame_SelectedIndexChanged);
             // 
             // tpTR1
             // 
+            this.tpTR1.Controls.Add(this.cmbDestinationFormatTR1);
+            this.tpTR1.Controls.Add(this.lblDestinationFormatTR1);
+            this.tpTR1.Controls.Add(this.cmbSourceFormatTR1);
+            this.tpTR1.Controls.Add(this.lblSourceFormatTR1);
             this.tpTR1.Controls.Add(this.btnManageSlotsTR1);
-            this.tpTR1.Controls.Add(this.lblConvertTR1);
-            this.tpTR1.Controls.Add(this.cmbConversionTR1);
             this.tpTR1.Controls.Add(this.btnAboutTR1);
             this.tpTR1.Controls.Add(this.btnSelectAllTR1);
             this.tpTR1.Controls.Add(this.lblArrowTR1);
@@ -268,7 +276,7 @@ namespace TombExtract
             this.tpTR1.Location = new System.Drawing.Point(4, 48);
             this.tpTR1.Name = "tpTR1";
             this.tpTR1.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTR1.Size = new System.Drawing.Size(578, 397);
+            this.tpTR1.Size = new System.Drawing.Size(578, 416);
             this.tpTR1.TabIndex = 0;
             this.tpTR1.Text = "Tomb Raider I";
             this.tpTR1.UseVisualStyleBackColor = true;
@@ -284,36 +292,9 @@ namespace TombExtract
             this.btnManageSlotsTR1.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR1.Click += new System.EventHandler(this.btnManageSlotsTR1_Click);
             // 
-            // lblConvertTR1
-            // 
-            this.lblConvertTR1.AutoSize = true;
-            this.lblConvertTR1.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR1.Name = "lblConvertTR1";
-            this.lblConvertTR1.Size = new System.Drawing.Size(52, 15);
-            this.lblConvertTR1.TabIndex = 6;
-            this.lblConvertTR1.Text = "Convert:";
-            // 
-            // cmbConversionTR1
-            // 
-            this.cmbConversionTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConversionTR1.FormattingEnabled = true;
-            this.cmbConversionTR1.Items.AddRange(new object[] {
-            "No",
-            "PC → PS4",
-            "PC → Nintendo Switch",
-            "PS4 → PC",
-            "PS4 → Nintendo Switch",
-            "Nintendo Switch → PC",
-            "Nintendo Switch → PS4"});
-            this.cmbConversionTR1.Location = new System.Drawing.Point(67, 356);
-            this.cmbConversionTR1.Name = "cmbConversionTR1";
-            this.cmbConversionTR1.Size = new System.Drawing.Size(186, 23);
-            this.cmbConversionTR1.TabIndex = 7;
-            this.cmbConversionTR1.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR1_SelectedIndexChanged);
-            // 
             // btnAboutTR1
             // 
-            this.btnAboutTR1.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR1.Location = new System.Drawing.Point(403, 378);
             this.btnAboutTR1.Name = "btnAboutTR1";
             this.btnAboutTR1.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR1.TabIndex = 9;
@@ -356,7 +337,7 @@ namespace TombExtract
             // 
             // btnExitTR1
             // 
-            this.btnExitTR1.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR1.Location = new System.Drawing.Point(322, 378);
             this.btnExitTR1.Name = "btnExitTR1";
             this.btnExitTR1.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR1.TabIndex = 8;
@@ -367,7 +348,7 @@ namespace TombExtract
             // btnExtractTR1
             // 
             this.btnExtractTR1.Enabled = false;
-            this.btnExtractTR1.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR1.Location = new System.Drawing.Point(485, 378);
             this.btnExtractTR1.Name = "btnExtractTR1";
             this.btnExtractTR1.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR1.TabIndex = 10;
@@ -406,9 +387,11 @@ namespace TombExtract
             // 
             // tpTR2
             // 
+            this.tpTR2.Controls.Add(this.cmbDestinationFormatTR2);
+            this.tpTR2.Controls.Add(this.lblDestinationFormatTR2);
+            this.tpTR2.Controls.Add(this.cmbSourceFormatTR2);
+            this.tpTR2.Controls.Add(this.lblSourceFormatTR2);
             this.tpTR2.Controls.Add(this.btnManageSlotsTR2);
-            this.tpTR2.Controls.Add(this.lblConvertTR2);
-            this.tpTR2.Controls.Add(this.cmbConversionTR2);
             this.tpTR2.Controls.Add(this.btnAboutTR2);
             this.tpTR2.Controls.Add(this.btnSelectAllTR2);
             this.tpTR2.Controls.Add(this.lblArrowTR2);
@@ -421,7 +404,7 @@ namespace TombExtract
             this.tpTR2.Location = new System.Drawing.Point(4, 48);
             this.tpTR2.Name = "tpTR2";
             this.tpTR2.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTR2.Size = new System.Drawing.Size(578, 397);
+            this.tpTR2.Size = new System.Drawing.Size(578, 416);
             this.tpTR2.TabIndex = 1;
             this.tpTR2.Text = "Tomb Raider II";
             this.tpTR2.UseVisualStyleBackColor = true;
@@ -437,36 +420,9 @@ namespace TombExtract
             this.btnManageSlotsTR2.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR2.Click += new System.EventHandler(this.btnManageSlotsTR2_Click);
             // 
-            // lblConvertTR2
-            // 
-            this.lblConvertTR2.AutoSize = true;
-            this.lblConvertTR2.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR2.Name = "lblConvertTR2";
-            this.lblConvertTR2.Size = new System.Drawing.Size(52, 15);
-            this.lblConvertTR2.TabIndex = 6;
-            this.lblConvertTR2.Text = "Convert:";
-            // 
-            // cmbConversionTR2
-            // 
-            this.cmbConversionTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConversionTR2.FormattingEnabled = true;
-            this.cmbConversionTR2.Items.AddRange(new object[] {
-            "No",
-            "PC → PS4",
-            "PC → Nintendo Switch",
-            "PS4 → PC",
-            "PS4 → Nintendo Switch",
-            "Nintendo Switch → PC",
-            "Nintendo Switch → PS4"});
-            this.cmbConversionTR2.Location = new System.Drawing.Point(67, 356);
-            this.cmbConversionTR2.Name = "cmbConversionTR2";
-            this.cmbConversionTR2.Size = new System.Drawing.Size(186, 23);
-            this.cmbConversionTR2.TabIndex = 7;
-            this.cmbConversionTR2.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR2_SelectedIndexChanged);
-            // 
             // btnAboutTR2
             // 
-            this.btnAboutTR2.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR2.Location = new System.Drawing.Point(403, 378);
             this.btnAboutTR2.Name = "btnAboutTR2";
             this.btnAboutTR2.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR2.TabIndex = 9;
@@ -509,7 +465,7 @@ namespace TombExtract
             // 
             // btnExitTR2
             // 
-            this.btnExitTR2.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR2.Location = new System.Drawing.Point(322, 378);
             this.btnExitTR2.Name = "btnExitTR2";
             this.btnExitTR2.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR2.TabIndex = 8;
@@ -520,7 +476,7 @@ namespace TombExtract
             // btnExtractTR2
             // 
             this.btnExtractTR2.Enabled = false;
-            this.btnExtractTR2.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR2.Location = new System.Drawing.Point(485, 378);
             this.btnExtractTR2.Name = "btnExtractTR2";
             this.btnExtractTR2.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR2.TabIndex = 10;
@@ -559,9 +515,11 @@ namespace TombExtract
             // 
             // tpTR3
             // 
+            this.tpTR3.Controls.Add(this.cmbDestinationFormatTR3);
+            this.tpTR3.Controls.Add(this.lblDestinationFormatTR3);
+            this.tpTR3.Controls.Add(this.cmbSourceFormatTR3);
+            this.tpTR3.Controls.Add(this.lblSourceFormatTR3);
             this.tpTR3.Controls.Add(this.btnManageSlotsTR3);
-            this.tpTR3.Controls.Add(this.lblConvertTR3);
-            this.tpTR3.Controls.Add(this.cmbConversionTR3);
             this.tpTR3.Controls.Add(this.btnAboutTR3);
             this.tpTR3.Controls.Add(this.btnSelectAllTR3);
             this.tpTR3.Controls.Add(this.lblArrowTR3);
@@ -573,7 +531,7 @@ namespace TombExtract
             this.tpTR3.Controls.Add(this.cklSourceSavegamesTR3);
             this.tpTR3.Location = new System.Drawing.Point(4, 48);
             this.tpTR3.Name = "tpTR3";
-            this.tpTR3.Size = new System.Drawing.Size(578, 397);
+            this.tpTR3.Size = new System.Drawing.Size(578, 416);
             this.tpTR3.TabIndex = 2;
             this.tpTR3.Text = "Tomb Raider III";
             this.tpTR3.UseVisualStyleBackColor = true;
@@ -589,36 +547,9 @@ namespace TombExtract
             this.btnManageSlotsTR3.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR3.Click += new System.EventHandler(this.btnManageSlotsTR3_Click);
             // 
-            // lblConvertTR3
-            // 
-            this.lblConvertTR3.AutoSize = true;
-            this.lblConvertTR3.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR3.Name = "lblConvertTR3";
-            this.lblConvertTR3.Size = new System.Drawing.Size(52, 15);
-            this.lblConvertTR3.TabIndex = 6;
-            this.lblConvertTR3.Text = "Convert:";
-            // 
-            // cmbConversionTR3
-            // 
-            this.cmbConversionTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbConversionTR3.FormattingEnabled = true;
-            this.cmbConversionTR3.Items.AddRange(new object[] {
-            "No",
-            "PC → PS4",
-            "PC → Nintendo Switch",
-            "PS4 → PC",
-            "PS4 → Nintendo Switch",
-            "Nintendo Switch → PC",
-            "Nintendo Switch → PS4"});
-            this.cmbConversionTR3.Location = new System.Drawing.Point(67, 356);
-            this.cmbConversionTR3.Name = "cmbConversionTR3";
-            this.cmbConversionTR3.Size = new System.Drawing.Size(186, 23);
-            this.cmbConversionTR3.TabIndex = 7;
-            this.cmbConversionTR3.SelectedIndexChanged += new System.EventHandler(this.cmbConversionTR3_SelectedIndexChanged);
-            // 
             // btnAboutTR3
             // 
-            this.btnAboutTR3.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR3.Location = new System.Drawing.Point(403, 378);
             this.btnAboutTR3.Name = "btnAboutTR3";
             this.btnAboutTR3.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR3.TabIndex = 9;
@@ -661,7 +592,7 @@ namespace TombExtract
             // 
             // btnExitTR3
             // 
-            this.btnExitTR3.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR3.Location = new System.Drawing.Point(322, 378);
             this.btnExitTR3.Name = "btnExitTR3";
             this.btnExitTR3.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR3.TabIndex = 8;
@@ -672,7 +603,7 @@ namespace TombExtract
             // btnExtractTR3
             // 
             this.btnExtractTR3.Enabled = false;
-            this.btnExtractTR3.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR3.Location = new System.Drawing.Point(485, 378);
             this.btnExtractTR3.Name = "btnExtractTR3";
             this.btnExtractTR3.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR3.TabIndex = 10;
@@ -724,7 +655,7 @@ namespace TombExtract
             this.tpTR4.Controls.Add(this.cklSourceSavegamesTR4);
             this.tpTR4.Location = new System.Drawing.Point(4, 48);
             this.tpTR4.Name = "tpTR4";
-            this.tpTR4.Size = new System.Drawing.Size(578, 397);
+            this.tpTR4.Size = new System.Drawing.Size(578, 416);
             this.tpTR4.TabIndex = 3;
             this.tpTR4.Text = "Tomb Raider IV";
             this.tpTR4.UseVisualStyleBackColor = true;
@@ -751,7 +682,7 @@ namespace TombExtract
             // 
             // btnAboutTR4
             // 
-            this.btnAboutTR4.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR4.Location = new System.Drawing.Point(403, 378);
             this.btnAboutTR4.Name = "btnAboutTR4";
             this.btnAboutTR4.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR4.TabIndex = 8;
@@ -794,7 +725,7 @@ namespace TombExtract
             // 
             // btnExitTR4
             // 
-            this.btnExitTR4.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR4.Location = new System.Drawing.Point(322, 378);
             this.btnExitTR4.Name = "btnExitTR4";
             this.btnExitTR4.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR4.TabIndex = 7;
@@ -805,7 +736,7 @@ namespace TombExtract
             // btnExtractTR4
             // 
             this.btnExtractTR4.Enabled = false;
-            this.btnExtractTR4.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR4.Location = new System.Drawing.Point(485, 378);
             this.btnExtractTR4.Name = "btnExtractTR4";
             this.btnExtractTR4.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR4.TabIndex = 9;
@@ -857,7 +788,7 @@ namespace TombExtract
             this.tpTR5.Controls.Add(this.cklSourceSavegamesTR5);
             this.tpTR5.Location = new System.Drawing.Point(4, 48);
             this.tpTR5.Name = "tpTR5";
-            this.tpTR5.Size = new System.Drawing.Size(578, 397);
+            this.tpTR5.Size = new System.Drawing.Size(578, 416);
             this.tpTR5.TabIndex = 4;
             this.tpTR5.Text = "Tomb Raider V";
             this.tpTR5.UseVisualStyleBackColor = true;
@@ -884,7 +815,7 @@ namespace TombExtract
             // 
             // btnAboutTR5
             // 
-            this.btnAboutTR5.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR5.Location = new System.Drawing.Point(403, 378);
             this.btnAboutTR5.Name = "btnAboutTR5";
             this.btnAboutTR5.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR5.TabIndex = 8;
@@ -927,7 +858,7 @@ namespace TombExtract
             // 
             // btnExitTR5
             // 
-            this.btnExitTR5.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR5.Location = new System.Drawing.Point(322, 378);
             this.btnExitTR5.Name = "btnExitTR5";
             this.btnExitTR5.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR5.TabIndex = 7;
@@ -938,7 +869,7 @@ namespace TombExtract
             // btnExtractTR5
             // 
             this.btnExtractTR5.Enabled = false;
-            this.btnExtractTR5.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR5.Location = new System.Drawing.Point(485, 378);
             this.btnExtractTR5.Name = "btnExtractTR5";
             this.btnExtractTR5.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR5.TabIndex = 9;
@@ -990,7 +921,7 @@ namespace TombExtract
             this.tpTR6.Controls.Add(this.cklSourceSavegamesTR6);
             this.tpTR6.Location = new System.Drawing.Point(4, 48);
             this.tpTR6.Name = "tpTR6";
-            this.tpTR6.Size = new System.Drawing.Size(578, 397);
+            this.tpTR6.Size = new System.Drawing.Size(578, 416);
             this.tpTR6.TabIndex = 5;
             this.tpTR6.Text = "Tomb Raider VI";
             this.tpTR6.UseVisualStyleBackColor = true;
@@ -1017,7 +948,7 @@ namespace TombExtract
             // 
             // btnAboutTR6
             // 
-            this.btnAboutTR6.Location = new System.Drawing.Point(403, 356);
+            this.btnAboutTR6.Location = new System.Drawing.Point(403, 378);
             this.btnAboutTR6.Name = "btnAboutTR6";
             this.btnAboutTR6.Size = new System.Drawing.Size(75, 23);
             this.btnAboutTR6.TabIndex = 8;
@@ -1060,7 +991,7 @@ namespace TombExtract
             // 
             // btnExitTR6
             // 
-            this.btnExitTR6.Location = new System.Drawing.Point(322, 356);
+            this.btnExitTR6.Location = new System.Drawing.Point(322, 378);
             this.btnExitTR6.Name = "btnExitTR6";
             this.btnExitTR6.Size = new System.Drawing.Size(75, 23);
             this.btnExitTR6.TabIndex = 7;
@@ -1071,7 +1002,7 @@ namespace TombExtract
             // btnExtractTR6
             // 
             this.btnExtractTR6.Enabled = false;
-            this.btnExtractTR6.Location = new System.Drawing.Point(485, 356);
+            this.btnExtractTR6.Location = new System.Drawing.Point(485, 378);
             this.btnExtractTR6.Name = "btnExtractTR6";
             this.btnExtractTR6.Size = new System.Drawing.Size(75, 23);
             this.btnExtractTR6.TabIndex = 9;
@@ -1228,7 +1159,7 @@ namespace TombExtract
             // 
             this.tsmiAlwaysOnTop.CheckOnClick = true;
             this.tsmiAlwaysOnTop.Name = "tsmiAlwaysOnTop";
-            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(149, 22);
             this.tsmiAlwaysOnTop.Text = "Always on top";
             this.tsmiAlwaysOnTop.Click += new System.EventHandler(this.tsmiAlwaysOnTop_Click);
             // 
@@ -1238,7 +1169,7 @@ namespace TombExtract
             this.tsmiStatusBar.CheckOnClick = true;
             this.tsmiStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsmiStatusBar.Name = "tsmiStatusBar";
-            this.tsmiStatusBar.Size = new System.Drawing.Size(180, 22);
+            this.tsmiStatusBar.Size = new System.Drawing.Size(149, 22);
             this.tsmiStatusBar.Text = "Status Bar";
             this.tsmiStatusBar.Click += new System.EventHandler(this.tsmiStatusBar_Click);
             // 
@@ -1246,7 +1177,7 @@ namespace TombExtract
             // 
             this.tsmiDarkMode.CheckOnClick = true;
             this.tsmiDarkMode.Name = "tsmiDarkMode";
-            this.tsmiDarkMode.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDarkMode.Size = new System.Drawing.Size(149, 22);
             this.tsmiDarkMode.Text = "Dark Mode";
             this.tsmiDarkMode.Click += new System.EventHandler(this.tsmiDarkMode_Click);
             // 
@@ -1290,7 +1221,7 @@ namespace TombExtract
             // 
             this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.slblStatus});
-            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 557);
+            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 577);
             this.ssrStatusStrip.Name = "ssrStatusStrip";
             this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.ssrStatusStrip.Size = new System.Drawing.Size(594, 22);
@@ -1304,12 +1235,126 @@ namespace TombExtract
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
             // 
+            // lblSourceFormatTR1
+            // 
+            this.lblSourceFormatTR1.AutoSize = true;
+            this.lblSourceFormatTR1.Location = new System.Drawing.Point(17, 340);
+            this.lblSourceFormatTR1.Name = "lblSourceFormatTR1";
+            this.lblSourceFormatTR1.Size = new System.Drawing.Size(48, 15);
+            this.lblSourceFormatTR1.TabIndex = 19;
+            this.lblSourceFormatTR1.Text = "Format:";
+            // 
+            // cmbSourceFormatTR1
+            // 
+            this.cmbSourceFormatTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceFormatTR1.FormattingEnabled = true;
+            this.cmbSourceFormatTR1.Location = new System.Drawing.Point(82, 336);
+            this.cmbSourceFormatTR1.Name = "cmbSourceFormatTR1";
+            this.cmbSourceFormatTR1.Size = new System.Drawing.Size(171, 23);
+            this.cmbSourceFormatTR1.TabIndex = 20;
+            this.cmbSourceFormatTR1.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR1_SelectedIndexChanged);
+            // 
+            // cmbDestinationFormatTR1
+            // 
+            this.cmbDestinationFormatTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationFormatTR1.FormattingEnabled = true;
+            this.cmbDestinationFormatTR1.Location = new System.Drawing.Point(389, 336);
+            this.cmbDestinationFormatTR1.Name = "cmbDestinationFormatTR1";
+            this.cmbDestinationFormatTR1.Size = new System.Drawing.Size(171, 23);
+            this.cmbDestinationFormatTR1.TabIndex = 22;
+            this.cmbDestinationFormatTR1.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR1_SelectedIndexChanged);
+            // 
+            // lblDestinationFormatTR1
+            // 
+            this.lblDestinationFormatTR1.AutoSize = true;
+            this.lblDestinationFormatTR1.Location = new System.Drawing.Point(324, 340);
+            this.lblDestinationFormatTR1.Name = "lblDestinationFormatTR1";
+            this.lblDestinationFormatTR1.Size = new System.Drawing.Size(48, 15);
+            this.lblDestinationFormatTR1.TabIndex = 21;
+            this.lblDestinationFormatTR1.Text = "Format:";
+            // 
+            // cmbDestinationFormatTR2
+            // 
+            this.cmbDestinationFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationFormatTR2.FormattingEnabled = true;
+            this.cmbDestinationFormatTR2.Location = new System.Drawing.Point(389, 336);
+            this.cmbDestinationFormatTR2.Name = "cmbDestinationFormatTR2";
+            this.cmbDestinationFormatTR2.Size = new System.Drawing.Size(171, 23);
+            this.cmbDestinationFormatTR2.TabIndex = 26;
+            this.cmbDestinationFormatTR2.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR2_SelectedIndexChanged);
+            // 
+            // lblDestinationFormatTR2
+            // 
+            this.lblDestinationFormatTR2.AutoSize = true;
+            this.lblDestinationFormatTR2.Location = new System.Drawing.Point(324, 340);
+            this.lblDestinationFormatTR2.Name = "lblDestinationFormatTR2";
+            this.lblDestinationFormatTR2.Size = new System.Drawing.Size(48, 15);
+            this.lblDestinationFormatTR2.TabIndex = 25;
+            this.lblDestinationFormatTR2.Text = "Format:";
+            // 
+            // cmbSourceFormatTR2
+            // 
+            this.cmbSourceFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceFormatTR2.FormattingEnabled = true;
+            this.cmbSourceFormatTR2.Location = new System.Drawing.Point(82, 336);
+            this.cmbSourceFormatTR2.Name = "cmbSourceFormatTR2";
+            this.cmbSourceFormatTR2.Size = new System.Drawing.Size(171, 23);
+            this.cmbSourceFormatTR2.TabIndex = 24;
+            this.cmbSourceFormatTR2.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR2_SelectedIndexChanged);
+            // 
+            // lblSourceFormatTR2
+            // 
+            this.lblSourceFormatTR2.AutoSize = true;
+            this.lblSourceFormatTR2.Location = new System.Drawing.Point(17, 340);
+            this.lblSourceFormatTR2.Name = "lblSourceFormatTR2";
+            this.lblSourceFormatTR2.Size = new System.Drawing.Size(48, 15);
+            this.lblSourceFormatTR2.TabIndex = 23;
+            this.lblSourceFormatTR2.Text = "Format:";
+            // 
+            // cmbDestinationFormatTR3
+            // 
+            this.cmbDestinationFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationFormatTR3.FormattingEnabled = true;
+            this.cmbDestinationFormatTR3.Location = new System.Drawing.Point(389, 336);
+            this.cmbDestinationFormatTR3.Name = "cmbDestinationFormatTR3";
+            this.cmbDestinationFormatTR3.Size = new System.Drawing.Size(171, 23);
+            this.cmbDestinationFormatTR3.TabIndex = 31;
+            this.cmbDestinationFormatTR3.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR3_SelectedIndexChanged);
+            // 
+            // lblDestinationFormatTR3
+            // 
+            this.lblDestinationFormatTR3.AutoSize = true;
+            this.lblDestinationFormatTR3.Location = new System.Drawing.Point(324, 340);
+            this.lblDestinationFormatTR3.Name = "lblDestinationFormatTR3";
+            this.lblDestinationFormatTR3.Size = new System.Drawing.Size(48, 15);
+            this.lblDestinationFormatTR3.TabIndex = 30;
+            this.lblDestinationFormatTR3.Text = "Format:";
+            // 
+            // cmbSourceFormatTR3
+            // 
+            this.cmbSourceFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceFormatTR3.FormattingEnabled = true;
+            this.cmbSourceFormatTR3.Location = new System.Drawing.Point(82, 336);
+            this.cmbSourceFormatTR3.Name = "cmbSourceFormatTR3";
+            this.cmbSourceFormatTR3.Size = new System.Drawing.Size(171, 23);
+            this.cmbSourceFormatTR3.TabIndex = 29;
+            this.cmbSourceFormatTR3.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR3_SelectedIndexChanged);
+            // 
+            // lblSourceFormatTR3
+            // 
+            this.lblSourceFormatTR3.AutoSize = true;
+            this.lblSourceFormatTR3.Location = new System.Drawing.Point(17, 340);
+            this.lblSourceFormatTR3.Name = "lblSourceFormatTR3";
+            this.lblSourceFormatTR3.Size = new System.Drawing.Size(48, 15);
+            this.lblSourceFormatTR3.TabIndex = 28;
+            this.lblSourceFormatTR3.Text = "Format:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(594, 579);
+            this.ClientSize = new System.Drawing.Size(594, 599);
             this.Controls.Add(this.ssrStatusStrip);
             this.Controls.Add(this.tsrToolStrip);
             this.Controls.Add(this.tabGame);
@@ -1403,12 +1448,6 @@ namespace TombExtract
         private System.Windows.Forms.ToolStripStatusLabel slblStatus;
         private System.Windows.Forms.ToolStripMenuItem tsmiExtract;
         private System.Windows.Forms.ToolStripSeparator tsmiFileSeparator2;
-        private System.Windows.Forms.ComboBox cmbConversionTR3;
-        private System.Windows.Forms.Label lblConvertTR3;
-        private System.Windows.Forms.Label lblConvertTR1;
-        private System.Windows.Forms.ComboBox cmbConversionTR1;
-        private System.Windows.Forms.Label lblConvertTR2;
-        private System.Windows.Forms.ComboBox cmbConversionTR2;
         private System.Windows.Forms.Button btnManageSlotsTR1;
         private System.Windows.Forms.Button btnManageSlotsTR2;
         private System.Windows.Forms.Button btnManageSlotsTR3;
@@ -1456,6 +1495,18 @@ namespace TombExtract
         private System.Windows.Forms.ToolStripMenuItem tsmiStatusBar;
         private System.Windows.Forms.ToolStripMenuItem tsmiDarkMode;
         private System.Windows.Forms.ToolStripMenuItem tsmiAlwaysOnTop;
+        private System.Windows.Forms.ComboBox cmbDestinationFormatTR1;
+        private System.Windows.Forms.Label lblDestinationFormatTR1;
+        private System.Windows.Forms.ComboBox cmbSourceFormatTR1;
+        private System.Windows.Forms.Label lblSourceFormatTR1;
+        private System.Windows.Forms.ComboBox cmbDestinationFormatTR2;
+        private System.Windows.Forms.Label lblDestinationFormatTR2;
+        private System.Windows.Forms.ComboBox cmbSourceFormatTR2;
+        private System.Windows.Forms.Label lblSourceFormatTR2;
+        private System.Windows.Forms.ComboBox cmbDestinationFormatTR3;
+        private System.Windows.Forms.Label lblDestinationFormatTR3;
+        private System.Windows.Forms.ComboBox cmbSourceFormatTR3;
+        private System.Windows.Forms.Label lblSourceFormatTR3;
     }
 }
 

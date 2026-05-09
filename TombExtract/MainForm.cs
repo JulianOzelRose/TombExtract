@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TombExtract
@@ -41,24 +42,52 @@ namespace TombExtract
         private string savegameSourcePathTRX2;
 
         // Savegame versioning
-        private const int SAVEGAME_FILE_SIZE_TRX_PREPATCH = 0x152004;
-        private const int SAVEGAME_FILE_SIZE_TRX_PATCH5 = 0x272004;
-        private const int SAVEGAME_FILE_SIZE_TRX2 = 0x3DCA04;
-        private const int SAVEGAME_VERSION_OFFSET = 0x000;
-        private const byte TRX_PREPATCH_SIGNATURE = 0x3B;
-        private const byte TRX_PATCH5_SIGNATURE = 0x3C;
-        private const byte TRX2_SAVEGAME_SIGNATURE = 0x28;
+        private const int SAVEFILE_SIZE_TRX_PREPATCH = 0x152004;
+        private const int SAVEFILE_SIZE_TRX_PATCH5 = 0x272004;
+        private const int SAVEFILE_SIZE_TRX2 = 0x3DCA04;
+        private const int SAVEFILE_VERSION_OFFSET = 0x000;
+
+        private const byte SAVEFILE_TRX_PREPATCH = 0x3B;
+        private const byte SAVEFILE_TRX_PATCH5 = 0x3C;
+        private const byte SAVEFILE_TRX2_FORMAT = 0x28;
 
         // Config
         private const string CONFIG_FILE_NAME = "TombExtract.ini";
 
+        // Misc
+        private bool isSyncingPlatformComboBoxes = false;
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             ReadConfigFile();
+            InitializePlatformComboBoxes();
+        }
 
-            cmbConversionTR1.SelectedIndex = 0;
-            cmbConversionTR2.SelectedIndex = 0;
-            cmbConversionTR3.SelectedIndex = 0;
+        private void InitializePlatformComboBoxes()
+        {
+            InitializePlatformComboBox(cmbSourceFormatTR1);
+            InitializePlatformComboBox(cmbDestinationFormatTR1);
+
+            InitializePlatformComboBox(cmbSourceFormatTR2);
+            InitializePlatformComboBox(cmbDestinationFormatTR2);
+
+            InitializePlatformComboBox(cmbSourceFormatTR3);
+            InitializePlatformComboBox(cmbDestinationFormatTR3);
+        }
+
+        private void InitializePlatformComboBox(ComboBox comboBox)
+        {
+            comboBox.DataSource = Enum.GetValues(typeof(Platform)).Cast<Platform>().ToList();
+
+            comboBox.Format += (s, e) =>
+            {
+                if (e.ListItem is Platform platform)
+                {
+                    e.Value = platform.ToFriendlyString();
+                }
+            };
+
+            comboBox.SelectedItem = Platform.PC;
         }
 
         private void ApplyDarkMode()
@@ -269,16 +298,20 @@ namespace TombExtract
             tsmiBackupDestinationFile.Enabled = isDestinationFilePresent;
         }
 
-        private bool IsValidSavegameTRX(string path)
+        private bool IsValidSavegameFileTRX(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
             byte[] fileData = File.ReadAllBytes(path);
 
-            long savegameFileSize = fileInfo.Length;
-            byte savegameVersion = GetSavegameVersion(fileData);
+            long saveFileSize = fileInfo.Length;
+            byte saveFileVersion = GetSaveFileVersion(fileData);
 
-            if ((savegameVersion == TRX_PREPATCH_SIGNATURE || savegameVersion == TRX_PATCH5_SIGNATURE)
-                && (savegameFileSize >= SAVEGAME_FILE_SIZE_TRX_PREPATCH || savegameFileSize >= SAVEGAME_FILE_SIZE_TRX_PATCH5))
+            if (saveFileVersion == SAVEFILE_TRX_PREPATCH && saveFileSize >= SAVEFILE_SIZE_TRX_PREPATCH)
+            {
+                return true;
+            }
+
+            if (saveFileVersion == SAVEFILE_TRX_PATCH5 && saveFileSize >= SAVEFILE_SIZE_TRX_PATCH5)
             {
                 return true;
             }
@@ -286,15 +319,15 @@ namespace TombExtract
             return false;
         }
 
-        private bool IsValidSavegameTRX2(string path)
+        private bool IsValidSavegameFileTRX2(string path)
         {
             FileInfo fileInfo = new FileInfo(path);
             byte[] fileData = File.ReadAllBytes(path);
 
-            long savegameFileSize = fileInfo.Length;
-            byte savegameVersion = GetSavegameVersion(fileData);
+            long saveFileSize = fileInfo.Length;
+            byte saveFileVersion = GetSaveFileVersion(fileData);
 
-            if (savegameVersion == TRX2_SAVEGAME_SIGNATURE && savegameFileSize >= SAVEGAME_FILE_SIZE_TRX2)
+            if (saveFileVersion == SAVEFILE_TRX2_FORMAT && saveFileSize >= SAVEFILE_SIZE_TRX2)
             {
                 return true;
             }
@@ -302,19 +335,24 @@ namespace TombExtract
             return false;
         }
 
-        public byte GetSavegameVersion(byte[] fileData)
+        public byte GetSaveFileVersion(byte[] fileData)
         {
-            return fileData[SAVEGAME_VERSION_OFFSET];
+            return fileData[SAVEFILE_VERSION_OFFSET];
         }
 
-        public bool IsPatch5Savegame(byte[] fileData)
+        public bool IsPatch5SavegameFileTRX(byte[] fileData)
         {
-            return fileData[SAVEGAME_VERSION_OFFSET] == TRX_PATCH5_SIGNATURE;
+            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_TRX_PATCH5;
+        }
+
+        public bool IsPrepatchSavegameFileTRX(byte[] fileData)
+        {
+            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_TRX_PREPATCH;
         }
 
         private void SetSourceFileTRX(string path)
         {
-            if (!IsValidSavegameTRX(path))
+            if (!IsValidSavegameFileTRX(path))
             {
                 MessageBox.Show("Not a valid Tomb Raider I-III Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -324,12 +362,15 @@ namespace TombExtract
             savegameSourcePathTRX = path;
 
             tr1Utilities.SetSavegameSourcePath(path);
+            tr1Utilities.SetSourceFormat((Platform)cmbSourceFormatTR1.SelectedItem);
             tr1Utilities.PopulateSourceSavegames(cklSourceSavegamesTR1);
 
             tr2Utilities.SetSavegameSourcePath(path);
+            tr2Utilities.SetSourceFormat((Platform)cmbSourceFormatTR2.SelectedItem);
             tr2Utilities.PopulateSourceSavegames(cklSourceSavegamesTR2);
 
             tr3Utilities.SetSavegameSourcePath(path);
+            tr3Utilities.SetSourceFormat((Platform)cmbSourceFormatTR3.SelectedItem);
             tr3Utilities.PopulateSourceSavegames(cklSourceSavegamesTR3);
 
             EnableButtonsConditionally();
@@ -338,26 +379,12 @@ namespace TombExtract
                            cklSourceSavegamesTR2.Items.Count +
                            cklSourceSavegamesTR3.Items.Count;
 
-            byte[] fileData = File.ReadAllBytes(path);
-            bool isPatch5 = IsPatch5Savegame(fileData);
-
-            if (isPatch5)
-            {
-                cmbConversionTR1.SelectedIndex = 0;
-                cmbConversionTR2.SelectedIndex = 0;
-                cmbConversionTR3.SelectedIndex = 0;
-
-                cmbConversionTR1.Enabled = false;
-                cmbConversionTR2.Enabled = false;
-                cmbConversionTR3.Enabled = false;
-            }
-
             slblStatus.Text = $"{numSaves} savegame(s) found in \"{path}\"";
         }
 
         private void SetSourceFileTRX2(string path)
         {
-            if (!IsValidSavegameTRX2(path))
+            if (!IsValidSavegameFileTRX2(path))
             {
                 MessageBox.Show("Not a valid Tomb Raider IV-VI Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -386,7 +413,7 @@ namespace TombExtract
 
         private void SetDestinationFileTRX(string path)
         {
-            if (!IsValidSavegameTRX(path))
+            if (!IsValidSavegameFileTRX(path))
             {
                 MessageBox.Show("Not a valid Tomb Raider I-III Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -396,36 +423,25 @@ namespace TombExtract
             savegameDestinationPathTRX = path;
 
             tr1Utilities.SetSavegameDestinationPath(path);
+            tr1Utilities.SetDestinationFormat((Platform)cmbDestinationFormatTR1.SelectedItem);
             tr1Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
 
             tr2Utilities.SetSavegameDestinationPath(path);
+            tr2Utilities.SetDestinationFormat((Platform)cmbDestinationFormatTR2.SelectedItem);
             tr2Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
 
             tr3Utilities.SetSavegameDestinationPath(path);
+            tr3Utilities.SetDestinationFormat((Platform)cmbDestinationFormatTR3.SelectedItem);
             tr3Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
 
             EnableButtonsConditionally();
-
-            byte[] fileData = File.ReadAllBytes(path);
-            bool isPatch5 = IsPatch5Savegame(fileData);
-
-            if (isPatch5)
-            {
-                cmbConversionTR1.SelectedIndex = 0;
-                cmbConversionTR2.SelectedIndex = 0;
-                cmbConversionTR3.SelectedIndex = 0;
-
-                cmbConversionTR1.Enabled = false;
-                cmbConversionTR2.Enabled = false;
-                cmbConversionTR3.Enabled = false;
-            }
 
             slblStatus.Text = $"Opened destination file: \"{path}\"";
         }
 
         private void SetDestinationFileTRX2(string path)
         {
-            if (!IsValidSavegameTRX2(path))
+            if (!IsValidSavegameFileTRX2(path))
             {
                 MessageBox.Show("Not a valid Tomb Raider IV-VI Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -913,7 +929,7 @@ namespace TombExtract
             progressForm.Show();
 
             tr1Utilities.SetProgressForm(progressForm);
-            tr1Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR1, slblStatus, cmbConversionTR1);
+            tr1Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR1, slblStatus);
         }
 
         private void ExtractSavegamesTR2()
@@ -975,7 +991,7 @@ namespace TombExtract
             progressForm.Show();
 
             tr2Utilities.SetProgressForm(progressForm);
-            tr2Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR2, slblStatus, cmbConversionTR2);
+            tr2Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR2, slblStatus, null/*cmbConversionTR2*/);
         }
 
         private void ExtractSavegamesTR3()
@@ -1037,7 +1053,7 @@ namespace TombExtract
             progressForm.Show();
 
             tr3Utilities.SetProgressForm(progressForm);
-            tr3Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR3, slblStatus, cmbConversionTR3);
+            tr3Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR3, slblStatus, null/*cmbConversionTR3*/);
         }
 
         private void ExtractSavegamesTR4()
@@ -1239,8 +1255,8 @@ namespace TombExtract
             byte[] sourceFileData = File.ReadAllBytes(savegameSourcePathTRX);
             byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPathTRX);
 
-            bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
-            bool isDestinationPrepatch = !IsPatch5Savegame(destinationFileData);
+            bool isSourcePatch5 = IsPatch5SavegameFileTRX(sourceFileData);
+            bool isDestinationPrepatch = !IsPatch5SavegameFileTRX(destinationFileData);
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
@@ -1266,8 +1282,8 @@ namespace TombExtract
             byte[] sourceFileData = File.ReadAllBytes(savegameSourcePathTRX);
             byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPathTRX);
 
-            bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
-            bool isDestinationPrepatch = !IsPatch5Savegame(destinationFileData);
+            bool isSourcePatch5 = IsPatch5SavegameFileTRX(sourceFileData);
+            bool isDestinationPrepatch = !IsPatch5SavegameFileTRX(destinationFileData);
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
@@ -1293,8 +1309,8 @@ namespace TombExtract
             byte[] sourceFileData = File.ReadAllBytes(savegameSourcePathTRX);
             byte[] destinationFileData = File.ReadAllBytes(savegameDestinationPathTRX);
 
-            bool isSourcePatch5 = IsPatch5Savegame(sourceFileData);
-            bool isDestinationPrepatch = !IsPatch5Savegame(destinationFileData);
+            bool isSourcePatch5 = IsPatch5SavegameFileTRX(sourceFileData);
+            bool isDestinationPrepatch = !IsPatch5SavegameFileTRX(destinationFileData);
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
@@ -1592,69 +1608,6 @@ namespace TombExtract
             }
         }
 
-        private void cmbConversionTR1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbConversionTR2.SelectedIndex = cmbConversionTR1.SelectedIndex;
-            cmbConversionTR3.SelectedIndex = cmbConversionTR1.SelectedIndex;
-
-            if (cmbConversionTR1.SelectedIndex == 0)
-            {
-                btnExtractTR1.Text = "Extract";
-                btnExtractTR2.Text = "Extract";
-                btnExtractTR3.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR1.Text = "Convert";
-                btnExtractTR2.Text = "Convert";
-                btnExtractTR3.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-        }
-
-        private void cmbConversionTR2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbConversionTR1.SelectedIndex = cmbConversionTR2.SelectedIndex;
-            cmbConversionTR3.SelectedIndex = cmbConversionTR2.SelectedIndex;
-
-            if (cmbConversionTR2.SelectedIndex == 0)
-            {
-                btnExtractTR1.Text = "Extract";
-                btnExtractTR2.Text = "Extract";
-                btnExtractTR3.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR1.Text = "Convert";
-                btnExtractTR2.Text = "Convert";
-                btnExtractTR3.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-        }
-
-        private void cmbConversionTR3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmbConversionTR1.SelectedIndex = cmbConversionTR3.SelectedIndex;
-            cmbConversionTR2.SelectedIndex = cmbConversionTR3.SelectedIndex;
-
-            if (cmbConversionTR3.SelectedIndex == 0)
-            {
-                btnExtractTR1.Text = "Extract";
-                btnExtractTR2.Text = "Extract";
-                btnExtractTR3.Text = "Extract";
-                tsmiExtract.Text = "Extract";
-            }
-            else
-            {
-                btnExtractTR1.Text = "Convert";
-                btnExtractTR2.Text = "Convert";
-                btnExtractTR3.Text = "Convert";
-                tsmiExtract.Text = "Convert";
-            }
-        }
-
         private void btnManageSlotsTR1_Click(object sender, EventArgs e)
         {
             if (IsAnyWriting())
@@ -1666,7 +1619,7 @@ namespace TombExtract
             }
 
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX, tabGame.SelectedIndex,
-                slblStatus, chkBackupOnWrite.Checked);
+                slblStatus, chkBackupOnWrite.Checked, (Platform)cmbDestinationFormatTR1.SelectedItem);
 
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
@@ -1685,7 +1638,7 @@ namespace TombExtract
             }
 
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX, tabGame.SelectedIndex,
-                slblStatus, chkBackupOnWrite.Checked);
+                slblStatus, chkBackupOnWrite.Checked, (Platform)cmbDestinationFormatTR2.SelectedItem);
 
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
@@ -1704,7 +1657,7 @@ namespace TombExtract
             }
 
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX, tabGame.SelectedIndex,
-                slblStatus, chkBackupOnWrite.Checked);
+                slblStatus, chkBackupOnWrite.Checked, (Platform)cmbDestinationFormatTR3.SelectedItem);
 
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
@@ -1723,7 +1676,7 @@ namespace TombExtract
             }
 
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX2, tabGame.SelectedIndex,
-                slblStatus, chkBackupOnWrite.Checked);
+                slblStatus, chkBackupOnWrite.Checked, Platform.PC);
 
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
@@ -1742,7 +1695,7 @@ namespace TombExtract
             }
 
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX2, tabGame.SelectedIndex,
-                slblStatus, chkBackupOnWrite.Checked);
+                slblStatus, chkBackupOnWrite.Checked, Platform.PC);
 
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
@@ -1761,7 +1714,7 @@ namespace TombExtract
             }
 
             ManageSlotsForm manageSlotsForm = new ManageSlotsForm(savegameDestinationPathTRX2, tabGame.SelectedIndex,
-                slblStatus, chkBackupOnWrite.Checked);
+                slblStatus, chkBackupOnWrite.Checked, Platform.PC);
 
             manageSlotsForm.TopMost = TopMost;
             manageSlotsForm.ShowDialog();
@@ -1785,6 +1738,109 @@ namespace TombExtract
                 txtDestinationFilePath.Text = savegameDestinationPathTRX2;
                 txtSourceFilePath.Text = savegameSourcePathTRX2;
             }
+        }
+
+        private void UpdateExtractButtonText()
+        {
+            if (cmbSourceFormatTR1.SelectedItem == null || cmbDestinationFormatTR1.SelectedItem == null)
+            {
+                return;
+            }
+
+            Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
+            Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
+
+            bool isConvert = sourcePlatform != destinationPlatform;
+
+            string buttonText = isConvert ? "Convert" : "Extract";
+
+            btnExtractTR1.Text = buttonText;
+            btnExtractTR2.Text = buttonText;
+            btnExtractTR3.Text = buttonText;
+        }
+
+        private void SyncSourcePlatforms(Platform platform)
+        {
+            if (isSyncingPlatformComboBoxes)
+            {
+                return;
+            }
+
+            isSyncingPlatformComboBoxes = true;
+
+            cmbSourceFormatTR1.SelectedItem = platform;
+            cmbSourceFormatTR2.SelectedItem = platform;
+            cmbSourceFormatTR3.SelectedItem = platform;
+
+            tr1Utilities.SetSourceFormat(platform);
+            tr2Utilities.SetSourceFormat(platform);
+            tr3Utilities.SetSourceFormat(platform);
+
+            tr1Utilities.PopulateSourceSavegames(cklSourceSavegamesTR1);
+            tr2Utilities.PopulateSourceSavegames(cklSourceSavegamesTR2);
+            tr3Utilities.PopulateSourceSavegames(cklSourceSavegamesTR3);
+
+            isSyncingPlatformComboBoxes = false;
+
+            EnableButtonsConditionally();
+            UpdateExtractButtonText();
+        }
+
+        private void SyncDestinationPlatforms(Platform platform)
+        {
+            if (isSyncingPlatformComboBoxes)
+            {
+                return;
+            }
+
+            isSyncingPlatformComboBoxes = true;
+
+            cmbDestinationFormatTR1.SelectedItem = platform;
+            cmbDestinationFormatTR2.SelectedItem = platform;
+            cmbDestinationFormatTR3.SelectedItem = platform;
+
+            tr1Utilities.SetDestinationFormat(platform);
+            tr2Utilities.SetDestinationFormat(platform);
+            tr3Utilities.SetDestinationFormat(platform);
+
+            tr1Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
+            tr2Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
+            tr3Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
+
+            isSyncingPlatformComboBoxes = false;
+
+            UpdateExtractButtonText();
+            EnableButtonsConditionally();
+        }
+
+        private void cmbSourceFormatTR1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SyncSourcePlatforms((Platform)cmbSourceFormatTR1.SelectedItem);
+        }
+
+        private void cmbSourceFormatTR2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SyncSourcePlatforms((Platform)cmbSourceFormatTR2.SelectedItem);
+        }
+
+        private void cmbSourceFormatTR3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SyncSourcePlatforms((Platform)cmbSourceFormatTR3.SelectedItem);
+        }
+
+        private void cmbDestinationFormatTR1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SyncDestinationPlatforms((Platform)cmbDestinationFormatTR1.SelectedItem);
+        }
+
+        private void cmbDestinationFormatTR2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SyncDestinationPlatforms((Platform)cmbDestinationFormatTR2.SelectedItem);
+        }
+
+        private void cmbDestinationFormatTR3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SyncDestinationPlatforms((Platform)cmbDestinationFormatTR3.SelectedItem);
         }
     }
 }

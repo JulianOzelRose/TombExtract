@@ -20,35 +20,67 @@ namespace TombExtract
         // Path
         private string savegamePath;
 
-        // Offsets
+        // Offsets (universal)
         private const int SAVEGAME_VERSION_OFFSET = 0x000;
         private const int SLOT_STATUS_OFFSET = 0x004;
         private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
+
+        // Platform or patch-dependent offsets
         private int GAME_MODE_OFFSET;
         private int LEVEL_INDEX_OFFSET;
         private int SAVE_NUMBER_OFFSET;
         private int CHALLENGE_MODE_OFFSET;
-        private const int LEVEL_INDEX_OFFSET_TR1 = 0x62C;
+
+        // TR1 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR1 = 0x00C;
         private const int GAME_MODE_OFFSET_TR1 = 0x008;
-        private const int LEVEL_INDEX_OFFSET_TR2 = 0x628;
+
+        // TR1 offsets (PC)
+        private const int LEVEL_INDEX_OFFSET_TR1_PC = 0x62C;
+        private const int CHALLENGE_MODE_OFFSET_TR1_PC = 0x6EC;
+
+        // TR1 offsets (Android)
+        private const int LEVEL_INDEX_OFFSET_TR1_ANDROID = 0x65C;
+        private const int CHALLENGE_MODE_OFFSET_TR1_ANDROID = 0x718;
+
+        // TR2 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR2 = 0x00C;
         private const int GAME_MODE_OFFSET_TR2 = 0x008;
-        private const int LEVEL_INDEX_OFFSET_TR3 = 0x8D6;
+
+        // TR2 offsets (PC)
+        private const int LEVEL_INDEX_OFFSET_TR2_PC = 0x628;
+        private const int CHALLENGE_MODE_OFFSET_TR2_PC = 0x6B0;
+
+        // TR2 offsets (Android)
+        private const int LEVEL_INDEX_OFFSET_TR2_ANDROID = 0x658;
+        private const int CHALLENGE_MODE_OFFSET_TR2_ANDROID = 0x6DC;
+
+        // TR3 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR3 = 0x00C;
         private const int GAME_MODE_OFFSET_TR3 = 0x008;
+
+        // TR3 offsets (PC)
+        private const int LEVEL_INDEX_OFFSET_TR3_PC = 0x8D6;
+        private const int CHALLENGE_MODE_OFFSET_TR3_PC = 0x990;
+
+        // TR3 offsets (Android)
+        private const int LEVEL_INDEX_OFFSET_TR3_ANDROID = 0x916;
+        private const int CHALLENGE_MODE_OFFSET_TR3_ANDROID = 0x9D0;
+
+        // TR4 offsets
         private const int LEVEL_INDEX_OFFSET_TR4 = 0x26F;
         private const int SAVE_NUMBER_OFFSET_TR4 = 0x008;
         private const int GAME_MODE_OFFSET_TR4 = 0x01C;
+
+        // TR5 offsets
         private const int LEVEL_INDEX_OFFSET_TR5 = 0x26F;
         private const int SAVE_NUMBER_OFFSET_TR5 = 0x008;
         private const int GAME_MODE_OFFSET_TR5 = 0x01C;
+
+        // TR6 offsets
         private const int LEVEL_INDEX_OFFSET_TR6 = 0x14;
         private const int SAVE_NUMBER_OFFSET_TR6 = 0x11C;
         private const int GAME_MODE_OFFSET_TR6 = 0x35C;
-        private const int CHALLENGE_MODE_OFFSET_TR1 = 0x6EC;
-        private const int CHALLENGE_MODE_OFFSET_TR2 = 0x6B0;
-        private const int CHALLENGE_MODE_OFFSET_TR3 = 0x990;
 
         // Savegame constants
         private int BASE_SAVEGAME_OFFSET_TR1;
@@ -77,8 +109,9 @@ namespace TombExtract
         private ToolStripStatusLabel slblStatus;
         private bool isWriting = false;
         private bool backupOnWrite = false;
+        Platform platform;
 
-        public ManageSlotsForm(string path, int CURRENT_TAB, ToolStripStatusLabel slblStatus, bool backupOnWrite)
+        public ManageSlotsForm(string path, int CURRENT_TAB, ToolStripStatusLabel slblStatus, bool backupOnWrite, Platform platform)
         {
             InitializeComponent();
 
@@ -115,6 +148,7 @@ namespace TombExtract
             }
 
             this.Text = $"Manage Slots - {gameSuffix}";
+            this.platform = platform;
         }
 
         private void ManageSlotsForm_Load(object sender, EventArgs e)
@@ -151,10 +185,12 @@ namespace TombExtract
 
         private void DetermineOffsets()
         {
+            bool isPatch5 = false;
+
             if (IsTRXSavegame())
             {
                 byte[] fileData = File.ReadAllBytes(savegamePath);
-                bool isPatch5 = IsPatch5Savegame(fileData);
+                isPatch5 = IsPatch5Savegame(fileData);
 
                 if (isPatch5)
                 {
@@ -174,24 +210,81 @@ namespace TombExtract
 
             if (CURRENT_TAB == TAB_TR1)
             {
-                LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1;
-                SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
-                GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
-                CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1;
+                if (isPatch5)
+                {
+                    if (platform == Platform.PC)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PC;
+                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
+                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_PC;
+                    }
+                    else if (platform == Platform.Android)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_ANDROID;
+                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
+                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_ANDROID;
+                    }
+                }
+                else
+                {
+                    LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PC;
+                    SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
+                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
+                }
             }
             else if (CURRENT_TAB == TAB_TR2)
             {
-                LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2;
-                SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
-                GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
-                CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2;
+                if (isPatch5)
+                {
+                    if (platform == Platform.PC)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PC;
+                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
+                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_PC;
+                    }
+                    else if (platform == Platform.Android)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_ANDROID;
+                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
+                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_ANDROID;
+                    }
+                }
+                else
+                {
+                    LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PC;
+                    SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
+                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
+                }
             }
             else if (CURRENT_TAB == TAB_TR3)
             {
-                LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3;
-                SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
-                GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
-                CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3;
+                if (isPatch5)
+                {
+                    if (platform == Platform.PC)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PC;
+                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
+                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_PC;
+                    }
+                    else if (platform == Platform.Android)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_ANDROID;
+                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
+                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_ANDROID;
+                    }
+                }
+                else
+                {
+                    LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PC;
+                    SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
+                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
+                }
             }
             else if (CURRENT_TAB == TAB_TR4)
             {
@@ -584,6 +677,14 @@ namespace TombExtract
                 {
                     return;
                 }
+            }
+
+            if (platform == Platform.Android)
+            {
+                MessageBox.Show($"Savegame creation is not currently supported for Android savegames.",
+                    "Platform Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
             }
 
             CreateSavegameForm createSavegameForm = new CreateSavegameForm(CURRENT_TAB, savegamePath, (lstSavegames.SelectedItem as Savegame).Slot, (lstSavegames.SelectedItem as Savegame).Offset, slblStatus);
