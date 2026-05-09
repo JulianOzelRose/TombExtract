@@ -43,6 +43,10 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR1_ANDROID = 0x65C;
         private const int CHALLENGE_MODE_OFFSET_TR1_ANDROID = 0x718;
 
+        // TR1 offsets (PS4)
+        private const int LEVEL_INDEX_OFFSET_TR1_PS4 = 0x62C;
+        private const int CHALLENGE_MODE_OFFSET_TR1_PS4 = 0x6E8;
+
         // TR2 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR2 = 0x00C;
         private const int GAME_MODE_OFFSET_TR2 = 0x008;
@@ -55,6 +59,10 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR2_ANDROID = 0x658;
         private const int CHALLENGE_MODE_OFFSET_TR2_ANDROID = 0x6DC;
 
+        // TR2 offsets (PS4)
+        private const int LEVEL_INDEX_OFFSET_TR2_PS4 = 0x628;
+        private const int CHALLENGE_MODE_OFFSET_TR2_PS4 = 0x6AC;
+
         // TR3 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR3 = 0x00C;
         private const int GAME_MODE_OFFSET_TR3 = 0x008;
@@ -66,6 +74,10 @@ namespace TombExtract
         // TR3 offsets (Android)
         private const int LEVEL_INDEX_OFFSET_TR3_ANDROID = 0x916;
         private const int CHALLENGE_MODE_OFFSET_TR3_ANDROID = 0x9D0;
+
+        // TR3 offsets (PS4)
+        private const int LEVEL_INDEX_OFFSET_TR3_PS4 = 0x8D6;
+        private const int CHALLENGE_MODE_OFFSET_TR3_PS4 = 0x990;
 
         // TR4 offsets
         private const int LEVEL_INDEX_OFFSET_TR4 = 0x26F;
@@ -212,19 +224,23 @@ namespace TombExtract
             {
                 if (isPatch5)
                 {
+                    SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
+                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
+
                     if (platform == Platform.PC)
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PC;
-                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
-                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_PC;
                     }
                     else if (platform == Platform.Android)
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_ANDROID;
-                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
-                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_ANDROID;
+                    }
+                    else if (platform == Platform.PlayStation4)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PS4;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_PS4;
                     }
                 }
                 else
@@ -238,19 +254,23 @@ namespace TombExtract
             {
                 if (isPatch5)
                 {
+                    SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
+                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
+
                     if (platform == Platform.PC)
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PC;
-                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
-                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_PC;
                     }
                     else if (platform == Platform.Android)
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_ANDROID;
-                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
-                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_ANDROID;
+                    }
+                    else if (platform == Platform.PlayStation4)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PS4;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_PS4;
                     }
                 }
                 else
@@ -264,19 +284,23 @@ namespace TombExtract
             {
                 if (isPatch5)
                 {
+                    SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
+                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
+
                     if (platform == Platform.PC)
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PC;
-                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
-                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_PC;
                     }
                     else if (platform == Platform.Android)
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_ANDROID;
-                        SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
-                        GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_ANDROID;
+                    }
+                    else if (platform == Platform.PlayStation4)
+                    {
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PS4;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_PS4;
                     }
                 }
                 else
@@ -679,9 +703,9 @@ namespace TombExtract
                 }
             }
 
-            if (platform == Platform.Android)
+            if (platform != Platform.PC)
             {
-                MessageBox.Show($"Savegame creation is not currently supported for Android savegames.",
+                MessageBox.Show($"Savegame creation is not currently supported for {platform.ToFriendlyString()} savegames.",
                     "Platform Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 return;

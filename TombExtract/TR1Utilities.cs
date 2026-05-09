@@ -37,6 +37,10 @@ namespace TombExtract
         private const int CHALLENGE_MODE_OFFSET_ANDROID = 0x718;
         private const int CHALLENGE_MODE_PARAM_BLOCK_START_ANDROID = 0x72F;
 
+        // PS4 offsets
+        private const int LEVEL_INDEX_OFFSET_PS4 = 0x62C;
+        private const int CHALLENGE_MODE_OFFSET_PS4 = 0x6E8;
+
         // Savegame constants
         private const int MAX_SAVEGAMES = 32;
         private const int CHALLENGE_MODE_PARAM_BLOCK_SIZE = 0xC;
@@ -95,6 +99,11 @@ namespace TombExtract
                     {
                         SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
                         SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
+                    }
+                    else if (sourcePlatform == Platform.PlayStation4)
+                    {
+                        SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PS4;
+                        SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PS4;
                     }
                 }
                 else
@@ -160,6 +169,11 @@ namespace TombExtract
                     {
                         DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
                         DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
+                    }
+                    else if (destinationPlatform == Platform.PlayStation4)
+                    {
+                        DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PS4;
+                        DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PS4;
                     }
                 }
                 else
@@ -397,28 +411,102 @@ namespace TombExtract
                         }
                         else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.PlayStation4)     // PC -> PS4
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            if (isSourcePrepatch && !isDestinationPatch5)
                             {
-                                int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
 
-                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
-                                    destinationFile.Seek(offset - 1, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset - 1, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else if (currentRelativeOffset >= 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
-                                else if (currentRelativeOffset >= 0x6B0)
+                            }
+                            else if (!isSourcePrepatch && isDestinationPatch5)
+                            {
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
-                                    destinationFile.Seek(offset - 4, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
-                                else
+                            }
+                            else if (isSourcePrepatch && isDestinationPatch5)
+                            {
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                // INTERMEDIATE PATCH 5 PC BUFFER
+                                byte[] migratedPatch5Buffer = new byte[SAVEGAME_SIZE_PATCH5];
+
+                                // PREPATCH -> PATCH 5 PC MIGRATION
+                                for (int j = 0; j < SAVEGAME_SIZE_PREPATCH; j++)
                                 {
-                                    destinationFile.Seek(offset, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+
+                                    if (j >= 0x6E0)
+                                    {
+                                        migratedPatch5Buffer[j + 0x13] = value;
+                                    }
+                                    else
+                                    {
+                                        migratedPatch5Buffer[j] = value;
+                                    }
+                                }
+
+                                // PATCH 5 PC -> PS4
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                                {
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < migratedPatch5Buffer.Length ? migratedPatch5Buffer[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset - 4, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
                             }
                         }
@@ -451,28 +539,57 @@ namespace TombExtract
                         }
                         else if (sourcePlatform == Platform.PlayStation4 && destinationPlatform == Platform.PC)     // PS4 -> PC
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            if (isSourcePrepatch && !isDestinationPatch5)
                             {
-                                int currentRelativeOffset = offset - currentSavegameOffset;
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
 
-                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
-                                    destinationFile.Seek(offset + 1, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset + 1, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else if (currentRelativeOffset >= 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset + 4, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
-                                else if (currentRelativeOffset >= 0x6B0)
+                            }
+                            else if (!isSourcePrepatch && isDestinationPatch5)
+                            {
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
-                                    destinationFile.Seek(offset + 4, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
-                                }
-                                else
-                                {
-                                    destinationFile.Seek(offset, SeekOrigin.Begin);
-                                    destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x6B0)
+                                    {
+                                        destinationFile.Seek(offset + 4, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
                                 }
                             }
                         }
