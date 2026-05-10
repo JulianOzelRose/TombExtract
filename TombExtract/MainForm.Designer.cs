@@ -40,6 +40,10 @@ namespace TombExtract
             this.txtSourceFilePath = new System.Windows.Forms.TextBox();
             this.tabGame = new System.Windows.Forms.TabControl();
             this.tpTR1 = new System.Windows.Forms.TabPage();
+            this.cmbDestinationFormatTR1 = new System.Windows.Forms.ComboBox();
+            this.lblDestinationFormatTR1 = new System.Windows.Forms.Label();
+            this.cmbSourceFormatTR1 = new System.Windows.Forms.ComboBox();
+            this.lblSourceFormatTR1 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR1 = new System.Windows.Forms.Button();
             this.btnAboutTR1 = new System.Windows.Forms.Button();
             this.btnSelectAllTR1 = new System.Windows.Forms.Button();
@@ -51,6 +55,10 @@ namespace TombExtract
             this.lblSourceSavegamesTR1 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR1 = new System.Windows.Forms.CheckedListBox();
             this.tpTR2 = new System.Windows.Forms.TabPage();
+            this.cmbDestinationFormatTR2 = new System.Windows.Forms.ComboBox();
+            this.lblDestinationFormatTR2 = new System.Windows.Forms.Label();
+            this.cmbSourceFormatTR2 = new System.Windows.Forms.ComboBox();
+            this.lblSourceFormatTR2 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR2 = new System.Windows.Forms.Button();
             this.btnAboutTR2 = new System.Windows.Forms.Button();
             this.btnSelectAllTR2 = new System.Windows.Forms.Button();
@@ -62,6 +70,10 @@ namespace TombExtract
             this.lblSourceSavegamesTR2 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR2 = new System.Windows.Forms.CheckedListBox();
             this.tpTR3 = new System.Windows.Forms.TabPage();
+            this.cmbDestinationFormatTR3 = new System.Windows.Forms.ComboBox();
+            this.lblDestinationFormatTR3 = new System.Windows.Forms.Label();
+            this.cmbSourceFormatTR3 = new System.Windows.Forms.ComboBox();
+            this.lblSourceFormatTR3 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR3 = new System.Windows.Forms.Button();
             this.btnAboutTR3 = new System.Windows.Forms.Button();
             this.btnSelectAllTR3 = new System.Windows.Forms.Button();
@@ -130,18 +142,6 @@ namespace TombExtract
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
             this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblSourceFormatTR1 = new System.Windows.Forms.Label();
-            this.cmbSourceFormatTR1 = new System.Windows.Forms.ComboBox();
-            this.cmbDestinationFormatTR1 = new System.Windows.Forms.ComboBox();
-            this.lblDestinationFormatTR1 = new System.Windows.Forms.Label();
-            this.cmbDestinationFormatTR2 = new System.Windows.Forms.ComboBox();
-            this.lblDestinationFormatTR2 = new System.Windows.Forms.Label();
-            this.cmbSourceFormatTR2 = new System.Windows.Forms.ComboBox();
-            this.lblSourceFormatTR2 = new System.Windows.Forms.Label();
-            this.cmbDestinationFormatTR3 = new System.Windows.Forms.ComboBox();
-            this.lblDestinationFormatTR3 = new System.Windows.Forms.Label();
-            this.cmbSourceFormatTR3 = new System.Windows.Forms.ComboBox();
-            this.lblSourceFormatTR3 = new System.Windows.Forms.Label();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -174,7 +174,8 @@ namespace TombExtract
             // chkBackupOnWrite
             // 
             this.chkBackupOnWrite.AutoSize = true;
-            this.chkBackupOnWrite.Enabled = false;
+            this.chkBackupOnWrite.Checked = true;
+            this.chkBackupOnWrite.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBackupOnWrite.Location = new System.Drawing.Point(310, 49);
             this.chkBackupOnWrite.Name = "chkBackupOnWrite";
             this.chkBackupOnWrite.Size = new System.Drawing.Size(142, 19);
@@ -280,6 +281,44 @@ namespace TombExtract
             this.tpTR1.TabIndex = 0;
             this.tpTR1.Text = "Tomb Raider I";
             this.tpTR1.UseVisualStyleBackColor = true;
+            // 
+            // cmbDestinationFormatTR1
+            // 
+            this.cmbDestinationFormatTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationFormatTR1.FormattingEnabled = true;
+            this.cmbDestinationFormatTR1.Location = new System.Drawing.Point(389, 336);
+            this.cmbDestinationFormatTR1.Name = "cmbDestinationFormatTR1";
+            this.cmbDestinationFormatTR1.Size = new System.Drawing.Size(171, 23);
+            this.cmbDestinationFormatTR1.TabIndex = 22;
+            this.cmbDestinationFormatTR1.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR1_SelectedIndexChanged);
+            // 
+            // lblDestinationFormatTR1
+            // 
+            this.lblDestinationFormatTR1.AutoSize = true;
+            this.lblDestinationFormatTR1.Location = new System.Drawing.Point(324, 340);
+            this.lblDestinationFormatTR1.Name = "lblDestinationFormatTR1";
+            this.lblDestinationFormatTR1.Size = new System.Drawing.Size(48, 15);
+            this.lblDestinationFormatTR1.TabIndex = 21;
+            this.lblDestinationFormatTR1.Text = "Format:";
+            // 
+            // cmbSourceFormatTR1
+            // 
+            this.cmbSourceFormatTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceFormatTR1.FormattingEnabled = true;
+            this.cmbSourceFormatTR1.Location = new System.Drawing.Point(82, 336);
+            this.cmbSourceFormatTR1.Name = "cmbSourceFormatTR1";
+            this.cmbSourceFormatTR1.Size = new System.Drawing.Size(171, 23);
+            this.cmbSourceFormatTR1.TabIndex = 20;
+            this.cmbSourceFormatTR1.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR1_SelectedIndexChanged);
+            // 
+            // lblSourceFormatTR1
+            // 
+            this.lblSourceFormatTR1.AutoSize = true;
+            this.lblSourceFormatTR1.Location = new System.Drawing.Point(17, 340);
+            this.lblSourceFormatTR1.Name = "lblSourceFormatTR1";
+            this.lblSourceFormatTR1.Size = new System.Drawing.Size(48, 15);
+            this.lblSourceFormatTR1.TabIndex = 19;
+            this.lblSourceFormatTR1.Text = "Format:";
             // 
             // btnManageSlotsTR1
             // 
@@ -409,6 +448,44 @@ namespace TombExtract
             this.tpTR2.Text = "Tomb Raider II";
             this.tpTR2.UseVisualStyleBackColor = true;
             // 
+            // cmbDestinationFormatTR2
+            // 
+            this.cmbDestinationFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationFormatTR2.FormattingEnabled = true;
+            this.cmbDestinationFormatTR2.Location = new System.Drawing.Point(389, 336);
+            this.cmbDestinationFormatTR2.Name = "cmbDestinationFormatTR2";
+            this.cmbDestinationFormatTR2.Size = new System.Drawing.Size(171, 23);
+            this.cmbDestinationFormatTR2.TabIndex = 26;
+            this.cmbDestinationFormatTR2.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR2_SelectedIndexChanged);
+            // 
+            // lblDestinationFormatTR2
+            // 
+            this.lblDestinationFormatTR2.AutoSize = true;
+            this.lblDestinationFormatTR2.Location = new System.Drawing.Point(324, 340);
+            this.lblDestinationFormatTR2.Name = "lblDestinationFormatTR2";
+            this.lblDestinationFormatTR2.Size = new System.Drawing.Size(48, 15);
+            this.lblDestinationFormatTR2.TabIndex = 25;
+            this.lblDestinationFormatTR2.Text = "Format:";
+            // 
+            // cmbSourceFormatTR2
+            // 
+            this.cmbSourceFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceFormatTR2.FormattingEnabled = true;
+            this.cmbSourceFormatTR2.Location = new System.Drawing.Point(82, 336);
+            this.cmbSourceFormatTR2.Name = "cmbSourceFormatTR2";
+            this.cmbSourceFormatTR2.Size = new System.Drawing.Size(171, 23);
+            this.cmbSourceFormatTR2.TabIndex = 24;
+            this.cmbSourceFormatTR2.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR2_SelectedIndexChanged);
+            // 
+            // lblSourceFormatTR2
+            // 
+            this.lblSourceFormatTR2.AutoSize = true;
+            this.lblSourceFormatTR2.Location = new System.Drawing.Point(17, 340);
+            this.lblSourceFormatTR2.Name = "lblSourceFormatTR2";
+            this.lblSourceFormatTR2.Size = new System.Drawing.Size(48, 15);
+            this.lblSourceFormatTR2.TabIndex = 23;
+            this.lblSourceFormatTR2.Text = "Format:";
+            // 
             // btnManageSlotsTR2
             // 
             this.btnManageSlotsTR2.Enabled = false;
@@ -535,6 +612,44 @@ namespace TombExtract
             this.tpTR3.TabIndex = 2;
             this.tpTR3.Text = "Tomb Raider III";
             this.tpTR3.UseVisualStyleBackColor = true;
+            // 
+            // cmbDestinationFormatTR3
+            // 
+            this.cmbDestinationFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDestinationFormatTR3.FormattingEnabled = true;
+            this.cmbDestinationFormatTR3.Location = new System.Drawing.Point(389, 336);
+            this.cmbDestinationFormatTR3.Name = "cmbDestinationFormatTR3";
+            this.cmbDestinationFormatTR3.Size = new System.Drawing.Size(171, 23);
+            this.cmbDestinationFormatTR3.TabIndex = 31;
+            this.cmbDestinationFormatTR3.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR3_SelectedIndexChanged);
+            // 
+            // lblDestinationFormatTR3
+            // 
+            this.lblDestinationFormatTR3.AutoSize = true;
+            this.lblDestinationFormatTR3.Location = new System.Drawing.Point(324, 340);
+            this.lblDestinationFormatTR3.Name = "lblDestinationFormatTR3";
+            this.lblDestinationFormatTR3.Size = new System.Drawing.Size(48, 15);
+            this.lblDestinationFormatTR3.TabIndex = 30;
+            this.lblDestinationFormatTR3.Text = "Format:";
+            // 
+            // cmbSourceFormatTR3
+            // 
+            this.cmbSourceFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSourceFormatTR3.FormattingEnabled = true;
+            this.cmbSourceFormatTR3.Location = new System.Drawing.Point(82, 336);
+            this.cmbSourceFormatTR3.Name = "cmbSourceFormatTR3";
+            this.cmbSourceFormatTR3.Size = new System.Drawing.Size(171, 23);
+            this.cmbSourceFormatTR3.TabIndex = 29;
+            this.cmbSourceFormatTR3.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR3_SelectedIndexChanged);
+            // 
+            // lblSourceFormatTR3
+            // 
+            this.lblSourceFormatTR3.AutoSize = true;
+            this.lblSourceFormatTR3.Location = new System.Drawing.Point(17, 340);
+            this.lblSourceFormatTR3.Name = "lblSourceFormatTR3";
+            this.lblSourceFormatTR3.Size = new System.Drawing.Size(48, 15);
+            this.lblSourceFormatTR3.TabIndex = 28;
+            this.lblSourceFormatTR3.Text = "Format:";
             // 
             // btnManageSlotsTR3
             // 
@@ -1234,120 +1349,6 @@ namespace TombExtract
             this.slblStatus.Name = "slblStatus";
             this.slblStatus.Size = new System.Drawing.Size(39, 17);
             this.slblStatus.Text = "Ready";
-            // 
-            // lblSourceFormatTR1
-            // 
-            this.lblSourceFormatTR1.AutoSize = true;
-            this.lblSourceFormatTR1.Location = new System.Drawing.Point(17, 340);
-            this.lblSourceFormatTR1.Name = "lblSourceFormatTR1";
-            this.lblSourceFormatTR1.Size = new System.Drawing.Size(48, 15);
-            this.lblSourceFormatTR1.TabIndex = 19;
-            this.lblSourceFormatTR1.Text = "Format:";
-            // 
-            // cmbSourceFormatTR1
-            // 
-            this.cmbSourceFormatTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSourceFormatTR1.FormattingEnabled = true;
-            this.cmbSourceFormatTR1.Location = new System.Drawing.Point(82, 336);
-            this.cmbSourceFormatTR1.Name = "cmbSourceFormatTR1";
-            this.cmbSourceFormatTR1.Size = new System.Drawing.Size(171, 23);
-            this.cmbSourceFormatTR1.TabIndex = 20;
-            this.cmbSourceFormatTR1.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR1_SelectedIndexChanged);
-            // 
-            // cmbDestinationFormatTR1
-            // 
-            this.cmbDestinationFormatTR1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestinationFormatTR1.FormattingEnabled = true;
-            this.cmbDestinationFormatTR1.Location = new System.Drawing.Point(389, 336);
-            this.cmbDestinationFormatTR1.Name = "cmbDestinationFormatTR1";
-            this.cmbDestinationFormatTR1.Size = new System.Drawing.Size(171, 23);
-            this.cmbDestinationFormatTR1.TabIndex = 22;
-            this.cmbDestinationFormatTR1.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR1_SelectedIndexChanged);
-            // 
-            // lblDestinationFormatTR1
-            // 
-            this.lblDestinationFormatTR1.AutoSize = true;
-            this.lblDestinationFormatTR1.Location = new System.Drawing.Point(324, 340);
-            this.lblDestinationFormatTR1.Name = "lblDestinationFormatTR1";
-            this.lblDestinationFormatTR1.Size = new System.Drawing.Size(48, 15);
-            this.lblDestinationFormatTR1.TabIndex = 21;
-            this.lblDestinationFormatTR1.Text = "Format:";
-            // 
-            // cmbDestinationFormatTR2
-            // 
-            this.cmbDestinationFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestinationFormatTR2.FormattingEnabled = true;
-            this.cmbDestinationFormatTR2.Location = new System.Drawing.Point(389, 336);
-            this.cmbDestinationFormatTR2.Name = "cmbDestinationFormatTR2";
-            this.cmbDestinationFormatTR2.Size = new System.Drawing.Size(171, 23);
-            this.cmbDestinationFormatTR2.TabIndex = 26;
-            this.cmbDestinationFormatTR2.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR2_SelectedIndexChanged);
-            // 
-            // lblDestinationFormatTR2
-            // 
-            this.lblDestinationFormatTR2.AutoSize = true;
-            this.lblDestinationFormatTR2.Location = new System.Drawing.Point(324, 340);
-            this.lblDestinationFormatTR2.Name = "lblDestinationFormatTR2";
-            this.lblDestinationFormatTR2.Size = new System.Drawing.Size(48, 15);
-            this.lblDestinationFormatTR2.TabIndex = 25;
-            this.lblDestinationFormatTR2.Text = "Format:";
-            // 
-            // cmbSourceFormatTR2
-            // 
-            this.cmbSourceFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSourceFormatTR2.FormattingEnabled = true;
-            this.cmbSourceFormatTR2.Location = new System.Drawing.Point(82, 336);
-            this.cmbSourceFormatTR2.Name = "cmbSourceFormatTR2";
-            this.cmbSourceFormatTR2.Size = new System.Drawing.Size(171, 23);
-            this.cmbSourceFormatTR2.TabIndex = 24;
-            this.cmbSourceFormatTR2.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR2_SelectedIndexChanged);
-            // 
-            // lblSourceFormatTR2
-            // 
-            this.lblSourceFormatTR2.AutoSize = true;
-            this.lblSourceFormatTR2.Location = new System.Drawing.Point(17, 340);
-            this.lblSourceFormatTR2.Name = "lblSourceFormatTR2";
-            this.lblSourceFormatTR2.Size = new System.Drawing.Size(48, 15);
-            this.lblSourceFormatTR2.TabIndex = 23;
-            this.lblSourceFormatTR2.Text = "Format:";
-            // 
-            // cmbDestinationFormatTR3
-            // 
-            this.cmbDestinationFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDestinationFormatTR3.FormattingEnabled = true;
-            this.cmbDestinationFormatTR3.Location = new System.Drawing.Point(389, 336);
-            this.cmbDestinationFormatTR3.Name = "cmbDestinationFormatTR3";
-            this.cmbDestinationFormatTR3.Size = new System.Drawing.Size(171, 23);
-            this.cmbDestinationFormatTR3.TabIndex = 31;
-            this.cmbDestinationFormatTR3.SelectedIndexChanged += new System.EventHandler(this.cmbDestinationFormatTR3_SelectedIndexChanged);
-            // 
-            // lblDestinationFormatTR3
-            // 
-            this.lblDestinationFormatTR3.AutoSize = true;
-            this.lblDestinationFormatTR3.Location = new System.Drawing.Point(324, 340);
-            this.lblDestinationFormatTR3.Name = "lblDestinationFormatTR3";
-            this.lblDestinationFormatTR3.Size = new System.Drawing.Size(48, 15);
-            this.lblDestinationFormatTR3.TabIndex = 30;
-            this.lblDestinationFormatTR3.Text = "Format:";
-            // 
-            // cmbSourceFormatTR3
-            // 
-            this.cmbSourceFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSourceFormatTR3.FormattingEnabled = true;
-            this.cmbSourceFormatTR3.Location = new System.Drawing.Point(82, 336);
-            this.cmbSourceFormatTR3.Name = "cmbSourceFormatTR3";
-            this.cmbSourceFormatTR3.Size = new System.Drawing.Size(171, 23);
-            this.cmbSourceFormatTR3.TabIndex = 29;
-            this.cmbSourceFormatTR3.SelectedIndexChanged += new System.EventHandler(this.cmbSourceFormatTR3_SelectedIndexChanged);
-            // 
-            // lblSourceFormatTR3
-            // 
-            this.lblSourceFormatTR3.AutoSize = true;
-            this.lblSourceFormatTR3.Location = new System.Drawing.Point(17, 340);
-            this.lblSourceFormatTR3.Name = "lblSourceFormatTR3";
-            this.lblSourceFormatTR3.Size = new System.Drawing.Size(48, 15);
-            this.lblSourceFormatTR3.TabIndex = 28;
-            this.lblSourceFormatTR3.Text = "Format:";
             // 
             // MainForm
             // 

@@ -293,8 +293,7 @@ namespace TombExtract
             // Enable extraction only if there are source savegames
             tsmiExtract.Enabled = hasSourceSavegames && isDestinationFilePresent;
 
-            // Enable backup options only if a destination file exists
-            chkBackupOnWrite.Enabled = isDestinationFilePresent;
+            // Enable backup option only if a destination file exists
             tsmiBackupDestinationFile.Enabled = isDestinationFilePresent;
         }
 
