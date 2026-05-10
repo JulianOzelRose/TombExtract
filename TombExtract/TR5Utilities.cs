@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using static TombExtract.MainForm;
 
 namespace TombExtract
 {
@@ -28,6 +29,12 @@ namespace TombExtract
         private BackgroundWorker bgWorker;
         private ProgressForm progressForm;
         private bool isWriting = false;
+        private readonly IWin32Window owner;
+
+        public TR5Utilities(IWin32Window owner)
+        {
+            this.owner = owner;
+        }
 
         public void PopulateSourceSavegames(CheckedListBox cklSavegames)
         {
@@ -59,7 +66,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -97,7 +111,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -126,7 +147,15 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return 0;
             }
 
@@ -229,25 +258,45 @@ namespace TombExtract
 
             if (e.Error != null || (e.Result != null && e.Result is Exception))
             {
+                slblStatus.Text = $"Error transferring savegame(s)";
+
                 Exception exception = e.Error as Exception ?? e.Result as Exception;
                 string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
 
-                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
 
-                slblStatus.Text = $"Error transferring savegame(s)";
+                ThemedMessageBox.Show(
+                    owner,
+                    errorMessage,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             else if (e.Cancelled)
             {
-                MessageBox.Show("Operation was cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 slblStatus.Text = $"Conversion canceled";
+
+                System.Media.SystemSounds.Asterisk.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    "Operation was cancelled.",
+                    "Cancelled",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show($"Successfully transferred {totalSavegames} savegame(s) to destination file.",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 slblStatus.Text = $"Successfully transferred {totalSavegames} savegame(s) to destination file";
+
+                System.Media.SystemSounds.Asterisk.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    $"Successfully transferred {totalSavegames} savegame(s) to destination file.",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
 
             PopulateDestinationSavegames(lstDestinationSavegamesTR5);

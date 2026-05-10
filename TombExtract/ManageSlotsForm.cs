@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using static TombExtract.MainForm;
 
 namespace TombExtract
 {
@@ -165,23 +166,28 @@ namespace TombExtract
 
         private void ManageSlotsForm_Load(object sender, EventArgs e)
         {
-            DetermineOffsets();
-            PopulateSavegamesConditionaly();
-
             if (ThemeUtilities.DARK_MODE_ENABLED)
             {
                 ThemeUtilities.ApplyDarkMode(this);
                 ThemeUtilities.ApplyDarkTitleBar(this);
             }
+
+            DetermineOffsets();
+            PopulateSavegamesConditionaly();
         }
 
         private void ManageSlotsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (isWriting)
             {
-                DialogResult result = MessageBox.Show(
+                System.Media.SystemSounds.Exclamation.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
                     "Exiting in the middle of a write operation could result in a corrupted savegame file. Are you sure you wish to exit?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -440,7 +446,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -489,7 +502,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -538,7 +558,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -584,7 +611,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -630,7 +664,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -676,7 +717,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -694,8 +742,14 @@ namespace TombExtract
 
             if (lstSavegames.SelectedItem.ToString() != "Empty Slot")
             {
-                DialogResult result = MessageBox.Show($"Are you sure you wish to overwrite '{(Savegame)lstSavegames.SelectedItem}'?",
-                    "Create Savegame", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"Are you sure you wish to overwrite '{(Savegame)lstSavegames.SelectedItem}'?",
+                    "Create Savegame",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -705,8 +759,14 @@ namespace TombExtract
 
             if (platform != Platform.PC)
             {
-                MessageBox.Show($"Savegame creation is not currently supported for {platform.ToFriendlyString()} savegames.",
-                    "Platform Not Supported", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    $"Savegame creation is not currently supported for {platform.ToFriendlyString()} savegames.",
+                    "Platform Not Supported",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -760,18 +820,40 @@ namespace TombExtract
         {
             if (lstSavegames.SelectedItem == null)
             {
-                MessageBox.Show("Please select a savegame first.", "No Savegame Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select a savegame first.",
+                    "No Savegame Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (lstSavegames.SelectedItem != null && lstSavegames.SelectedItem.ToString() == "Empty Slot")
             {
-                MessageBox.Show("Empty slots cannot be deleted.", "Invalid Action", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Empty slots cannot be deleted.",
+                    "Invalid Action",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
-            DialogResult result = MessageBox.Show($"Are you sure you wish to delete '{(Savegame)lstSavegames.SelectedItem}'?",
-                "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            System.Media.SystemSounds.Exclamation.Play();
+
+            DialogResult result = ThemedMessageBox.Show(
+                this,
+                $"Are you sure you wish to delete '{(Savegame)lstSavegames.SelectedItem}'?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
             if (result == DialogResult.No)
             {
@@ -824,17 +906,29 @@ namespace TombExtract
 
                 if (args.Error != null || args.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while deleting savegame.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while deleting savegame";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Error occurred while deleting savegame.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (args.Cancelled)
                 {
-                    MessageBox.Show($"Operation cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame deletion cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -935,24 +1029,42 @@ namespace TombExtract
 
                 if (e.Error != null || e.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while reordering savegames.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while reordering savegames";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Error occurred while reordering savegames.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Cancelled)
                 {
-                    MessageBox.Show($"Operation was cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame reordering cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation was cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Successfully reordered savegames";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 PopulateSavegamesTR1();
@@ -1050,24 +1162,42 @@ namespace TombExtract
 
                 if (e.Error != null || e.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while reordering savegames.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while reordering savegames";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Error occurred while reordering savegames.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Cancelled)
                 {
-                    MessageBox.Show($"Operation was cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame reordering cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation was cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Successfully reordered savegames";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 PopulateSavegamesTR2();
@@ -1165,24 +1295,42 @@ namespace TombExtract
 
                 if (e.Error != null || e.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while reordering savegames.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while reordering savegames";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Error occurred while reordering savegames.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Cancelled)
                 {
-                    MessageBox.Show($"Operation was cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame reordering cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation was cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Successfully reordered savegames";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 PopulateSavegamesTR3();
@@ -1280,24 +1428,42 @@ namespace TombExtract
 
                 if (e.Error != null || e.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while reordering savegames.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while reordering savegames";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Error occurred while reordering savegames.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Cancelled)
                 {
-                    MessageBox.Show($"Operation was cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame reordering cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation was cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Successfully reordered savegames";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 PopulateSavegamesTR4();
@@ -1395,24 +1561,42 @@ namespace TombExtract
 
                 if (e.Error != null || e.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while reordering savegames.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while reordering savegames";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Error occurred while reordering savegames.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Cancelled)
                 {
-                    MessageBox.Show($"Operation was cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame reordering cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation was cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Successfully reordered savegames";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 PopulateSavegamesTR5();
@@ -1513,24 +1697,42 @@ namespace TombExtract
 
                 if (e.Error != null || e.Result is Exception)
                 {
-                    MessageBox.Show($"Error occurred while reordering savegames.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     slblStatus.Text = $"Error occurred while reordering savegames";
+
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Error occurred while reordering savegames.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Cancelled)
                 {
-                    MessageBox.Show($"Operation was cancelled.",
-                        "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Savegame reordering cancelled";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Operation was cancelled.",
+                        "Cancelled",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Successfully reordered {savegamesToMove.Count} savegames.",
-                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     slblStatus.Text = $"Successfully reordered savegames";
+
+                    System.Media.SystemSounds.Asterisk.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
 
                 PopulateSavegamesTR6();

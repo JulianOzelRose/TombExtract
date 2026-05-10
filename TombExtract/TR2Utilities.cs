@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using static TombExtract.MainForm;
 
 namespace TombExtract
 {
@@ -65,10 +66,16 @@ namespace TombExtract
         private bool isSourcePrepatch;
         private bool isDestinationPatch5;
         private bool NO_CONVERT = false;
+        private readonly IWin32Window owner;
 
         // Platform
         Platform sourcePlatform;
         Platform destinationPlatform;
+
+        public TR2Utilities(IWin32Window owner)
+        {
+            this.owner = owner;
+        }
 
         public void PopulateSourceSavegames(CheckedListBox cklSavegames)
         {
@@ -136,7 +143,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -210,7 +224,14 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -240,7 +261,15 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return 0;
             }
 
@@ -292,28 +321,47 @@ namespace TombExtract
 
             if (e.Error != null || (e.Result != null && e.Result is Exception))
             {
+                slblStatus.Text = $"Error {(NO_CONVERT ? "transferring" : "converting")} savegame(s)";
+
                 Exception exception = e.Error as Exception ?? e.Result as Exception;
                 string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
 
-                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
 
-                slblStatus.Text = $"Error {(NO_CONVERT ? "transferring" : "converting")} savegame(s)";
+                ThemedMessageBox.Show(
+                    owner,
+                    errorMessage,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             else if (e.Cancelled)
             {
-                MessageBox.Show("Operation was cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 slblStatus.Text = $"{(NO_CONVERT ? "Transfer" : "Conversion")} canceled";
+
+                System.Media.SystemSounds.Asterisk.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    "Operation was cancelled.",
+                    "Cancelled",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show($"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
-                    $"{totalSavegames} savegame(s) to destination file.",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 slblStatus.Text = $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
                     $"{totalSavegames} savegame(s) to destination file";
 
+                System.Media.SystemSounds.Asterisk.Play();
+
+                ThemedMessageBox.Show(
+                    owner,
+                    $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
+                    $"{totalSavegames} savegame(s) to destination file.",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
 
             PopulateDestinationSavegames(lstDestinationSavegames);

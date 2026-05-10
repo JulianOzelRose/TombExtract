@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using static TombExtract.MainForm;
 
 namespace TombExtract
 {
@@ -2227,7 +2228,15 @@ namespace TombExtract
                 var selectedLevel = (LevelInfo)cmbLevel.SelectedItem;
                 if (selectedLevel == null)
                 {
-                    MessageBox.Show("Please select a level before creating the savegame.", "No Level Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Please select a level before creating the savegame.",
+                        "No Level Selected",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
                     return;
                 }
 
@@ -2258,7 +2267,15 @@ namespace TombExtract
                     !modeDict.TryGetValue(selectedMode, out platformDict) ||
                     !platformDict.TryGetValue(selectedPlatform, out resourceName))
                 {
-                    MessageBox.Show("Premade savegame buffer not found for this level/mode/platform.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Media.SystemSounds.Hand.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Premade savegame buffer not found for this level/mode/platform.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
                     return;
                 }
 
@@ -2305,8 +2322,16 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to create savegame:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 slblStatus.Text = "Error creating savegame";
+
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

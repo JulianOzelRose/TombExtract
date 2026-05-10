@@ -12,15 +12,22 @@ namespace TombExtract
         public MainForm()
         {
             InitializeComponent();
+
+            tr1Utilities = new TR1Utilities(this);
+            tr2Utilities = new TR2Utilities(this);
+            tr3Utilities = new TR3Utilities(this);
+            tr4Utilities = new TR4Utilities(this);
+            tr5Utilities = new TR5Utilities(this);
+            tr6Utilities = new TR6Utilities(this);
         }
 
         // Utils
-        private readonly TR1Utilities tr1Utilities = new TR1Utilities();
-        private readonly TR2Utilities tr2Utilities = new TR2Utilities();
-        private readonly TR3Utilities tr3Utilities = new TR3Utilities();
-        private readonly TR4Utilities tr4Utilities = new TR4Utilities();
-        private readonly TR5Utilities tr5Utilities = new TR5Utilities();
-        private readonly TR6Utilities tr6Utilities = new TR6Utilities();
+        private readonly TR1Utilities tr1Utilities;
+        private readonly TR2Utilities tr2Utilities;
+        private readonly TR3Utilities tr3Utilities;
+        private readonly TR4Utilities tr4Utilities;
+        private readonly TR5Utilities tr5Utilities;
+        private readonly TR6Utilities tr6Utilities;
 
         // Tabs
         private const int TAB_TR1 = 0;
@@ -88,6 +95,22 @@ namespace TombExtract
             };
 
             comboBox.SelectedItem = Platform.PC;
+        }
+
+        public static class ThemedMessageBox
+        {
+            public static DialogResult Show(
+                IWin32Window owner,
+                string message,
+                string title = "",
+                MessageBoxButtons buttons = MessageBoxButtons.OK,
+                MessageBoxIcon icon = MessageBoxIcon.None)
+            {
+                using (var dlg = new ThemedDialog(message, title, buttons, icon))
+                {
+                    return dlg.ShowDialog(owner);
+                }
+            }
         }
 
         private void ApplyDarkMode()
@@ -206,9 +229,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                DialogResult result = MessageBox.Show(
+                System.Media.SystemSounds.Exclamation.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
                     "Exiting in the middle of a write operation could result in a corrupted savegame file. Are you sure you wish to exit?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -353,7 +381,15 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX(path))
             {
-                MessageBox.Show("Not a valid Tomb Raider I-III Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Not a valid Tomb Raider I-III Remastered savegame file.",
+                    "Invalid Savegame File",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -385,7 +421,15 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX2(path))
             {
-                MessageBox.Show("Not a valid Tomb Raider IV-VI Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Not a valid Tomb Raider IV-VI Remastered savegame file.",
+                    "Invalid Savegame File",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -414,7 +458,15 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX(path))
             {
-                MessageBox.Show("Not a valid Tomb Raider I-III Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Not a valid Tomb Raider I-III Remastered savegame file.",
+                    "Invalid Savegame File",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -442,7 +494,15 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX2(path))
             {
-                MessageBox.Show("Not a valid Tomb Raider IV-VI Remastered savegame file.", "Invalid Savegame File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Not a valid Tomb Raider IV-VI Remastered savegame file.",
+                    "Invalid Savegame File",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -803,8 +863,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -823,8 +889,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -841,32 +913,32 @@ namespace TombExtract
 
         private void btnExitTR1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnExitTR2_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnExitTR3_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnExitTR4_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnExitTR5_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnExitTR6_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void ExtractSavegamesTR1()
@@ -888,19 +960,43 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select at least one savegame to convert.",
+                    "No Savegames Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame source file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame destination file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -908,8 +1004,14 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
                 {
@@ -950,19 +1052,43 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select at least one savegame to convert.",
+                    "No Savegames Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame source file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame destination file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -970,8 +1096,14 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
                 {
@@ -1012,19 +1144,43 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select at least one savegame to convert.",
+                    "No Savegames Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame source file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame destination file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -1032,8 +1188,14 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
                 {
@@ -1074,19 +1236,43 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select at least one savegame to convert.",
+                    "No Savegames Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame source file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame destination file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -1094,8 +1280,14 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
                 {
@@ -1136,19 +1328,43 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select at least one savegame to convert.",
+                    "No Savegames Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame source file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame destination file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -1156,8 +1372,14 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
                 {
@@ -1198,19 +1420,43 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                MessageBox.Show("Please select at least one savegame to convert.", "No Savegames Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Please select at least one savegame to convert.",
+                    "No Savegames Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                MessageBox.Show("Could not find savegame source file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame source file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                MessageBox.Show("Could not find savegame destination file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Could not find savegame destination file.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 return;
             }
 
@@ -1218,8 +1464,14 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                DialogResult result = MessageBox.Show($"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                System.Media.SystemSounds.Asterisk.Play();
+
+                DialogResult result = ThemedMessageBox.Show(
+                    this,
+                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
+                    "Confirmation",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
 
                 if (result == DialogResult.No)
                 {
@@ -1245,8 +1497,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1259,8 +1517,14 @@ namespace TombExtract
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
-                MessageBox.Show("Unable to convert Patch 5 to pre-patch savegames.",
-                    "Unable to Convert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Unable to convert Patch 5 to pre-patch savegames.",
+                    "Unable to Convert",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1272,8 +1536,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1286,8 +1556,14 @@ namespace TombExtract
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
-                MessageBox.Show("Unable to convert Patch 5 to pre-patch savegames.",
-                    "Unable to Convert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Unable to convert Patch 5 to pre-patch savegames.",
+                    "Unable to Convert",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1299,8 +1575,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1313,8 +1595,14 @@ namespace TombExtract
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
-                MessageBox.Show("Unable to convert Patch 5 to pre-patch savegames.",
-                    "Unable to Convert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "Unable to convert Patch 5 to pre-patch savegames.",
+                    "Unable to Convert",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1326,8 +1614,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1339,8 +1633,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1352,8 +1652,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1455,8 +1761,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1468,8 +1780,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1481,8 +1799,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1494,8 +1818,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1507,8 +1837,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1518,7 +1854,7 @@ namespace TombExtract
 
         private void tsmiExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void tsmiViewReadme_Click(object sender, EventArgs e)
@@ -1575,8 +1911,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1611,8 +1953,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1630,8 +1978,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1649,8 +2003,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1668,8 +2028,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1687,8 +2053,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
@@ -1706,8 +2078,14 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                MessageBox.Show("A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    "A savegame write operation is in progress. Please wait until it completes.",
+                    "Write In Progress",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
                 return;
             }
