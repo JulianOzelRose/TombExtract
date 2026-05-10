@@ -1529,6 +1529,50 @@ namespace TombExtract
                 return;
             }
 
+            if (isSourcePatch5 && !isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
+
+                if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
+            if (!isSourcePatch5 && !isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
+
+                if (sourcePlatform != Platform.PC)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
             ExtractSavegamesTR1();
         }
 
@@ -1568,6 +1612,50 @@ namespace TombExtract
                 return;
             }
 
+            if (isSourcePatch5 && !isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
+
+                if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
+            if (!isSourcePatch5 && !isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
+
+                if (sourcePlatform != Platform.PC)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
             ExtractSavegamesTR2();
         }
 
@@ -1605,6 +1693,50 @@ namespace TombExtract
                     MessageBoxIcon.Warning);
 
                 return;
+            }
+
+            if (isSourcePatch5 && !isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
+
+                if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
+            if (!isSourcePatch5 && !isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
+
+                if (sourcePlatform != Platform.PC)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
             }
 
             ExtractSavegamesTR3();
