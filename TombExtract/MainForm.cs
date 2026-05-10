@@ -1493,6 +1493,24 @@ namespace TombExtract
             tr6Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR6, slblStatus);
         }
 
+        private bool IsAnyChallengeModeSavegameChecked(CheckedListBox cklSavegames)
+        {
+            for (int i = 0; i < cklSavegames.Items.Count; i++)
+            {
+                if (!cklSavegames.GetItemChecked(i))
+                {
+                    continue;
+                }
+
+                if (cklSavegames.Items[i] is Savegame savegame && savegame.IsChallengeMode)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void btnExtractTR1_Click(object sender, EventArgs e)
         {
             if (IsAnyWriting())
@@ -1533,6 +1551,30 @@ namespace TombExtract
             {
                 Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
                 Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
+
+                if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android)
+                {
+                    bool isAnyChallengeModeSavegameChecked = IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR1);
+
+                    if (isAnyChallengeModeSavegameChecked)
+                    {
+                        System.Media.SystemSounds.Exclamation.Play();
+
+                        string warningMessage = $"Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
+
+                        DialogResult result = ThemedMessageBox.Show(
+                            this,
+                            warningMessage,
+                            "Conversion Warning",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+                }
 
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
                 {
@@ -1617,6 +1659,30 @@ namespace TombExtract
                 Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
                 Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
 
+                if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android)
+                {
+                    bool isAnyChallengeModeSavegameChecked = IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR2);
+
+                    if (isAnyChallengeModeSavegameChecked)
+                    {
+                        System.Media.SystemSounds.Exclamation.Play();
+
+                        string warningMessage = $"Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
+
+                        DialogResult result = ThemedMessageBox.Show(
+                            this,
+                            warningMessage,
+                            "Conversion Warning",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+                }
+
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
                 {
                     System.Media.SystemSounds.Exclamation.Play();
@@ -1699,6 +1765,30 @@ namespace TombExtract
             {
                 Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
                 Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
+
+                if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android)
+                {
+                    bool isAnyChallengeModeSavegameChecked = IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR3);
+
+                    if (isAnyChallengeModeSavegameChecked)
+                    {
+                        System.Media.SystemSounds.Exclamation.Play();
+
+                        string warningMessage = $"Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
+
+                        DialogResult result = ThemedMessageBox.Show(
+                            this,
+                            warningMessage,
+                            "Conversion Warning",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+
+                        if (result == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+                }
 
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
                 {
