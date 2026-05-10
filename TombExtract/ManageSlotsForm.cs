@@ -773,7 +773,7 @@ namespace TombExtract
 
             CreateSavegameForm createSavegameForm = new CreateSavegameForm(CURRENT_TAB, savegamePath, (lstSavegames.SelectedItem as Savegame).Slot, (lstSavegames.SelectedItem as Savegame).Offset, slblStatus);
             createSavegameForm.TopMost = TopMost;
-            createSavegameForm.ShowDialog();
+            createSavegameForm.ShowDialog(this);
 
             PopulateSavegamesConditionaly();
         }

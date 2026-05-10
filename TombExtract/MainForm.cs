@@ -1941,42 +1941,42 @@ namespace TombExtract
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void btnAboutTR2_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void btnAboutTR3_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void btnAboutTR4_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void btnAboutTR5_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void btnAboutTR6_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void tsmiBrowseTRXSourceFile_Click(object sender, EventArgs e)
@@ -2126,7 +2126,7 @@ namespace TombExtract
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.TopMost = TopMost;
-            aboutForm.ShowDialog();
+            aboutForm.ShowDialog(this);
         }
 
         private void tsmiExtract_Click(object sender, EventArgs e)
@@ -2191,7 +2191,7 @@ namespace TombExtract
                 slblStatus, chkBackupOnWrite.Checked, (Platform)cmbDestinationFormatTR1.SelectedItem);
 
             manageSlotsForm.TopMost = TopMost;
-            manageSlotsForm.ShowDialog();
+            manageSlotsForm.ShowDialog(this);
 
             tr1Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR1);
         }
@@ -2216,7 +2216,7 @@ namespace TombExtract
                 slblStatus, chkBackupOnWrite.Checked, (Platform)cmbDestinationFormatTR2.SelectedItem);
 
             manageSlotsForm.TopMost = TopMost;
-            manageSlotsForm.ShowDialog();
+            manageSlotsForm.ShowDialog(this);
 
             tr2Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR2);
         }
@@ -2241,7 +2241,7 @@ namespace TombExtract
                 slblStatus, chkBackupOnWrite.Checked, (Platform)cmbDestinationFormatTR3.SelectedItem);
 
             manageSlotsForm.TopMost = TopMost;
-            manageSlotsForm.ShowDialog();
+            manageSlotsForm.ShowDialog(this);
 
             tr3Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR3);
         }
@@ -2266,7 +2266,7 @@ namespace TombExtract
                 slblStatus, chkBackupOnWrite.Checked, Platform.PC);
 
             manageSlotsForm.TopMost = TopMost;
-            manageSlotsForm.ShowDialog();
+            manageSlotsForm.ShowDialog(this);
 
             tr4Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR4);
         }
@@ -2291,7 +2291,7 @@ namespace TombExtract
                 slblStatus, chkBackupOnWrite.Checked, Platform.PC);
 
             manageSlotsForm.TopMost = TopMost;
-            manageSlotsForm.ShowDialog();
+            manageSlotsForm.ShowDialog(this);
 
             tr5Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR5);
         }
@@ -2316,7 +2316,7 @@ namespace TombExtract
                 slblStatus, chkBackupOnWrite.Checked, Platform.PC);
 
             manageSlotsForm.TopMost = TopMost;
-            manageSlotsForm.ShowDialog();
+            manageSlotsForm.ShowDialog(this);
 
             tr6Utilities.PopulateDestinationSavegames(lstDestinationSavegamesTR6);
         }
