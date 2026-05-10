@@ -1122,7 +1122,7 @@ namespace TombExtract
             progressForm.Show();
 
             tr2Utilities.SetProgressForm(progressForm);
-            tr2Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR2, slblStatus, null/*cmbConversionTR2*/);
+            tr2Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR2, slblStatus);
         }
 
         private void ExtractSavegamesTR3()
@@ -1214,7 +1214,7 @@ namespace TombExtract
             progressForm.Show();
 
             tr3Utilities.SetProgressForm(progressForm);
-            tr3Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR3, slblStatus, null/*cmbConversionTR3*/);
+            tr3Utilities.WriteSavegamesToDestination(selectedSavegames, lstDestinationSavegamesTR3, slblStatus);
         }
 
         private void ExtractSavegamesTR4()

@@ -276,7 +276,7 @@ namespace TombExtract
             return numOverwrites;
         }
 
-        public void WriteSavegamesToDestination(List<Savegame> savegames, ListBox lstDestinationSavegames, ToolStripStatusLabel slblStatus, ComboBox cmbConversion)
+        public void WriteSavegamesToDestination(List<Savegame> savegames, ListBox lstDestinationSavegames, ToolStripStatusLabel slblStatus)
         {
             isWriting = true;
 
@@ -773,19 +773,6 @@ namespace TombExtract
                                 destinationFile.WriteByte(savegameBytes[LEVEL_INDEX_OFFSET_PC]);
                             }
                         }
-                        else if (sourcePlatform == Platform.PlayStation4 && destinationPlatform == Platform.NintendoSwitch) // PS4 -> Switch
-                        {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
-                            {
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
-
-                                destinationFile.Seek(offset, SeekOrigin.Begin);
-                                destinationFile.Write(currentByte, 0, currentByte.Length);
-                            }
-                        }
                         else if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform == Platform.PC)  // NS -> PC
                         {
                             progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
@@ -806,19 +793,6 @@ namespace TombExtract
                                     destinationFile.Seek(offset, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
-                            }
-                        }
-                        else if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform == Platform.PlayStation4) // NS -> PS4
-                        {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
-
-                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
-                            {
-                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
-                                byte[] currentByte = { value };
-
-                                destinationFile.Seek(offset, SeekOrigin.Begin);
-                                destinationFile.Write(currentByte, 0, currentByte.Length);
                             }
                         }
                         else
