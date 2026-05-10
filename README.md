@@ -6,7 +6,7 @@ For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster
 ℹ️ **Patch 5 Compatibility**<br>
 The latest version of this program is compatible with Patch 5 and pre-patch savegames for Tomb Raider I-III. Pre-patch to Patch 5 savegame conversion is also supported.
 
-<img width="596" height="611" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/96079cae-3325-4fcc-b99e-af7fb2c0e189" />
+<img width="596" height="631" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/75e81169-1a6b-44db-9b07-effbfaf3a09a" />
 
 ## Installation and use
 To use this program, simply navigate to the [Releases](https://github.com/JulianOzelRose/TombExtract/releases)
@@ -33,6 +33,7 @@ If you are trying to convert from PS4, you must first decrypt the savegame file 
 
 ## Deleting and reordering savegames
 <img width="298" height="399" alt="ManageSlotsForm-UI" src="https://github.com/user-attachments/assets/8b3526b9-c084-44ee-a2e1-beb31b61b101" />
+<br>
 
 To delete and/or reorder savegames, load the savegame file you'd like to modify as the destination file, then click "Manage Slots".
 Use the up and down arrows at the top to reorder the savegames to different slots.
@@ -43,6 +44,7 @@ Again, it is recommended that you check the "Backup before writing" option in th
 
 ## Level selection
 <img width="378" height="211" alt="CreateSavegameForm-UI" src="https://github.com/user-attachments/assets/1daa2fb4-d1b8-4264-a9f6-f9033b8c8df6" />
+<br>
 
 To use level selection, load the savegame file you'd like to modify as the destination file, then click "Manage Slots".
 Next, select the slot you would like to add the new savegame to, then click the large plus button on the right.
@@ -50,7 +52,8 @@ You can then specify the level, platform, game mode, and save number you'd like.
 of the level, with the metadata (statistics, time taken, distance travelled, etc.) all wiped clean.
 
 ## Dark Mode
-<img width="596" height="589" alt="TombExtract-DarkMode-UI" src="https://github.com/user-attachments/assets/c3acbdd6-9e58-4eff-856a-239ba0e2a87f" />
+<img width="596" height="609" alt="TombExtract-DarkMode-UI" src="https://github.com/user-attachments/assets/80c2880c-a190-4cbf-8dea-1a86efac6fff" />
+<br>
 
 If you prefer a darker interface, you can enable Dark Mode from the Settings menu at the top of the program.
 Please note that Dark Mode may not display correctly when using very high or very low DPI settings.
