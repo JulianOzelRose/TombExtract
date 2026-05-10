@@ -803,7 +803,7 @@ namespace TombExtract
         {
             using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
             {
-                fileBrowserDialog.InitialDirectory = "C:\\";
+                fileBrowserDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 fileBrowserDialog.Title = "Select Tomb Raider I-III source file";
                 fileBrowserDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
 
@@ -818,7 +818,7 @@ namespace TombExtract
         {
             using (OpenFileDialog fileBrowserDialog = new OpenFileDialog())
             {
-                fileBrowserDialog.InitialDirectory = "C:\\";
+                fileBrowserDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 fileBrowserDialog.Title = "Select Tomb Raider IV-VI source file";
                 fileBrowserDialog.Filter = "DAT files (*.dat)|*.dat|All files (*.*)|*.*";
 
