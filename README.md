@@ -10,7 +10,7 @@ For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster
 - 📍 Level Selection / Savegame Creation
 
 <br>
-<img width="596" height="631" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/75e81169-1a6b-44db-9b07-effbfaf3a09a" />
+<img width="596" height="631" alt="TombExtract-UI" src="https://github.com/user-attachments/assets/a0744a6a-f4c6-4460-928d-0bcc3191027f" />
 
 ## Installation and use
 To use this program, navigate to the [Releases](https://github.com/JulianOzelRose/TombExtract/releases)
@@ -50,7 +50,7 @@ You can then specify the level, platform, game mode, and save number you'd like.
 of the level, with the metadata (statistics, time taken, distance travelled, etc.) all wiped clean.
 
 ## Dark Mode
-<img width="596" height="609" alt="TombExtract-DarkMode-UI" src="https://github.com/user-attachments/assets/80c2880c-a190-4cbf-8dea-1a86efac6fff" />
+<img width="596" height="609" alt="TombExtract-DarkMode-UI" src="https://github.com/user-attachments/assets/5f460eae-cca8-4326-a7a1-8ec3cad8e7c8" />
 <br>
 
 If you prefer a darker interface, you can enable Dark Mode from the Settings menu at the top of the program.
