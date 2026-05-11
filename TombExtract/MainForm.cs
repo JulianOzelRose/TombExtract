@@ -1591,6 +1591,38 @@ namespace TombExtract
 
                     return;
                 }
+
+                if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
             }
 
             if (!isSourcePatch5 && !isDestinationPrepatch)
@@ -1698,6 +1730,38 @@ namespace TombExtract
 
                     return;
                 }
+
+                if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
             }
 
             if (!isSourcePatch5 && !isDestinationPrepatch)
@@ -1791,6 +1855,38 @@ namespace TombExtract
                 }
 
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
+
+                    ThemedMessageBox.Show(
+                        this,
+                        warningMessage,
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
