@@ -185,7 +185,7 @@ namespace TombExtract
             // 
             // btnBrowseDestinationFile
             // 
-            this.btnBrowseDestinationFile.Location = new System.Drawing.Point(545, 23);
+            this.btnBrowseDestinationFile.Location = new System.Drawing.Point(545, 24);
             this.btnBrowseDestinationFile.Name = "btnBrowseDestinationFile";
             this.btnBrowseDestinationFile.Size = new System.Drawing.Size(29, 23);
             this.btnBrowseDestinationFile.TabIndex = 5;
