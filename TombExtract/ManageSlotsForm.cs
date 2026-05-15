@@ -749,7 +749,7 @@ namespace TombExtract
                     $"Are you sure you wish to overwrite '{(Savegame)lstSavegames.SelectedItem}'?",
                     "Create Savegame",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -853,7 +853,7 @@ namespace TombExtract
                 $"Are you sure you wish to delete '{(Savegame)lstSavegames.SelectedItem}'?",
                 "Confirmation",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                MessageBoxIcon.Warning);
 
             if (result == DialogResult.No)
             {

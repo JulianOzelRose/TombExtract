@@ -1011,7 +1011,7 @@ namespace TombExtract
                     $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -1103,7 +1103,7 @@ namespace TombExtract
                     $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -1195,7 +1195,7 @@ namespace TombExtract
                     $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -1287,7 +1287,7 @@ namespace TombExtract
                     $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -1379,7 +1379,7 @@ namespace TombExtract
                     $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
@@ -1471,7 +1471,7 @@ namespace TombExtract
                     $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
                     "Confirmation",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Warning);
 
                 if (result == DialogResult.No)
                 {
