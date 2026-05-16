@@ -710,6 +710,20 @@ namespace TombExtract
                 return;
             }
 
+            if (platform != Platform.PC && IsTRXSavegame())
+            {
+                System.Media.SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    $"Savegame creation is not currently supported for {platform.ToFriendlyString()}.",
+                    "Platform Not Supported",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             if (lstSavegames.SelectedItem.ToString() != "Empty Slot")
             {
                 System.Media.SystemSounds.Asterisk.Play();
@@ -725,20 +739,6 @@ namespace TombExtract
                 {
                     return;
                 }
-            }
-
-            if (platform != Platform.PC)
-            {
-                System.Media.SystemSounds.Exclamation.Play();
-
-                ThemedMessageBox.Show(
-                    this,
-                    $"Savegame creation is not currently supported for {platform.ToFriendlyString()} savegames.",
-                    "Platform Not Supported",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
-                return;
             }
 
             CreateSavegameForm createSavegameForm = new CreateSavegameForm(CURRENT_TAB, savegamePath, (lstSavegames.SelectedItem as Savegame).Slot, (lstSavegames.SelectedItem as Savegame).Offset, slblStatus);

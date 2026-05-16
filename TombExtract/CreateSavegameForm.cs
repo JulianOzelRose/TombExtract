@@ -29,10 +29,7 @@ namespace TombExtract
         string savegamePath;
 
         private List<LevelInfo> levelSelectionList = new List<LevelInfo>();
-        private Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>> premadeBuffers;
-
-        private const string PLATFORM_PC = "PC";
-        private const string PLATFORM_PS4_SWITCH = "PS4_SWITCH";
+        private Dictionary<byte, Dictionary<GameMode, string>> premadeBuffers;
 
         private ToolStripStatusLabel slblStatus;
         private bool isInitializing = true;
@@ -100,7 +97,6 @@ namespace TombExtract
             this.Text = $"Create Savegame - {gameSuffix}";
 
             cmbMode.SelectedIndex = 0;      // Default to Normal
-            cmbPlatform.SelectedIndex = 0;  // Default to PC
 
             PopulateLevelSelectionList();
             InitializePremadeBuffers();
@@ -173,1956 +169,866 @@ namespace TombExtract
         {
             if (CURRENT_TAB == TAB_TR1)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
+                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
-                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 1, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_CAVES_NGPLUS_PC.bin" }
                         }
                     },
-                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 2, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_VILCABAMBA_NGPLUS_PC.bin" }
                         }
                     },
-                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 3, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_LOST_VALLEY_NGPLUS_PC.bin" }
                         }
                     },
-                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 4, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_QUALOPEC_NGPLUS_PC.bin" }
                         }
                     },
-                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 5, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_ST_FRANCIS_FOLLY_NGPLUS_PC.bin" }
                         }
                     },
-                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 6, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_COLOSSEUM_NGPLUS_PC.bin" }
                         }
                     },
-                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 7, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                        { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_PALACE_MIDAS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 8, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_THE_CISTERN_NGPLUS_PC.bin" }
                         }
                     },
-                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 9, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_TOMB_OF_TIHOCAN_NGPLUS_PC.bin" }
                         }
                     },
-                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 10, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_CITY_OF_KHAMOON_NGPLUS_PC.bin" }
                         }
                     },
-                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 11, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_OBELISK_OF_KHAMOON_NGPLUS_PC.bin" }
                         }
                     },
-                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 12, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_SANCTUARY_OF_THE_SCION_NGPLUS_PC.bin" }
                         }
                     },
-                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 13, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_NATLAS_MINES_NGPLUS_PC.bin" }
                         }
                     },
-                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 14, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTIS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 15, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR1_THE_GREAT_PYRAMID_NGPLUS_PC.bin" }
                         }
                     },
-                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 16, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_RETURN_TO_EGYPT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_RETURN_TO_EGYPT_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_RETURN_TO_EGYPT_NORMAL_PC.bin" }
                         }
                     },
-                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 17, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_TEMPLE_OF_THE_CAT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_TEMPLE_OF_THE_CAT_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_TEMPLE_OF_THE_CAT_NORMAL_PC.bin" }
                         }
                     },
-                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 18, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTEAN_STRONGHOLD_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTEAN_STRONGHOLD_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_ATLANTEAN_STRONGHOLD_NORMAL_PC.bin" }
                         }
                     },
-                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 19, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR1_THE_HIVE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR1_THE_HIVE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR1_THE_HIVE_NORMAL_PC.bin" }
                         }
                     },
                 };
             }
             else if (CURRENT_TAB == TAB_TR2)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
+                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
-                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 1, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_GREAT_WALL_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_GREAT_WALL_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_GREAT_WALL_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_GREAT_WALL_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_THE_GREAT_WALL_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_THE_GREAT_WALL_NGPLUS_PC.bin" }
                         }
                     },
-                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 2, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_VENICE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_VENICE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_VENICE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_VENICE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_VENICE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_VENICE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 3, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_BARTOLIS_HIDEOUT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_BARTOLIS_HIDEOUT_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_BARTOLIS_HIDEOUT_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_BARTOLIS_HIDEOUT_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_BARTOLIS_HIDEOUT_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_BARTOLIS_HIDEOUT_NGPLUS_PC.bin" }
                         }
                     },
-                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 4, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_OPERA_HOUSE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_OPERA_HOUSE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_OPERA_HOUSE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_OPERA_HOUSE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            }
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_OPERA_HOUSE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_OPERA_HOUSE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 5, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_OFFSHORE_RIG_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_OFFSHORE_RIG_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_OFFSHORE_RIG_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_OFFSHORE_RIG_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_OFFSHORE_RIG_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_OFFSHORE_RIG_NGPLUS_PC.bin" }
                         }
                     },
-                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 6, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_DIVING_AREA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_DIVING_AREA_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_DIVING_AREA_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_DIVING_AREA_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_DIVING_AREA_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_DIVING_AREA_NGPLUS_PC.bin" }
                         }
                     },
-                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 7, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_40_FATHOMS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_40_FATHOMS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_40_FATHOMS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_40_FATHOMS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_40_FATHOMS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_40_FATHOMS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 8, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_WRECK_OF_THE_MARIA_DORIA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_WRECK_OF_THE_MARIA_DORIA_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_WRECK_OF_THE_MARIA_DORIA_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_WRECK_OF_THE_MARIA_DORIA_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_WRECK_OF_THE_MARIA_DORIA_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_WRECK_OF_THE_MARIA_DORIA_NGPLUS_PC.bin" }
                         }
                     },
-                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 9, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_LIVING_QUARTERS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_LIVING_QUARTERS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_LIVING_QUARTERS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_LIVING_QUARTERS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_LIVING_QUARTERS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_LIVING_QUARTERS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 10, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_DECK_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_DECK_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_DECK_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_DECK_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_THE_DECK_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_THE_DECK_NGPLUS_PC.bin" }
                         }
                     },
-                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 11, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_TIBETAN_FOOTHILLS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_TIBETAN_FOOTHILLS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_TIBETAN_FOOTHILLS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_TIBETAN_FOOTHILLS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_TIBETAN_FOOTHILLS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_TIBETAN_FOOTHILLS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 12, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_BARKHANG_MONASTERY_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_BARKHANG_MONASTERY_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_BARKHANG_MONASTERY_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_BARKHANG_MONASTERY_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_BARKHANG_MONASTERY_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_BARKHANG_MONASTERY_NGPLUS_PC.bin" }
                         }
                     },
-                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 13, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_CATACOMBS_OF_THE_TALION_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_CATACOMBS_OF_THE_TALION_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_CATACOMBS_OF_THE_TALION_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_CATACOMBS_OF_THE_TALION_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_CATACOMBS_OF_THE_TALION_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_CATACOMBS_OF_THE_TALION_NGPLUS_PC.bin" }
                         }
                     },
-                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 14, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_ICE_PALACE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_ICE_PALACE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_ICE_PALACE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_ICE_PALACE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_ICE_PALACE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_ICE_PALACE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 15, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_TEMPLE_OF_XIAN_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_TEMPLE_OF_XIAN_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_TEMPLE_OF_XIAN_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_TEMPLE_OF_XIAN_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_TEMPLE_OF_XIAN_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_TEMPLE_OF_XIAN_NGPLUS_PC.bin" }
                         }
                     },
-                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 16, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_FLOATING_ISLANDS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_FLOATING_ISLANDS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_FLOATING_ISLANDS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_FLOATING_ISLANDS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_FLOATING_ISLANDS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_FLOATING_ISLANDS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 17, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_DRAGONS_LAIR_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_DRAGONS_LAIR_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_DRAGONS_LAIR_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_DRAGONS_LAIR_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_THE_DRAGONS_LAIR_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_THE_DRAGONS_LAIR_NGPLUS_PC.bin" }
                         }
                     },
-                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 18, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_HOME_SWEET_HOME_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_HOME_SWEET_HOME_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_HOME_SWEET_HOME_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_HOME_SWEET_HOME_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_HOME_SWEET_HOME_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR2_HOME_SWEET_HOME_NGPLUS_PC.bin" }
                         }
                     },
-                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 19, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_THE_COLD_WAR_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_THE_COLD_WAR_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_THE_COLD_WAR_NORMAL_PC.bin" }
                         }
                     },
-                    { 20, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 20, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_FOOLS_GOLD_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_FOOLS_GOLD_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_FOOLS_GOLD_NORMAL_PC.bin" }
                         }
                     },
-                    { 21, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 21, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_FURNACE_OF_THE_GODS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_FURNACE_OF_THE_GODS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_FURNACE_OF_THE_GODS_NORMAL_PC.bin" }
                         }
                     },
-                    { 22, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 22, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_KINGDOM_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_KINGDOM_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_KINGDOM_NORMAL_PC.bin" }
                         }
                     },
-                    { 23, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 23, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR2_NIGHTMARE_IN_VEGAS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR2_NIGHTMARE_IN_VEGAS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR2_NIGHTMARE_IN_VEGAS_NORMAL_PC.bin" }
                         }
                     },
                 };
             }
             else if (CURRENT_TAB == TAB_TR3)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
+                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
-                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 1, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_JUNGLE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_JUNGLE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_JUNGLE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_JUNGLE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_JUNGLE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_JUNGLE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 2, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_RUINS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_RUINS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_RUINS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_RUINS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_RUINS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_RUINS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 3, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_THE_RIVER_GANGES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_THE_RIVER_GANGES_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_THE_RIVER_GANGES_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_THE_RIVER_GANGES_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_THE_RIVER_GANGES_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_THE_RIVER_GANGES_NGPLUS_PC.bin" }
                         }
                     },
-                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 4, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_CAVES_OF_KALIYA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_CAVES_OF_KALIYA_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_CAVES_OF_KALIYA_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_CAVES_OF_KALIYA_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_CAVES_OF_KALIYA_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_CAVES_OF_KALIYA_NGPLUS_PC.bin" }
                         }
                     },
-                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 5, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_COASTAL_VILLAGE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_COASTAL_VILLAGE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_COASTAL_VILLAGE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_COASTAL_VILLAGE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_COASTAL_VILLAGE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_COASTAL_VILLAGE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 6, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_CRASH_SITE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_CRASH_SITE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_CRASH_SITE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_CRASH_SITE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_CRASH_SITE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_CRASH_SITE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 7, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_MADUBU_GORGE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_MADUBU_GORGE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_MADUBU_GORGE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_MADUBU_GORGE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_MADUBU_GORGE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_MADUBU_GORGE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 8, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_OF_PUNA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_OF_PUNA_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_OF_PUNA_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_OF_PUNA_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_OF_PUNA_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_TEMPLE_OF_PUNA_NGPLUS_PC.bin" }
                         }
                     },
-                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 9, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_THAMES_WHARF_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_THAMES_WHARF_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_THAMES_WHARF_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_THAMES_WHARF_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_THAMES_WHARF_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_THAMES_WHARF_NGPLUS_PC.bin" }
                         }
                     },
-                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 10, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_ALDWYCH_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_ALDWYCH_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_ALDWYCH_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_ALDWYCH_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_ALDWYCH_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_ALDWYCH_NGPLUS_PC.bin" }
                         }
                     },
-                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 11, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_LUDS_GATE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_LUDS_GATE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_LUDS_GATE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_LUDS_GATE_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_LUDS_GATE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_LUDS_GATE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 12, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_CITY_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_CITY_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_CITY_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_CITY_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_CITY_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_CITY_NGPLUS_PC.bin" }
                         }
                     },
-                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 13, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_NEVADA_DESERT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_NEVADA_DESERT_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_NEVADA_DESERT_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_NEVADA_DESERT_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_NEVADA_DESERT_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_NEVADA_DESERT_NGPLUS_PC.bin" }
                         }
                     },
-                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 14, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_HIGH_SECURITY_COMPOUND_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_HIGH_SECURITY_COMPOUND_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_HIGH_SECURITY_COMPOUND_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_HIGH_SECURITY_COMPOUND_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_HIGH_SECURITY_COMPOUND_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_HIGH_SECURITY_COMPOUND_NGPLUS_PC.bin" }
                         }
                     },
-                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 15, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_AREA_51_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_AREA_51_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_AREA_51_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_AREA_51_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_AREA_51_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_AREA_51_NGPLUS_PC.bin" }
                         }
                     },
-                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 16, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_ANTARCTICA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_ANTARCTICA_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_ANTARCTICA_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_ANTARCTICA_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_ANTARCTICA_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_ANTARCTICA_NGPLUS_PC.bin" }
                         }
                     },
-                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 17, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_RX_TECH_MINES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_RX_TECH_MINES_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_RX_TECH_MINES_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_RX_TECH_MINES_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_RX_TECH_MINES_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_RX_TECH_MINES_NGPLUS_PC.bin" }
                         }
                     },
-                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 18, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_LOST_CITY_OF_TINNOS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_LOST_CITY_OF_TINNOS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_LOST_CITY_OF_TINNOS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_LOST_CITY_OF_TINNOS_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_LOST_CITY_OF_TINNOS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_LOST_CITY_OF_TINNOS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 19, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_METEORITE_CAVERN_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_METEORITE_CAVERN_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_METEORITE_CAVERN_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_METEORITE_CAVERN_NGPLUS_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_METEORITE_CAVERN_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR3_METEORITE_CAVERN_NGPLUS_PC.bin" }
                         }
                     },
-                    { 20, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 20, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_ALL_HALLOWS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_ALL_HALLOWS_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_ALL_HALLOWS_NORMAL_PC.bin" }
                         }
                     },
-                    { 21, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 21, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_HIGHLAND_FLING_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_HIGHLAND_FLING_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_HIGHLAND_FLING_NORMAL_PC.bin" }
                         }
                     },
-                    { 22, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 22, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_WILLARDS_LAIR_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_WILLARDS_LAIR_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_WILLARDS_LAIR_NORMAL_PC.bin" }
                         }
                     },
-                    { 23, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 23, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_SHAKESPEARE_CLIFF_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_SHAKESPEARE_CLIFF_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_SHAKESPEARE_CLIFF_NORMAL_PC.bin" }
                         }
                     },
-                    { 24, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 24, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_SLEEPING_WITH_THE_FISHES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_SLEEPING_WITH_THE_FISHES_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_SLEEPING_WITH_THE_FISHES_NORMAL_PC.bin" }
                         }
                     },
-                    { 25, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 25, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_ITS_A_MADHOUSE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_ITS_A_MADHOUSE_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_ITS_A_MADHOUSE_NORMAL_PC.bin" }
                         }
                     },
-                    { 26, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 26, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR3_REUNION_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR3_REUNION_NORMAL_PS4_SWITCH.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR3_REUNION_NORMAL_PC.bin" }
                         }
                     },
                 };
             }
             else if (CURRENT_TAB == TAB_TR4)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
+                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
-                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 1, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_ANGKOR_WAT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_ANGKOR_WAT_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_ANGKOR_WAT_NORMAL_PC.bin" }
                         }
                     },
-                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 2, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_RACE_FOR_THE_IRIS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_RACE_FOR_THE_IRIS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_RACE_FOR_THE_IRIS_NORMAL_PC.bin" }
                         }
                     },
-                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 3, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_TOMB_OF_SETH_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_TOMB_OF_SETH_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_TOMB_OF_SETH_NORMAL_PC.bin" }
                         }
                     },
-                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 4, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_BURIAL_CHAMBERS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_BURIAL_CHAMBERS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_BURIAL_CHAMBERS_NORMAL_PC.bin" }
                         }
                     },
-                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 5, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_VALLEY_OF_THE_KINGS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_VALLEY_OF_THE_KINGS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_VALLEY_OF_THE_KINGS_NORMAL_PC.bin" }
                         }
                     },
-                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 6, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_KV5_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_KV5_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_KV5_NORMAL_PC.bin" }
                         }
                     },
-                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 7, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_KARNAK_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_KARNAK_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_KARNAK_NORMAL_PC.bin" }
                         }
                     },
-                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 8, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_HYPOSTYLE_HALL_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_HYPOSTYLE_HALL_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_HYPOSTYLE_HALL_NORMAL_PC.bin" }
                         }
                     },
-                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 9, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_SACRED_LAKE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_SACRED_LAKE_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_SACRED_LAKE_NORMAL_PC.bin" }
                         }
                     },
-                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 11, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TOMB_OF_SEMERKHET_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TOMB_OF_SEMERKHET_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_TOMB_OF_SEMERKHET_NORMAL_PC.bin" }
                         }
                     },
-                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 12, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_GUARDIAN_OF_SEMERKHET_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_GUARDIAN_OF_SEMERKHET_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_GUARDIAN_OF_SEMERKHET_NORMAL_PC.bin" }
                         }
                     },
-                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 13, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_DESERT_RAILROAD_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_DESERT_RAILROAD_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_DESERT_RAILROAD_NORMAL_PC.bin" }
                         }
                     },
-                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 14, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_ALEXANDRIA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_ALEXANDRIA_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_ALEXANDRIA_NORMAL_PC.bin" }
                         }
                     },
-                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 15, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_COASTAL_RUINS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_COASTAL_RUINS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_COASTAL_RUINS_NORMAL_PC.bin" }
                         }
                     },
-                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 16, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_PHAROS_TEMPLE_OF_ISIS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_PHAROS_TEMPLE_OF_ISIS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_PHAROS_TEMPLE_OF_ISIS_NORMAL_PC.bin" }
                         }
                     },
-                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 17, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CLEOPATRAS_PALACES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CLEOPATRAS_PALACES_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_CLEOPATRAS_PALACES_NORMAL_PC.bin" }
                         }
                     },
-                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 18, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CATACOMBS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CATACOMBS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_CATACOMBS_NORMAL_PC.bin" }
                         }
                     },
-                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 19, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_POSEIDON_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_POSEIDON_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_POSEIDON_NORMAL_PC.bin" }
                         }
                     },
-                    { 20, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 20, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_LOST_LIBRARY_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_LOST_LIBRARY_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_LOST_LIBRARY_NORMAL_PC.bin" }
                         }
                     },
-                    { 21, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 21, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_HALL_OF_DEMETRIUS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_HALL_OF_DEMETRIUS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_HALL_OF_DEMETRIUS_NORMAL_PC.bin" }
                         }
                     },
-                    { 22, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 22, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITY_OF_THE_DEAD_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CITY_OF_THE_DEAD_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_CITY_OF_THE_DEAD_NORMAL_PC.bin" }
                         }
                     },
-                    { 23, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 23, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TRENCHES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TRENCHES_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_TRENCHES_NORMAL_PC.bin" }
                         }
                     },
-                    { 24, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 24, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CHAMBERS_OF_TULUN_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CHAMBERS_OF_TULUN_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_CHAMBERS_OF_TULUN_NORMAL_PC.bin" }
                         }
                     },
-                    { 25, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 25, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_STREET_BAZAAR_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_STREET_BAZAAR_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_STREET_BAZAAR_NORMAL_PC.bin" }
                         }
                     },
-                    { 26, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 26, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_GATE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_GATE_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_GATE_NORMAL_PC.bin" }
                         }
                     },
-                    { 27, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 27, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_CITADEL_NORMAL_PC.bin" }
                         }
                     },
-                    { 28, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 28, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_SPHINX_COMPLEX_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_SPHINX_COMPLEX_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_SPHINX_COMPLEX_NORMAL_PC.bin" }
                         }
                     },
-                    { 30, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 30, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_UNDERNEATH_THE_SPHINX_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_UNDERNEATH_THE_SPHINX_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_UNDERNEATH_THE_SPHINX_NORMAL_PC.bin" }
                         }
                     },
-                    { 31, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 31, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_MENKAURES_PYRAMID_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_MENKAURES_PYRAMID_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_MENKAURES_PYRAMID_NORMAL_PC.bin" }
                         }
                     },
-                    { 32, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 32, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_MENKAURES_PYRAMID_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_MENKAURES_PYRAMID_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_MENKAURES_PYRAMID_NORMAL_PC.bin" }
                         }
                     },
-                    { 33, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 33, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_MASTABAS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_MASTABAS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_MASTABAS_NORMAL_PC.bin" }
                         }
                     },
-                    { 34, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 34, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_PYRAMID_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_GREAT_PYRAMID_NORMAL_PC.bin" }
                         }
                     },
-                    { 35, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 35, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_KHUFUS_QUEENS_PYRAMIDS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_KHUFUS_QUEENS_PYRAMIDS_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_KHUFUS_QUEENS_PYRAMIDS_NORMAL_PC.bin" }
                         }
                     },
-                    { 36, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 36, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_THE_GREAT_PYRAMID_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_THE_GREAT_PYRAMID_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_INSIDE_THE_GREAT_PYRAMID_NORMAL_PC.bin" }
                         }
                     },
-                    { 37, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 37, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_1_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_1_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_1_NORMAL_PC.bin" }
                         }
                     },
-                    { 38, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 38, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_2_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_2_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_TEMPLE_OF_HORUS_2_NORMAL_PC.bin" }
                         }
                     },
-                    { 40, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 40, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR4_THE_TIMES_EXCLUSIVE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR4_THE_TIMES_EXCLUSIVE_NORMAL_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR4_THE_TIMES_EXCLUSIVE_NORMAL_PC.bin" }
                         }
                     },
                 };
             }
             else if (CURRENT_TAB == TAB_TR5)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
+                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
-                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 1, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_STREETS_OF_ROME_NGPLUS_PC.bin" }
                         }
                     },
-                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 2, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_TRAJANS_MARKETS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 3, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_THE_COLOSSEUM_NGPLUS_PC.bin" }
                         }
                     },
-                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 4, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_THE_BASE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 5, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_THE_SUBMARINE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 6, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_DEEPSEA_DIVE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 7, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_SINKING_SUBMARINE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 8, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_GALLOWS_TREE_NGPLUS_PC.bin" }
                         }
                     },
-                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 9, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_LABYRINTH_NGPLUS_PC.bin" }
                         }
                     },
-                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 10, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_OLD_MILL_NGPLUS_PC.bin" }
                         }
                     },
-                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 11, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_THE_13TH_FLOOR_NGPLUS_PC.bin" }
                         }
                     },
-                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 12, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_ESCAPE_WITH_THE_IRIS_NGPLUS_PC.bin" }
                         }
                     },
-                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 14, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" }
-                                }
-                            },
-                            { GameMode.Plus, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NGPLUS_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NGPLUS_PC.bin" }
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NORMAL_PC.bin" },
+                            { GameMode.Plus, "TombExtract.Resources.PremadeSavegames.TR5_RED_ALERT_NGPLUS_PC.bin" }
                         }
                     },
                 };
             }
             else if (CURRENT_TAB == TAB_TR6)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, Dictionary<string, string>>>()
+                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
-                    { 0, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 0, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_BACK_STREETS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_BACK_STREETS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_BACK_STREETS_NORMAL_PC.bin" }
                         }
                     },
-                    { 1, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 1, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_DERELICT_APARTMENT_BLOCK_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_DERELICT_APARTMENT_BLOCK_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_DERELICT_APARTMENT_BLOCK_NORMAL_PC.bin" }
                         }
                     },
-                    { 2, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 2, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_MARGOT_CARVIERS_APARTMENT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_MARGOT_CARVIERS_APARTMENT_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_MARGOT_CARVIERS_APARTMENT_NORMAL_PC.bin" }
                         }
                     },
-                    { 3, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 3, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_INDUSTRIAL_ROOF_TOPS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_INDUSTRIAL_ROOF_TOPS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_INDUSTRIAL_ROOF_TOPS_NORMAL_PC.bin" }
                         }
                     },
-                    { 4, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 4, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_1_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_1_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_1_NORMAL_PC.bin" }
                         }
                     },
-                    { 5, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 5, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_2_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_2_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_2_NORMAL_PC.bin" }
                         }
                     },
-                    { 6, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 6, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_3_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_3_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_PARISIAN_GHETTO_3_NORMAL_PC.bin" }
                         }
                     },
-                    { 7, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 7, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_SERPENT_ROUGE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_SERPENT_ROUGE_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_SERPENT_ROUGE_NORMAL_PC.bin" }
                         }
                     },
-                    { 8, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 8, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_RENNES_PAWNSHOP_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_RENNES_PAWNSHOP_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_RENNES_PAWNSHOP_NORMAL_PC.bin" }
                         }
                     },
-                    { 9, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 9, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_WILLOWTREE_HERBALIST_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_WILLOWTREE_HERBALIST_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_WILLOWTREE_HERBALIST_NORMAL_PC.bin" }
                         }
                     },
-                    { 10, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 10, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_CHURCH_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_CHURCH_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_CHURCH_NORMAL_PC.bin" }
                         }
                     },
-                    { 11, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 11, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_CAFE_METRO_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_CAFE_METRO_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_CAFE_METRO_NORMAL_PC.bin" }
                         }
                     },
-                    { 12, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 12, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_GRAVEYARD_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_GRAVEYARD_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_ST_AICARDS_GRAVEYARD_NORMAL_PC.bin" }
                         }
                     },
-                    { 13, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 13, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_BOUCHARDS_HIDEOUT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_BOUCHARDS_HIDEOUT_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_BOUCHARDS_HIDEOUT_NORMAL_PC.bin" }
                         }
                     },
-                    { 14, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 14, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_STORM_DRAINS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_STORM_DRAINS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_STORM_DRAINS_NORMAL_PC.bin" }
                         }
                     },
-                    { 15, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 15, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_GALLERIES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_GALLERIES_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_LOUVRE_GALLERIES_NORMAL_PC.bin" }
                         }
                     },
-                    { 16, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 16, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_GALLERIES_UNDER_SIEGE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_GALLERIES_UNDER_SIEGE_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_GALLERIES_UNDER_SIEGE_NORMAL_PC.bin" }
                         }
                     },
-                    { 17, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 17, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_TOMB_OF_ANCIENTS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_TOMB_OF_ANCIENTS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_TOMB_OF_ANCIENTS_NORMAL_PC.bin" }
                         }
                     },
-                    { 18, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 18, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_ARCHAEOLOGICAL_DIG_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_ARCHAEOLOGICAL_DIG_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_ARCHAEOLOGICAL_DIG_NORMAL_PC.bin" }
                         }
                     },
-                    { 19, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 19, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_VON_CROYS_APARTMENT_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_VON_CROYS_APARTMENT_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_VON_CROYS_APARTMENT_NORMAL_PC.bin" }
                         }
                     },
-                    { 20, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 20, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_MONSTRUM_CRIMESCENE_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_MONSTRUM_CRIMESCENE_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_MONSTRUM_CRIMESCENE_NORMAL_PC.bin" }
                         }
                     },
-                    { 21, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 21, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_STRAHOV_FORTRESS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_STRAHOV_FORTRESS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_STRAHOV_FORTRESS_NORMAL_PC.bin" }
                         }
                     },
-                    { 22, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 22, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_BIO_RESEARCH_FACILITY_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_BIO_RESEARCH_FACILITY_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_BIO_RESEARCH_FACILITY_NORMAL_PC.bin" }
                         }
                     },
-                    { 23, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 23, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_AQUATIC_RESEARCH_AREA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_AQUATIC_RESEARCH_AREA_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_AQUATIC_RESEARCH_AREA_NORMAL_PC.bin" }
                         }
                     },
-                    { 24, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 24, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANITARIUM_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANITARIUM_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANITARIUM_NORMAL_PC.bin" }
                         }
                     },
-                    { 25, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 25, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_MAXIMUM_CONTAINMENT_AREA_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_MAXIMUM_CONTAINMENT_AREA_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_MAXIMUM_CONTAINMENT_AREA_NORMAL_PC.bin" }
                         }
                     },
-                    { 26, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 26, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_VAULT_OF_TROPHIES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_VAULT_OF_TROPHIES_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_VAULT_OF_TROPHIES_NORMAL_PC.bin" }
                         }
                     },
-                    { 27, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 27, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_BOAZ_RETURNS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_BOAZ_RETURNS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_BOAZ_RETURNS_NORMAL_PC.bin" }
                         }
                     },
-                    { 28, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 28, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_ECKHARDTS_LAB_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_ECKHARDTS_LAB_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_ECKHARDTS_LAB_NORMAL_PC.bin" }
                         }
                     },
-                    { 29, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 29, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_LOST_DOMAIN_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_LOST_DOMAIN_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_LOST_DOMAIN_NORMAL_PC.bin" }
                         }
                     },
-                    { 30, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 30, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_HALL_OF_SEASONS_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_HALL_OF_SEASONS_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_HALL_OF_SEASONS_NORMAL_PC.bin" }
                         }
                     },
-                    { 31, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 31, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_NEPTUNES_HALL_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_NEPTUNES_HALL_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_NEPTUNES_HALL_NORMAL_PC.bin" }
                         }
                     },
-                    { 32, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 32, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_WRATH_OF_THE_BEAST_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_WRATH_OF_THE_BEAST_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_WRATH_OF_THE_BEAST_NORMAL_PC.bin" }
                         }
                     },
-                    { 33, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 33, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANCTUARY_OF_FLAME_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANCTUARY_OF_FLAME_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_SANCTUARY_OF_FLAME_NORMAL_PC.bin" }
                         }
                     },
-                    { 34, new Dictionary<GameMode, Dictionary<string, string>>()
+                    { 34, new Dictionary<GameMode, string>()
                         {
-                            { GameMode.Normal, new Dictionary<string, string>()
-                                {
-                                    { PLATFORM_PC, "TombExtract.Resources.PremadeSavegames.TR6_THE_BREATH_OF_HADES_NORMAL_PC.bin" },
-                                    { PLATFORM_PS4_SWITCH, "TombExtract.Resources.PremadeSavegames.TR6_THE_BREATH_OF_HADES_NORMAL_PC.bin" },
-                                }
-                            },
+                            { GameMode.Normal, "TombExtract.Resources.PremadeSavegames.TR6_THE_BREATH_OF_HADES_NORMAL_PC.bin" }
                         }
                     },
                 };
@@ -2173,11 +1079,6 @@ namespace TombExtract
         private bool IsTRXSavegame()
         {
             return CURRENT_TAB == TAB_TR1 || CURRENT_TAB == TAB_TR2 || CURRENT_TAB == TAB_TR3;
-        }
-
-        private bool IsTRX2Savegame()
-        {
-            return CURRENT_TAB == TAB_TR4 || CURRENT_TAB == TAB_TR5 || CURRENT_TAB == TAB_TR6;
         }
 
         private bool IsTR1Savegame()
@@ -2253,36 +1154,17 @@ namespace TombExtract
 
                 GameMode selectedMode = (GameMode)cmbMode.SelectedIndex;
 
-                // Resolve platform string based on selection
-                string selectedPlatform;
-                switch (cmbPlatform.SelectedIndex)
-                {
-                    case 0:
-                        selectedPlatform = PLATFORM_PC;
-                        break;
-                    case 1:
-                    case 2:
-                        selectedPlatform = PLATFORM_PS4_SWITCH;
-                        break;
-                    default:
-                        selectedPlatform = PLATFORM_PC;
-                        break;
-                }
-
-                // Declarations using correct nested types
-                Dictionary<GameMode, Dictionary<string, string>> modeDict;
-                Dictionary<string, string> platformDict;
+                Dictionary<GameMode, string> modeDict;
                 string resourceName;
 
                 if (!premadeBuffers.TryGetValue(selectedLevel.Index, out modeDict) ||
-                    !modeDict.TryGetValue(selectedMode, out platformDict) ||
-                    !platformDict.TryGetValue(selectedPlatform, out resourceName))
+                    !modeDict.TryGetValue(selectedMode, out resourceName))
                 {
                     System.Media.SystemSounds.Hand.Play();
 
                     ThemedMessageBox.Show(
                         this,
-                        "Premade savegame buffer not found for this level/mode/platform.",
+                        "Premade savegame buffer not found for this level or mode.",
                         "Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -2348,52 +1230,14 @@ namespace TombExtract
 
         private void EnableDropdownsConditionally()
         {
-            try
+            if (cmbLevel.SelectedItem is LevelInfo selectedLevel &&
+                premadeBuffers.TryGetValue(selectedLevel.Index, out var modeDict))
             {
-                byte[] fileData = File.ReadAllBytes(savegamePath);
-                bool isPatch5 = IsPatch5Savegame(fileData);
-
-                bool platformSelectionAllowed = IsTRX2Savegame() || (IsTRXSavegame() && !isPatch5);
-                cmbPlatform.Enabled = platformSelectionAllowed;
-
-                if (cmbLevel.SelectedItem is LevelInfo selectedLevel &&
-                    premadeBuffers.TryGetValue(selectedLevel.Index, out var modeDict))
-                {
-                    cmbMode.Enabled = modeDict.Count > 1;
-
-                    GameMode selectedMode = (GameMode)cmbMode.SelectedIndex;
-
-                    if (modeDict.TryGetValue(selectedMode, out var platformDict))
-                    {
-                        cmbPlatform.Enabled = platformDict.Count > 1 && platformSelectionAllowed;
-
-                        // If current selection is out of range, reset it
-                        if (cmbPlatform.SelectedIndex < 0 || cmbPlatform.SelectedIndex >= cmbPlatform.Items.Count)
-                        {
-                            cmbPlatform.SelectedIndex = 0;
-                        }
-                    }
-                    else
-                    {
-                        cmbPlatform.Enabled = false;
-                    }
-                }
-                else
-                {
-                    cmbMode.Enabled = false;
-                    cmbPlatform.Enabled = false;
-                }
+                cmbMode.Enabled = modeDict.Count > 1;
             }
-            catch (Exception ex)
+            else
             {
-                System.Media.SystemSounds.Hand.Play();
-
-                ThemedMessageBox.Show(
-                    this,
-                    ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                cmbMode.Enabled = false;
             }
         }
 
@@ -2406,7 +1250,6 @@ namespace TombExtract
 
             // Reset Platform/Mode
             cmbMode.SelectedIndex = 0;
-            cmbPlatform.SelectedIndex = 0;
 
             EnableDropdownsConditionally();
         }
@@ -2416,13 +1259,6 @@ namespace TombExtract
             if (isInitializing)
             {
                 return;
-            }
-
-            if (cmbLevel.SelectedItem is LevelInfo selectedLevel &&
-                premadeBuffers.TryGetValue(selectedLevel.Index, out var modeDict) &&
-                modeDict.TryGetValue((GameMode)cmbMode.SelectedIndex, out var platformDict))
-            {
-                cmbPlatform.SelectedIndex = 0;
             }
 
             EnableDropdownsConditionally();

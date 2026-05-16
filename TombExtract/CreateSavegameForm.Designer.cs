@@ -37,8 +37,6 @@
             this.nudSaveNumber = new System.Windows.Forms.NumericUpDown();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.cmbPlatform = new System.Windows.Forms.ComboBox();
-            this.lblPlatform = new System.Windows.Forms.Label();
             this.lblSeparator = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumber)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +65,7 @@
             // 
             this.lblSaveNumber.AutoSize = true;
             this.lblSaveNumber.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaveNumber.Location = new System.Drawing.Point(16, 95);
+            this.lblSaveNumber.Location = new System.Drawing.Point(16, 69);
             this.lblSaveNumber.Name = "lblSaveNumber";
             this.lblSaveNumber.Size = new System.Drawing.Size(81, 15);
             this.lblSaveNumber.TabIndex = 6;
@@ -101,7 +99,7 @@
             // nudSaveNumber
             // 
             this.nudSaveNumber.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSaveNumber.Location = new System.Drawing.Point(305, 95);
+            this.nudSaveNumber.Location = new System.Drawing.Point(305, 69);
             this.nudSaveNumber.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -119,7 +117,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(109, 143);
+            this.btnCancel.Location = new System.Drawing.Point(109, 120);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 9;
@@ -130,7 +128,7 @@
             // btnCreate
             // 
             this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.Location = new System.Drawing.Point(190, 143);
+            this.btnCreate.Location = new System.Drawing.Point(190, 120);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
             this.btnCreate.TabIndex = 10;
@@ -138,35 +136,11 @@
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // cmbPlatform
-            // 
-            this.cmbPlatform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlatform.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPlatform.FormattingEnabled = true;
-            this.cmbPlatform.Items.AddRange(new object[] {
-            "PC",
-            "PS4",
-            "Nintendo Switch"});
-            this.cmbPlatform.Location = new System.Drawing.Point(240, 69);
-            this.cmbPlatform.Name = "cmbPlatform";
-            this.cmbPlatform.Size = new System.Drawing.Size(118, 23);
-            this.cmbPlatform.TabIndex = 5;
-            // 
-            // lblPlatform
-            // 
-            this.lblPlatform.AutoSize = true;
-            this.lblPlatform.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlatform.Location = new System.Drawing.Point(16, 69);
-            this.lblPlatform.Name = "lblPlatform";
-            this.lblPlatform.Size = new System.Drawing.Size(56, 15);
-            this.lblPlatform.TabIndex = 4;
-            this.lblPlatform.Text = "Platform:";
-            // 
             // lblSeparator
             // 
             this.lblSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblSeparator.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSeparator.Location = new System.Drawing.Point(16, 132);
+            this.lblSeparator.Location = new System.Drawing.Point(16, 109);
             this.lblSeparator.Name = "lblSeparator";
             this.lblSeparator.Size = new System.Drawing.Size(344, 2);
             this.lblSeparator.TabIndex = 8;
@@ -175,16 +149,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 179);
+            this.ClientSize = new System.Drawing.Size(376, 156);
             this.Controls.Add(this.lblSeparator);
             this.Controls.Add(this.cmbLevel);
-            this.Controls.Add(this.lblPlatform);
             this.Controls.Add(this.cmbMode);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.lblSaveNumber);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblLevel);
-            this.Controls.Add(this.cmbPlatform);
             this.Controls.Add(this.nudSaveNumber);
             this.Controls.Add(this.lblMode);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -213,8 +185,6 @@
         private System.Windows.Forms.NumericUpDown nudSaveNumber;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCreate;
-        private System.Windows.Forms.ComboBox cmbPlatform;
-        private System.Windows.Forms.Label lblPlatform;
         private System.Windows.Forms.Label lblSeparator;
     }
 }

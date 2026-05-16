@@ -85,7 +85,6 @@ namespace TombExtract
             this.lblSourceSavegamesTR3 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR3 = new System.Windows.Forms.CheckedListBox();
             this.tpTR4 = new System.Windows.Forms.TabPage();
-            this.lblConvertTR4 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR4 = new System.Windows.Forms.Button();
             this.btnAboutTR4 = new System.Windows.Forms.Button();
             this.btnSelectAllTR4 = new System.Windows.Forms.Button();
@@ -97,7 +96,6 @@ namespace TombExtract
             this.lblSourceSavegamesTR4 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR4 = new System.Windows.Forms.CheckedListBox();
             this.tpTR5 = new System.Windows.Forms.TabPage();
-            this.lblConvertTR5 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR5 = new System.Windows.Forms.Button();
             this.btnAboutTR5 = new System.Windows.Forms.Button();
             this.btnSelectAllTR5 = new System.Windows.Forms.Button();
@@ -109,7 +107,6 @@ namespace TombExtract
             this.lblSourceSavegamesTR5 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR5 = new System.Windows.Forms.CheckedListBox();
             this.tpTR6 = new System.Windows.Forms.TabPage();
-            this.lblConvertTR6 = new System.Windows.Forms.Label();
             this.btnManageSlotsTR6 = new System.Windows.Forms.Button();
             this.btnAboutTR6 = new System.Windows.Forms.Button();
             this.btnSelectAllTR6 = new System.Windows.Forms.Button();
@@ -757,7 +754,6 @@ namespace TombExtract
             // 
             // tpTR4
             // 
-            this.tpTR4.Controls.Add(this.lblConvertTR4);
             this.tpTR4.Controls.Add(this.btnManageSlotsTR4);
             this.tpTR4.Controls.Add(this.btnAboutTR4);
             this.tpTR4.Controls.Add(this.btnSelectAllTR4);
@@ -774,15 +770,6 @@ namespace TombExtract
             this.tpTR4.TabIndex = 3;
             this.tpTR4.Text = "Tomb Raider IV";
             this.tpTR4.UseVisualStyleBackColor = true;
-            // 
-            // lblConvertTR4
-            // 
-            this.lblConvertTR4.AutoSize = true;
-            this.lblConvertTR4.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR4.Name = "lblConvertTR4";
-            this.lblConvertTR4.Size = new System.Drawing.Size(208, 15);
-            this.lblConvertTR4.TabIndex = 6;
-            this.lblConvertTR4.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR4
             // 
@@ -890,7 +877,6 @@ namespace TombExtract
             // 
             // tpTR5
             // 
-            this.tpTR5.Controls.Add(this.lblConvertTR5);
             this.tpTR5.Controls.Add(this.btnManageSlotsTR5);
             this.tpTR5.Controls.Add(this.btnAboutTR5);
             this.tpTR5.Controls.Add(this.btnSelectAllTR5);
@@ -907,15 +893,6 @@ namespace TombExtract
             this.tpTR5.TabIndex = 4;
             this.tpTR5.Text = "Tomb Raider V";
             this.tpTR5.UseVisualStyleBackColor = true;
-            // 
-            // lblConvertTR5
-            // 
-            this.lblConvertTR5.AutoSize = true;
-            this.lblConvertTR5.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR5.Name = "lblConvertTR5";
-            this.lblConvertTR5.Size = new System.Drawing.Size(208, 15);
-            this.lblConvertTR5.TabIndex = 6;
-            this.lblConvertTR5.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR5
             // 
@@ -1023,7 +1000,6 @@ namespace TombExtract
             // 
             // tpTR6
             // 
-            this.tpTR6.Controls.Add(this.lblConvertTR6);
             this.tpTR6.Controls.Add(this.btnManageSlotsTR6);
             this.tpTR6.Controls.Add(this.btnAboutTR6);
             this.tpTR6.Controls.Add(this.btnSelectAllTR6);
@@ -1040,15 +1016,6 @@ namespace TombExtract
             this.tpTR6.TabIndex = 5;
             this.tpTR6.Text = "Tomb Raider VI";
             this.tpTR6.UseVisualStyleBackColor = true;
-            // 
-            // lblConvertTR6
-            // 
-            this.lblConvertTR6.AutoSize = true;
-            this.lblConvertTR6.Location = new System.Drawing.Point(14, 359);
-            this.lblConvertTR6.Name = "lblConvertTR6";
-            this.lblConvertTR6.Size = new System.Drawing.Size(208, 15);
-            this.lblConvertTR6.TabIndex = 6;
-            this.lblConvertTR6.Text = "Conversion not necessary for this title.";
             // 
             // btnManageSlotsTR6
             // 
@@ -1489,9 +1456,6 @@ namespace TombExtract
         private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR6;
         private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRX2SourceFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiBrowseTRX2DestinationFile;
-        private System.Windows.Forms.Label lblConvertTR4;
-        private System.Windows.Forms.Label lblConvertTR5;
-        private System.Windows.Forms.Label lblConvertTR6;
         private System.Windows.Forms.ToolStripDropDownButton tsddbSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmiStatusBar;
         private System.Windows.Forms.ToolStripMenuItem tsmiDarkMode;
