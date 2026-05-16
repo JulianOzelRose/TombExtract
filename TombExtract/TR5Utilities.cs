@@ -15,7 +15,7 @@ namespace TombExtract
 
         // Offsets
         private const int SLOT_STATUS_OFFSET = 0x004;
-        private const int GAME_MODE_OFFSET = 0x01C;
+        private const int NEW_GAME_PLUS_OFFSET = 0x01C;
         private const int SAVE_NUMBER_OFFSET = 0x008;
         private const int LEVEL_INDEX_OFFSET = 0x26F;
 
@@ -49,17 +49,15 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR5[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus);
                         cklSavegames.Items.Add(savegame);
                     }
                 }
@@ -90,17 +88,15 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR5[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
+
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus);
                         lstSavegames.Items.Add(savegame);
                     }
                     else
@@ -134,12 +130,10 @@ namespace TombExtract
                 {
                     int currentSavegameOffset = savegames[i].Offset;
 
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
                         numOverwrites++;
                     }

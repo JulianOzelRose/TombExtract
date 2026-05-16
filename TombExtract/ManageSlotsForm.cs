@@ -27,14 +27,14 @@ namespace TombExtract
         private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
 
         // Platform or patch-dependent offsets
-        private int GAME_MODE_OFFSET;
+        private int NEW_GAME_PLUS_OFFSET;
         private int LEVEL_INDEX_OFFSET;
         private int SAVE_NUMBER_OFFSET;
         private int CHALLENGE_MODE_OFFSET;
 
         // TR1 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR1 = 0x00C;
-        private const int GAME_MODE_OFFSET_TR1 = 0x008;
+        private const int NEW_GAME_PLUS_OFFSET_TR1 = 0x008;
 
         // TR1 offsets (PC)
         private const int LEVEL_INDEX_OFFSET_TR1_PC = 0x62C;
@@ -50,7 +50,7 @@ namespace TombExtract
 
         // TR2 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR2 = 0x00C;
-        private const int GAME_MODE_OFFSET_TR2 = 0x008;
+        private const int NEW_GAME_PLUS_OFFSET_TR2 = 0x008;
 
         // TR2 offsets (PC)
         private const int LEVEL_INDEX_OFFSET_TR2_PC = 0x628;
@@ -66,7 +66,7 @@ namespace TombExtract
 
         // TR3 offsets (universal)
         private const int SAVE_NUMBER_OFFSET_TR3 = 0x00C;
-        private const int GAME_MODE_OFFSET_TR3 = 0x008;
+        private const int NEW_GAME_PLUS_OFFSET_TR3 = 0x008;
 
         // TR3 offsets (PC)
         private const int LEVEL_INDEX_OFFSET_TR3_PC = 0x8D6;
@@ -83,17 +83,17 @@ namespace TombExtract
         // TR4 offsets
         private const int LEVEL_INDEX_OFFSET_TR4 = 0x26F;
         private const int SAVE_NUMBER_OFFSET_TR4 = 0x008;
-        private const int GAME_MODE_OFFSET_TR4 = 0x01C;
+        private const int NEW_GAME_PLUS_OFFSET_TR4 = 0x01C;
 
         // TR5 offsets
         private const int LEVEL_INDEX_OFFSET_TR5 = 0x26F;
         private const int SAVE_NUMBER_OFFSET_TR5 = 0x008;
-        private const int GAME_MODE_OFFSET_TR5 = 0x01C;
+        private const int NEW_GAME_PLUS_OFFSET_TR5 = 0x01C;
 
         // TR6 offsets
         private const int LEVEL_INDEX_OFFSET_TR6 = 0x14;
         private const int SAVE_NUMBER_OFFSET_TR6 = 0x11C;
-        private const int GAME_MODE_OFFSET_TR6 = 0x35C;
+        private const int NEW_GAME_PLUS_OFFSET_TR6 = 0x35C;
 
         // Savegame constants
         private int BASE_SAVEGAME_OFFSET_TR1;
@@ -231,7 +231,7 @@ namespace TombExtract
                 if (isPatch5)
                 {
                     SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
-                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
+                    NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR1;
 
                     if (platform == Platform.PC)
                     {
@@ -253,7 +253,7 @@ namespace TombExtract
                 {
                     LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PC;
                     SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR1;
-                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR1;
+                    NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR1;
                 }
             }
             else if (CURRENT_TAB == TAB_TR2)
@@ -261,7 +261,7 @@ namespace TombExtract
                 if (isPatch5)
                 {
                     SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
-                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
+                    NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR2;
 
                     if (platform == Platform.PC)
                     {
@@ -283,7 +283,7 @@ namespace TombExtract
                 {
                     LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PC;
                     SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR2;
-                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR2;
+                    NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR2;
                 }
             }
             else if (CURRENT_TAB == TAB_TR3)
@@ -291,7 +291,7 @@ namespace TombExtract
                 if (isPatch5)
                 {
                     SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
-                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
+                    NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR3;
 
                     if (platform == Platform.PC)
                     {
@@ -313,26 +313,26 @@ namespace TombExtract
                 {
                     LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PC;
                     SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR3;
-                    GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR3;
+                    NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR3;
                 }
             }
             else if (CURRENT_TAB == TAB_TR4)
             {
                 LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR4;
                 SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR4;
-                GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR4;
+                NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR4;
             }
             else if (CURRENT_TAB == TAB_TR5)
             {
                 LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR5;
                 SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR5;
-                GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR5;
+                NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR5;
             }
             else if (CURRENT_TAB == TAB_TR6)
             {
                 LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR6;
                 SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR6;
-                GAME_MODE_OFFSET = GAME_MODE_OFFSET_TR6;
+                NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR6;
             }
         }
 
@@ -417,29 +417,24 @@ namespace TombExtract
                     int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR1) / SAVEGAME_SIZE_TRX;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR1.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR1.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
-
                         string levelName = LevelNames.TR1[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
 
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, false, isChallengeMode);
                         savegame.Slot = slot;
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, false);
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
-
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -473,29 +468,24 @@ namespace TombExtract
                     int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR2) / SAVEGAME_SIZE_TRX;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR2.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR2.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
-
                         string levelName = LevelNames.TR2[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
 
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, false, isChallengeMode);
                         savegame.Slot = slot;
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, false);
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
-
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -529,29 +519,24 @@ namespace TombExtract
                     int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR3) / SAVEGAME_SIZE_TRX;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         bool isChallengeMode = fileData[currentSavegameOffset + CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
-
                         string levelName = LevelNames.TR3[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, false, isChallengeMode);
 
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, false, isChallengeMode);
                         savegame.Slot = slot;
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, false);
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
-
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -583,28 +568,23 @@ namespace TombExtract
                     int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR4) / SAVEGAME_SIZE_TRX2;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR4.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR4.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR4[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
 
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus);
                         savegame.Slot = slot;
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, false);
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
-
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -636,28 +616,23 @@ namespace TombExtract
                     int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR5) / SAVEGAME_SIZE_TRX2;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR5[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode);
 
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus);
                         savegame.Slot = slot;
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, false);
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
-
                         lstSavegames.Items.Add(savegame);
                     }
                 }
@@ -689,28 +664,23 @@ namespace TombExtract
                     int slot = (currentSavegameOffset - BASE_SAVEGAME_OFFSET_TR6) / SAVEGAME_SIZE_TRX2;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    byte slotStatus = fileData[currentSavegameOffset + SLOT_STATUS_OFFSET];
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    bool savegamePresent = slotStatus != 0;
-
-                    if (savegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
-                        GameMode gameMode = fileData[currentSavegameOffset + GAME_MODE_OFFSET] == 0 ? GameMode.Normal : GameMode.Plus;
-
+                        bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR6[levelIndex];
-                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, gameMode, true);
 
+                        Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, true);
                         savegame.Slot = slot;
                         lstSavegames.Items.Add(savegame);
                     }
                     else
                     {
-                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, GameMode.None);
-
+                        Savegame savegame = new Savegame(currentSavegameOffset, 0, null, false);
                         savegame.IsEmptySlot = true;
                         savegame.Slot = slot;
-
                         lstSavegames.Items.Add(savegame);
                     }
                 }

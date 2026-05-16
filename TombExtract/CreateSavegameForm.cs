@@ -2135,7 +2135,9 @@ namespace TombExtract
             using (var stream = typeof(CreateSavegameForm).Assembly.GetManifestResourceStream(resourceName))
             {
                 if (stream == null)
+                {
                     throw new Exception($"Missing embedded resource: {resourceName}");
+                }
 
                 using (var ms = new MemoryStream())
                 {
@@ -2147,7 +2149,7 @@ namespace TombExtract
 
         private string GetSavegameString()
         {
-            string modeSuffix = cmbMode.SelectedIndex == 0 ? "" : "+";
+            string newGamePlusSuffix = cmbMode.SelectedIndex == 0 ? "" : "+";
             string levelName = "";
             string saveNumber = nudSaveNumber.Value.ToString();
 
@@ -2156,12 +2158,12 @@ namespace TombExtract
                 levelName = selectedLevel.Name;
             }
 
-            if (CURRENT_TAB == TAB_TR6)
+            if (IsTR6Savegame())
             {
-                return $"{saveNumber} - {levelName}{modeSuffix}";
+                return $"{saveNumber} - {levelName}{newGamePlusSuffix}";
             }
 
-            return $"{levelName}{modeSuffix} - {saveNumber}";
+            return $"{levelName}{newGamePlusSuffix} - {saveNumber}";
         }
 
         private bool IsTRXSavegame()
