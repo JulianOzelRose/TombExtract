@@ -194,7 +194,7 @@
             this.MinimizeBox = false;
             this.Name = "CreateSavegameForm";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create Savegame";
             this.Load += new System.EventHandler(this.CreateSavegameForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveNumber)).EndInit();

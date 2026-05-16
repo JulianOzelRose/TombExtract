@@ -35,6 +35,7 @@ namespace TombExtract
         private const string PLATFORM_PS4_SWITCH = "PS4_SWITCH";
 
         private ToolStripStatusLabel slblStatus;
+        private bool isInitializing = true;
 
         private class LevelInfo
         {
@@ -103,6 +104,9 @@ namespace TombExtract
 
             PopulateLevelSelectionList();
             InitializePremadeBuffers();
+
+            isInitializing = false;
+
             EnableDropdownsConditionally();
         }
 
@@ -2171,6 +2175,11 @@ namespace TombExtract
             return CURRENT_TAB == TAB_TR1 || CURRENT_TAB == TAB_TR2 || CURRENT_TAB == TAB_TR3;
         }
 
+        private bool IsTRX2Savegame()
+        {
+            return CURRENT_TAB == TAB_TR4 || CURRENT_TAB == TAB_TR5 || CURRENT_TAB == TAB_TR6;
+        }
+
         private bool IsTR1Savegame()
         {
             return CURRENT_TAB == TAB_TR1;
@@ -2339,37 +2348,62 @@ namespace TombExtract
 
         private void EnableDropdownsConditionally()
         {
-            if (cmbLevel.SelectedItem is LevelInfo selectedLevel &&
-                premadeBuffers.TryGetValue(selectedLevel.Index, out var modeDict))
+            try
             {
-                cmbMode.Enabled = modeDict.Count > 1;
+                byte[] fileData = File.ReadAllBytes(savegamePath);
+                bool isPatch5 = IsPatch5Savegame(fileData);
 
-                GameMode selectedMode = (GameMode)cmbMode.SelectedIndex;
+                bool platformSelectionAllowed = IsTRX2Savegame() || (IsTRXSavegame() && !isPatch5);
+                cmbPlatform.Enabled = platformSelectionAllowed;
 
-                if (modeDict.TryGetValue(selectedMode, out var platformDict))
+                if (cmbLevel.SelectedItem is LevelInfo selectedLevel &&
+                    premadeBuffers.TryGetValue(selectedLevel.Index, out var modeDict))
                 {
-                    cmbPlatform.Enabled = platformDict.Count > 1;
+                    cmbMode.Enabled = modeDict.Count > 1;
 
-                    // If current selection is out of range, reset it
-                    if (cmbPlatform.SelectedIndex < 0 || cmbPlatform.SelectedIndex >= cmbPlatform.Items.Count)
+                    GameMode selectedMode = (GameMode)cmbMode.SelectedIndex;
+
+                    if (modeDict.TryGetValue(selectedMode, out var platformDict))
                     {
-                        cmbPlatform.SelectedIndex = 0;
+                        cmbPlatform.Enabled = platformDict.Count > 1 && platformSelectionAllowed;
+
+                        // If current selection is out of range, reset it
+                        if (cmbPlatform.SelectedIndex < 0 || cmbPlatform.SelectedIndex >= cmbPlatform.Items.Count)
+                        {
+                            cmbPlatform.SelectedIndex = 0;
+                        }
+                    }
+                    else
+                    {
+                        cmbPlatform.Enabled = false;
                     }
                 }
                 else
                 {
+                    cmbMode.Enabled = false;
                     cmbPlatform.Enabled = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                cmbMode.Enabled = false;
-                cmbPlatform.Enabled = false;
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         private void cmbLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isInitializing)
+            {
+                return;
+            }
+
             // Reset Platform/Mode
             cmbMode.SelectedIndex = 0;
             cmbPlatform.SelectedIndex = 0;
@@ -2379,6 +2413,11 @@ namespace TombExtract
 
         private void cmbMode_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isInitializing)
+            {
+                return;
+            }
+
             if (cmbLevel.SelectedItem is LevelInfo selectedLevel &&
                 premadeBuffers.TryGetValue(selectedLevel.Index, out var modeDict) &&
                 modeDict.TryGetValue((GameMode)cmbMode.SelectedIndex, out var platformDict))
