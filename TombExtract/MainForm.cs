@@ -1511,6 +1511,108 @@ namespace TombExtract
             return false;
         }
 
+        private bool IsAnyNativePatch5SavegameCheckedTR1(byte[] fileData, CheckedListBox cklSavegames)
+        {
+            try
+            {
+                for (int i = 0; i < cklSavegames.Items.Count; i++)
+                {
+                    if (!cklSavegames.GetItemChecked(i))
+                    {
+                        continue;
+                    }
+
+                    if (cklSavegames.Items[i] is Savegame savegame && tr1Utilities.IsNativePatch5Savegame(fileData, savegame))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return false;
+        }
+
+        private bool IsAnyNativePatch5SavegameCheckedTR2(byte[] fileData, CheckedListBox cklSavegames)
+        {
+            try
+            {
+                for (int i = 0; i < cklSavegames.Items.Count; i++)
+                {
+                    if (!cklSavegames.GetItemChecked(i))
+                    {
+                        continue;
+                    }
+
+                    if (cklSavegames.Items[i] is Savegame savegame && tr2Utilities.IsNativePatch5Savegame(fileData, savegame))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return false;
+        }
+
+        private bool IsAnyNativePatch5SavegameCheckedTR3(byte[] fileData, CheckedListBox cklSavegames)
+        {
+            try
+            {
+                for (int i = 0; i < cklSavegames.Items.Count; i++)
+                {
+                    if (!cklSavegames.GetItemChecked(i))
+                    {
+                        continue;
+                    }
+
+                    if (cklSavegames.Items[i] is Savegame savegame && tr3Utilities.IsNativePatch5Savegame(fileData, savegame))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Media.SystemSounds.Hand.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return false;
+        }
+
         private void btnExtractTR1_Click(object sender, EventArgs e)
         {
             if (IsAnyWriting())
@@ -1535,16 +1637,36 @@ namespace TombExtract
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
 
-                ThemedMessageBox.Show(
-                    this,
-                    "Unable to convert Patch 5 to pre-patch savegames.",
-                    "Unable to Convert",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                if (!(sourcePlatform == Platform.PC && destinationPlatform == Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
 
-                return;
+                    ThemedMessageBox.Show(
+                        this,
+                        "Patch 5 to pre-patch conversion is only supported for PC.",
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (IsAnyNativePatch5SavegameCheckedTR1(sourceFileData, cklSourceSavegamesTR1))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Unable to convert native Patch 5 savegames to pre-patch format.",
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
             }
 
             if (isSourcePatch5 && !isDestinationPrepatch)
@@ -1674,16 +1796,36 @@ namespace TombExtract
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
 
-                ThemedMessageBox.Show(
-                    this,
-                    "Unable to convert Patch 5 to pre-patch savegames.",
-                    "Unable to Convert",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                if (!(sourcePlatform == Platform.PC && destinationPlatform == Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
 
-                return;
+                    ThemedMessageBox.Show(
+                        this,
+                        "Patch 5 to pre-patch conversion is only supported for PC.",
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (IsAnyNativePatch5SavegameCheckedTR2(sourceFileData, cklSourceSavegamesTR2))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Unable to convert native Patch 5 savegames to pre-patch format.",
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
             }
 
             if (isSourcePatch5 && !isDestinationPrepatch)
@@ -1813,16 +1955,36 @@ namespace TombExtract
 
             if (isSourcePatch5 && isDestinationPrepatch)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
 
-                ThemedMessageBox.Show(
-                    this,
-                    "Unable to convert Patch 5 to pre-patch savegames.",
-                    "Unable to Convert",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                if (!(sourcePlatform == Platform.PC && destinationPlatform == Platform.PC))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
 
-                return;
+                    ThemedMessageBox.Show(
+                        this,
+                        "Patch 5 to pre-patch conversion is only supported for PC.",
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if (IsAnyNativePatch5SavegameCheckedTR3(sourceFileData, cklSourceSavegamesTR3))
+                {
+                    System.Media.SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        "Unable to convert native Patch 5 savegames to pre-patch format.",
+                        "Unable to Convert",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
             }
 
             if (isSourcePatch5 && !isDestinationPrepatch)

@@ -25,6 +25,7 @@ namespace TombExtract
         private int DESTINATION_LEVEL_INDEX_OFFSET;
         private int SOURCE_CHALLENGE_MODE_OFFSET;
         private int DESTINATION_CHALLENGE_MODE_OFFSET;
+        private int SOURCE_SAVEGAME_VERSION_OFFSET;
 
         // PC offsets
         private const int LEVEL_INDEX_OFFSET_PC = 0x628;
@@ -38,6 +39,7 @@ namespace TombExtract
 
         // PS4 offsets
         private const int LEVEL_INDEX_OFFSET_PS4 = 0x628;
+        private const int SAVEGAME_VERSION_OFFSET_PS4 = 0x6A4;
         private const int CHALLENGE_MODE_OFFSET_PS4 = 0x6AC;
 
         // Savegame constants
@@ -98,16 +100,19 @@ namespace TombExtract
                     {
                         SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PC;
                         SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PC;
+                        SOURCE_SAVEGAME_VERSION_OFFSET = SAVEGAME_VERSION_OFFSET_PC;
                     }
                     else if (sourcePlatform == Platform.Android)
                     {
                         SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
                         SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
+                        SOURCE_SAVEGAME_VERSION_OFFSET = SAVEGAME_VERSION_OFFSET_ANDROID;
                     }
                     else if (sourcePlatform == Platform.PlayStation4)
                     {
                         SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PS4;
                         SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PS4;
+                        SOURCE_SAVEGAME_VERSION_OFFSET = SAVEGAME_VERSION_OFFSET_PS4;
                     }
                 }
                 else
@@ -424,6 +429,32 @@ namespace TombExtract
                                     if (currentRelativeOffset >= 0x6A0 && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
                                     {
                                         destinationFile.Seek(offset + 0x1A, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                }
+                            }
+                            else if (!isSourcePrepatch && !isDestinationPatch5)  // PATCH 5 -> PRE-PATCH
+                            {
+                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
+
+                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                                {
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x6BA && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
+                                    {
+                                        destinationFile.Seek(offset - 0x1A, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
                                     else
@@ -821,6 +852,12 @@ namespace TombExtract
         private bool IsPatch5SavegameFile(byte[] fileData)
         {
             return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_PATCH5;
+        }
+
+        public bool IsNativePatch5Savegame(byte[] fileData, Savegame savegame)
+        {
+            Int32 savegameVersion = BitConverter.ToInt32(fileData, savegame.Offset + SOURCE_SAVEGAME_VERSION_OFFSET);
+            return savegameVersion >= 2;
         }
 
         public bool IsWriting()
