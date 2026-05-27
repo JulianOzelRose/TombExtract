@@ -324,7 +324,7 @@ namespace TombExtract
             this.btnManageSlotsTR1.Name = "btnManageSlotsTR1";
             this.btnManageSlotsTR1.Size = new System.Drawing.Size(96, 23);
             this.btnManageSlotsTR1.TabIndex = 3;
-            this.btnManageSlotsTR1.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR1.Text = "🔧 Manage";
             this.btnManageSlotsTR1.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR1.Click += new System.EventHandler(this.btnManageSlotsTR1_Click);
             // 
