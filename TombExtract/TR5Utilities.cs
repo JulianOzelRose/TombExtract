@@ -14,15 +14,10 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
-        private const int SLOT_STATUS_OFFSET = 0x004;
         private const int NEW_GAME_PLUS_OFFSET = 0x01C;
         private const int SAVE_NUMBER_OFFSET = 0x008;
         private const int LEVEL_INDEX_OFFSET = 0x26F;
-
-        // Savegame constants
         private const int BASE_SAVEGAME_OFFSET_TR5 = 0x14AE00;
-        private const int SAVEGAME_SIZE = 0xA470;
-        private const int MAX_SAVEGAMES = 32;
 
         // Misc
         private int totalSavegames = 0;
@@ -44,12 +39,12 @@ namespace TombExtract
             {
                 byte[] fileData = File.ReadAllBytes(savegameSourcePath);
 
-                for (int i = 0; i < MAX_SAVEGAMES; i++)
+                for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * SAVEGAME_SIZE);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * Globals.SAVEGAME_SIZE_TRX2);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
@@ -69,7 +64,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -83,12 +78,12 @@ namespace TombExtract
             {
                 byte[] fileData = File.ReadAllBytes(savegameDestinationPath);
 
-                for (int i = 0; i < MAX_SAVEGAMES; i++)
+                for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * SAVEGAME_SIZE);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * Globals.SAVEGAME_SIZE_TRX2);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
@@ -101,7 +96,7 @@ namespace TombExtract
                     }
                     else
                     {
-                        lstSavegames.Items.Add("Empty Slot");
+                        lstSavegames.Items.Add(Globals.EMPTY_SLOT_TEXT);
                     }
                 }
             }
@@ -112,7 +107,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -131,7 +126,7 @@ namespace TombExtract
                     int currentSavegameOffset = savegames[i].Offset;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR5.ContainsKey(levelIndex))
                     {
@@ -146,7 +141,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -171,9 +166,9 @@ namespace TombExtract
                         progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
                         int currentSavegameOffset = savegames[i].Offset;
-                        byte[] savegameBytes = new byte[SAVEGAME_SIZE];
+                        byte[] savegameBytes = new byte[Globals.SAVEGAME_SIZE_TRX2];
 
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + Globals.SAVEGAME_SIZE_TRX2; offset++, j++)
                         {
                             saveFile.Seek(offset, SeekOrigin.Begin);
                             byte currentByte = (byte)saveFile.ReadByte();
@@ -204,7 +199,7 @@ namespace TombExtract
 
                         progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
-                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + SAVEGAME_SIZE; offset++, j++)
+                        for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + Globals.SAVEGAME_SIZE_TRX2; offset++, j++)
                         {
                             byte[] currentByte = { savegameBytes[j] };
 
@@ -240,7 +235,7 @@ namespace TombExtract
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
-            slblStatus.Text = $"Extracting savegame(s)...";
+            slblStatus.Text = Globals.STATUS_MSG_TRANSFER_IN_PROGRESS;
 
             bgWorker.RunWorkerAsync(savegames);
         }
@@ -252,7 +247,7 @@ namespace TombExtract
 
             if (e.Error != null || (e.Result != null && e.Result is Exception))
             {
-                slblStatus.Text = $"Error transferring savegame(s)";
+                slblStatus.Text = Globals.STATUS_MSG_TRANSFER_ERROR;
 
                 Exception exception = e.Error as Exception ?? e.Result as Exception;
                 string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
@@ -262,20 +257,20 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     errorMessage,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             else if (e.Cancelled)
             {
-                slblStatus.Text = $"Conversion canceled";
+                slblStatus.Text = Globals.STATUS_MSG_TRANSFER_CANCELED;
 
                 System.Media.SystemSounds.Asterisk.Play();
 
                 ThemedMessageBox.Show(
                     owner,
-                    "Operation was cancelled.",
-                    "Cancelled",
+                    Globals.DIALOG_MSG_OPERATION_CANCELED,
+                    Globals.DIALOG_TITLE_CANCELED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -285,10 +280,12 @@ namespace TombExtract
 
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string dialogMessage = $"Successfully transferred {totalSavegames} savegame(s) to destination file.";
+
                 ThemedMessageBox.Show(
                     owner,
-                    $"Successfully transferred {totalSavegames} savegame(s) to destination file.",
-                    "Success",
+                    dialogMessage,
+                    Globals.DIALOG_TITLE_SUCCESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }

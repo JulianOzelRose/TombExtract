@@ -29,37 +29,14 @@ namespace TombExtract
         private readonly TR5Utilities tr5Utilities;
         private readonly TR6Utilities tr6Utilities;
 
-        // Tabs
-        private const int TAB_TR1 = 0;
-        private const int TAB_TR2 = 1;
-        private const int TAB_TR3 = 2;
-        private const int TAB_TR4 = 3;
-        private const int TAB_TR5 = 4;
-        private const int TAB_TR6 = 5;
-
-        // Progress form
-        private static ProgressForm progressForm;
-
-        // Savegame paths (TRX)
+        // Savegame paths
         private string savegameDestinationPathTRX;
         private string savegameSourcePathTRX;
-
-        // Savegame paths (TRX2)
         private string savegameDestinationPathTRX2;
         private string savegameSourcePathTRX2;
 
-        // Savegame versioning
-        private const int SAVEFILE_SIZE_TRX_PREPATCH = 0x152004;
-        private const int SAVEFILE_SIZE_TRX_PATCH5 = 0x272004;
-        private const int SAVEFILE_SIZE_TRX2 = 0x3DCA04;
-        private const int SAVEFILE_VERSION_OFFSET = 0x000;
-
-        private const byte SAVEFILE_TRX_PREPATCH = 0x3B;
-        private const byte SAVEFILE_TRX_PATCH5 = 0x3C;
-        private const byte SAVEFILE_TRX2_FORMAT = 0x28;
-
-        // Config
-        private const string CONFIG_FILE_NAME = "TombExtract.ini";
+        // Progress form
+        private static ProgressForm progressForm;
 
         // Misc
         private bool isSyncingPlatformComboBoxes = false;
@@ -176,7 +153,7 @@ namespace TombExtract
         private void ReadConfigFile()
         {
             string rootFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filePath = Path.Combine(rootFolder, CONFIG_FILE_NAME);
+            string filePath = Path.Combine(rootFolder, Globals.CONFIG_FILE_NAME);
 
             if (File.Exists(filePath))
             {
@@ -184,9 +161,9 @@ namespace TombExtract
 
                 foreach (string line in lines)
                 {
-                    if (line.StartsWith("StatusBar"))
+                    if (line.StartsWith(Globals.CONFIG_KEY_STATUS_BAR))
                     {
-                        if (bool.TryParse(line.Substring("StatusBar=".Length), out bool statusBar))
+                        if (bool.TryParse(line.Substring(Globals.CONFIG_KEY_STATUS_BAR.Length), out bool statusBar))
                         {
                             tsmiStatusBar.Checked = statusBar;
                             ssrStatusStrip.Visible = statusBar;
@@ -198,9 +175,9 @@ namespace TombExtract
                             }
                         }
                     }
-                    else if (line.StartsWith("DarkMode="))
+                    else if (line.StartsWith(Globals.CONFIG_KEY_DARK_MODE))
                     {
-                        if (bool.TryParse(line.Substring("DarkMode=".Length), out bool darkMode) && darkMode)
+                        if (bool.TryParse(line.Substring(Globals.CONFIG_KEY_DARK_MODE.Length), out bool darkMode) && darkMode)
                         {
                             ApplyDarkMode();
                             tsmiDarkMode.Checked = true;
@@ -217,10 +194,10 @@ namespace TombExtract
         private void UpdateConfigFile()
         {
             string rootFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filePath = Path.Combine(rootFolder, CONFIG_FILE_NAME);
+            string filePath = Path.Combine(rootFolder, Globals.CONFIG_FILE_NAME);
 
-            string content = $"StatusBar={tsmiStatusBar.Checked}\n";
-            content += $"DarkMode={tsmiDarkMode.Checked}";
+            string content = $"{Globals.CONFIG_KEY_STATUS_BAR}{tsmiStatusBar.Checked}\n";
+            content += $"{Globals.CONFIG_KEY_DARK_MODE}{tsmiDarkMode.Checked}";
 
             File.WriteAllText(filePath, content);
         }
@@ -233,8 +210,8 @@ namespace TombExtract
 
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    "Exiting in the middle of a write operation could result in a corrupted savegame file. Are you sure you wish to exit?",
-                    "Confirmation",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_EXIT_CONFIRM,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -254,7 +231,7 @@ namespace TombExtract
 
         private bool IsTRXTabSelected()
         {
-            return tabGame.SelectedIndex == TAB_TR1 || tabGame.SelectedIndex == TAB_TR2 || tabGame.SelectedIndex == TAB_TR3;
+            return tabGame.SelectedIndex == Globals.TAB_TR1 || tabGame.SelectedIndex == Globals.TAB_TR2 || tabGame.SelectedIndex == Globals.TAB_TR3;
         }
 
         private void CreateBackup()
@@ -276,7 +253,7 @@ namespace TombExtract
 
                 File.Copy(savegameDestinationPath, backupFilePath, true);
 
-                slblStatus.Text = $"Created backup: \"{backupFilePath}\"";
+                slblStatus.Text = $"{Globals.STATUS_MSG_SAVEGAME_FILE_BACKUP_SUCCESS} \"{backupFilePath}\"";
             }
         }
 
@@ -333,12 +310,12 @@ namespace TombExtract
             long saveFileSize = fileInfo.Length;
             byte saveFileVersion = GetSaveFileVersion(fileData);
 
-            if (saveFileVersion == SAVEFILE_TRX_PREPATCH && saveFileSize >= SAVEFILE_SIZE_TRX_PREPATCH)
+            if (saveFileVersion == Globals.SAVEFILE_TRX_PREPATCH && saveFileSize >= Globals.SAVEFILE_SIZE_TRX_PREPATCH)
             {
                 return true;
             }
 
-            if (saveFileVersion == SAVEFILE_TRX_PATCH5 && saveFileSize >= SAVEFILE_SIZE_TRX_PATCH5)
+            if (saveFileVersion == Globals.SAVEFILE_TRX_PATCH5 && saveFileSize >= Globals.SAVEFILE_SIZE_TRX_PATCH5)
             {
                 return true;
             }
@@ -354,7 +331,7 @@ namespace TombExtract
             long saveFileSize = fileInfo.Length;
             byte saveFileVersion = GetSaveFileVersion(fileData);
 
-            if (saveFileVersion == SAVEFILE_TRX2_FORMAT && saveFileSize >= SAVEFILE_SIZE_TRX2)
+            if (saveFileVersion == Globals.SAVEFILE_TRX2_FORMAT && saveFileSize >= Globals.SAVEFILE_SIZE_TRX2)
             {
                 return true;
             }
@@ -364,17 +341,17 @@ namespace TombExtract
 
         public byte GetSaveFileVersion(byte[] fileData)
         {
-            return fileData[SAVEFILE_VERSION_OFFSET];
+            return fileData[Globals.SAVEFILE_VERSION_OFFSET];
         }
 
         public bool IsPatch5SavegameFileTRX(byte[] fileData)
         {
-            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_TRX_PATCH5;
+            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PATCH5;
         }
 
         public bool IsPrepatchSavegameFileTRX(byte[] fileData)
         {
-            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_TRX_PREPATCH;
+            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PREPATCH;
         }
 
         private void SetSourceFileTRX(string path)
@@ -385,8 +362,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Not a valid Tomb Raider I-III Remastered savegame file.",
-                    "Invalid Savegame File",
+                    Globals.DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX,
+                    Globals.DIALOG_TITLE_INVALID_SAVEGAME_FILE,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -410,11 +387,11 @@ namespace TombExtract
 
             EnableButtonsConditionally();
 
-            int numSaves = cklSourceSavegamesTR1.Items.Count +
-                           cklSourceSavegamesTR2.Items.Count +
-                           cklSourceSavegamesTR3.Items.Count;
+            int numSavegames = cklSourceSavegamesTR1.Items.Count +
+                cklSourceSavegamesTR2.Items.Count +
+                cklSourceSavegamesTR3.Items.Count;
 
-            slblStatus.Text = $"{numSaves} savegame(s) found in \"{path}\"";
+            slblStatus.Text = $"{numSavegames} savegame(s) found in \"{path}\"";
         }
 
         private void SetSourceFileTRX2(string path)
@@ -425,8 +402,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Not a valid Tomb Raider IV-VI Remastered savegame file.",
-                    "Invalid Savegame File",
+                    Globals.DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX2,
+                    Globals.DIALOG_TITLE_INVALID_SAVEGAME_FILE,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -447,11 +424,11 @@ namespace TombExtract
 
             EnableButtonsConditionally();
 
-            int numSaves = cklSourceSavegamesTR4.Items.Count +
-                           cklSourceSavegamesTR5.Items.Count +
-                           cklSourceSavegamesTR6.Items.Count;
+            int numSavegames = cklSourceSavegamesTR4.Items.Count +
+                cklSourceSavegamesTR5.Items.Count +
+                cklSourceSavegamesTR6.Items.Count;
 
-            slblStatus.Text = $"{numSaves} savegame(s) found in \"{path}\"";
+            slblStatus.Text = $"{numSavegames} savegame(s) found in \"{path}\"";
         }
 
         private void SetDestinationFileTRX(string path)
@@ -462,8 +439,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Not a valid Tomb Raider I-III Remastered savegame file.",
-                    "Invalid Savegame File",
+                    Globals.DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX,
+                    Globals.DIALOG_TITLE_INVALID_SAVEGAME_FILE,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -487,7 +464,7 @@ namespace TombExtract
 
             EnableButtonsConditionally();
 
-            slblStatus.Text = $"Opened destination file: \"{path}\"";
+            slblStatus.Text = $"{Globals.STATUS_MSG_DESTINATION_FILE_OPEN_SUCCESS} \"{path}\"";
         }
 
         private void SetDestinationFileTRX2(string path)
@@ -498,8 +475,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Not a valid Tomb Raider IV-VI Remastered savegame file.",
-                    "Invalid Savegame File",
+                    Globals.DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX2,
+                    Globals.DIALOG_TITLE_INVALID_SAVEGAME_FILE,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -520,7 +497,7 @@ namespace TombExtract
 
             EnableButtonsConditionally();
 
-            slblStatus.Text = $"Opened destination file: \"{path}\"";
+            slblStatus.Text = $"{Globals.STATUS_MSG_DESTINATION_FILE_OPEN_SUCCESS} \"{path}\"";
         }
 
         private void cklSourceSavegamesTR1_DragDrop(object sender, DragEventArgs e)
@@ -867,8 +844,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -893,8 +870,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -964,8 +941,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Please select at least one savegame to convert.",
-                    "No Savegames Selected",
+                    Globals.DIALOG_MSG_NO_SAVEGAMES_SELECTED,
+                    Globals.DIALOG_TITLE_NO_SAVEGAMES_SELECTED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -978,8 +955,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame source file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -992,8 +969,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame destination file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_DESTINATION_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1006,10 +983,12 @@ namespace TombExtract
             {
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
+
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation",
+                    warningMessage,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -1056,8 +1035,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Please select at least one savegame to convert.",
-                    "No Savegames Selected",
+                    Globals.DIALOG_MSG_NO_SAVEGAMES_SELECTED,
+                    Globals.DIALOG_TITLE_NO_SAVEGAMES_SELECTED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1070,8 +1049,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame source file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1084,8 +1063,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame destination file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_DESTINATION_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1098,10 +1077,12 @@ namespace TombExtract
             {
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
+
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation",
+                    warningMessage,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -1148,8 +1129,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Please select at least one savegame to convert.",
-                    "No Savegames Selected",
+                    Globals.DIALOG_MSG_NO_SAVEGAMES_SELECTED,
+                    Globals.DIALOG_TITLE_NO_SAVEGAMES_SELECTED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1162,8 +1143,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame source file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1176,8 +1157,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame destination file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_DESTINATION_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1190,10 +1171,12 @@ namespace TombExtract
             {
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
+
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation",
+                    warningMessage,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -1240,8 +1223,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Please select at least one savegame to convert.",
-                    "No Savegames Selected",
+                    Globals.DIALOG_MSG_NO_SAVEGAMES_SELECTED,
+                    Globals.DIALOG_TITLE_NO_SAVEGAMES_SELECTED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1254,8 +1237,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame source file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1268,8 +1251,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame destination file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_DESTINATION_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1282,10 +1265,12 @@ namespace TombExtract
             {
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
+
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation",
+                    warningMessage,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -1332,8 +1317,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Please select at least one savegame to convert.",
-                    "No Savegames Selected",
+                    Globals.DIALOG_MSG_NO_SAVEGAMES_SELECTED,
+                    Globals.DIALOG_TITLE_NO_SAVEGAMES_SELECTED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1346,8 +1331,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame source file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1360,8 +1345,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame destination file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_DESTINATION_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1374,10 +1359,12 @@ namespace TombExtract
             {
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
+
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation",
+                    warningMessage,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -1424,8 +1411,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Please select at least one savegame to convert.",
-                    "No Savegames Selected",
+                    Globals.DIALOG_MSG_NO_SAVEGAMES_SELECTED,
+                    Globals.DIALOG_TITLE_NO_SAVEGAMES_SELECTED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1438,8 +1425,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame source file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1452,8 +1439,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "Could not find savegame destination file.",
-                    "Error",
+                    Globals.DIALOG_MSG_SAVEGAME_DESTINATION_FILE_NOT_FOUND,
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1466,10 +1453,12 @@ namespace TombExtract
             {
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
+
                 DialogResult result = ThemedMessageBox.Show(
                     this,
-                    $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?",
-                    "Confirmation",
+                    warningMessage,
+                    Globals.DIALOG_TITLE_CONFIRMATION,
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
@@ -1535,7 +1524,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     this,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1569,7 +1558,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     this,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1603,7 +1592,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     this,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -1621,8 +1610,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1644,10 +1633,12 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
+                    string warningMessage = "Patch 5 to pre-patch conversion is only supported for PC.";
+
                     ThemedMessageBox.Show(
                         this,
-                        "Patch 5 to pre-patch conversion is only supported for PC.",
-                        "Unable to Convert",
+                        warningMessage,
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1658,10 +1649,12 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
+                    string warningMessage = "Unable to convert native Patch 5 savegames to pre-patch format.";
+
                     ThemedMessageBox.Show(
                         this,
-                        "Unable to convert native Patch 5 savegames to pre-patch format.",
-                        "Unable to Convert",
+                        warningMessage,
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1687,7 +1680,7 @@ namespace TombExtract
                         DialogResult result = ThemedMessageBox.Show(
                             this,
                             warningMessage,
-                            "Conversion Warning",
+                            Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
 
@@ -1707,7 +1700,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1723,7 +1716,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1739,7 +1732,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1761,7 +1754,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1780,8 +1773,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1803,10 +1796,12 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
+                    string warningMessage = "Patch 5 to pre-patch conversion is only supported for PC.";
+
                     ThemedMessageBox.Show(
                         this,
-                        "Patch 5 to pre-patch conversion is only supported for PC.",
-                        "Unable to Convert",
+                        warningMessage,
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1817,10 +1812,12 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
+                    string warningMessage = "Unable to convert native Patch 5 savegames to pre-patch format.";
+
                     ThemedMessageBox.Show(
                         this,
-                        "Unable to convert native Patch 5 savegames to pre-patch format.",
-                        "Unable to Convert",
+                        warningMessage,
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1846,7 +1843,7 @@ namespace TombExtract
                         DialogResult result = ThemedMessageBox.Show(
                             this,
                             warningMessage,
-                            "Conversion Warning",
+                            Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
 
@@ -1866,7 +1863,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1882,7 +1879,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1898,7 +1895,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1920,7 +1917,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1939,8 +1936,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -1962,10 +1959,12 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
+                    string warningMessage = "Patch 5 to pre-patch conversion is only supported for PC.";
+
                     ThemedMessageBox.Show(
                         this,
-                        "Patch 5 to pre-patch conversion is only supported for PC.",
-                        "Unable to Convert",
+                        warningMessage,
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1976,10 +1975,12 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
+                    string warningMessage = "Unable to convert native Patch 5 savegames to pre-patch format.";
+
                     ThemedMessageBox.Show(
                         this,
-                        "Unable to convert native Patch 5 savegames to pre-patch format.",
-                        "Unable to Convert",
+                        warningMessage,
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -2005,7 +2006,7 @@ namespace TombExtract
                         DialogResult result = ThemedMessageBox.Show(
                             this,
                             warningMessage,
-                            "Conversion Warning",
+                            Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
 
@@ -2025,7 +2026,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -2041,7 +2042,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -2057,7 +2058,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -2079,7 +2080,7 @@ namespace TombExtract
                     ThemedMessageBox.Show(
                         this,
                         warningMessage,
-                        "Unable to Convert",
+                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -2098,8 +2099,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2117,8 +2118,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2136,8 +2137,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2245,8 +2246,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2264,8 +2265,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2283,8 +2284,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2302,8 +2303,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2321,8 +2322,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2339,12 +2340,12 @@ namespace TombExtract
 
         private void tsmiViewReadme_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/JulianOzelRose/TombExtract/blob/master/README.md");
+            System.Diagnostics.Process.Start(Globals.GITHUB_README_LINK);
         }
 
         private void tsmiReportBug_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/JulianOzelRose/TombExtract/issues");
+            System.Diagnostics.Process.Start(Globals.GITHUB_REPORT_BUG_LINK);
         }
 
         private void tsmiAlwaysOnTop_Click(object sender, EventArgs e)
@@ -2395,35 +2396,35 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
                 return;
             }
 
-            if (tabGame.SelectedIndex == TAB_TR1)
+            if (tabGame.SelectedIndex == Globals.TAB_TR1)
             {
                 ExtractSavegamesTR1();
             }
-            else if (tabGame.SelectedIndex == TAB_TR2)
+            else if (tabGame.SelectedIndex == Globals.TAB_TR2)
             {
                 ExtractSavegamesTR2();
             }
-            else if (tabGame.SelectedIndex == TAB_TR3)
+            else if (tabGame.SelectedIndex == Globals.TAB_TR3)
             {
                 ExtractSavegamesTR3();
             }
-            else if (tabGame.SelectedIndex == TAB_TR4)
+            else if (tabGame.SelectedIndex == Globals.TAB_TR4)
             {
                 ExtractSavegamesTR4();
             }
-            else if (tabGame.SelectedIndex == TAB_TR5)
+            else if (tabGame.SelectedIndex == Globals.TAB_TR5)
             {
                 ExtractSavegamesTR5();
             }
-            else if (tabGame.SelectedIndex == TAB_TR6)
+            else if (tabGame.SelectedIndex == Globals.TAB_TR6)
             {
                 ExtractSavegamesTR6();
             }
@@ -2437,8 +2438,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2462,8 +2463,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2487,8 +2488,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2512,8 +2513,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2537,8 +2538,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2562,8 +2563,8 @@ namespace TombExtract
 
                 ThemedMessageBox.Show(
                     this,
-                    "A savegame write operation is in progress. Please wait until it completes.",
-                    "Write In Progress",
+                    Globals.DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT,
+                    Globals.DIALOG_TITLE_WRITE_IN_PROGRESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 

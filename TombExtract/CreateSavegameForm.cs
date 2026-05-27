@@ -8,29 +8,15 @@ namespace TombExtract
 {
     public partial class CreateSavegameForm : Form
     {
-        int CURRENT_TAB;
-        private const int TAB_TR1 = 0;
-        private const int TAB_TR2 = 1;
-        private const int TAB_TR3 = 2;
-        private const int TAB_TR4 = 3;
-        private const int TAB_TR5 = 4;
-        private const int TAB_TR6 = 5;
-
-        private const int SAVEGAME_VERSION_OFFSET = 0x000;
         private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
-
-        private const int SAVEGAME_SIZE_TRX_PATCH5 = 0x6800;
-        private const int SAVEGAME_SIZE_TRX_PREPATCH = 0x3800;
-        private const byte PATCH5_SIGNATURE = 0x3C;
-
-        int SLOT_NUMBER;
-        int SAVE_NUMBER_OFFSET;
-        int savegameOffset;
-        string savegamePath;
+        private int CURRENT_TAB;
+        private int SLOT_NUMBER;
+        private int SAVE_NUMBER_OFFSET;
+        private int savegameOffset;
+        private string savegamePath;
 
         private List<LevelInfo> levelSelectionList = new List<LevelInfo>();
         private Dictionary<byte, Dictionary<GameMode, string>> premadeBuffers;
-
         private ToolStripStatusLabel slblStatus;
         private bool isInitializing = true;
 
@@ -63,38 +49,38 @@ namespace TombExtract
 
             string gameSuffix = "";
 
-            if (CURRENT_TAB == TAB_TR1)
+            if (CURRENT_TAB == Globals.TAB_TR1)
             {
                 gameSuffix = "Tomb Raider I";
                 SAVE_NUMBER_OFFSET = 0x00C;
             }
-            else if (CURRENT_TAB == TAB_TR2)
+            else if (CURRENT_TAB == Globals.TAB_TR2)
             {
                 gameSuffix = "Tomb Raider II";
                 SAVE_NUMBER_OFFSET = 0x00C;
             }
-            else if (CURRENT_TAB == TAB_TR3)
+            else if (CURRENT_TAB == Globals.TAB_TR3)
             {
                 gameSuffix = "Tomb Raider III";
                 SAVE_NUMBER_OFFSET = 0x00C;
             }
-            else if (CURRENT_TAB == TAB_TR4)
+            else if (CURRENT_TAB == Globals.TAB_TR4)
             {
                 gameSuffix = "Tomb Raider IV";
                 SAVE_NUMBER_OFFSET = 0x008;
             }
-            else if (CURRENT_TAB == TAB_TR5)
+            else if (CURRENT_TAB == Globals.TAB_TR5)
             {
                 gameSuffix = "Tomb Raider V";
                 SAVE_NUMBER_OFFSET = 0x008;
             }
-            else if (CURRENT_TAB == TAB_TR6)
+            else if (CURRENT_TAB == Globals.TAB_TR6)
             {
                 gameSuffix = "Tomb Raider VI";
                 SAVE_NUMBER_OFFSET = 0x11C;
             }
 
-            this.Text = $"Create Savegame - {gameSuffix}";
+            this.Text = $"{Globals.WINDOW_TITLE_CREATE_SAVEGAME} - {gameSuffix}";
 
             cmbMode.SelectedIndex = 0;      // Default to Normal
 
@@ -119,27 +105,27 @@ namespace TombExtract
         {
             Dictionary<byte, string> selectedDict = null;
 
-            if (CURRENT_TAB == TAB_TR1)
+            if (CURRENT_TAB == Globals.TAB_TR1)
             {
                 selectedDict = LevelNames.TR1;
             }
-            else if (CURRENT_TAB == TAB_TR2)
+            else if (CURRENT_TAB == Globals.TAB_TR2)
             {
                 selectedDict = LevelNames.TR2;
             }
-            else if (CURRENT_TAB == TAB_TR3)
+            else if (CURRENT_TAB == Globals.TAB_TR3)
             {
                 selectedDict = LevelNames.TR3;
             }
-            else if (CURRENT_TAB == TAB_TR4)
+            else if (CURRENT_TAB == Globals.TAB_TR4)
             {
                 selectedDict = LevelNames.TR4;
             }
-            else if (CURRENT_TAB == TAB_TR5)
+            else if (CURRENT_TAB == Globals.TAB_TR5)
             {
                 selectedDict = LevelNames.TR5;
             }
-            else if (CURRENT_TAB == TAB_TR6)
+            else if (CURRENT_TAB == Globals.TAB_TR6)
             {
                 selectedDict = LevelNames.TR6;
             }
@@ -167,7 +153,7 @@ namespace TombExtract
 
         private void InitializePremadeBuffers()
         {
-            if (CURRENT_TAB == TAB_TR1)
+            if (CURRENT_TAB == Globals.TAB_TR1)
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
@@ -283,7 +269,7 @@ namespace TombExtract
                     },
                 };
             }
-            else if (CURRENT_TAB == TAB_TR2)
+            else if (CURRENT_TAB == Globals.TAB_TR2)
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
@@ -422,7 +408,7 @@ namespace TombExtract
                     },
                 };
             }
-            else if (CURRENT_TAB == TAB_TR3)
+            else if (CURRENT_TAB == Globals.TAB_TR3)
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
@@ -577,7 +563,7 @@ namespace TombExtract
                     },
                 };
             }
-            else if (CURRENT_TAB == TAB_TR4)
+            else if (CURRENT_TAB == Globals.TAB_TR4)
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
@@ -768,7 +754,7 @@ namespace TombExtract
                     },
                 };
             }
-            else if (CURRENT_TAB == TAB_TR5)
+            else if (CURRENT_TAB == Globals.TAB_TR5)
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
@@ -852,7 +838,7 @@ namespace TombExtract
                     },
                 };
             }
-            else if (CURRENT_TAB == TAB_TR6)
+            else if (CURRENT_TAB == Globals.TAB_TR6)
             {
                 premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
                 {
@@ -1078,37 +1064,37 @@ namespace TombExtract
 
         private bool IsTRXSavegame()
         {
-            return CURRENT_TAB == TAB_TR1 || CURRENT_TAB == TAB_TR2 || CURRENT_TAB == TAB_TR3;
+            return CURRENT_TAB == Globals.TAB_TR1 || CURRENT_TAB == Globals.TAB_TR2 || CURRENT_TAB == Globals.TAB_TR3;
         }
 
         private bool IsTR1Savegame()
         {
-            return CURRENT_TAB == TAB_TR1;
+            return CURRENT_TAB == Globals.TAB_TR1;
         }
 
         private bool IsTR2Savegame()
         {
-            return CURRENT_TAB == TAB_TR2;
+            return CURRENT_TAB == Globals.TAB_TR2;
         }
 
         private bool IsTR3Savegame()
         {
-            return CURRENT_TAB == TAB_TR3;
+            return CURRENT_TAB == Globals.TAB_TR3;
         }
 
         private bool IsTR6Savegame()
         {
-            return CURRENT_TAB == TAB_TR6;
+            return CURRENT_TAB == Globals.TAB_TR6;
         }
 
-        private bool IsPatch5Savegame(byte[] fileData)
+        private bool IsPatch5SavegameFile(byte[] fileData)
         {
-            return fileData[SAVEGAME_VERSION_OFFSET] == PATCH5_SIGNATURE;
+            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PATCH5;
         }
 
         private byte[] ConvertTRXSavegameToPatch5(byte[] buffer)
         {
-            byte[] convertedBuffer = new byte[SAVEGAME_SIZE_TRX_PATCH5];
+            byte[] convertedBuffer = new byte[Globals.SAVEGAME_SIZE_TRX_PATCH5];
 
             if (IsTR1Savegame())
             {
@@ -1144,8 +1130,8 @@ namespace TombExtract
 
                     ThemedMessageBox.Show(
                         this,
-                        "Please select a level before creating the savegame.",
-                        "No Level Selected",
+                        Globals.DIALOG_MSG_NO_LEVEL_SELECTED,
+                        Globals.DIALOG_TITLE_NO_LEVEL_SELECTED,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -1164,8 +1150,8 @@ namespace TombExtract
 
                     ThemedMessageBox.Show(
                         this,
-                        "Premade savegame buffer not found for this level or mode.",
-                        "Error",
+                        Globals.DIALOG_MSG_SAVEGAME_BUFFER_NOT_FOUND,
+                        Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
 
@@ -1181,7 +1167,7 @@ namespace TombExtract
                 if (isTRXSavegame)
                 {
                     byte[] fileData = File.ReadAllBytes(savegamePath);
-                    bool isPatch5 = IsPatch5Savegame(fileData);
+                    bool isPatch5 = IsPatch5SavegameFile(fileData);
 
                     if (isPatch5)
                     {
@@ -1209,20 +1195,20 @@ namespace TombExtract
 
                 string savegameString = GetSavegameString();
 
-                slblStatus.Text = $"Successfully created savegame: '{savegameString}'";
+                slblStatus.Text = $"{Globals.STATUS_MSG_SAVEGAME_CREATE_SUCCESS} '{savegameString}'";
 
                 this.Close();
             }
             catch (Exception ex)
             {
-                slblStatus.Text = "Error creating savegame";
+                slblStatus.Text = Globals.STATUS_MSG_SAVEGAME_CREATE_ERROR;
 
                 System.Media.SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }

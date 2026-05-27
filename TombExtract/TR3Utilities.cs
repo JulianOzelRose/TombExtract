@@ -14,8 +14,6 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
-        private const int SAVEFILE_VERSION_OFFSET = 0x000;
-        private const int SLOT_STATUS_OFFSET = 0x004;
         private const int NEW_GAME_PLUS_OFFSET = 0x008;
         private const int SAVE_NUMBER_OFFSET = 0x00C;
         private const int LEVEL_INDEX_OFFSET_PREPATCH = 0x8D6;
@@ -43,7 +41,6 @@ namespace TombExtract
         private const int CHALLENGE_MODE_OFFSET_PS4 = 0x990;
 
         // Savegame constants
-        private const int MAX_SAVEGAMES = 32;
         private int SOURCE_BASE_SAVEGAME_OFFSET_TR3;
         private int DESTINATION_BASE_SAVEGAME_OFFSET_TR3;
         private int SOURCE_SAVEGAME_SIZE;
@@ -52,10 +49,6 @@ namespace TombExtract
         // Patch-specific
         private const int BASE_SAVEGAME_OFFSET_TR3_PREPATCH = 0xE2000;
         private const int BASE_SAVEGAME_OFFSET_TR3_PATCH5 = 0x1A2000;
-        private const int SAVEGAME_SIZE_PREPATCH = 0x3800;
-        private const int SAVEGAME_SIZE_PATCH5 = 0x6800;
-        private const byte SAVEFILE_PREPATCH = 0x3B;
-        private const byte SAVEFILE_PATCH5 = 0x3C;
 
         // Misc
         private int totalSavegames = 0;
@@ -93,7 +86,7 @@ namespace TombExtract
 
                 if (isPatch5)
                 {
-                    SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    SOURCE_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PATCH5;
                     SOURCE_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
 
                     if (sourcePlatform == Platform.PC)
@@ -117,17 +110,17 @@ namespace TombExtract
                 }
                 else
                 {
-                    SOURCE_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    SOURCE_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PREPATCH;
                     SOURCE_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
                     SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PREPATCH;
                 }
 
-                for (int i = 0; i < MAX_SAVEGAMES; i++)
+                for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR3 + (i * SOURCE_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
@@ -148,7 +141,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -171,7 +164,7 @@ namespace TombExtract
 
                 if (isPatch5)
                 {
-                    DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PATCH5;
+                    DESTINATION_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PATCH5;
                     DESTINATION_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PATCH5;
 
                     if (destinationPlatform == Platform.PC)
@@ -192,17 +185,17 @@ namespace TombExtract
                 }
                 else
                 {
-                    DESTINATION_SAVEGAME_SIZE = SAVEGAME_SIZE_PREPATCH;
+                    DESTINATION_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PREPATCH;
                     DESTINATION_BASE_SAVEGAME_OFFSET_TR3 = BASE_SAVEGAME_OFFSET_TR3_PREPATCH;
                     DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PREPATCH;
                 }
 
-                for (int i = 0; i < MAX_SAVEGAMES; i++)
+                for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (i * DESTINATION_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
@@ -216,7 +209,7 @@ namespace TombExtract
                     }
                     else
                     {
-                        lstSavegames.Items.Add("Empty Slot");
+                        lstSavegames.Items.Add(Globals.EMPTY_SLOT_TEXT);
                     }
                 }
             }
@@ -227,7 +220,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -247,7 +240,7 @@ namespace TombExtract
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
                     byte levelIndex = fileData[currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
@@ -262,7 +255,7 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     ex.Message,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
@@ -305,7 +298,7 @@ namespace TombExtract
 
             bgWorker.ProgressChanged += UpdateProgressBar;
 
-            slblStatus.Text = $"{(NO_CONVERT ? "Extracting" : "Converting")} savegame(s)...";
+            slblStatus.Text = NO_CONVERT ? Globals.STATUS_MSG_TRANSFER_IN_PROGRESS : Globals.STATUS_MSG_CONVERSION_IN_PROGRESS;
 
             bgWorker.RunWorkerAsync(savegames);
         }
@@ -317,7 +310,7 @@ namespace TombExtract
 
             if (e.Error != null || (e.Result != null && e.Result is Exception))
             {
-                slblStatus.Text = $"Error {(NO_CONVERT ? "transferring" : "converting")} savegame(s)";
+                slblStatus.Text = NO_CONVERT ? Globals.STATUS_MSG_TRANSFER_ERROR : Globals.STATUS_MSG_CONVERSION_ERROR;
 
                 Exception exception = e.Error as Exception ?? e.Result as Exception;
                 string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
@@ -327,20 +320,20 @@ namespace TombExtract
                 ThemedMessageBox.Show(
                     owner,
                     errorMessage,
-                    "Error",
+                    Globals.DIALOG_TITLE_ERROR,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             else if (e.Cancelled)
             {
-                slblStatus.Text = $"{(NO_CONVERT ? "Transfer" : "Conversion")} canceled";
+                slblStatus.Text = NO_CONVERT ? Globals.STATUS_MSG_TRANSFER_CANCELED : Globals.STATUS_MSG_CONVERSION_CANCELED;
 
                 System.Media.SystemSounds.Asterisk.Play();
 
                 ThemedMessageBox.Show(
                     owner,
-                    "Operation was cancelled.",
-                    "Cancelled",
+                    Globals.DIALOG_MSG_OPERATION_CANCELED,
+                    Globals.DIALOG_TITLE_CANCELED,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -351,11 +344,13 @@ namespace TombExtract
 
                 System.Media.SystemSounds.Asterisk.Play();
 
+                string dialogMessage = $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
+                    $"{totalSavegames} savegame(s) to destination file.";
+
                 ThemedMessageBox.Show(
                     owner,
-                    $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
-                    $"{totalSavegames} savegame(s) to destination file.",
-                    "Success",
+                    dialogMessage,
+                    Globals.DIALOG_TITLE_SUCCESS,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
@@ -427,7 +422,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x98C && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
+                                    if (currentRelativeOffset >= 0x98C && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
                                     {
                                         destinationFile.Seek(offset + 0x10, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -453,7 +448,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x99C && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
+                                    if (currentRelativeOffset >= 0x99C && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
                                     {
                                         destinationFile.Seek(offset - 0x10, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -530,7 +525,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x98C && currentRelativeOffset <= SAVEGAME_SIZE_PREPATCH)
+                                    if (currentRelativeOffset >= 0x98C && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
                                     {
                                         destinationFile.Seek(offset + 0x10, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -623,7 +618,7 @@ namespace TombExtract
                                     destinationFile.Seek(offset - 0x40, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
-                                else if (currentRelativeOffset >= 0x9E3 && currentRelativeOffset <= SAVEGAME_SIZE_PATCH5)
+                                else if (currentRelativeOffset >= 0x9E3 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PATCH5)
                                 {
                                     destinationFile.Seek(offset - 0x4B, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -651,10 +646,10 @@ namespace TombExtract
                                 destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
 
                                 // INTERMEDIATE PATCH 5 PC BUFFER
-                                byte[] migratedPatch5Buffer = new byte[SAVEGAME_SIZE_PATCH5];
+                                byte[] migratedPatch5Buffer = new byte[Globals.SAVEGAME_SIZE_TRX_PATCH5];
 
                                 // PREPATCH -> PATCH 5 PC MIGRATION
-                                for (int j = 0; j < SAVEGAME_SIZE_PREPATCH; j++)
+                                for (int j = 0; j < Globals.SAVEGAME_SIZE_TRX_PREPATCH; j++)
                                 {
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
 
@@ -682,7 +677,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 0x40, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x998 && currentRelativeOffset <= SAVEGAME_SIZE_PATCH5)
+                                    else if (currentRelativeOffset >= 0x998 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PATCH5)
                                     {
                                         destinationFile.Seek(offset + 0x4B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -718,7 +713,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 0x40, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x998 && currentRelativeOffset <= SAVEGAME_SIZE_PATCH5)
+                                    else if (currentRelativeOffset >= 0x998 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PATCH5)
                                     {
                                         destinationFile.Seek(offset + 0x4B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -786,12 +781,12 @@ namespace TombExtract
 
         private bool IsPrepatchSavegameFile(byte[] fileData)
         {
-            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_PREPATCH;
+            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PREPATCH;
         }
 
         private bool IsPatch5SavegameFile(byte[] fileData)
         {
-            return fileData[SAVEFILE_VERSION_OFFSET] == SAVEFILE_PATCH5;
+            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PATCH5;
         }
 
         public bool IsNativePatch5Savegame(byte[] fileData, Savegame savegame)

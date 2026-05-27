@@ -65,7 +65,7 @@ namespace TombExtract
         {
             if (IsEmptySlot)
             {
-                return "Empty Slot";
+                return Globals.EMPTY_SLOT_TEXT;
             }
 
             string newGamePlusSuffix = IsNewGamePlus ? "+" : "";

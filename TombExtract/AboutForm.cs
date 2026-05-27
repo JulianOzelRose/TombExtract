@@ -16,11 +16,13 @@ namespace TombExtract
             {
                 ThemeUtilities.ApplyDarkTitleBar(this);
             }
+
+            lblVersion.Text = $"Version {Globals.VERSION}";
         }
 
         private void llbGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/JulianOzelRose");
+            System.Diagnostics.Process.Start(Globals.GITHUB_LINK);
         }
 
         private void llbGitHub_MouseHover(object sender, EventArgs e)
@@ -29,7 +31,7 @@ namespace TombExtract
             {
                 ToolTip toolTip = new ToolTip();
                 toolTip.InitialDelay = 500;
-                toolTip.SetToolTip(linkLabel, "https://github.com/JulianOzelRose");
+                toolTip.SetToolTip(linkLabel, Globals.GITHUB_LINK);
             }
         }
 
