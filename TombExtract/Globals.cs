@@ -49,6 +49,7 @@
         // Dialog messages & titles
         public const string DIALOG_MSG_CONFIRM_SAVEGAME_DELETE = "Are you sure you wish to delete";
         public const string DIALOG_MSG_SAVEGAME_FILE_NOT_FOUND = "Could not find savegame file.";
+        public const string DIALOG_MSG_SAVEGAME_DELETION_ERROR = "An error occurred while deleting the savegame.";
         public const string DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX = "Not a valid Tomb Raider I–III Remastered savegame file.";
         public const string DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX2 = "Not a valid Tomb Raider IV–VI Remastered savegame file.";
         public const string DIALOG_MSG_WRITE_IN_PROGRESS_EXIT_CONFIRM = "Exiting in the middle of a write operation could result in a corrupted savegame file. Are you sure you wish to exit?";
@@ -61,6 +62,10 @@
         public const string DIALOG_MSG_NO_LEVEL_SELECTED = "Please select a level before creating the savegame.";
         public const string DIALOG_MSG_OPERATION_CANCELED = "Operation was canceled.";
         public const string DIALOG_MSG_CANNOT_DELETE_EMPTY_SLOTS = "Empty slots cannot be deleted.";
+        public const string DIALOG_MSG_REORDER_ERROR = "An error occurred while reordering savegames.";
+        public const string DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY = "Patch 5 to pre-patch conversion is only supported for PC.";
+        public const string DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED = "Unable to convert native Patch 5 savegames to pre-patch format.";
+        public const string DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING = "Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
         public const string DIALOG_TITLE_CONFIRMATION = "Confirmation";
         public const string DIALOG_TITLE_ERROR = "Error";
         public const string DIALOG_TITLE_CANCELED = "Canceled";

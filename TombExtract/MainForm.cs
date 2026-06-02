@@ -1633,11 +1633,9 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
-                    string warningMessage = "Patch 5 to pre-patch conversion is only supported for PC.";
-
                     ThemedMessageBox.Show(
                         this,
-                        warningMessage,
+                        Globals.DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1649,11 +1647,9 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
-                    string warningMessage = "Unable to convert native Patch 5 savegames to pre-patch format.";
-
                     ThemedMessageBox.Show(
                         this,
-                        warningMessage,
+                        Globals.DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1675,11 +1671,9 @@ namespace TombExtract
                     {
                         System.Media.SystemSounds.Exclamation.Play();
 
-                        string warningMessage = $"Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
-
                         DialogResult result = ThemedMessageBox.Show(
                             this,
-                            warningMessage,
+                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING,
                             Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
@@ -1796,11 +1790,9 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
-                    string warningMessage = "Patch 5 to pre-patch conversion is only supported for PC.";
-
                     ThemedMessageBox.Show(
                         this,
-                        warningMessage,
+                        Globals.DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1812,11 +1804,9 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
-                    string warningMessage = "Unable to convert native Patch 5 savegames to pre-patch format.";
-
                     ThemedMessageBox.Show(
                         this,
-                        warningMessage,
+                        Globals.DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1838,11 +1828,9 @@ namespace TombExtract
                     {
                         System.Media.SystemSounds.Exclamation.Play();
 
-                        string warningMessage = $"Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
-
                         DialogResult result = ThemedMessageBox.Show(
                             this,
-                            warningMessage,
+                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING,
                             Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
@@ -1959,11 +1947,9 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
-                    string warningMessage = "Patch 5 to pre-patch conversion is only supported for PC.";
-
                     ThemedMessageBox.Show(
                         this,
-                        warningMessage,
+                        Globals.DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1975,11 +1961,9 @@ namespace TombExtract
                 {
                     System.Media.SystemSounds.Exclamation.Play();
 
-                    string warningMessage = "Unable to convert native Patch 5 savegames to pre-patch format.";
-
                     ThemedMessageBox.Show(
                         this,
-                        warningMessage,
+                        Globals.DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -2001,11 +1985,9 @@ namespace TombExtract
                     {
                         System.Media.SystemSounds.Exclamation.Play();
 
-                        string warningMessage = $"Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
-
                         DialogResult result = ThemedMessageBox.Show(
                             this,
-                            warningMessage,
+                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING,
                             Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);

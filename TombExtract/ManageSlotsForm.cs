@@ -871,11 +871,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "An error occurred while deleting the savegame.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_SAVEGAME_DELETION_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -996,11 +994,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "Error occurred while reordering savegames.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_REORDER_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -1133,11 +1129,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "Error occurred while reordering savegames.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_REORDER_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -1270,11 +1264,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "Error occurred while reordering savegames.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_REORDER_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -1298,9 +1290,11 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Asterisk.Play();
 
+                    string dialogMessage = $"Successfully reordered {savegamesToMove.Count} savegames.";
+
                     ThemedMessageBox.Show(
                         this,
-                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        dialogMessage,
                         Globals.DIALOG_TITLE_SUCCESS,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -1405,11 +1399,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "Error occurred while reordering savegames.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_REORDER_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -1433,9 +1425,11 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Asterisk.Play();
 
+                    string dialogMessage = $"Successfully reordered {savegamesToMove.Count} savegames.";
+
                     ThemedMessageBox.Show(
                         this,
-                        $"Successfully reordered {savegamesToMove.Count} savegames.",
+                        dialogMessage,
                         Globals.DIALOG_TITLE_SUCCESS,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -1540,11 +1534,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "Error occurred while reordering savegames.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_REORDER_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
@@ -1680,11 +1672,9 @@ namespace TombExtract
 
                     System.Media.SystemSounds.Hand.Play();
 
-                    string errorMessage = "Error occurred while reordering savegames.";
-
                     ThemedMessageBox.Show(
                         this,
-                        errorMessage,
+                        Globals.DIALOG_MSG_REORDER_ERROR,
                         Globals.DIALOG_TITLE_ERROR,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);

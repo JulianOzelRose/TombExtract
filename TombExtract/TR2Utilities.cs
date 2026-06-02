@@ -477,7 +477,7 @@ namespace TombExtract
                         {
                             if (isSourcePrepatch && !isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PS4...");
 
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
@@ -499,7 +499,7 @@ namespace TombExtract
                             }
                             else if (!isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PS4...");
 
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
                                 destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
@@ -525,7 +525,7 @@ namespace TombExtract
                             }
                             else if (isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PS4...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PS4...");
 
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
                                 destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
@@ -571,7 +571,7 @@ namespace TombExtract
                         }
                         else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.NintendoSwitch)  // PC -> NS
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Nintendo Switch...");
+                            progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to Nintendo Switch...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
@@ -596,7 +596,7 @@ namespace TombExtract
                         {
                             if (isSourcePrepatch && !isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
 
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
@@ -618,7 +618,7 @@ namespace TombExtract
                             }
                             else if (!isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
 
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
                                 destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
@@ -645,7 +645,7 @@ namespace TombExtract
                         }
                         else if (sourcePlatform == Platform.Android && destinationPlatform == Platform.PC) // Android -> PC
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+                            progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
 
                             // ZERO BUFFER
                             byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
@@ -688,7 +688,7 @@ namespace TombExtract
                         {
                             if (isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Android...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to Android...");
 
                                 // ZERO BUFFER
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
@@ -750,7 +750,7 @@ namespace TombExtract
                             }
                             else if (!isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to Android...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to Android...");
 
                                 // ZERO BUFFER
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
@@ -792,7 +792,7 @@ namespace TombExtract
                         }
                         else if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform == Platform.PC)  // NS -> PC
                         {
-                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to PC...");
+                            progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
