@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace TombExtract
@@ -206,7 +207,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 DialogResult result = ThemedMessageBox.Show(
                     this,
@@ -358,7 +359,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX(path))
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -398,7 +399,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX2(path))
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -435,7 +436,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX(path))
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -471,7 +472,7 @@ namespace TombExtract
         {
             if (!IsValidSavegameFileTRX2(path))
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -840,7 +841,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -866,7 +867,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -937,7 +938,7 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -951,7 +952,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -965,7 +966,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -981,7 +982,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
 
@@ -1031,7 +1032,7 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1045,7 +1046,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1059,7 +1060,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1075,7 +1076,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
 
@@ -1125,7 +1126,7 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1139,7 +1140,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameSourcePathTRX))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1153,7 +1154,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameDestinationPathTRX))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1169,7 +1170,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
 
@@ -1219,7 +1220,7 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1233,7 +1234,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1247,7 +1248,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1263,7 +1264,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
 
@@ -1313,7 +1314,7 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1327,7 +1328,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1341,7 +1342,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1357,7 +1358,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
 
@@ -1407,7 +1408,7 @@ namespace TombExtract
 
             if (selectedSavegames.Count == 0)
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1421,7 +1422,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameSourcePathTRX2))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1435,7 +1436,7 @@ namespace TombExtract
 
             if (!File.Exists(savegameDestinationPathTRX2))
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1451,7 +1452,7 @@ namespace TombExtract
 
             if (numOverwrites > 0)
             {
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string warningMessage = $"This will overwrite {numOverwrites} savegame(s). Are you sure you wish to proceed?";
 
@@ -1519,7 +1520,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1553,7 +1554,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1587,7 +1588,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1606,7 +1607,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1631,7 +1632,7 @@ namespace TombExtract
 
                 if (!(sourcePlatform == Platform.PC && destinationPlatform == Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1645,7 +1646,7 @@ namespace TombExtract
 
                 if (IsAnyNativePatch5SavegameCheckedTR1(sourceFileData, cklSourceSavegamesTR1))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1669,7 +1670,7 @@ namespace TombExtract
 
                     if (isAnyChallengeModeSavegameChecked)
                     {
-                        System.Media.SystemSounds.Exclamation.Play();
+                        SystemSounds.Exclamation.Play();
 
                         DialogResult result = ThemedMessageBox.Show(
                             this,
@@ -1687,7 +1688,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -1703,7 +1704,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -1719,7 +1720,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -1741,7 +1742,7 @@ namespace TombExtract
 
                 if (sourcePlatform != Platform.PC)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
 
@@ -1763,7 +1764,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1788,7 +1789,7 @@ namespace TombExtract
 
                 if (!(sourcePlatform == Platform.PC && destinationPlatform == Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1802,7 +1803,7 @@ namespace TombExtract
 
                 if (IsAnyNativePatch5SavegameCheckedTR2(sourceFileData, cklSourceSavegamesTR2))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1826,7 +1827,7 @@ namespace TombExtract
 
                     if (isAnyChallengeModeSavegameChecked)
                     {
-                        System.Media.SystemSounds.Exclamation.Play();
+                        SystemSounds.Exclamation.Play();
 
                         DialogResult result = ThemedMessageBox.Show(
                             this,
@@ -1844,7 +1845,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -1860,7 +1861,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -1876,7 +1877,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -1898,7 +1899,7 @@ namespace TombExtract
 
                 if (sourcePlatform != Platform.PC)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
 
@@ -1920,7 +1921,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -1945,7 +1946,7 @@ namespace TombExtract
 
                 if (!(sourcePlatform == Platform.PC && destinationPlatform == Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1959,7 +1960,7 @@ namespace TombExtract
 
                 if (IsAnyNativePatch5SavegameCheckedTR3(sourceFileData, cklSourceSavegamesTR3))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1983,7 +1984,7 @@ namespace TombExtract
 
                     if (isAnyChallengeModeSavegameChecked)
                     {
-                        System.Media.SystemSounds.Exclamation.Play();
+                        SystemSounds.Exclamation.Play();
 
                         DialogResult result = ThemedMessageBox.Show(
                             this,
@@ -2001,7 +2002,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -2017,7 +2018,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -2033,7 +2034,7 @@ namespace TombExtract
 
                 if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
 
@@ -2055,7 +2056,7 @@ namespace TombExtract
 
                 if (sourcePlatform != Platform.PC)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
 
@@ -2077,7 +2078,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2096,7 +2097,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2115,7 +2116,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2224,7 +2225,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2243,7 +2244,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2262,7 +2263,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2281,7 +2282,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2300,7 +2301,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2374,7 +2375,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2416,7 +2417,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2441,7 +2442,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2466,7 +2467,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2491,7 +2492,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2516,7 +2517,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,
@@ -2541,7 +2542,7 @@ namespace TombExtract
         {
             if (IsAnyWriting())
             {
-                System.Media.SystemSounds.Exclamation.Play();
+                SystemSounds.Exclamation.Play();
 
                 ThemedMessageBox.Show(
                     this,

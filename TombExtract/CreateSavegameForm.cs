@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 using static TombExtract.MainForm;
 
@@ -1126,7 +1127,7 @@ namespace TombExtract
                 var selectedLevel = (LevelInfo)cmbLevel.SelectedItem;
                 if (selectedLevel == null)
                 {
-                    System.Media.SystemSounds.Exclamation.Play();
+                    SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1146,7 +1147,7 @@ namespace TombExtract
                 if (!premadeBuffers.TryGetValue(selectedLevel.Index, out modeDict) ||
                     !modeDict.TryGetValue(selectedMode, out resourceName))
                 {
-                    System.Media.SystemSounds.Hand.Play();
+                    SystemSounds.Hand.Play();
 
                     ThemedMessageBox.Show(
                         this,
@@ -1203,7 +1204,7 @@ namespace TombExtract
             {
                 slblStatus.Text = Globals.STATUS_MSG_SAVEGAME_CREATE_ERROR;
 
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     this,
