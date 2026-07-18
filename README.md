@@ -1,5 +1,5 @@
 # Tomb Raider I-VI Remastered Savegame Manager
-An open source, cross-platform savegame manager for Tomb Raider I-VI Remastered. Main features are listed below. For installation and use instructions, navigate to the next section.
+An open source savegame manager for Tomb Raider I-VI Remastered. Main features are listed below. For installation and use instructions, navigate to the next section.
 For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster](https://github.com/JulianOzelRose/TRR-SaveMaster).
 
 ### Features
