@@ -110,8 +110,11 @@
       <DependentUpon>ThemedDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ThemeUtilities.cs" />
+    <Compile Include="TR1EntityCache.cs" />
     <Compile Include="TR1Utilities.cs" />
+    <Compile Include="TR2EntityCache.cs" />
     <Compile Include="TR2Utilities.cs" />
+    <Compile Include="TR3EntityCache.cs" />
     <Compile Include="TR3Utilities.cs" />
     <Compile Include="TR4Utilities.cs" />
     <Compile Include="TR5Utilities.cs" />

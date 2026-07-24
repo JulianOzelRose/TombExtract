@@ -1644,13 +1644,13 @@ namespace TombExtract
                     return;
                 }
 
-                if (IsAnyNativePatch5SavegameCheckedTR1(sourceFileData, cklSourceSavegamesTR1))
+                if (IsAnyNativePatch5SavegameCheckedTR1(sourceFileData, cklSourceSavegamesTR1) && IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR1))
                 {
                     SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
-                        Globals.DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED,
+                        Globals.DIALOG_MSG_CHALLENGE_MODE_PREPATCH_CONVERSION_UNSUPPORTED,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1801,13 +1801,13 @@ namespace TombExtract
                     return;
                 }
 
-                if (IsAnyNativePatch5SavegameCheckedTR2(sourceFileData, cklSourceSavegamesTR2))
+                if (IsAnyNativePatch5SavegameCheckedTR2(sourceFileData, cklSourceSavegamesTR2) && IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR2))
                 {
                     SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
-                        Globals.DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED,
+                        Globals.DIALOG_MSG_CHALLENGE_MODE_PREPATCH_CONVERSION_UNSUPPORTED,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -1958,13 +1958,13 @@ namespace TombExtract
                     return;
                 }
 
-                if (IsAnyNativePatch5SavegameCheckedTR3(sourceFileData, cklSourceSavegamesTR3))
+                if (IsAnyNativePatch5SavegameCheckedTR3(sourceFileData, cklSourceSavegamesTR3) && IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR3))
                 {
                     SystemSounds.Exclamation.Play();
 
                     ThemedMessageBox.Show(
                         this,
-                        Globals.DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED,
+                        Globals.DIALOG_MSG_CHALLENGE_MODE_PREPATCH_CONVERSION_UNSUPPORTED,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);

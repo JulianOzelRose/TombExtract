@@ -50,6 +50,12 @@ namespace TombExtract
         private const int BASE_SAVEGAME_OFFSET_TR3_PREPATCH = 0xE2000;
         private const int BASE_SAVEGAME_OFFSET_TR3_PATCH5 = 0x1A2000;
 
+        // Entity block
+        private const int ENTITY_BLOCK_START_PC = 0x998;
+        private const int ENTITY_BLOCK_START_ANDROID = 0x9E3;
+        private const int ENTITY_BLOCK_START_PS4 = 0x998;
+        private const int ENTITY_AI_BLOCK_SIZE = 0x1A;
+
         // Misc
         private int totalSavegames = 0;
         private BackgroundWorker bgWorker;
@@ -438,6 +444,13 @@ namespace TombExtract
                             {
                                 progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
+                                bool isNativePatch5Savegame = BitConverter.ToInt32(savegameBytes, SOURCE_SAVEGAME_VERSION_OFFSET) >= 2;
+
+                                if (isNativePatch5Savegame)
+                                {
+                                    savegameBytes = ConvertNativePatch5EntityBlockToPrepatchFormat(savegameBytes);
+                                }
+
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
                                 destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
                                 destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
@@ -777,6 +790,155 @@ namespace TombExtract
             {
                 e.Result = ex;
             }
+        }
+
+        private static void CopyBytes(byte[] source, byte[] destination, ref int sourceCursor, ref int destinationCursor, int length)
+        {
+            Array.Copy(source, sourceCursor, destination, destinationCursor, length);
+
+            sourceCursor += length;
+            destinationCursor += length;
+        }
+
+        private int GetEntityBlockStart()
+        {
+            if (sourcePlatform == Platform.PC)
+            {
+                return ENTITY_BLOCK_START_PC;
+            }
+            else if (sourcePlatform == Platform.Android)
+            {
+                return ENTITY_BLOCK_START_ANDROID;
+            }
+            else if (sourcePlatform == Platform.PlayStation4)
+            {
+                return ENTITY_BLOCK_START_PS4;
+            }
+
+            return ENTITY_BLOCK_START_PC;
+        }
+
+        private byte[] ConvertNativePatch5EntityBlockToPrepatchFormat(byte[] source)
+        {
+            byte[] destination = new byte[Globals.SAVEGAME_SIZE_TRX_PATCH5];
+
+            int entityBlockStart = GetEntityBlockStart();
+
+            Array.Copy(source, destination, entityBlockStart);
+
+            byte levelIndex = source[SOURCE_LEVEL_INDEX_OFFSET];
+
+            var levelObjectIds = new List<int>(TR3EntityCache.LevelObjectIdsByLevel[levelIndex]);
+
+            if (!TR3EntityCache.TR3ObjectsByLevel.TryGetValue(levelIndex, out var levelObjects))
+            {
+                throw new Exception($"{Globals.ERROR_MSG_MISSING_LEVEL_DEFINITION} {levelIndex}.");
+            }
+
+            int sourceCursor = entityBlockStart;
+            int destinationCursor = entityBlockStart;
+
+            CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 4);
+            CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x118);
+
+            int stateCount = TR3EntityCache.LevelStateEntryCounts[levelIndex];
+
+            CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, stateCount * 2);
+
+            sourceCursor += 4;
+
+            for (int itemIndex = 0; itemIndex < levelObjectIds.Count; itemIndex++)
+            {
+                int objectId = levelObjectIds[itemIndex];
+
+                sourceCursor += 4;
+
+                if (!levelObjects.TryGetValue(objectId, out var tr3Object))
+                {
+                    throw new Exception($"{Globals.ERROR_MSG_MISSING_OBJECT_DEFINITION} (object ID: 0x{objectId:X}).");
+                }
+
+                if ((tr3Object.Flags00 & 0x08) != 0)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x1A);
+                }
+
+                if ((tr3Object.Flags00 & 0x40) != 0)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x0A);
+                }
+
+                if ((tr3Object.Flags00 & 0x10) != 0)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x02);
+                }
+
+                if ((tr3Object.Flags00 & 0x20) != 0)
+                {
+                    int blockStart = sourceCursor;
+
+                    bool has02 = (tr3Object.Flags00 & 0x02) != 0;
+
+                    int increment = has02 ? 0x18 : 0x16;
+
+                    short aiWord = BitConverter.ToInt16(source, blockStart + 6);
+
+                    bool isEntityAIActive = aiWord < 0 && (aiWord & 0x00FF) != 0;
+
+                    if (isEntityAIActive)
+                    {
+                        increment += ENTITY_AI_BLOCK_SIZE;
+                    }
+
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, increment);
+                }
+
+                if ((tr3Object.Flags00 & 0x80) != 0)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x04);
+                }
+
+                if (objectId == 0x12)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x08);
+                }
+
+                if (objectId == 0x0F)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x1C);
+                }
+
+                if (objectId == 0x0E)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x30);
+                }
+
+                if (objectId == 0x11)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x20);
+                }
+
+                if (objectId == 0x10)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x2C);
+                }
+
+                if (objectId == 0x13)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x10);
+                }
+
+                if (objectId == 0x123)
+                {
+                    CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x02);
+                }
+            }
+
+            int remainingBytes = source.Length - sourceCursor;
+
+            Array.Copy(source, sourceCursor, destination, destinationCursor, remainingBytes);
+
+            return destination;
         }
 
         private bool IsPrepatchSavegameFile(byte[] fileData)

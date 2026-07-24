@@ -64,7 +64,7 @@
         public const string DIALOG_MSG_CANNOT_DELETE_EMPTY_SLOTS = "Empty slots cannot be deleted.";
         public const string DIALOG_MSG_REORDER_ERROR = "An error occurred while reordering savegames.";
         public const string DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY = "Patch 5 to pre-patch conversion is only supported for PC.";
-        public const string DIALOG_MSG_NATIVE_PATCH5_PREPATCH_CONVERSION_UNSUPPORTED = "Unable to convert native Patch 5 savegames to pre-patch format.";
+        public const string DIALOG_MSG_CHALLENGE_MODE_PREPATCH_CONVERSION_UNSUPPORTED = "Unable to convert Challenge Mode savegames to pre-patch format.";
         public const string DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING = "Challenge Mode savegames may not convert correctly from PC to Android. Proceed anyway?";
         public const string DIALOG_TITLE_CONFIRMATION = "Confirmation";
         public const string DIALOG_TITLE_ERROR = "Error";
@@ -101,5 +101,9 @@
         public const string STATUS_MSG_REORDER_CANCELED = "Savegame reordering canceled";
         public const string STATUS_MSG_REORDER_ERROR = "Error reordering savegames";
         public const string STATUS_MSG_REORDER_IN_PROGRESS = "Reordering savegames...";
+
+        // Internal error messages
+        public const string ERROR_MSG_MISSING_LEVEL_DEFINITION = "FATAL: Missing level definition for level";
+        public const string ERROR_MSG_MISSING_OBJECT_DEFINITION = "FATAL: Missing object definition";
     }
 }
