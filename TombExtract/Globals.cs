@@ -6,7 +6,7 @@
         public const string CONFIG_FILE_NAME = "TombExtract.ini";
         public const string WINDOW_TITLE_MANAGE_SLOTS = "Manage Slots";
         public const string WINDOW_TITLE_CREATE_SAVEGAME = "Create Savegame";
-        public const string VERSION = "4.74";
+        public const string VERSION = "4.75";
 
         // Config file keys
         public const string CONFIG_KEY_STATUS_BAR = "StatusBar=";
