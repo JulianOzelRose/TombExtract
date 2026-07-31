@@ -386,6 +386,8 @@
     <None Include="AboutImage.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Arrow_Right_Image.png" />
+    <Content Include="Images\Arrow_Right_Image_DarkMode.png" />
     <Content Include="Images\Backup_Image.png" />
     <Content Include="Images\Backup_Image_DarkMode.png" />
     <Content Include="Images\Bug_Image.png" />

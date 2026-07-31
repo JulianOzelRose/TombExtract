@@ -83,6 +83,26 @@ namespace TombExtract.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Arrow_Right_Image {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_Right_Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Arrow_Right_Image_DarkMode {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_Right_Image_DarkMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Backup_Image {
             get {
                 object obj = ResourceManager.GetObject("Backup_Image", resourceCulture);

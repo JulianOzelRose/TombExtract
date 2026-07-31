@@ -110,6 +110,12 @@ namespace TombExtract
             tsmiViewReadme.Image = Resources.README_Image;
             tsmiReportBug.Image = Resources.Bug_Image;
             tsmiAbout.Image = Resources.Help_Image;
+            picArrowTR1.Image = Resources.Arrow_Right_Image;
+            picArrowTR2.Image = Resources.Arrow_Right_Image;
+            picArrowTR3.Image = Resources.Arrow_Right_Image;
+            picArrowTR4.Image = Resources.Arrow_Right_Image;
+            picArrowTR5.Image = Resources.Arrow_Right_Image;
+            picArrowTR6.Image = Resources.Arrow_Right_Image;
 
             ThemeUtilities.ApplyLightTitleBar(this);
             ThemeUtilities.DARK_MODE_ENABLED = false;
@@ -134,6 +140,12 @@ namespace TombExtract
             tsmiViewReadme.Image = Resources.README_Image_DarkMode;
             tsmiReportBug.Image = Resources.Bug_Image_DarkMode;
             tsmiAbout.Image = Resources.Help_Image_DarkMode;
+            picArrowTR1.Image = Resources.Arrow_Right_Image_DarkMode;
+            picArrowTR2.Image = Resources.Arrow_Right_Image_DarkMode;
+            picArrowTR3.Image = Resources.Arrow_Right_Image_DarkMode;
+            picArrowTR4.Image = Resources.Arrow_Right_Image_DarkMode;
+            picArrowTR5.Image = Resources.Arrow_Right_Image_DarkMode;
+            picArrowTR6.Image = Resources.Arrow_Right_Image_DarkMode;
 
             ThemeUtilities.DARK_MODE_ENABLED = true;
         }

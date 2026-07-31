@@ -47,7 +47,6 @@ namespace TombExtract
             this.btnManageSlotsTR1 = new System.Windows.Forms.Button();
             this.btnAboutTR1 = new System.Windows.Forms.Button();
             this.btnSelectAllTR1 = new System.Windows.Forms.Button();
-            this.lblArrowTR1 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR1 = new System.Windows.Forms.ListBox();
             this.btnExitTR1 = new System.Windows.Forms.Button();
             this.btnExtractTR1 = new System.Windows.Forms.Button();
@@ -62,7 +61,6 @@ namespace TombExtract
             this.btnManageSlotsTR2 = new System.Windows.Forms.Button();
             this.btnAboutTR2 = new System.Windows.Forms.Button();
             this.btnSelectAllTR2 = new System.Windows.Forms.Button();
-            this.lblArrowTR2 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR2 = new System.Windows.Forms.ListBox();
             this.btnExitTR2 = new System.Windows.Forms.Button();
             this.btnExtractTR2 = new System.Windows.Forms.Button();
@@ -77,7 +75,6 @@ namespace TombExtract
             this.btnManageSlotsTR3 = new System.Windows.Forms.Button();
             this.btnAboutTR3 = new System.Windows.Forms.Button();
             this.btnSelectAllTR3 = new System.Windows.Forms.Button();
-            this.lblArrowTR3 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR3 = new System.Windows.Forms.ListBox();
             this.btnExitTR3 = new System.Windows.Forms.Button();
             this.btnExtractTR3 = new System.Windows.Forms.Button();
@@ -88,7 +85,6 @@ namespace TombExtract
             this.btnManageSlotsTR4 = new System.Windows.Forms.Button();
             this.btnAboutTR4 = new System.Windows.Forms.Button();
             this.btnSelectAllTR4 = new System.Windows.Forms.Button();
-            this.lblArrowTR4 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR4 = new System.Windows.Forms.ListBox();
             this.btnExitTR4 = new System.Windows.Forms.Button();
             this.btnExtractTR4 = new System.Windows.Forms.Button();
@@ -99,7 +95,6 @@ namespace TombExtract
             this.btnManageSlotsTR5 = new System.Windows.Forms.Button();
             this.btnAboutTR5 = new System.Windows.Forms.Button();
             this.btnSelectAllTR5 = new System.Windows.Forms.Button();
-            this.lblArrowTR5 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR5 = new System.Windows.Forms.ListBox();
             this.btnExitTR5 = new System.Windows.Forms.Button();
             this.btnExtractTR5 = new System.Windows.Forms.Button();
@@ -110,7 +105,6 @@ namespace TombExtract
             this.btnManageSlotsTR6 = new System.Windows.Forms.Button();
             this.btnAboutTR6 = new System.Windows.Forms.Button();
             this.btnSelectAllTR6 = new System.Windows.Forms.Button();
-            this.lblArrowTR6 = new System.Windows.Forms.Label();
             this.lstDestinationSavegamesTR6 = new System.Windows.Forms.ListBox();
             this.btnExitTR6 = new System.Windows.Forms.Button();
             this.btnExtractTR6 = new System.Windows.Forms.Button();
@@ -118,6 +112,8 @@ namespace TombExtract
             this.lblSourceSavegamesTR6 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR6 = new System.Windows.Forms.CheckedListBox();
             this.tsrToolStrip = new System.Windows.Forms.ToolStrip();
+            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiBrowseTRXSourceFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBrowseTRXDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,8 +133,12 @@ namespace TombExtract
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.picArrowTR1 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR2 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR3 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR4 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR5 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR6 = new System.Windows.Forms.PictureBox();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
@@ -149,6 +149,12 @@ namespace TombExtract
             this.tpTR6.SuspendLayout();
             this.tsrToolStrip.SuspendLayout();
             this.ssrStatusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR6)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFilePaths
@@ -257,6 +263,7 @@ namespace TombExtract
             // 
             // tpTR1
             // 
+            this.tpTR1.Controls.Add(this.picArrowTR1);
             this.tpTR1.Controls.Add(this.cmbDestinationFormatTR1);
             this.tpTR1.Controls.Add(this.lblDestinationFormatTR1);
             this.tpTR1.Controls.Add(this.cmbSourceFormatTR1);
@@ -264,7 +271,6 @@ namespace TombExtract
             this.tpTR1.Controls.Add(this.btnManageSlotsTR1);
             this.tpTR1.Controls.Add(this.btnAboutTR1);
             this.tpTR1.Controls.Add(this.btnSelectAllTR1);
-            this.tpTR1.Controls.Add(this.lblArrowTR1);
             this.tpTR1.Controls.Add(this.lstDestinationSavegamesTR1);
             this.tpTR1.Controls.Add(this.btnExitTR1);
             this.tpTR1.Controls.Add(this.btnExtractTR1);
@@ -349,16 +355,6 @@ namespace TombExtract
             this.btnSelectAllTR1.UseVisualStyleBackColor = true;
             this.btnSelectAllTR1.Click += new System.EventHandler(this.btnSelectAllTR1_Click);
             // 
-            // lblArrowTR1
-            // 
-            this.lblArrowTR1.AutoSize = true;
-            this.lblArrowTR1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrowTR1.Location = new System.Drawing.Point(277, 180);
-            this.lblArrowTR1.Name = "lblArrowTR1";
-            this.lblArrowTR1.Size = new System.Drawing.Size(24, 21);
-            this.lblArrowTR1.TabIndex = 18;
-            this.lblArrowTR1.Text = "→";
-            // 
             // lstDestinationSavegamesTR1
             // 
             this.lstDestinationSavegamesTR1.AllowDrop = true;
@@ -423,6 +419,7 @@ namespace TombExtract
             // 
             // tpTR2
             // 
+            this.tpTR2.Controls.Add(this.picArrowTR2);
             this.tpTR2.Controls.Add(this.cmbDestinationFormatTR2);
             this.tpTR2.Controls.Add(this.lblDestinationFormatTR2);
             this.tpTR2.Controls.Add(this.cmbSourceFormatTR2);
@@ -430,7 +427,6 @@ namespace TombExtract
             this.tpTR2.Controls.Add(this.btnManageSlotsTR2);
             this.tpTR2.Controls.Add(this.btnAboutTR2);
             this.tpTR2.Controls.Add(this.btnSelectAllTR2);
-            this.tpTR2.Controls.Add(this.lblArrowTR2);
             this.tpTR2.Controls.Add(this.lstDestinationSavegamesTR2);
             this.tpTR2.Controls.Add(this.btnExitTR2);
             this.tpTR2.Controls.Add(this.btnExtractTR2);
@@ -515,16 +511,6 @@ namespace TombExtract
             this.btnSelectAllTR2.UseVisualStyleBackColor = true;
             this.btnSelectAllTR2.Click += new System.EventHandler(this.btnSelectAllTR2_Click);
             // 
-            // lblArrowTR2
-            // 
-            this.lblArrowTR2.AutoSize = true;
-            this.lblArrowTR2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrowTR2.Location = new System.Drawing.Point(277, 180);
-            this.lblArrowTR2.Name = "lblArrowTR2";
-            this.lblArrowTR2.Size = new System.Drawing.Size(24, 21);
-            this.lblArrowTR2.TabIndex = 11;
-            this.lblArrowTR2.Text = "→";
-            // 
             // lstDestinationSavegamesTR2
             // 
             this.lstDestinationSavegamesTR2.AllowDrop = true;
@@ -589,6 +575,7 @@ namespace TombExtract
             // 
             // tpTR3
             // 
+            this.tpTR3.Controls.Add(this.picArrowTR3);
             this.tpTR3.Controls.Add(this.cmbDestinationFormatTR3);
             this.tpTR3.Controls.Add(this.lblDestinationFormatTR3);
             this.tpTR3.Controls.Add(this.cmbSourceFormatTR3);
@@ -596,7 +583,6 @@ namespace TombExtract
             this.tpTR3.Controls.Add(this.btnManageSlotsTR3);
             this.tpTR3.Controls.Add(this.btnAboutTR3);
             this.tpTR3.Controls.Add(this.btnSelectAllTR3);
-            this.tpTR3.Controls.Add(this.lblArrowTR3);
             this.tpTR3.Controls.Add(this.lstDestinationSavegamesTR3);
             this.tpTR3.Controls.Add(this.btnExitTR3);
             this.tpTR3.Controls.Add(this.btnExtractTR3);
@@ -680,16 +666,6 @@ namespace TombExtract
             this.btnSelectAllTR3.UseVisualStyleBackColor = true;
             this.btnSelectAllTR3.Click += new System.EventHandler(this.btnSelectAllTR3_Click);
             // 
-            // lblArrowTR3
-            // 
-            this.lblArrowTR3.AutoSize = true;
-            this.lblArrowTR3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrowTR3.Location = new System.Drawing.Point(277, 180);
-            this.lblArrowTR3.Name = "lblArrowTR3";
-            this.lblArrowTR3.Size = new System.Drawing.Size(24, 21);
-            this.lblArrowTR3.TabIndex = 27;
-            this.lblArrowTR3.Text = "→";
-            // 
             // lstDestinationSavegamesTR3
             // 
             this.lstDestinationSavegamesTR3.AllowDrop = true;
@@ -754,10 +730,10 @@ namespace TombExtract
             // 
             // tpTR4
             // 
+            this.tpTR4.Controls.Add(this.picArrowTR4);
             this.tpTR4.Controls.Add(this.btnManageSlotsTR4);
             this.tpTR4.Controls.Add(this.btnAboutTR4);
             this.tpTR4.Controls.Add(this.btnSelectAllTR4);
-            this.tpTR4.Controls.Add(this.lblArrowTR4);
             this.tpTR4.Controls.Add(this.lstDestinationSavegamesTR4);
             this.tpTR4.Controls.Add(this.btnExitTR4);
             this.tpTR4.Controls.Add(this.btnExtractTR4);
@@ -802,16 +778,6 @@ namespace TombExtract
             this.btnSelectAllTR4.Text = "☑️ Select All";
             this.btnSelectAllTR4.UseVisualStyleBackColor = true;
             this.btnSelectAllTR4.Click += new System.EventHandler(this.btnSelectAllTR4_Click);
-            // 
-            // lblArrowTR4
-            // 
-            this.lblArrowTR4.AutoSize = true;
-            this.lblArrowTR4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrowTR4.Location = new System.Drawing.Point(277, 180);
-            this.lblArrowTR4.Name = "lblArrowTR4";
-            this.lblArrowTR4.Size = new System.Drawing.Size(24, 21);
-            this.lblArrowTR4.TabIndex = 43;
-            this.lblArrowTR4.Text = "→";
             // 
             // lstDestinationSavegamesTR4
             // 
@@ -877,10 +843,10 @@ namespace TombExtract
             // 
             // tpTR5
             // 
+            this.tpTR5.Controls.Add(this.picArrowTR5);
             this.tpTR5.Controls.Add(this.btnManageSlotsTR5);
             this.tpTR5.Controls.Add(this.btnAboutTR5);
             this.tpTR5.Controls.Add(this.btnSelectAllTR5);
-            this.tpTR5.Controls.Add(this.lblArrowTR5);
             this.tpTR5.Controls.Add(this.lstDestinationSavegamesTR5);
             this.tpTR5.Controls.Add(this.btnExitTR5);
             this.tpTR5.Controls.Add(this.btnExtractTR5);
@@ -925,16 +891,6 @@ namespace TombExtract
             this.btnSelectAllTR5.Text = "☑️ Select All";
             this.btnSelectAllTR5.UseVisualStyleBackColor = true;
             this.btnSelectAllTR5.Click += new System.EventHandler(this.btnSelectAllTR5_Click);
-            // 
-            // lblArrowTR5
-            // 
-            this.lblArrowTR5.AutoSize = true;
-            this.lblArrowTR5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrowTR5.Location = new System.Drawing.Point(277, 180);
-            this.lblArrowTR5.Name = "lblArrowTR5";
-            this.lblArrowTR5.Size = new System.Drawing.Size(24, 21);
-            this.lblArrowTR5.TabIndex = 54;
-            this.lblArrowTR5.Text = "→";
             // 
             // lstDestinationSavegamesTR5
             // 
@@ -1000,10 +956,10 @@ namespace TombExtract
             // 
             // tpTR6
             // 
+            this.tpTR6.Controls.Add(this.picArrowTR6);
             this.tpTR6.Controls.Add(this.btnManageSlotsTR6);
             this.tpTR6.Controls.Add(this.btnAboutTR6);
             this.tpTR6.Controls.Add(this.btnSelectAllTR6);
-            this.tpTR6.Controls.Add(this.lblArrowTR6);
             this.tpTR6.Controls.Add(this.lstDestinationSavegamesTR6);
             this.tpTR6.Controls.Add(this.btnExitTR6);
             this.tpTR6.Controls.Add(this.btnExtractTR6);
@@ -1048,16 +1004,6 @@ namespace TombExtract
             this.btnSelectAllTR6.Text = "☑️ Select All";
             this.btnSelectAllTR6.UseVisualStyleBackColor = true;
             this.btnSelectAllTR6.Click += new System.EventHandler(this.btnSelectAllTR6_Click);
-            // 
-            // lblArrowTR6
-            // 
-            this.lblArrowTR6.AutoSize = true;
-            this.lblArrowTR6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArrowTR6.Location = new System.Drawing.Point(277, 180);
-            this.lblArrowTR6.Name = "lblArrowTR6";
-            this.lblArrowTR6.Size = new System.Drawing.Size(24, 21);
-            this.lblArrowTR6.TabIndex = 65;
-            this.lblArrowTR6.Text = "→";
             // 
             // lstDestinationSavegamesTR6
             // 
@@ -1133,6 +1079,24 @@ namespace TombExtract
             this.tsrToolStrip.Size = new System.Drawing.Size(594, 25);
             this.tsrToolStrip.TabIndex = 0;
             this.tsrToolStrip.Text = "toolStrip1";
+            // 
+            // ssrStatusStrip
+            // 
+            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.slblStatus});
+            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 577);
+            this.ssrStatusStrip.Name = "ssrStatusStrip";
+            this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.ssrStatusStrip.Size = new System.Drawing.Size(594, 22);
+            this.ssrStatusStrip.SizingGrip = false;
+            this.ssrStatusStrip.TabIndex = 3;
+            this.ssrStatusStrip.Text = "statusStrip1";
+            // 
+            // slblStatus
+            // 
+            this.slblStatus.Name = "slblStatus";
+            this.slblStatus.Size = new System.Drawing.Size(39, 17);
+            this.slblStatus.Text = "Ready";
             // 
             // tsddbFile
             // 
@@ -1248,7 +1212,7 @@ namespace TombExtract
             // 
             this.tsmiAlwaysOnTop.CheckOnClick = true;
             this.tsmiAlwaysOnTop.Name = "tsmiAlwaysOnTop";
-            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(149, 22);
             this.tsmiAlwaysOnTop.Text = "Always on top";
             this.tsmiAlwaysOnTop.Click += new System.EventHandler(this.tsmiAlwaysOnTop_Click);
             // 
@@ -1258,7 +1222,7 @@ namespace TombExtract
             this.tsmiStatusBar.CheckOnClick = true;
             this.tsmiStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsmiStatusBar.Name = "tsmiStatusBar";
-            this.tsmiStatusBar.Size = new System.Drawing.Size(180, 22);
+            this.tsmiStatusBar.Size = new System.Drawing.Size(149, 22);
             this.tsmiStatusBar.Text = "Status Bar";
             this.tsmiStatusBar.Click += new System.EventHandler(this.tsmiStatusBar_Click);
             // 
@@ -1266,7 +1230,7 @@ namespace TombExtract
             // 
             this.tsmiDarkMode.CheckOnClick = true;
             this.tsmiDarkMode.Name = "tsmiDarkMode";
-            this.tsmiDarkMode.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDarkMode.Size = new System.Drawing.Size(149, 22);
             this.tsmiDarkMode.Text = "Dark Mode";
             this.tsmiDarkMode.Click += new System.EventHandler(this.tsmiDarkMode_Click);
             // 
@@ -1289,7 +1253,7 @@ namespace TombExtract
             // 
             this.tsmiViewReadme.Image = global::TombExtract.Properties.Resources.README_Image;
             this.tsmiViewReadme.Name = "tsmiViewReadme";
-            this.tsmiViewReadme.Size = new System.Drawing.Size(180, 22);
+            this.tsmiViewReadme.Size = new System.Drawing.Size(148, 22);
             this.tsmiViewReadme.Text = "View README";
             this.tsmiViewReadme.Click += new System.EventHandler(this.tsmiViewReadme_Click);
             // 
@@ -1297,7 +1261,7 @@ namespace TombExtract
             // 
             this.tsmiReportBug.Image = global::TombExtract.Properties.Resources.Bug_Image;
             this.tsmiReportBug.Name = "tsmiReportBug";
-            this.tsmiReportBug.Size = new System.Drawing.Size(180, 22);
+            this.tsmiReportBug.Size = new System.Drawing.Size(148, 22);
             this.tsmiReportBug.Text = "Report a Bug";
             this.tsmiReportBug.Click += new System.EventHandler(this.tsmiReportBug_Click);
             // 
@@ -1305,27 +1269,63 @@ namespace TombExtract
             // 
             this.tsmiAbout.Image = global::TombExtract.Properties.Resources.Help_Image;
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(148, 22);
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
-            // ssrStatusStrip
+            // picArrowTR1
             // 
-            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.slblStatus});
-            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 577);
-            this.ssrStatusStrip.Name = "ssrStatusStrip";
-            this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ssrStatusStrip.Size = new System.Drawing.Size(594, 22);
-            this.ssrStatusStrip.SizingGrip = false;
-            this.ssrStatusStrip.TabIndex = 3;
-            this.ssrStatusStrip.Text = "statusStrip1";
+            this.picArrowTR1.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR1.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR1.Name = "picArrowTR1";
+            this.picArrowTR1.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR1.TabIndex = 23;
+            this.picArrowTR1.TabStop = false;
             // 
-            // slblStatus
+            // picArrowTR2
             // 
-            this.slblStatus.Name = "slblStatus";
-            this.slblStatus.Size = new System.Drawing.Size(39, 17);
-            this.slblStatus.Text = "Ready";
+            this.picArrowTR2.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR2.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR2.Name = "picArrowTR2";
+            this.picArrowTR2.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR2.TabIndex = 27;
+            this.picArrowTR2.TabStop = false;
+            // 
+            // picArrowTR3
+            // 
+            this.picArrowTR3.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR3.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR3.Name = "picArrowTR3";
+            this.picArrowTR3.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR3.TabIndex = 32;
+            this.picArrowTR3.TabStop = false;
+            // 
+            // picArrowTR4
+            // 
+            this.picArrowTR4.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR4.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR4.Name = "picArrowTR4";
+            this.picArrowTR4.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR4.TabIndex = 24;
+            this.picArrowTR4.TabStop = false;
+            // 
+            // picArrowTR5
+            // 
+            this.picArrowTR5.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR5.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR5.Name = "picArrowTR5";
+            this.picArrowTR5.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR5.TabIndex = 24;
+            this.picArrowTR5.TabStop = false;
+            // 
+            // picArrowTR6
+            // 
+            this.picArrowTR6.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR6.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR6.Name = "picArrowTR6";
+            this.picArrowTR6.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR6.TabIndex = 24;
+            this.picArrowTR6.TabStop = false;
             // 
             // MainForm
             // 
@@ -1366,6 +1366,12 @@ namespace TombExtract
             this.tsrToolStrip.PerformLayout();
             this.ssrStatusStrip.ResumeLayout(false);
             this.ssrStatusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1390,15 +1396,12 @@ namespace TombExtract
         private System.Windows.Forms.Button btnExitTR2;
         private System.Windows.Forms.Button btnExtractTR2;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR2;
-        private System.Windows.Forms.Label lblArrowTR2;
-        private System.Windows.Forms.Label lblArrowTR1;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR1;
         private System.Windows.Forms.Button btnExitTR1;
         private System.Windows.Forms.Button btnExtractTR1;
         private System.Windows.Forms.Label lblDestinationSavegamesTR1;
         private System.Windows.Forms.Label lblSourceSavegamesTR1;
         private System.Windows.Forms.CheckedListBox cklSourceSavegamesTR1;
-        private System.Windows.Forms.Label lblArrowTR3;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR3;
         private System.Windows.Forms.Button btnExitTR3;
         private System.Windows.Forms.Button btnExtractTR3;
@@ -1437,7 +1440,6 @@ namespace TombExtract
         private System.Windows.Forms.Button btnManageSlotsTR4;
         private System.Windows.Forms.Button btnAboutTR4;
         private System.Windows.Forms.Button btnSelectAllTR4;
-        private System.Windows.Forms.Label lblArrowTR4;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR4;
         private System.Windows.Forms.Button btnExitTR4;
         private System.Windows.Forms.Button btnExtractTR4;
@@ -1447,7 +1449,6 @@ namespace TombExtract
         private System.Windows.Forms.Button btnManageSlotsTR5;
         private System.Windows.Forms.Button btnAboutTR5;
         private System.Windows.Forms.Button btnSelectAllTR5;
-        private System.Windows.Forms.Label lblArrowTR5;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR5;
         private System.Windows.Forms.Button btnExitTR5;
         private System.Windows.Forms.Button btnExtractTR5;
@@ -1457,7 +1458,6 @@ namespace TombExtract
         private System.Windows.Forms.Button btnManageSlotsTR6;
         private System.Windows.Forms.Button btnAboutTR6;
         private System.Windows.Forms.Button btnSelectAllTR6;
-        private System.Windows.Forms.Label lblArrowTR6;
         private System.Windows.Forms.ListBox lstDestinationSavegamesTR6;
         private System.Windows.Forms.Button btnExitTR6;
         private System.Windows.Forms.Button btnExtractTR6;
@@ -1482,6 +1482,12 @@ namespace TombExtract
         private System.Windows.Forms.Label lblDestinationFormatTR3;
         private System.Windows.Forms.ComboBox cmbSourceFormatTR3;
         private System.Windows.Forms.Label lblSourceFormatTR3;
+        private System.Windows.Forms.PictureBox picArrowTR1;
+        private System.Windows.Forms.PictureBox picArrowTR2;
+        private System.Windows.Forms.PictureBox picArrowTR3;
+        private System.Windows.Forms.PictureBox picArrowTR4;
+        private System.Windows.Forms.PictureBox picArrowTR5;
+        private System.Windows.Forms.PictureBox picArrowTR6;
     }
 }
 

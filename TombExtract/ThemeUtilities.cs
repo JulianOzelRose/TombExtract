@@ -174,6 +174,10 @@ namespace TombExtract
                 {
                     menu.Renderer = null;
                 }
+                else if (control is PictureBox pic)
+                {
+                    pic.BackColor = Color.Transparent;
+                }
                 if (control.HasChildren)
                 {
                     ApplyLightMode(control);
