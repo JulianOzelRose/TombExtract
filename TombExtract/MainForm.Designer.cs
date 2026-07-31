@@ -490,7 +490,7 @@ namespace TombExtract
             this.btnManageSlotsTR2.Name = "btnManageSlotsTR2";
             this.btnManageSlotsTR2.Size = new System.Drawing.Size(96, 23);
             this.btnManageSlotsTR2.TabIndex = 3;
-            this.btnManageSlotsTR2.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR2.Text = "🔧 Manage";
             this.btnManageSlotsTR2.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR2.Click += new System.EventHandler(this.btnManageSlotsTR2_Click);
             // 
@@ -655,7 +655,7 @@ namespace TombExtract
             this.btnManageSlotsTR3.Name = "btnManageSlotsTR3";
             this.btnManageSlotsTR3.Size = new System.Drawing.Size(96, 23);
             this.btnManageSlotsTR3.TabIndex = 3;
-            this.btnManageSlotsTR3.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR3.Text = "🔧 Manage";
             this.btnManageSlotsTR3.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR3.Click += new System.EventHandler(this.btnManageSlotsTR3_Click);
             // 
@@ -778,7 +778,7 @@ namespace TombExtract
             this.btnManageSlotsTR4.Name = "btnManageSlotsTR4";
             this.btnManageSlotsTR4.Size = new System.Drawing.Size(96, 23);
             this.btnManageSlotsTR4.TabIndex = 3;
-            this.btnManageSlotsTR4.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR4.Text = "🔧 Manage";
             this.btnManageSlotsTR4.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR4.Click += new System.EventHandler(this.btnManageSlotsTR4_Click);
             // 
@@ -901,7 +901,7 @@ namespace TombExtract
             this.btnManageSlotsTR5.Name = "btnManageSlotsTR5";
             this.btnManageSlotsTR5.Size = new System.Drawing.Size(96, 23);
             this.btnManageSlotsTR5.TabIndex = 3;
-            this.btnManageSlotsTR5.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR5.Text = "🔧 Manage";
             this.btnManageSlotsTR5.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR5.Click += new System.EventHandler(this.btnManageSlotsTR5_Click);
             // 
@@ -1024,7 +1024,7 @@ namespace TombExtract
             this.btnManageSlotsTR6.Name = "btnManageSlotsTR6";
             this.btnManageSlotsTR6.Size = new System.Drawing.Size(96, 23);
             this.btnManageSlotsTR6.TabIndex = 3;
-            this.btnManageSlotsTR6.Text = "🔧 Manage Slots";
+            this.btnManageSlotsTR6.Text = "🔧 Manage";
             this.btnManageSlotsTR6.UseVisualStyleBackColor = true;
             this.btnManageSlotsTR6.Click += new System.EventHandler(this.btnManageSlotsTR6_Click);
             // 
@@ -1158,6 +1158,7 @@ namespace TombExtract
             // 
             // tsmiBrowseTRXSourceFile
             // 
+            this.tsmiBrowseTRXSourceFile.Image = global::TombExtract.Properties.Resources.Folder_Open_Image;
             this.tsmiBrowseTRXSourceFile.Name = "tsmiBrowseTRXSourceFile";
             this.tsmiBrowseTRXSourceFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRXSourceFile.Text = "Select Tomb Raider I-III source file...";
@@ -1165,6 +1166,7 @@ namespace TombExtract
             // 
             // tsmiBrowseTRXDestinationFile
             // 
+            this.tsmiBrowseTRXDestinationFile.Image = global::TombExtract.Properties.Resources.Folder_Closed_Image;
             this.tsmiBrowseTRXDestinationFile.Name = "tsmiBrowseTRXDestinationFile";
             this.tsmiBrowseTRXDestinationFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRXDestinationFile.Text = "Select Tomb Raider I-III destination file...";
@@ -1177,6 +1179,7 @@ namespace TombExtract
             // 
             // tsmiBrowseTRX2SourceFile
             // 
+            this.tsmiBrowseTRX2SourceFile.Image = global::TombExtract.Properties.Resources.Folder_Open_Image;
             this.tsmiBrowseTRX2SourceFile.Name = "tsmiBrowseTRX2SourceFile";
             this.tsmiBrowseTRX2SourceFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRX2SourceFile.Text = "Select Tomb Raider IV-VI source file...";
@@ -1184,6 +1187,7 @@ namespace TombExtract
             // 
             // tsmiBrowseTRX2DestinationFile
             // 
+            this.tsmiBrowseTRX2DestinationFile.Image = global::TombExtract.Properties.Resources.Folder_Closed_Image;
             this.tsmiBrowseTRX2DestinationFile.Name = "tsmiBrowseTRX2DestinationFile";
             this.tsmiBrowseTRX2DestinationFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBrowseTRX2DestinationFile.Text = "Select Tomb Raider IV-VI destination file...";
@@ -1197,6 +1201,7 @@ namespace TombExtract
             // tsmiBackupDestinationFile
             // 
             this.tsmiBackupDestinationFile.Enabled = false;
+            this.tsmiBackupDestinationFile.Image = global::TombExtract.Properties.Resources.Backup_Image;
             this.tsmiBackupDestinationFile.Name = "tsmiBackupDestinationFile";
             this.tsmiBackupDestinationFile.Size = new System.Drawing.Size(293, 22);
             this.tsmiBackupDestinationFile.Text = "Backup destination file";
@@ -1205,6 +1210,7 @@ namespace TombExtract
             // tsmiExtract
             // 
             this.tsmiExtract.Enabled = false;
+            this.tsmiExtract.Image = global::TombExtract.Properties.Resources.Extract_Image;
             this.tsmiExtract.Name = "tsmiExtract";
             this.tsmiExtract.Size = new System.Drawing.Size(293, 22);
             this.tsmiExtract.Text = "Extract";
@@ -1217,6 +1223,7 @@ namespace TombExtract
             // 
             // tsmiExit
             // 
+            this.tsmiExit.Image = global::TombExtract.Properties.Resources.Exit_Image;
             this.tsmiExit.Name = "tsmiExit";
             this.tsmiExit.Size = new System.Drawing.Size(293, 22);
             this.tsmiExit.Text = "Exit";
@@ -1241,7 +1248,7 @@ namespace TombExtract
             // 
             this.tsmiAlwaysOnTop.CheckOnClick = true;
             this.tsmiAlwaysOnTop.Name = "tsmiAlwaysOnTop";
-            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(149, 22);
+            this.tsmiAlwaysOnTop.Size = new System.Drawing.Size(180, 22);
             this.tsmiAlwaysOnTop.Text = "Always on top";
             this.tsmiAlwaysOnTop.Click += new System.EventHandler(this.tsmiAlwaysOnTop_Click);
             // 
@@ -1251,7 +1258,7 @@ namespace TombExtract
             this.tsmiStatusBar.CheckOnClick = true;
             this.tsmiStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsmiStatusBar.Name = "tsmiStatusBar";
-            this.tsmiStatusBar.Size = new System.Drawing.Size(149, 22);
+            this.tsmiStatusBar.Size = new System.Drawing.Size(180, 22);
             this.tsmiStatusBar.Text = "Status Bar";
             this.tsmiStatusBar.Click += new System.EventHandler(this.tsmiStatusBar_Click);
             // 
@@ -1259,7 +1266,7 @@ namespace TombExtract
             // 
             this.tsmiDarkMode.CheckOnClick = true;
             this.tsmiDarkMode.Name = "tsmiDarkMode";
-            this.tsmiDarkMode.Size = new System.Drawing.Size(149, 22);
+            this.tsmiDarkMode.Size = new System.Drawing.Size(180, 22);
             this.tsmiDarkMode.Text = "Dark Mode";
             this.tsmiDarkMode.Click += new System.EventHandler(this.tsmiDarkMode_Click);
             // 
@@ -1280,22 +1287,25 @@ namespace TombExtract
             // 
             // tsmiViewReadme
             // 
+            this.tsmiViewReadme.Image = global::TombExtract.Properties.Resources.README_Image;
             this.tsmiViewReadme.Name = "tsmiViewReadme";
-            this.tsmiViewReadme.Size = new System.Drawing.Size(148, 22);
+            this.tsmiViewReadme.Size = new System.Drawing.Size(180, 22);
             this.tsmiViewReadme.Text = "View README";
             this.tsmiViewReadme.Click += new System.EventHandler(this.tsmiViewReadme_Click);
             // 
             // tsmiReportBug
             // 
+            this.tsmiReportBug.Image = global::TombExtract.Properties.Resources.Bug_Image;
             this.tsmiReportBug.Name = "tsmiReportBug";
-            this.tsmiReportBug.Size = new System.Drawing.Size(148, 22);
+            this.tsmiReportBug.Size = new System.Drawing.Size(180, 22);
             this.tsmiReportBug.Text = "Report a Bug";
             this.tsmiReportBug.Click += new System.EventHandler(this.tsmiReportBug_Click);
             // 
             // tsmiAbout
             // 
+            this.tsmiAbout.Image = global::TombExtract.Properties.Resources.Help_Image;
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(148, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(180, 22);
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 

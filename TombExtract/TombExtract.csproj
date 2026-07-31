@@ -386,6 +386,22 @@
     <None Include="AboutImage.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Backup_Image.png" />
+    <Content Include="Images\Backup_Image_DarkMode.png" />
+    <Content Include="Images\Bug_Image.png" />
+    <Content Include="Images\Bug_Image_DarkMode.png" />
+    <Content Include="Images\Exit_Image.png" />
+    <Content Include="Images\Exit_Image_DarkMode.png" />
+    <Content Include="Images\Extract_Image.png" />
+    <Content Include="Images\Extract_Image_DarkMode.png" />
+    <Content Include="Images\Folder_Closed_Image.png" />
+    <Content Include="Images\Folder_Closed_Image_DarkMode.png" />
+    <Content Include="Images\Folder_Open_Image.png" />
+    <Content Include="Images\Folder_Open_Image_DarkMode.png" />
+    <Content Include="Images\Help_Image.png" />
+    <Content Include="Images\Help_Image_DarkMode.png" />
+    <Content Include="Images\README_Image.png" />
+    <Content Include="Images\README_Image_DarkMode.png" />
     <Content Include="TombExtract.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

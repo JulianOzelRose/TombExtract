@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Windows.Forms;
+using TombExtract.Properties;
 
 namespace TombExtract
 {
@@ -91,6 +92,29 @@ namespace TombExtract
             }
         }
 
+        private void ApplyLightMode()
+        {
+            ThemeUtilities.ApplyLightMode(this);
+
+            tabGame.DrawItem -= tabGame_DrawItem;
+            tabGame.DrawMode = TabDrawMode.Normal;
+            this.BackColor = SystemColors.Control;
+
+            tsmiBrowseTRXSourceFile.Image = Resources.Folder_Open_Image;
+            tsmiBrowseTRX2SourceFile.Image = Resources.Folder_Open_Image;
+            tsmiBrowseTRXDestinationFile.Image = Resources.Folder_Closed_Image;
+            tsmiBrowseTRX2DestinationFile.Image = Resources.Folder_Closed_Image;
+            tsmiBackupDestinationFile.Image = Resources.Backup_Image;
+            tsmiExtract.Image = Resources.Extract_Image;
+            tsmiExit.Image = Resources.Exit_Image;
+            tsmiViewReadme.Image = Resources.README_Image;
+            tsmiReportBug.Image = Resources.Bug_Image;
+            tsmiAbout.Image = Resources.Help_Image;
+
+            ThemeUtilities.ApplyLightTitleBar(this);
+            ThemeUtilities.DARK_MODE_ENABLED = false;
+        }
+
         private void ApplyDarkMode()
         {
             ThemeUtilities.ApplyDarkMode(this);
@@ -100,19 +124,18 @@ namespace TombExtract
             tabGame.DrawItem -= tabGame_DrawItem;
             tabGame.DrawItem += tabGame_DrawItem;
 
+            tsmiBrowseTRXSourceFile.Image = Resources.Folder_Open_Image_DarkMode;
+            tsmiBrowseTRX2SourceFile.Image = Resources.Folder_Open_Image_DarkMode;
+            tsmiBrowseTRXDestinationFile.Image = Resources.Folder_Closed_Image_DarkMode;
+            tsmiBrowseTRX2DestinationFile.Image = Resources.Folder_Closed_Image_DarkMode;
+            tsmiBackupDestinationFile.Image = Resources.Backup_Image_DarkMode;
+            tsmiExtract.Image = Resources.Extract_Image_DarkMode;
+            tsmiExit.Image = Resources.Exit_Image_DarkMode;
+            tsmiViewReadme.Image = Resources.README_Image_DarkMode;
+            tsmiReportBug.Image = Resources.Bug_Image_DarkMode;
+            tsmiAbout.Image = Resources.Help_Image_DarkMode;
+
             ThemeUtilities.DARK_MODE_ENABLED = true;
-        }
-
-        private void ApplyLightMode()
-        {
-            ThemeUtilities.ApplyLightMode(this);
-
-            tabGame.DrawItem -= tabGame_DrawItem;
-            tabGame.DrawMode = TabDrawMode.Normal;
-            this.BackColor = SystemColors.Control;
-
-            ThemeUtilities.ApplyLightTitleBar(this);
-            ThemeUtilities.DARK_MODE_ENABLED = false;
         }
 
         protected override CreateParams CreateParams
