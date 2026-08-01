@@ -107,7 +107,6 @@ namespace TombExtract
             tsmiBackupDestinationFile.Image = Resources.Backup_Image;
             tsmiExtract.Image = Resources.Extract_Image;
             tsmiExit.Image = Resources.Exit_Image;
-            tsmiViewReadme.Image = Resources.README_Image;
             tsmiReportBug.Image = Resources.Bug_Image;
             tsmiAbout.Image = Resources.Help_Image;
             picArrowTR1.Image = Resources.Arrow_Right_Image;
@@ -137,7 +136,6 @@ namespace TombExtract
             tsmiBackupDestinationFile.Image = Resources.Backup_Image_DarkMode;
             tsmiExtract.Image = Resources.Extract_Image_DarkMode;
             tsmiExit.Image = Resources.Exit_Image_DarkMode;
-            tsmiViewReadme.Image = Resources.README_Image_DarkMode;
             tsmiReportBug.Image = Resources.Bug_Image_DarkMode;
             tsmiAbout.Image = Resources.Help_Image_DarkMode;
             picArrowTR1.Image = Resources.Arrow_Right_Image_DarkMode;
