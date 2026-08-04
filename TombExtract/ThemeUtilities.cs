@@ -88,7 +88,6 @@ namespace TombExtract
                 }
                 else if (control is CheckBox checkbox)
                 {
-                    checkbox.FlatStyle = FlatStyle.Flat;
                     checkbox.Paint -= DarkDisabledCheckBox_Paint;
                     checkbox.Paint += DarkDisabledCheckBox_Paint;
                 }
@@ -149,7 +148,6 @@ namespace TombExtract
                 }
                 else if (control is CheckBox chk)
                 {
-                    chk.FlatStyle = FlatStyle.Standard;
                     chk.Paint -= DarkDisabledCheckBox_Paint;
                     chk.BackColor = Color.White;
                 }
