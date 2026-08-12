@@ -15,6 +15,7 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
+        private const int SLOT_STATUS_OFFSET = 0x11C;
         private const int NEW_GAME_PLUS_OFFSET = 0x358;
         private const int SAVE_NUMBER_OFFSET = 0x118;
         private const int LEVEL_INDEX_OFFSET = 0x10;
@@ -45,7 +46,7 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR6 + (i * Globals.SAVEGAME_SIZE_TRX2);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
                     {
@@ -84,7 +85,7 @@ namespace TombExtract
                     int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR6 + (i * Globals.SAVEGAME_SIZE_TRX2);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
                     {
@@ -127,7 +128,7 @@ namespace TombExtract
                     int currentSavegameOffset = savegames[i].Offset;
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
                     {

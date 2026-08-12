@@ -15,6 +15,7 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
+        private const int SLOT_STATUS_OFFSET = 0x000;
         private const int NEW_GAME_PLUS_OFFSET = 0x004;
         private const int SAVE_NUMBER_OFFSET = 0x008;
         private const int LEVEL_INDEX_OFFSET_PREPATCH = 0x8D2;
@@ -127,7 +128,7 @@ namespace TombExtract
                     int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR3 + (i * SOURCE_SAVEGAME_SIZE);
 
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET);
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
@@ -202,7 +203,7 @@ namespace TombExtract
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (i * DESTINATION_SAVEGAME_SIZE);
 
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
@@ -247,7 +248,7 @@ namespace TombExtract
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
-                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
+                    bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
                     {
