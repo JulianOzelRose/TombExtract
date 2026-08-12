@@ -15,10 +15,10 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
-        private const int NEW_GAME_PLUS_OFFSET = 0x35C;
-        private const int SAVE_NUMBER_OFFSET = 0x11C;
-        private const int LEVEL_INDEX_OFFSET = 0x14;
-        private const int BASE_SAVEGAME_OFFSET_TR6 = 0x293C00;
+        private const int NEW_GAME_PLUS_OFFSET = 0x358;
+        private const int SAVE_NUMBER_OFFSET = 0x118;
+        private const int LEVEL_INDEX_OFFSET = 0x10;
+        private const int BASE_SAVEGAME_OFFSET_TR6 = 0x293C04;
 
         // Misc
         private int totalSavegames = 0;

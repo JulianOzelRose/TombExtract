@@ -23,85 +23,85 @@ namespace TombExtract
         private int CHALLENGE_MODE_OFFSET;
 
         // TR1 offsets (universal)
-        private const int SAVE_NUMBER_OFFSET_TR1 = 0x00C;
-        private const int NEW_GAME_PLUS_OFFSET_TR1 = 0x008;
+        private const int SAVE_NUMBER_OFFSET_TR1 = 0x008;
+        private const int NEW_GAME_PLUS_OFFSET_TR1 = 0x004;
 
         // TR1 offsets (PC)
-        private const int LEVEL_INDEX_OFFSET_TR1_PC = 0x62C;
-        private const int CHALLENGE_MODE_OFFSET_TR1_PC = 0x6EC;
+        private const int LEVEL_INDEX_OFFSET_TR1_PC = 0x628;
+        private const int CHALLENGE_MODE_OFFSET_TR1_PC = 0x6E8;
 
         // TR1 offsets (Android)
-        private const int LEVEL_INDEX_OFFSET_TR1_ANDROID = 0x65C;
-        private const int CHALLENGE_MODE_OFFSET_TR1_ANDROID = 0x718;
+        private const int LEVEL_INDEX_OFFSET_TR1_ANDROID = 0x658;
+        private const int CHALLENGE_MODE_OFFSET_TR1_ANDROID = 0x714;
 
         // TR1 offsets (PS4)
-        private const int LEVEL_INDEX_OFFSET_TR1_PS4 = 0x62C;
-        private const int CHALLENGE_MODE_OFFSET_TR1_PS4 = 0x6E8;
+        private const int LEVEL_INDEX_OFFSET_TR1_PS4 = 0x628;
+        private const int CHALLENGE_MODE_OFFSET_TR1_PS4 = 0x6E4;
 
         // TR2 offsets (universal)
-        private const int SAVE_NUMBER_OFFSET_TR2 = 0x00C;
-        private const int NEW_GAME_PLUS_OFFSET_TR2 = 0x008;
+        private const int SAVE_NUMBER_OFFSET_TR2 = 0x008;
+        private const int NEW_GAME_PLUS_OFFSET_TR2 = 0x004;
 
         // TR2 offsets (PC)
-        private const int LEVEL_INDEX_OFFSET_TR2_PC = 0x628;
-        private const int CHALLENGE_MODE_OFFSET_TR2_PC = 0x6B0;
+        private const int LEVEL_INDEX_OFFSET_TR2_PC = 0x624;
+        private const int CHALLENGE_MODE_OFFSET_TR2_PC = 0x6AC;
 
         // TR2 offsets (Android)
-        private const int LEVEL_INDEX_OFFSET_TR2_ANDROID = 0x658;
-        private const int CHALLENGE_MODE_OFFSET_TR2_ANDROID = 0x6DC;
+        private const int LEVEL_INDEX_OFFSET_TR2_ANDROID = 0x654;
+        private const int CHALLENGE_MODE_OFFSET_TR2_ANDROID = 0x6D8;
 
         // TR2 offsets (PS4)
-        private const int LEVEL_INDEX_OFFSET_TR2_PS4 = 0x628;
-        private const int CHALLENGE_MODE_OFFSET_TR2_PS4 = 0x6AC;
+        private const int LEVEL_INDEX_OFFSET_TR2_PS4 = 0x624;
+        private const int CHALLENGE_MODE_OFFSET_TR2_PS4 = 0x6A8;
 
         // TR3 offsets (universal)
-        private const int SAVE_NUMBER_OFFSET_TR3 = 0x00C;
-        private const int NEW_GAME_PLUS_OFFSET_TR3 = 0x008;
+        private const int SAVE_NUMBER_OFFSET_TR3 = 0x008;
+        private const int NEW_GAME_PLUS_OFFSET_TR3 = 0x004;
 
         // TR3 offsets (PC)
-        private const int LEVEL_INDEX_OFFSET_TR3_PC = 0x8D6;
-        private const int CHALLENGE_MODE_OFFSET_TR3_PC = 0x990;
+        private const int LEVEL_INDEX_OFFSET_TR3_PC = 0x8D2;
+        private const int CHALLENGE_MODE_OFFSET_TR3_PC = 0x98C;
 
         // TR3 offsets (Android)
-        private const int LEVEL_INDEX_OFFSET_TR3_ANDROID = 0x916;
-        private const int CHALLENGE_MODE_OFFSET_TR3_ANDROID = 0x9D0;
+        private const int LEVEL_INDEX_OFFSET_TR3_ANDROID = 0x912;
+        private const int CHALLENGE_MODE_OFFSET_TR3_ANDROID = 0x9CC;
 
         // TR3 offsets (PS4)
-        private const int LEVEL_INDEX_OFFSET_TR3_PS4 = 0x8D6;
-        private const int CHALLENGE_MODE_OFFSET_TR3_PS4 = 0x990;
+        private const int LEVEL_INDEX_OFFSET_TR3_PS4 = 0x8D2;
+        private const int CHALLENGE_MODE_OFFSET_TR3_PS4 = 0x98C;
 
         // TR4 offsets
-        private const int LEVEL_INDEX_OFFSET_TR4 = 0x26F;
-        private const int SAVE_NUMBER_OFFSET_TR4 = 0x008;
-        private const int NEW_GAME_PLUS_OFFSET_TR4 = 0x01C;
+        private const int LEVEL_INDEX_OFFSET_TR4 = 0x26B;
+        private const int SAVE_NUMBER_OFFSET_TR4 = 0x004;
+        private const int NEW_GAME_PLUS_OFFSET_TR4 = 0x018;
 
         // TR5 offsets
-        private const int LEVEL_INDEX_OFFSET_TR5 = 0x26F;
-        private const int SAVE_NUMBER_OFFSET_TR5 = 0x008;
-        private const int NEW_GAME_PLUS_OFFSET_TR5 = 0x01C;
+        private const int LEVEL_INDEX_OFFSET_TR5 = 0x26B;
+        private const int SAVE_NUMBER_OFFSET_TR5 = 0x004;
+        private const int NEW_GAME_PLUS_OFFSET_TR5 = 0x018;
 
         // TR6 offsets
-        private const int LEVEL_INDEX_OFFSET_TR6 = 0x14;
-        private const int SAVE_NUMBER_OFFSET_TR6 = 0x11C;
-        private const int NEW_GAME_PLUS_OFFSET_TR6 = 0x35C;
-        private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
+        private const int LEVEL_INDEX_OFFSET_TR6 = 0x10;
+        private const int SAVE_NUMBER_OFFSET_TR6 = 0x118;
+        private const int NEW_GAME_PLUS_OFFSET_TR6 = 0x358;
+        private const int SLOT_NUMBER_OFFSET_TR6 = 0x011;
 
         // Savegame constants
         private int BASE_SAVEGAME_OFFSET_TR1;
         private int BASE_SAVEGAME_OFFSET_TR2;
         private int BASE_SAVEGAME_OFFSET_TR3;
-        private const int BASE_SAVEGAME_OFFSET_TR4 = 0x2000;
-        private const int BASE_SAVEGAME_OFFSET_TR5 = 0x14AE00;
-        private const int BASE_SAVEGAME_OFFSET_TR6 = 0x293C00;
+        private const int BASE_SAVEGAME_OFFSET_TR4 = 0x2004;
+        private const int BASE_SAVEGAME_OFFSET_TR5 = 0x14AE04;
+        private const int BASE_SAVEGAME_OFFSET_TR6 = 0x293C04;
         private int SAVEGAME_SIZE_TRX;
 
         // Patch-specific
-        private const int BASE_SAVEGAME_OFFSET_TR1_PREPATCH = 0x2000;
-        private const int BASE_SAVEGAME_OFFSET_TR1_PATCH5 = 0x2000;
-        private const int BASE_SAVEGAME_OFFSET_TR2_PREPATCH = 0x72000;
-        private const int BASE_SAVEGAME_OFFSET_TR2_PATCH5 = 0xD2000;
-        private const int BASE_SAVEGAME_OFFSET_TR3_PREPATCH = 0xE2000;
-        private const int BASE_SAVEGAME_OFFSET_TR3_PATCH5 = 0x1A2000;
+        private const int BASE_SAVEGAME_OFFSET_TR1_PREPATCH = 0x2004;
+        private const int BASE_SAVEGAME_OFFSET_TR1_PATCH5 = 0x2004;
+        private const int BASE_SAVEGAME_OFFSET_TR2_PREPATCH = 0x72004;
+        private const int BASE_SAVEGAME_OFFSET_TR2_PATCH5 = 0xD2004;
+        private const int BASE_SAVEGAME_OFFSET_TR3_PREPATCH = 0xE2004;
+        private const int BASE_SAVEGAME_OFFSET_TR3_PATCH5 = 0x1A2004;
 
         // Misc
         private ProgressForm progressForm;

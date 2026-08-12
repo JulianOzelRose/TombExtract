@@ -9,7 +9,7 @@ namespace TombExtract
 {
     public partial class CreateSavegameForm : Form
     {
-        private const int SLOT_NUMBER_OFFSET_TR6 = 0x015;
+        private const int SLOT_NUMBER_OFFSET_TR6 = 0x011;
         private int CURRENT_TAB;
         private int SLOT_NUMBER;
         private int SAVE_NUMBER_OFFSET;
@@ -1100,18 +1100,18 @@ namespace TombExtract
 
             if (IsTR1Savegame())
             {
-                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6E0);
-                Array.Copy(buffer, 0x6E0, convertedBuffer, 0x6E0 + 0x13, buffer.Length - 0x6E0);
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6DC);
+                Array.Copy(buffer, 0x6DC, convertedBuffer, 0x6DC + 0x13, buffer.Length - 0x6DC);
             }
             else if (IsTR2Savegame())
             {
-                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6A0);
-                Array.Copy(buffer, 0x6A0, convertedBuffer, 0x6A0 + 0x1A, buffer.Length - 0x6A0);
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x69C);
+                Array.Copy(buffer, 0x69C, convertedBuffer, 0x69C + 0x1A, buffer.Length - 0x69C);
             }
             else if (IsTR3Savegame())
             {
-                Array.Copy(buffer, 0, convertedBuffer, 0, 0x98C);
-                Array.Copy(buffer, 0x98C, convertedBuffer, 0x98C + 0x10, buffer.Length - 0x98C);
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x988);
+                Array.Copy(buffer, 0x988, convertedBuffer, 0x988 + 0x10, buffer.Length - 0x988);
             }
             else
             {

@@ -15,9 +15,9 @@ namespace TombExtract
         private string savegameDestinationPath;
 
         // Offsets
-        private const int NEW_GAME_PLUS_OFFSET = 0x008;
-        private const int SAVE_NUMBER_OFFSET = 0x00C;
-        private const int LEVEL_INDEX_OFFSET_PREPATCH = 0x62C;
+        private const int NEW_GAME_PLUS_OFFSET = 0x004;
+        private const int SAVE_NUMBER_OFFSET = 0x008;
+        private const int LEVEL_INDEX_OFFSET_PREPATCH = 0x628;
 
         // Platform or patch-dependent offsets
         private int SOURCE_LEVEL_INDEX_OFFSET;
@@ -27,19 +27,19 @@ namespace TombExtract
         private int SOURCE_SAVEGAME_VERSION_OFFSET;
 
         // PC offsets
-        private const int LEVEL_INDEX_OFFSET_PC = 0x62C;
-        private const int SAVEGAME_VERSION_OFFSET_PC = 0x6E4;
-        private const int CHALLENGE_MODE_OFFSET_PC = 0x6EC;
+        private const int LEVEL_INDEX_OFFSET_PC = 0x628;
+        private const int SAVEGAME_VERSION_OFFSET_PC = 0x6E0;
+        private const int CHALLENGE_MODE_OFFSET_PC = 0x6E8;
 
         // Android offsets
-        private const int LEVEL_INDEX_OFFSET_ANDROID = 0x65C;
-        private const int SAVEGAME_VERSION_OFFSET_ANDROID = 0x710;
-        private const int CHALLENGE_MODE_OFFSET_ANDROID = 0x718;
+        private const int LEVEL_INDEX_OFFSET_ANDROID = 0x658;
+        private const int SAVEGAME_VERSION_OFFSET_ANDROID = 0x70C;
+        private const int CHALLENGE_MODE_OFFSET_ANDROID = 0x714;
 
         // PS4 offsets
-        private const int LEVEL_INDEX_OFFSET_PS4 = 0x62C;
-        private const int SAVEGAME_VERSION_OFFSET_PS4 = 0x6E0;
-        private const int CHALLENGE_MODE_OFFSET_PS4 = 0x6E8;
+        private const int LEVEL_INDEX_OFFSET_PS4 = 0x628;
+        private const int SAVEGAME_VERSION_OFFSET_PS4 = 0x6DC;
+        private const int CHALLENGE_MODE_OFFSET_PS4 = 0x6E4;
 
         // Savegame constants
         private int SOURCE_BASE_SAVEGAME_OFFSET_TR1;
@@ -48,8 +48,8 @@ namespace TombExtract
         private int DESTINATION_SAVEGAME_SIZE;
 
         // Patch-specific
-        private const int BASE_SAVEGAME_OFFSET_TR1_PREPATCH = 0x2000;
-        private const int BASE_SAVEGAME_OFFSET_TR1_PATCH5 = 0x2000;
+        private const int BASE_SAVEGAME_OFFSET_TR1_PREPATCH = 0x2004;
+        private const int BASE_SAVEGAME_OFFSET_TR1_PATCH5 = 0x2004;
 
         // Entity block
         private const int ENTITY_BLOCK_START_PC = 0x6F0;
@@ -427,7 +427,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x6E0 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
+                                    if (currentRelativeOffset >= 0x6DC && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
                                     {
                                         destinationFile.Seek(offset + 0x13, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -443,7 +443,7 @@ namespace TombExtract
                             {
                                 progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
 
-                                bool isNativePatch5Savegame = BitConverter.ToInt32(savegameBytes, SOURCE_SAVEGAME_VERSION_OFFSET) >= 2;
+                                bool isNativePatch5Savegame = BitConverter.ToUInt32(savegameBytes, SOURCE_SAVEGAME_VERSION_OFFSET) >= 2;
 
                                 if (isNativePatch5Savegame)
                                 {
@@ -460,7 +460,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x6F3 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
+                                    if (currentRelativeOffset >= 0x6EF && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
                                     {
                                         destinationFile.Seek(offset - 0x13, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -498,12 +498,12 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                    if (currentRelativeOffset >= 0x64A && currentRelativeOffset < 0x6AC)
                                     {
                                         destinationFile.Seek(offset - 1, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x6B0)
+                                    else if (currentRelativeOffset >= 0x6AC)
                                     {
                                         destinationFile.Seek(offset - 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -529,7 +529,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x6B0)
+                                    if (currentRelativeOffset >= 0x6AC)
                                     {
                                         destinationFile.Seek(offset - 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -557,7 +557,7 @@ namespace TombExtract
                                 {
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
 
-                                    if (j >= 0x6E0)
+                                    if (j >= 0x6DC)
                                     {
                                         migratedPatch5Buffer[j + 0x13] = value;
                                     }
@@ -574,7 +574,7 @@ namespace TombExtract
                                     byte value = j < migratedPatch5Buffer.Length ? migratedPatch5Buffer[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x6B0)
+                                    if (currentRelativeOffset >= 0x6AC)
                                     {
                                         destinationFile.Seek(offset - 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -597,12 +597,12 @@ namespace TombExtract
                                 byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                 byte[] currentByte = { value };
 
-                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                if (currentRelativeOffset >= 0x64A && currentRelativeOffset < 0x6AC)
                                 {
                                     destinationFile.Seek(offset - 1, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
-                                else if (currentRelativeOffset >= 0x6B0)
+                                else if (currentRelativeOffset >= 0x6AC)
                                 {
                                     destinationFile.Seek(offset - 4, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -626,12 +626,12 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                    if (currentRelativeOffset >= 0x64A && currentRelativeOffset < 0x6AC)
                                     {
                                         destinationFile.Seek(offset + 1, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x6B0)
+                                    else if (currentRelativeOffset >= 0x6AC)
                                     {
                                         destinationFile.Seek(offset + 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -657,7 +657,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x6B0)
+                                    if (currentRelativeOffset >= 0x6AC)
                                     {
                                         destinationFile.Seek(offset + 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -685,17 +685,17 @@ namespace TombExtract
                                 byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                 byte[] currentByte = { value };
 
-                                if (currentRelativeOffset >= 0x610 && currentRelativeOffset < 0x696)
+                                if (currentRelativeOffset >= 0x60C && currentRelativeOffset < 0x692)
                                 {
                                     destinationFile.Seek(offset - 0x30, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
-                                else if (currentRelativeOffset >= 0x696 && currentRelativeOffset < 0x72B)
+                                else if (currentRelativeOffset >= 0x692 && currentRelativeOffset < 0x727)
                                 {
                                     destinationFile.Seek(offset - 0x2C, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
-                                else if (currentRelativeOffset >= 0x72B && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                else if (currentRelativeOffset >= 0x727 && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
                                 {
                                     destinationFile.Seek(offset - 0x3B, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -732,7 +732,7 @@ namespace TombExtract
                                 {
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
 
-                                    if (j >= 0x6E0)
+                                    if (j >= 0x6DC)
                                     {
                                         migratedPatch5Buffer[j + 0x13] = value;
                                     }
@@ -751,17 +751,17 @@ namespace TombExtract
 
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x610 && currentRelativeOffset < 0x696)
+                                    if (currentRelativeOffset >= 0x60C && currentRelativeOffset < 0x692)
                                     {
                                         destinationFile.Seek(offset + 0x30, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x696 && currentRelativeOffset < 0x700)
+                                    else if (currentRelativeOffset >= 0x692 && currentRelativeOffset < 0x6FC)
                                     {
                                         destinationFile.Seek(offset + 0x2C, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x700 && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                    else if (currentRelativeOffset >= 0x6FC && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
                                     {
                                         destinationFile.Seek(offset + 0x3B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -794,17 +794,17 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x610 && currentRelativeOffset < 0x696)
+                                    if (currentRelativeOffset >= 0x60C && currentRelativeOffset < 0x692)
                                     {
                                         destinationFile.Seek(offset + 0x30, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x696 && currentRelativeOffset < 0x700)
+                                    else if (currentRelativeOffset >= 0x692 && currentRelativeOffset < 0x6FC)
                                     {
                                         destinationFile.Seek(offset + 0x2C, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x700 && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                    else if (currentRelativeOffset >= 0x6FC && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
                                     {
                                         destinationFile.Seek(offset + 0x3B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -833,12 +833,12 @@ namespace TombExtract
                                 byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                 byte[] currentByte = { value };
 
-                                if (currentRelativeOffset >= 0x64E && currentRelativeOffset < 0x6B0)
+                                if (currentRelativeOffset >= 0x64A && currentRelativeOffset < 0x6AC)
                                 {
                                     destinationFile.Seek(offset + 1, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
-                                else if (currentRelativeOffset >= 0x6B0)
+                                else if (currentRelativeOffset >= 0x6AC)
                                 {
                                     destinationFile.Seek(offset + 4, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
