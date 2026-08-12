@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Media;
 using System.Windows.Forms;
 using static TombExtract.MainForm;
 
@@ -142,7 +143,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     owner,
@@ -221,7 +222,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     owner,
@@ -256,7 +257,7 @@ namespace TombExtract
             }
             catch (Exception ex)
             {
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     owner,
@@ -321,7 +322,7 @@ namespace TombExtract
                 Exception exception = e.Error as Exception ?? e.Result as Exception;
                 string errorMessage = e.Error != null ? e.Error.Message : exception.Message;
 
-                System.Media.SystemSounds.Hand.Play();
+                SystemSounds.Hand.Play();
 
                 ThemedMessageBox.Show(
                     owner,
@@ -334,7 +335,7 @@ namespace TombExtract
             {
                 slblStatus.Text = NO_CONVERT ? Globals.STATUS_MSG_TRANSFER_CANCELED : Globals.STATUS_MSG_CONVERSION_CANCELED;
 
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 ThemedMessageBox.Show(
                     owner,
@@ -348,7 +349,7 @@ namespace TombExtract
                 slblStatus.Text = $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
                     $"{totalSavegames} savegame(s) to destination file";
 
-                System.Media.SystemSounds.Asterisk.Play();
+                SystemSounds.Asterisk.Play();
 
                 string dialogMessage = $"Successfully {(NO_CONVERT ? "transferred " : "converted and transferred ")}" +
                     $"{totalSavegames} savegame(s) to destination file.";
