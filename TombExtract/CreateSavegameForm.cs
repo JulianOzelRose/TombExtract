@@ -79,6 +79,7 @@ namespace TombExtract
             {
                 gameSuffix = "Tomb Raider VI";
                 SAVE_NUMBER_OFFSET = 0x11C;
+                nudSaveNumber.Maximum = UInt32.MaxValue;
             }
 
             this.Text = $"{Globals.WINDOW_TITLE_CREATE_SAVEGAME} - {gameSuffix}";
@@ -1185,12 +1186,18 @@ namespace TombExtract
 
                     // Write save number
                     fs.Seek(savegameOffset + SAVE_NUMBER_OFFSET, SeekOrigin.Begin);
-                    fs.Write(BitConverter.GetBytes((int)nudSaveNumber.Value), 0, 4);
 
                     if (isTR6Savegame)
                     {
+                        fs.Write(BitConverter.GetBytes((UInt32)nudSaveNumber.Value), 0, sizeof(UInt32));
+
+                        // Write slot number
                         fs.Seek(savegameOffset + SLOT_NUMBER_OFFSET_TR6, SeekOrigin.Begin);
                         fs.WriteByte((byte)SLOT_NUMBER);
+                    }
+                    else
+                    {
+                        fs.Write(BitConverter.GetBytes((Int32)nudSaveNumber.Value), 0, sizeof(Int32));
                     }
                 }
 
