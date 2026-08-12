@@ -17,16 +17,16 @@ namespace TombExtract
         private string savegamePath;
 
         private List<LevelInfo> levelSelectionList = new List<LevelInfo>();
-        private Dictionary<byte, Dictionary<GameMode, string>> premadeBuffers;
+        private Dictionary<int, Dictionary<GameMode, string>> premadeBuffers;
         private ToolStripStatusLabel slblStatus;
         private bool isInitializing = true;
 
         private class LevelInfo
         {
-            public byte Index { get; set; }
+            public int Index { get; set; }
             public string Name { get; set; }
 
-            public LevelInfo(byte index, string name)
+            public LevelInfo(int index, string name)
             {
                 Index = index;
                 Name = name;
@@ -104,7 +104,7 @@ namespace TombExtract
 
         private void PopulateLevelSelectionList()
         {
-            Dictionary<byte, string> selectedDict = null;
+            Dictionary<int, string> selectedDict = null;
 
             if (CURRENT_TAB == Globals.TAB_TR1)
             {
@@ -156,7 +156,7 @@ namespace TombExtract
         {
             if (CURRENT_TAB == Globals.TAB_TR1)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
+                premadeBuffers = new Dictionary<int, Dictionary<GameMode, string>>()
                 {
                     { 1, new Dictionary<GameMode, string>()
                         {
@@ -272,7 +272,7 @@ namespace TombExtract
             }
             else if (CURRENT_TAB == Globals.TAB_TR2)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
+                premadeBuffers = new Dictionary<int, Dictionary<GameMode, string>>()
                 {
                     { 1, new Dictionary<GameMode, string>()
                         {
@@ -411,7 +411,7 @@ namespace TombExtract
             }
             else if (CURRENT_TAB == Globals.TAB_TR3)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
+                premadeBuffers = new Dictionary<int, Dictionary<GameMode, string>>()
                 {
                     { 1, new Dictionary<GameMode, string>()
                         {
@@ -566,7 +566,7 @@ namespace TombExtract
             }
             else if (CURRENT_TAB == Globals.TAB_TR4)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
+                premadeBuffers = new Dictionary<int, Dictionary<GameMode, string>>()
                 {
                     { 1, new Dictionary<GameMode, string>()
                         {
@@ -757,7 +757,7 @@ namespace TombExtract
             }
             else if (CURRENT_TAB == Globals.TAB_TR5)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
+                premadeBuffers = new Dictionary<int, Dictionary<GameMode, string>>()
                 {
                     { 1, new Dictionary<GameMode, string>()
                         {
@@ -841,7 +841,7 @@ namespace TombExtract
             }
             else if (CURRENT_TAB == Globals.TAB_TR6)
             {
-                premadeBuffers = new Dictionary<byte, Dictionary<GameMode, string>>()
+                premadeBuffers = new Dictionary<int, Dictionary<GameMode, string>>()
                 {
                     { 0, new Dictionary<GameMode, string>()
                         {
@@ -1090,7 +1090,7 @@ namespace TombExtract
 
         private bool IsPatch5SavegameFile(byte[] fileData)
         {
-            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PATCH5;
+            return BitConverter.ToUInt32(fileData, Globals.SAVEFILE_VERSION_OFFSET) == Globals.SAVEFILE_TRX_PATCH5;
         }
 
         private byte[] ConvertTRXSavegameToPatch5(byte[] buffer)

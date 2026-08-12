@@ -41,7 +41,7 @@ namespace TombExtract
     public class Savegame
     {
         public int Offset { get; set; }
-        public Int32 Number { get; set; }
+        public Int64 Number { get; set; }
         public string Name { get; set; }
         public bool IsNewGamePlus { get; set; }
         public bool IsEmptySlot { get; set; }
@@ -50,7 +50,7 @@ namespace TombExtract
         public bool SaveNumberFirst { get; set; }
         public bool IsChallengeMode { get; set; }
 
-        public Savegame(int savegameOffset, Int32 saveNumber, string levelName, bool isNewGamePlus, bool saveNumberFirst = false, bool isChallengeMode = false)
+        public Savegame(int savegameOffset, Int64 saveNumber, string levelName, bool isNewGamePlus, bool saveNumberFirst = false, bool isChallengeMode = false)
         {
             Number = saveNumber;
             Name = levelName;
@@ -82,7 +82,7 @@ namespace TombExtract
 
     public static class LevelNames
     {
-        public static readonly Dictionary<byte, string> TR1 = new Dictionary<byte, string>()
+        public static readonly Dictionary<int, string> TR1 = new Dictionary<int, string>()
         {
             { 1,  "Caves"                       },
             { 2,  "City of Vilcabamba"          },
@@ -105,7 +105,7 @@ namespace TombExtract
             { 19, "The Hive"                    },
         };
 
-        public static readonly Dictionary<byte, string> TR2 = new Dictionary<byte, string>()
+        public static readonly Dictionary<int, string> TR2 = new Dictionary<int, string>()
         {
             {  1, "The Great Wall"              },
             {  2, "Venice"                      },
@@ -132,7 +132,7 @@ namespace TombExtract
             { 23, "Nightmare in Vegas"          },
         };
 
-        public static readonly Dictionary<byte, string> TR3 = new Dictionary<byte, string>()
+        public static readonly Dictionary<int, string> TR3 = new Dictionary<int, string>()
         {
             {  1, "Jungle"                      },
             {  2, "Temple Ruins"                },
@@ -162,7 +162,7 @@ namespace TombExtract
             { 26, "Reunion"                     },
         };
 
-        public static readonly Dictionary<byte, string> TR4 = new Dictionary<byte, string>()
+        public static readonly Dictionary<int, string> TR4 = new Dictionary<int, string>()
         {
             {  1, "Angkor Wat"                  },
             {  2, "Race for the Iris"           },
@@ -203,7 +203,7 @@ namespace TombExtract
             { 40, "The Times Exclusive"         },
         };
 
-        public static readonly Dictionary<byte, string> TR5 = new Dictionary<byte, string>()
+        public static readonly Dictionary<int, string> TR5 = new Dictionary<int, string>()
         {
             {  1, "Streets of Rome"             },
             {  2, "Trajan's Markets"            },
@@ -220,7 +220,7 @@ namespace TombExtract
             { 14, "Red Alert!"                  },
         };
 
-        public static readonly Dictionary<byte, string> TR6 = new Dictionary<byte, string>()
+        public static readonly Dictionary<int, string> TR6 = new Dictionary<int, string>()
         {
             {  0, "Parisian Back Streets"       },
             {  1, "Derelict Apartment Block"    },

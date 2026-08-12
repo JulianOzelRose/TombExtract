@@ -342,7 +342,7 @@ namespace TombExtract
             byte[] fileData = File.ReadAllBytes(path);
 
             long saveFileSize = fileInfo.Length;
-            byte saveFileVersion = GetSaveFileVersion(fileData);
+            UInt32 saveFileVersion = GetSaveFileVersion(fileData);
 
             if (saveFileVersion == Globals.SAVEFILE_TRX_PREPATCH && saveFileSize >= Globals.SAVEFILE_SIZE_TRX_PREPATCH)
             {
@@ -363,7 +363,7 @@ namespace TombExtract
             byte[] fileData = File.ReadAllBytes(path);
 
             long saveFileSize = fileInfo.Length;
-            byte saveFileVersion = GetSaveFileVersion(fileData);
+            UInt32 saveFileVersion = GetSaveFileVersion(fileData);
 
             if (saveFileVersion == Globals.SAVEFILE_TRX2_FORMAT && saveFileSize >= Globals.SAVEFILE_SIZE_TRX2)
             {
@@ -373,19 +373,19 @@ namespace TombExtract
             return false;
         }
 
-        public byte GetSaveFileVersion(byte[] fileData)
+        public UInt32 GetSaveFileVersion(byte[] fileData)
         {
-            return fileData[Globals.SAVEFILE_VERSION_OFFSET];
+            return BitConverter.ToUInt32(fileData, Globals.SAVEFILE_VERSION_OFFSET);
         }
 
         public bool IsPatch5SavegameFileTRX(byte[] fileData)
         {
-            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PATCH5;
+            return BitConverter.ToUInt32(fileData, Globals.SAVEFILE_VERSION_OFFSET) == Globals.SAVEFILE_TRX_PATCH5;
         }
 
         public bool IsPrepatchSavegameFileTRX(byte[] fileData)
         {
-            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PREPATCH;
+            return BitConverter.ToUInt32(fileData, Globals.SAVEFILE_VERSION_OFFSET) == Globals.SAVEFILE_TRX_PREPATCH;
         }
 
         private void SetSourceFileTRX(string path)

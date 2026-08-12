@@ -126,7 +126,7 @@ namespace TombExtract
                 {
                     int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR3 + (i * SOURCE_SAVEGAME_SIZE);
 
-                    byte levelIndex = fileData[currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET];
+                    Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
@@ -201,7 +201,7 @@ namespace TombExtract
                 {
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (i * DESTINATION_SAVEGAME_SIZE);
 
-                    byte levelIndex = fileData[currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET];
+                    Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
@@ -246,7 +246,7 @@ namespace TombExtract
                     int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR3) / SOURCE_SAVEGAME_SIZE;
                     int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
-                    byte levelIndex = fileData[currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET];
+                    Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + Globals.SLOT_STATUS_OFFSET) != 0;
 
                     if (isSavegamePresent && LevelNames.TR3.ContainsKey(levelIndex))
@@ -645,8 +645,10 @@ namespace TombExtract
                             }
 
                             // Force critical fields last
+                            Int16 levelIndex = BitConverter.ToInt16(savegameBytes, LEVEL_INDEX_OFFSET_ANDROID);
+
                             destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_PC, SeekOrigin.Begin);
-                            destinationFile.WriteByte(savegameBytes[LEVEL_INDEX_OFFSET_ANDROID]);
+                            destinationFile.Write(BitConverter.GetBytes(levelIndex), 0, sizeof(Int16));
                         }
                         else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android) // PC -> Android
                         {
@@ -704,8 +706,10 @@ namespace TombExtract
                                 }
 
                                 // Force critical fields last
+                                Int16 levelIndex = BitConverter.ToInt16(migratedPatch5Buffer, LEVEL_INDEX_OFFSET_PC);
+
                                 destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_ANDROID, SeekOrigin.Begin);
-                                destinationFile.WriteByte(migratedPatch5Buffer[LEVEL_INDEX_OFFSET_PC]);
+                                destinationFile.Write(BitConverter.GetBytes(levelIndex), 0, sizeof(Int16));
                             }
                             else if (!isSourcePrepatch && isDestinationPatch5)
                             {
@@ -740,8 +744,10 @@ namespace TombExtract
                                 }
 
                                 // Force critical fields last
+                                Int16 levelIndex = BitConverter.ToInt16(savegameBytes, LEVEL_INDEX_OFFSET_PC);
+
                                 destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_ANDROID, SeekOrigin.Begin);
-                                destinationFile.WriteByte(savegameBytes[LEVEL_INDEX_OFFSET_PC]);
+                                destinationFile.Write(BitConverter.GetBytes(levelIndex), 0, sizeof(Int16));
                             }
                         }
                         else if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform == Platform.PC)  // NS -> PC
@@ -827,7 +833,7 @@ namespace TombExtract
 
             Array.Copy(source, destination, entityBlockStart);
 
-            byte levelIndex = source[SOURCE_LEVEL_INDEX_OFFSET];
+            Int16 levelIndex = BitConverter.ToInt16(source, SOURCE_LEVEL_INDEX_OFFSET);
 
             var levelObjectIds = new List<int>(TR3EntityCache.LevelObjectIdsByLevel[levelIndex]);
 
@@ -944,17 +950,17 @@ namespace TombExtract
 
         private bool IsPrepatchSavegameFile(byte[] fileData)
         {
-            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PREPATCH;
+            return BitConverter.ToUInt32(fileData, Globals.SAVEFILE_VERSION_OFFSET) == Globals.SAVEFILE_TRX_PREPATCH;
         }
 
         private bool IsPatch5SavegameFile(byte[] fileData)
         {
-            return fileData[Globals.SAVEFILE_VERSION_OFFSET] == Globals.SAVEFILE_TRX_PATCH5;
+            return BitConverter.ToUInt32(fileData, Globals.SAVEFILE_VERSION_OFFSET) == Globals.SAVEFILE_TRX_PATCH5;
         }
 
         public bool IsNativePatch5Savegame(byte[] fileData, Savegame savegame)
         {
-            Int32 savegameVersion = BitConverter.ToInt32(fileData, savegame.Offset + SOURCE_SAVEGAME_VERSION_OFFSET);
+            UInt32 savegameVersion = BitConverter.ToUInt32(fileData, savegame.Offset + SOURCE_SAVEGAME_VERSION_OFFSET);
             return savegameVersion >= 2;
         }
 

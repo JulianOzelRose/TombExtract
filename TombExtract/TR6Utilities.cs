@@ -49,7 +49,7 @@ namespace TombExtract
 
                     if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
                     {
-                        Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
+                        UInt32 saveNumber = BitConverter.ToUInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR6[levelIndex];
 
@@ -88,7 +88,7 @@ namespace TombExtract
 
                     if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
                     {
-                        Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
+                        UInt32 saveNumber = BitConverter.ToUInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         string levelName = LevelNames.TR6[levelIndex];
 
