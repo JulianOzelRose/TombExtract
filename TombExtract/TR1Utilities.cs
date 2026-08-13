@@ -129,12 +129,11 @@ namespace TombExtract
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    if (isSavegamePresent && LevelNames.TR1.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR1.TryGetValue(levelIndex, out string levelName))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         bool isChallengeMode = fileData[currentSavegameOffset + SOURCE_CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
-                        string levelName = LevelNames.TR1[levelIndex];
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, false, isChallengeMode);
                         cklSavegames.Items.Add(savegame);
@@ -204,12 +203,11 @@ namespace TombExtract
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    if (isSavegamePresent && LevelNames.TR1.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR1.TryGetValue(levelIndex, out string levelName))
                     {
                         Int32 saveNumber = BitConverter.ToInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
                         bool isChallengeMode = fileData[currentSavegameOffset + DESTINATION_CHALLENGE_MODE_OFFSET] == 1 && isPatch5;
-                        string levelName = LevelNames.TR1[levelIndex];
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, false, isChallengeMode);
                         lstSavegames.Items.Add(savegame);

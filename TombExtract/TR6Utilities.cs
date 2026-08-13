@@ -48,11 +48,10 @@ namespace TombExtract
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR6.TryGetValue(levelIndex, out string levelName))
                     {
                         UInt32 saveNumber = BitConverter.ToUInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
-                        string levelName = LevelNames.TR6[levelIndex];
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, true);
                         cklSavegames.Items.Add(savegame);
@@ -87,11 +86,10 @@ namespace TombExtract
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
 
-                    if (isSavegamePresent && LevelNames.TR6.ContainsKey(levelIndex))
+                    if (isSavegamePresent && LevelNames.TR6.TryGetValue(levelIndex, out string levelName))
                     {
                         UInt32 saveNumber = BitConverter.ToUInt32(fileData, currentSavegameOffset + SAVE_NUMBER_OFFSET);
                         bool isNewGamePlus = BitConverter.ToInt32(fileData, currentSavegameOffset + NEW_GAME_PLUS_OFFSET) != 0;
-                        string levelName = LevelNames.TR6[levelIndex];
 
                         Savegame savegame = new Savegame(currentSavegameOffset, saveNumber, levelName, isNewGamePlus, true);
                         lstSavegames.Items.Add(savegame);
