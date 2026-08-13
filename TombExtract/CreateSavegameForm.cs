@@ -1100,13 +1100,13 @@ namespace TombExtract
 
             if (IsTR1Savegame())
             {
-                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6DC);
-                Array.Copy(buffer, 0x6DC, convertedBuffer, 0x6DC + 0x13, buffer.Length - 0x6DC);
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6DD);
+                Array.Copy(buffer, 0x6DD, convertedBuffer, 0x6DD + 0x13, buffer.Length - 0x6DD);
             }
             else if (IsTR2Savegame())
             {
-                Array.Copy(buffer, 0, convertedBuffer, 0, 0x69C);
-                Array.Copy(buffer, 0x69C, convertedBuffer, 0x69C + 0x1A, buffer.Length - 0x69C);
+                Array.Copy(buffer, 0, convertedBuffer, 0, 0x6A2);
+                Array.Copy(buffer, 0x6A2, convertedBuffer, 0x6A2 + 0x1A, buffer.Length - 0x6A2);
             }
             else if (IsTR3Savegame())
             {

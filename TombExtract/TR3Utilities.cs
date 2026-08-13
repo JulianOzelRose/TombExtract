@@ -668,9 +668,9 @@ namespace TombExtract
                                 {
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
 
-                                    if (j >= 0x990)
+                                    if (j >= 0x988)
                                     {
-                                        migratedPatch5Buffer[j + 0x0B] = value;
+                                        migratedPatch5Buffer[j + 0x10] = value;
                                     }
                                     else
                                     {
