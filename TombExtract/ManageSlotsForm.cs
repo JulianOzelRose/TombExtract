@@ -34,9 +34,9 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR1_PC = 0x628;
         private const int CHALLENGE_MODE_OFFSET_TR1_PC = 0x6E8;
 
-        // TR1 offsets (Android)
-        private const int LEVEL_INDEX_OFFSET_TR1_ANDROID = 0x658;
-        private const int CHALLENGE_MODE_OFFSET_TR1_ANDROID = 0x714;
+        // TR1 offsets (Mobile)
+        private const int LEVEL_INDEX_OFFSET_TR1_MOBILE = 0x658;
+        private const int CHALLENGE_MODE_OFFSET_TR1_MOBILE = 0x714;
 
         // TR1 offsets (PS4)
         private const int LEVEL_INDEX_OFFSET_TR1_PS4 = 0x628;
@@ -50,9 +50,9 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR2_PC = 0x624;
         private const int CHALLENGE_MODE_OFFSET_TR2_PC = 0x6AC;
 
-        // TR2 offsets (Android)
-        private const int LEVEL_INDEX_OFFSET_TR2_ANDROID = 0x654;
-        private const int CHALLENGE_MODE_OFFSET_TR2_ANDROID = 0x6D8;
+        // TR2 offsets (Mobile)
+        private const int LEVEL_INDEX_OFFSET_TR2_MOBILE = 0x654;
+        private const int CHALLENGE_MODE_OFFSET_TR2_MOBILE = 0x6D8;
 
         // TR2 offsets (PS4)
         private const int LEVEL_INDEX_OFFSET_TR2_PS4 = 0x624;
@@ -66,9 +66,9 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR3_PC = 0x8D2;
         private const int CHALLENGE_MODE_OFFSET_TR3_PC = 0x98C;
 
-        // TR3 offsets (Android)
-        private const int LEVEL_INDEX_OFFSET_TR3_ANDROID = 0x912;
-        private const int CHALLENGE_MODE_OFFSET_TR3_ANDROID = 0x9CC;
+        // TR3 offsets (Mobile)
+        private const int LEVEL_INDEX_OFFSET_TR3_MOBILE = 0x912;
+        private const int CHALLENGE_MODE_OFFSET_TR3_MOBILE = 0x9CC;
 
         // TR3 offsets (PS4)
         private const int LEVEL_INDEX_OFFSET_TR3_PS4 = 0x8D2;
@@ -231,10 +231,10 @@ namespace TombExtract
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PC;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_PC;
                     }
-                    else if (platform == Platform.Android)
+                    else if (platform == Platform.Android || platform == Platform.iOS)
                     {
-                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_ANDROID;
-                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_ANDROID;
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_MOBILE;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_MOBILE;
                     }
                     else if (platform == Platform.PlayStation4)
                     {
@@ -261,10 +261,10 @@ namespace TombExtract
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PC;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_PC;
                     }
-                    else if (platform == Platform.Android)
+                    else if (platform == Platform.Android || platform == Platform.iOS)
                     {
-                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_ANDROID;
-                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_ANDROID;
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_MOBILE;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_MOBILE;
                     }
                     else if (platform == Platform.PlayStation4)
                     {
@@ -291,10 +291,10 @@ namespace TombExtract
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PC;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_PC;
                     }
-                    else if (platform == Platform.Android)
+                    else if (platform == Platform.Android || platform == Platform.iOS)
                     {
-                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_ANDROID;
-                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_ANDROID;
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_MOBILE;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_MOBILE;
                     }
                     else if (platform == Platform.PlayStation4)
                     {

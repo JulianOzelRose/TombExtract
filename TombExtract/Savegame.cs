@@ -15,7 +15,8 @@ namespace TombExtract
         PC,
         PlayStation4,
         NintendoSwitch,
-        Android
+        Android,
+        iOS
     }
 
     public static class PlatformExtensions
@@ -32,9 +33,16 @@ namespace TombExtract
                     return "Nintendo Switch";
                 case Platform.Android:
                     return "Android";
+                case Platform.iOS:
+                    return "iOS";
                 default:
                     return platform.ToString();
             }
+        }
+
+        public static bool IsMobile(this Platform platform)
+        {
+            return platform == Platform.Android || platform == Platform.iOS;
         }
     }
 

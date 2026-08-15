@@ -32,10 +32,10 @@ namespace TombExtract
         private const int SAVEGAME_VERSION_OFFSET_PC = 0x6A4;
         private const int CHALLENGE_MODE_OFFSET_PC = 0x6AC;
 
-        // Android offsets
-        private const int LEVEL_INDEX_OFFSET_ANDROID = 0x654;
-        private const int SAVEGAME_VERSION_OFFSET_ANDROID = 0x6D0;
-        private const int CHALLENGE_MODE_OFFSET_ANDROID = 0x6D8;
+        // Mobile offsets
+        private const int LEVEL_INDEX_OFFSET_MOBILE = 0x654;
+        private const int SAVEGAME_VERSION_OFFSET_MOBILE = 0x6D0;
+        private const int CHALLENGE_MODE_OFFSET_MOBILE = 0x6D8;
 
         // PS4 offsets
         private const int LEVEL_INDEX_OFFSET_PS4 = 0x624;
@@ -54,7 +54,7 @@ namespace TombExtract
 
         // Entity block
         private const int ENTITY_BLOCK_START_PC = 0x6BC;
-        private const int ENTITY_BLOCK_START_ANDROID = 0x6F3;
+        private const int ENTITY_BLOCK_START_MOBILE = 0x6F3;
         private const int ENTITY_BLOCK_START_PS4 = 0x6B8;
         private const int ENTITY_AI_BLOCK_SIZE = 0xC;
 
@@ -103,11 +103,11 @@ namespace TombExtract
                         SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PC;
                         SOURCE_SAVEGAME_VERSION_OFFSET = SAVEGAME_VERSION_OFFSET_PC;
                     }
-                    else if (sourcePlatform == Platform.Android)
+                    else if (sourcePlatform.IsMobile())
                     {
-                        SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
-                        SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
-                        SOURCE_SAVEGAME_VERSION_OFFSET = SAVEGAME_VERSION_OFFSET_ANDROID;
+                        SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_MOBILE;
+                        SOURCE_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_MOBILE;
+                        SOURCE_SAVEGAME_VERSION_OFFSET = SAVEGAME_VERSION_OFFSET_MOBILE;
                     }
                     else if (sourcePlatform == Platform.PlayStation4)
                     {
@@ -179,10 +179,10 @@ namespace TombExtract
                         DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PC;
                         DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_PC;
                     }
-                    else if (destinationPlatform == Platform.Android)
+                    else if (destinationPlatform.IsMobile())
                     {
-                        DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_ANDROID;
-                        DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_ANDROID;
+                        DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_MOBILE;
+                        DESTINATION_CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_MOBILE;
                     }
                     else if (destinationPlatform == Platform.PlayStation4)
                     {
@@ -656,7 +656,7 @@ namespace TombExtract
                                 }
                             }
                         }
-                        else if (sourcePlatform == Platform.Android && destinationPlatform == Platform.PC) // Android -> PC
+                        else if (sourcePlatform.IsMobile() && destinationPlatform == Platform.PC) // Mobile -> PC
                         {
                             progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
 
@@ -694,16 +694,29 @@ namespace TombExtract
                             }
 
                             // Force critical fields last
-                            Int16 levelIndex = BitConverter.ToInt16(savegameBytes, LEVEL_INDEX_OFFSET_ANDROID);
+                            Int16 levelIndex = BitConverter.ToInt16(savegameBytes, LEVEL_INDEX_OFFSET_MOBILE);
 
                             destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_PC, SeekOrigin.Begin);
                             destinationFile.Write(BitConverter.GetBytes(levelIndex), 0, sizeof(Int16));
                         }
-                        else if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android) // PC -> Android
+                        else if (sourcePlatform.IsMobile() && destinationPlatform.IsMobile())  // Mobile -> Mobile
+                        {
+                            progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to {destinationPlatform.ToFriendlyString()}...");
+
+                            for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                            {
+                                byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+                                byte[] currentByte = { value };
+
+                                destinationFile.Seek(offset, SeekOrigin.Begin);
+                                destinationFile.Write(currentByte, 0, currentByte.Length);
+                            }
+                        }
+                        else if (sourcePlatform == Platform.PC && destinationPlatform.IsMobile()) // PC -> Mobile
                         {
                             if (isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to Android...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to {destinationPlatform.ToFriendlyString()}...");
 
                                 // ZERO BUFFER
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
@@ -728,7 +741,7 @@ namespace TombExtract
                                     }
                                 }
 
-                                // PATCH 5 PC -> ANDROID
+                                // PATCH 5 PC -> MOBILE
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
                                     int currentRelativeOffset = offset - currentSavegameOffset;
@@ -762,12 +775,12 @@ namespace TombExtract
                                 // Force critical fields last
                                 Int16 levelIndex = BitConverter.ToInt16(migratedPatch5Buffer, LEVEL_INDEX_OFFSET_PC);
 
-                                destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_ANDROID, SeekOrigin.Begin);
+                                destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_MOBILE, SeekOrigin.Begin);
                                 destinationFile.Write(BitConverter.GetBytes(levelIndex), 0, sizeof(Int16));
                             }
                             else if (!isSourcePrepatch && isDestinationPatch5)
                             {
-                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to Android...");
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to {destinationPlatform.ToFriendlyString()}...");
 
                                 // ZERO BUFFER
                                 byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
@@ -805,7 +818,7 @@ namespace TombExtract
                                 // Force critical fields last
                                 Int16 levelIndex = BitConverter.ToInt16(savegameBytes, LEVEL_INDEX_OFFSET_PC);
 
-                                destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_ANDROID, SeekOrigin.Begin);
+                                destinationFile.Seek(currentSavegameOffset + LEVEL_INDEX_OFFSET_MOBILE, SeekOrigin.Begin);
                                 destinationFile.Write(BitConverter.GetBytes(levelIndex), 0, sizeof(Int16));
                             }
                         }
@@ -872,9 +885,9 @@ namespace TombExtract
             {
                 return ENTITY_BLOCK_START_PC;
             }
-            else if (sourcePlatform == Platform.Android)
+            else if (sourcePlatform.IsMobile())
             {
-                return ENTITY_BLOCK_START_ANDROID;
+                return ENTITY_BLOCK_START_MOBILE;
             }
             else if (sourcePlatform == Platform.PlayStation4)
             {

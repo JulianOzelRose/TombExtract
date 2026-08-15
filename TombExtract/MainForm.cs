@@ -1697,7 +1697,7 @@ namespace TombExtract
                 Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
                 Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
 
-                if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android)
+                if (sourcePlatform == Platform.PC && destinationPlatform.IsMobile())
                 {
                     bool isAnyChallengeModeSavegameChecked = IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR1);
 
@@ -1707,7 +1707,7 @@ namespace TombExtract
 
                         DialogResult result = ThemedMessageBox.Show(
                             this,
-                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING,
+                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_MOBILE_CONVERSION_WARNING,
                             Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
@@ -1735,7 +1735,7 @@ namespace TombExtract
                     return;
                 }
 
-                if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
+                if (sourcePlatform.IsMobile() && (!destinationPlatform.IsMobile() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
 
@@ -1854,7 +1854,7 @@ namespace TombExtract
                 Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
                 Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
 
-                if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android)
+                if (sourcePlatform == Platform.PC && destinationPlatform.IsMobile())
                 {
                     bool isAnyChallengeModeSavegameChecked = IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR2);
 
@@ -1864,7 +1864,7 @@ namespace TombExtract
 
                         DialogResult result = ThemedMessageBox.Show(
                             this,
-                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING,
+                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_MOBILE_CONVERSION_WARNING,
                             Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
@@ -1892,7 +1892,7 @@ namespace TombExtract
                     return;
                 }
 
-                if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
+                if (sourcePlatform.IsMobile() && (!destinationPlatform.IsMobile() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
 
@@ -2011,7 +2011,7 @@ namespace TombExtract
                 Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
                 Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
 
-                if (sourcePlatform == Platform.PC && destinationPlatform == Platform.Android)
+                if (sourcePlatform == Platform.PC && destinationPlatform.IsMobile())
                 {
                     bool isAnyChallengeModeSavegameChecked = IsAnyChallengeModeSavegameChecked(cklSourceSavegamesTR3);
 
@@ -2021,7 +2021,7 @@ namespace TombExtract
 
                         DialogResult result = ThemedMessageBox.Show(
                             this,
-                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_ANDROID_CONVERSION_WARNING,
+                            Globals.DIALOG_MSG_CHALLENGE_MODE_PC_TO_MOBILE_CONVERSION_WARNING,
                             Globals.DIALOG_TITLE_CONVERSION_WARNING,
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Warning);
@@ -2049,7 +2049,7 @@ namespace TombExtract
                     return;
                 }
 
-                if (sourcePlatform == Platform.Android && (destinationPlatform != Platform.Android && destinationPlatform != Platform.PC))
+                if (sourcePlatform.IsMobile() && (!destinationPlatform.IsMobile() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
 
