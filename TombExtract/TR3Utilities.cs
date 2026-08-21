@@ -496,7 +496,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0xAA6)
+                                    if (currentRelativeOffset >= 0x984)
                                     {
                                         destinationFile.Seek(offset - 2, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -520,6 +520,12 @@ namespace TombExtract
                                     destinationFile.Seek(offset, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
+
+                                // Force correct world state
+                                UInt32 worldState = BitConverter.ToUInt32(savegameBytes, 0x984);
+
+                                destinationFile.Seek(currentSavegameOffset + 0x982, SeekOrigin.Begin);
+                                destinationFile.Write(BitConverter.GetBytes(worldState), 0, sizeof(UInt32));
                             }
                             else if (isSourcePrepatch && isDestinationPatch5)
                             {
@@ -542,6 +548,12 @@ namespace TombExtract
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
                                 }
+
+                                // Force correct world state
+                                UInt32 worldState = BitConverter.ToUInt32(savegameBytes, 0x984);
+
+                                destinationFile.Seek(currentSavegameOffset + 0x982, SeekOrigin.Begin);
+                                destinationFile.Write(BitConverter.GetBytes(worldState), 0, sizeof(UInt32));
                             }
                         }
                         else if (sourcePlatform.IsConsole() && destinationPlatform == Platform.PC) // Console -> PC
@@ -556,7 +568,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0xAA6 && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 2)
+                                    if (currentRelativeOffset >= 0x982 && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 2)
                                     {
                                         destinationFile.Seek(offset + 2, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -580,6 +592,12 @@ namespace TombExtract
                                     destinationFile.Seek(offset, SeekOrigin.Begin);
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
+
+                                // Force correct world state
+                                UInt32 worldState = BitConverter.ToUInt32(savegameBytes, 0x982);
+
+                                destinationFile.Seek(currentSavegameOffset + 0x984, SeekOrigin.Begin);
+                                destinationFile.Write(BitConverter.GetBytes(worldState), 0, sizeof(UInt32));
                             }
                             else if (isSourcePrepatch && isDestinationPatch5)
                             {
@@ -593,7 +611,7 @@ namespace TombExtract
                                 {
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
 
-                                    if (j >= 0xAA6 && j < Globals.SAVEGAME_SIZE_TRX_PREPATCH - 2)
+                                    if (j >= 0x982 && j < Globals.SAVEGAME_SIZE_TRX_PREPATCH - 2)
                                     {
                                         migratedPrepatchBuffer[j + 2] = value;
                                     }
