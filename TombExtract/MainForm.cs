@@ -115,6 +115,9 @@ namespace TombExtract
             picArrowTR4.Image = Resources.Arrow_Right_Image;
             picArrowTR5.Image = Resources.Arrow_Right_Image;
             picArrowTR6.Image = Resources.Arrow_Right_Image;
+            picConversionInfoTR4.Image = Resources.ToolTip_Image;
+            picConversionInfoTR5.Image = Resources.ToolTip_Image;
+            picConversionInfoTR6.Image = Resources.ToolTip_Image;
 
             ThemeUtilities.ApplyLightTitleBar(this);
             ThemeUtilities.DARK_MODE_ENABLED = false;
@@ -144,6 +147,9 @@ namespace TombExtract
             picArrowTR4.Image = Resources.Arrow_Right_Image_DarkMode;
             picArrowTR5.Image = Resources.Arrow_Right_Image_DarkMode;
             picArrowTR6.Image = Resources.Arrow_Right_Image_DarkMode;
+            picConversionInfoTR4.Image = Resources.ToolTip_Image_DarkMode;
+            picConversionInfoTR5.Image = Resources.ToolTip_Image_DarkMode;
+            picConversionInfoTR6.Image = Resources.ToolTip_Image_DarkMode;
 
             ThemeUtilities.DARK_MODE_ENABLED = true;
         }
@@ -217,6 +223,13 @@ namespace TombExtract
                             tsmiDarkMode.Checked = true;
                         }
                     }
+                    else if (line.StartsWith(Globals.CONFIG_KEY_BACKUP_ON_WRITE))
+                    {
+                        if (bool.TryParse(line.Substring(Globals.CONFIG_KEY_BACKUP_ON_WRITE.Length), out bool backupOnWrite))
+                        {
+                            chkBackupOnWrite.Checked = backupOnWrite;
+                        }
+                    }
                 }
             }
             else
@@ -231,7 +244,8 @@ namespace TombExtract
             string filePath = Path.Combine(rootFolder, Globals.CONFIG_FILE_NAME);
 
             string content = $"{Globals.CONFIG_KEY_STATUS_BAR}{tsmiStatusBar.Checked}\n";
-            content += $"{Globals.CONFIG_KEY_DARK_MODE}{tsmiDarkMode.Checked}";
+            content += $"{Globals.CONFIG_KEY_DARK_MODE}{tsmiDarkMode.Checked}\n";
+            content += $"{Globals.CONFIG_KEY_BACKUP_ON_WRITE}{chkBackupOnWrite.Checked}";
 
             File.WriteAllText(filePath, content);
         }
@@ -404,6 +418,20 @@ namespace TombExtract
                 return;
             }
 
+            if (IsSameFile(path, savegameDestinationPathTRX))
+            {
+                SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    Globals.DIALOG_MSG_INVALID_FILE_SELECTION,
+                    Globals.DIALOG_TITLE_INVALID_ACTION,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             txtSourceFilePath.Text = path;
             savegameSourcePathTRX = path;
 
@@ -438,6 +466,20 @@ namespace TombExtract
                     this,
                     Globals.DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX2,
                     Globals.DIALOG_TITLE_INVALID_SAVEGAME_FILE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            if (IsSameFile(path, savegameDestinationPathTRX2))
+            {
+                SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    Globals.DIALOG_MSG_INVALID_FILE_SELECTION,
+                    Globals.DIALOG_TITLE_INVALID_ACTION,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -481,6 +523,20 @@ namespace TombExtract
                 return;
             }
 
+            if (IsSameFile(path, savegameSourcePathTRX))
+            {
+                SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    Globals.DIALOG_MSG_INVALID_FILE_SELECTION,
+                    Globals.DIALOG_TITLE_INVALID_ACTION,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             txtDestinationFilePath.Text = path;
             savegameDestinationPathTRX = path;
 
@@ -511,6 +567,20 @@ namespace TombExtract
                     this,
                     Globals.DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX2,
                     Globals.DIALOG_TITLE_INVALID_SAVEGAME_FILE,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            if (IsSameFile(path, savegameSourcePathTRX2))
+            {
+                SystemSounds.Exclamation.Play();
+
+                ThemedMessageBox.Show(
+                    this,
+                    Globals.DIALOG_MSG_INVALID_FILE_SELECTION,
+                    Globals.DIALOG_TITLE_INVALID_ACTION,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -2571,6 +2641,19 @@ namespace TombExtract
 
             UpdateExtractButtonText();
             EnableButtonsConditionally();
+        }
+
+        private bool IsSameFile(string path1, string path2)
+        {
+            if (string.IsNullOrEmpty(path1) || string.IsNullOrEmpty(path2))
+            {
+                return false;
+            }
+
+            return string.Equals(
+                Path.GetFullPath(path1),
+                Path.GetFullPath(path2),
+                StringComparison.OrdinalIgnoreCase);
         }
 
         private void cmbSourceFormatTR1_SelectedIndexChanged(object sender, EventArgs e)

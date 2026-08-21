@@ -40,6 +40,7 @@ namespace TombExtract
             this.txtSourceFilePath = new System.Windows.Forms.TextBox();
             this.tabGame = new System.Windows.Forms.TabControl();
             this.tpTR1 = new System.Windows.Forms.TabPage();
+            this.picArrowTR1 = new System.Windows.Forms.PictureBox();
             this.cmbDestinationFormatTR1 = new System.Windows.Forms.ComboBox();
             this.lblDestinationFormatTR1 = new System.Windows.Forms.Label();
             this.cmbSourceFormatTR1 = new System.Windows.Forms.ComboBox();
@@ -54,6 +55,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR1 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR1 = new System.Windows.Forms.CheckedListBox();
             this.tpTR2 = new System.Windows.Forms.TabPage();
+            this.picArrowTR2 = new System.Windows.Forms.PictureBox();
             this.cmbDestinationFormatTR2 = new System.Windows.Forms.ComboBox();
             this.lblDestinationFormatTR2 = new System.Windows.Forms.Label();
             this.cmbSourceFormatTR2 = new System.Windows.Forms.ComboBox();
@@ -68,6 +70,7 @@ namespace TombExtract
             this.lblSourceSavegamesTR2 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR2 = new System.Windows.Forms.CheckedListBox();
             this.tpTR3 = new System.Windows.Forms.TabPage();
+            this.picArrowTR3 = new System.Windows.Forms.PictureBox();
             this.cmbDestinationFormatTR3 = new System.Windows.Forms.ComboBox();
             this.lblDestinationFormatTR3 = new System.Windows.Forms.Label();
             this.cmbSourceFormatTR3 = new System.Windows.Forms.ComboBox();
@@ -82,6 +85,9 @@ namespace TombExtract
             this.lblSourceSavegamesTR3 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR3 = new System.Windows.Forms.CheckedListBox();
             this.tpTR4 = new System.Windows.Forms.TabPage();
+            this.lblConversionInfoTR4 = new System.Windows.Forms.Label();
+            this.picConversionInfoTR4 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR4 = new System.Windows.Forms.PictureBox();
             this.btnManageSlotsTR4 = new System.Windows.Forms.Button();
             this.btnAboutTR4 = new System.Windows.Forms.Button();
             this.btnSelectAllTR4 = new System.Windows.Forms.Button();
@@ -92,6 +98,9 @@ namespace TombExtract
             this.lblSourceSavegamesTR4 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR4 = new System.Windows.Forms.CheckedListBox();
             this.tpTR5 = new System.Windows.Forms.TabPage();
+            this.lblConversionInfoTR5 = new System.Windows.Forms.Label();
+            this.picConversionInfoTR5 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR5 = new System.Windows.Forms.PictureBox();
             this.btnManageSlotsTR5 = new System.Windows.Forms.Button();
             this.btnAboutTR5 = new System.Windows.Forms.Button();
             this.btnSelectAllTR5 = new System.Windows.Forms.Button();
@@ -102,6 +111,9 @@ namespace TombExtract
             this.lblSourceSavegamesTR5 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR5 = new System.Windows.Forms.CheckedListBox();
             this.tpTR6 = new System.Windows.Forms.TabPage();
+            this.lblConversionInfoTR6 = new System.Windows.Forms.Label();
+            this.picConversionInfoTR6 = new System.Windows.Forms.PictureBox();
+            this.picArrowTR6 = new System.Windows.Forms.PictureBox();
             this.btnManageSlotsTR6 = new System.Windows.Forms.Button();
             this.btnAboutTR6 = new System.Windows.Forms.Button();
             this.btnSelectAllTR6 = new System.Windows.Forms.Button();
@@ -112,8 +124,6 @@ namespace TombExtract
             this.lblSourceSavegamesTR6 = new System.Windows.Forms.Label();
             this.cklSourceSavegamesTR6 = new System.Windows.Forms.CheckedListBox();
             this.tsrToolStrip = new System.Windows.Forms.ToolStrip();
-            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
-            this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsddbFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsmiBrowseTRXSourceFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBrowseTRXDestinationFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,28 +143,27 @@ namespace TombExtract
             this.tsmiViewReadme = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReportBug = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.picArrowTR1 = new System.Windows.Forms.PictureBox();
-            this.picArrowTR2 = new System.Windows.Forms.PictureBox();
-            this.picArrowTR3 = new System.Windows.Forms.PictureBox();
-            this.picArrowTR4 = new System.Windows.Forms.PictureBox();
-            this.picArrowTR5 = new System.Windows.Forms.PictureBox();
-            this.picArrowTR6 = new System.Windows.Forms.PictureBox();
+            this.ssrStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.slblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlFilePaths.SuspendLayout();
             this.tabGame.SuspendLayout();
             this.tpTR1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR1)).BeginInit();
             this.tpTR2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR2)).BeginInit();
             this.tpTR3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR3)).BeginInit();
             this.tpTR4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConversionInfoTR4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR4)).BeginInit();
             this.tpTR5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConversionInfoTR5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR5)).BeginInit();
             this.tpTR6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConversionInfoTR6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR6)).BeginInit();
             this.tsrToolStrip.SuspendLayout();
             this.ssrStatusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR6)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFilePaths
@@ -284,6 +293,15 @@ namespace TombExtract
             this.tpTR1.TabIndex = 0;
             this.tpTR1.Text = "Tomb Raider I";
             this.tpTR1.UseVisualStyleBackColor = true;
+            // 
+            // picArrowTR1
+            // 
+            this.picArrowTR1.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR1.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR1.Name = "picArrowTR1";
+            this.picArrowTR1.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR1.TabIndex = 23;
+            this.picArrowTR1.TabStop = false;
             // 
             // cmbDestinationFormatTR1
             // 
@@ -441,6 +459,15 @@ namespace TombExtract
             this.tpTR2.Text = "Tomb Raider II";
             this.tpTR2.UseVisualStyleBackColor = true;
             // 
+            // picArrowTR2
+            // 
+            this.picArrowTR2.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR2.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR2.Name = "picArrowTR2";
+            this.picArrowTR2.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR2.TabIndex = 27;
+            this.picArrowTR2.TabStop = false;
+            // 
             // cmbDestinationFormatTR2
             // 
             this.cmbDestinationFormatTR2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -596,6 +623,15 @@ namespace TombExtract
             this.tpTR3.Text = "Tomb Raider III";
             this.tpTR3.UseVisualStyleBackColor = true;
             // 
+            // picArrowTR3
+            // 
+            this.picArrowTR3.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR3.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR3.Name = "picArrowTR3";
+            this.picArrowTR3.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR3.TabIndex = 32;
+            this.picArrowTR3.TabStop = false;
+            // 
             // cmbDestinationFormatTR3
             // 
             this.cmbDestinationFormatTR3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -730,6 +766,8 @@ namespace TombExtract
             // 
             // tpTR4
             // 
+            this.tpTR4.Controls.Add(this.lblConversionInfoTR4);
+            this.tpTR4.Controls.Add(this.picConversionInfoTR4);
             this.tpTR4.Controls.Add(this.picArrowTR4);
             this.tpTR4.Controls.Add(this.btnManageSlotsTR4);
             this.tpTR4.Controls.Add(this.btnAboutTR4);
@@ -746,6 +784,33 @@ namespace TombExtract
             this.tpTR4.TabIndex = 3;
             this.tpTR4.Text = "Tomb Raider IV";
             this.tpTR4.UseVisualStyleBackColor = true;
+            // 
+            // lblConversionInfoTR4
+            // 
+            this.lblConversionInfoTR4.AutoSize = true;
+            this.lblConversionInfoTR4.Location = new System.Drawing.Point(43, 343);
+            this.lblConversionInfoTR4.Name = "lblConversionInfoTR4";
+            this.lblConversionInfoTR4.Size = new System.Drawing.Size(205, 15);
+            this.lblConversionInfoTR4.TabIndex = 26;
+            this.lblConversionInfoTR4.Text = "Conversion not necessary for this title";
+            // 
+            // picConversionInfoTR4
+            // 
+            this.picConversionInfoTR4.Image = global::TombExtract.Properties.Resources.ToolTip_Image;
+            this.picConversionInfoTR4.Location = new System.Drawing.Point(17, 340);
+            this.picConversionInfoTR4.Name = "picConversionInfoTR4";
+            this.picConversionInfoTR4.Size = new System.Drawing.Size(20, 20);
+            this.picConversionInfoTR4.TabIndex = 25;
+            this.picConversionInfoTR4.TabStop = false;
+            // 
+            // picArrowTR4
+            // 
+            this.picArrowTR4.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR4.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR4.Name = "picArrowTR4";
+            this.picArrowTR4.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR4.TabIndex = 24;
+            this.picArrowTR4.TabStop = false;
             // 
             // btnManageSlotsTR4
             // 
@@ -843,6 +908,8 @@ namespace TombExtract
             // 
             // tpTR5
             // 
+            this.tpTR5.Controls.Add(this.lblConversionInfoTR5);
+            this.tpTR5.Controls.Add(this.picConversionInfoTR5);
             this.tpTR5.Controls.Add(this.picArrowTR5);
             this.tpTR5.Controls.Add(this.btnManageSlotsTR5);
             this.tpTR5.Controls.Add(this.btnAboutTR5);
@@ -859,6 +926,33 @@ namespace TombExtract
             this.tpTR5.TabIndex = 4;
             this.tpTR5.Text = "Tomb Raider V";
             this.tpTR5.UseVisualStyleBackColor = true;
+            // 
+            // lblConversionInfoTR5
+            // 
+            this.lblConversionInfoTR5.AutoSize = true;
+            this.lblConversionInfoTR5.Location = new System.Drawing.Point(43, 343);
+            this.lblConversionInfoTR5.Name = "lblConversionInfoTR5";
+            this.lblConversionInfoTR5.Size = new System.Drawing.Size(205, 15);
+            this.lblConversionInfoTR5.TabIndex = 28;
+            this.lblConversionInfoTR5.Text = "Conversion not necessary for this title";
+            // 
+            // picConversionInfoTR5
+            // 
+            this.picConversionInfoTR5.Image = global::TombExtract.Properties.Resources.ToolTip_Image;
+            this.picConversionInfoTR5.Location = new System.Drawing.Point(17, 340);
+            this.picConversionInfoTR5.Name = "picConversionInfoTR5";
+            this.picConversionInfoTR5.Size = new System.Drawing.Size(20, 20);
+            this.picConversionInfoTR5.TabIndex = 27;
+            this.picConversionInfoTR5.TabStop = false;
+            // 
+            // picArrowTR5
+            // 
+            this.picArrowTR5.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR5.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR5.Name = "picArrowTR5";
+            this.picArrowTR5.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR5.TabIndex = 24;
+            this.picArrowTR5.TabStop = false;
             // 
             // btnManageSlotsTR5
             // 
@@ -956,6 +1050,8 @@ namespace TombExtract
             // 
             // tpTR6
             // 
+            this.tpTR6.Controls.Add(this.lblConversionInfoTR6);
+            this.tpTR6.Controls.Add(this.picConversionInfoTR6);
             this.tpTR6.Controls.Add(this.picArrowTR6);
             this.tpTR6.Controls.Add(this.btnManageSlotsTR6);
             this.tpTR6.Controls.Add(this.btnAboutTR6);
@@ -972,6 +1068,33 @@ namespace TombExtract
             this.tpTR6.TabIndex = 5;
             this.tpTR6.Text = "Tomb Raider VI";
             this.tpTR6.UseVisualStyleBackColor = true;
+            // 
+            // lblConversionInfoTR6
+            // 
+            this.lblConversionInfoTR6.AutoSize = true;
+            this.lblConversionInfoTR6.Location = new System.Drawing.Point(43, 343);
+            this.lblConversionInfoTR6.Name = "lblConversionInfoTR6";
+            this.lblConversionInfoTR6.Size = new System.Drawing.Size(205, 15);
+            this.lblConversionInfoTR6.TabIndex = 28;
+            this.lblConversionInfoTR6.Text = "Conversion not necessary for this title";
+            // 
+            // picConversionInfoTR6
+            // 
+            this.picConversionInfoTR6.Image = global::TombExtract.Properties.Resources.ToolTip_Image;
+            this.picConversionInfoTR6.Location = new System.Drawing.Point(17, 340);
+            this.picConversionInfoTR6.Name = "picConversionInfoTR6";
+            this.picConversionInfoTR6.Size = new System.Drawing.Size(20, 20);
+            this.picConversionInfoTR6.TabIndex = 27;
+            this.picConversionInfoTR6.TabStop = false;
+            // 
+            // picArrowTR6
+            // 
+            this.picArrowTR6.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
+            this.picArrowTR6.Location = new System.Drawing.Point(275, 163);
+            this.picArrowTR6.Name = "picArrowTR6";
+            this.picArrowTR6.Size = new System.Drawing.Size(24, 24);
+            this.picArrowTR6.TabIndex = 24;
+            this.picArrowTR6.TabStop = false;
             // 
             // btnManageSlotsTR6
             // 
@@ -1079,24 +1202,6 @@ namespace TombExtract
             this.tsrToolStrip.Size = new System.Drawing.Size(594, 25);
             this.tsrToolStrip.TabIndex = 0;
             this.tsrToolStrip.Text = "toolStrip1";
-            // 
-            // ssrStatusStrip
-            // 
-            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.slblStatus});
-            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 577);
-            this.ssrStatusStrip.Name = "ssrStatusStrip";
-            this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.ssrStatusStrip.Size = new System.Drawing.Size(594, 22);
-            this.ssrStatusStrip.SizingGrip = false;
-            this.ssrStatusStrip.TabIndex = 3;
-            this.ssrStatusStrip.Text = "statusStrip1";
-            // 
-            // slblStatus
-            // 
-            this.slblStatus.Name = "slblStatus";
-            this.slblStatus.Size = new System.Drawing.Size(39, 17);
-            this.slblStatus.Text = "Ready";
             // 
             // tsddbFile
             // 
@@ -1273,59 +1378,23 @@ namespace TombExtract
             this.tsmiAbout.Text = "About";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
-            // picArrowTR1
+            // ssrStatusStrip
             // 
-            this.picArrowTR1.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
-            this.picArrowTR1.Location = new System.Drawing.Point(275, 163);
-            this.picArrowTR1.Name = "picArrowTR1";
-            this.picArrowTR1.Size = new System.Drawing.Size(24, 24);
-            this.picArrowTR1.TabIndex = 23;
-            this.picArrowTR1.TabStop = false;
+            this.ssrStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.slblStatus});
+            this.ssrStatusStrip.Location = new System.Drawing.Point(0, 577);
+            this.ssrStatusStrip.Name = "ssrStatusStrip";
+            this.ssrStatusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.ssrStatusStrip.Size = new System.Drawing.Size(594, 22);
+            this.ssrStatusStrip.SizingGrip = false;
+            this.ssrStatusStrip.TabIndex = 3;
+            this.ssrStatusStrip.Text = "statusStrip1";
             // 
-            // picArrowTR2
+            // slblStatus
             // 
-            this.picArrowTR2.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
-            this.picArrowTR2.Location = new System.Drawing.Point(275, 163);
-            this.picArrowTR2.Name = "picArrowTR2";
-            this.picArrowTR2.Size = new System.Drawing.Size(24, 24);
-            this.picArrowTR2.TabIndex = 27;
-            this.picArrowTR2.TabStop = false;
-            // 
-            // picArrowTR3
-            // 
-            this.picArrowTR3.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
-            this.picArrowTR3.Location = new System.Drawing.Point(275, 163);
-            this.picArrowTR3.Name = "picArrowTR3";
-            this.picArrowTR3.Size = new System.Drawing.Size(24, 24);
-            this.picArrowTR3.TabIndex = 32;
-            this.picArrowTR3.TabStop = false;
-            // 
-            // picArrowTR4
-            // 
-            this.picArrowTR4.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
-            this.picArrowTR4.Location = new System.Drawing.Point(275, 163);
-            this.picArrowTR4.Name = "picArrowTR4";
-            this.picArrowTR4.Size = new System.Drawing.Size(24, 24);
-            this.picArrowTR4.TabIndex = 24;
-            this.picArrowTR4.TabStop = false;
-            // 
-            // picArrowTR5
-            // 
-            this.picArrowTR5.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
-            this.picArrowTR5.Location = new System.Drawing.Point(275, 163);
-            this.picArrowTR5.Name = "picArrowTR5";
-            this.picArrowTR5.Size = new System.Drawing.Size(24, 24);
-            this.picArrowTR5.TabIndex = 24;
-            this.picArrowTR5.TabStop = false;
-            // 
-            // picArrowTR6
-            // 
-            this.picArrowTR6.Image = global::TombExtract.Properties.Resources.Arrow_Right_Image;
-            this.picArrowTR6.Location = new System.Drawing.Point(275, 163);
-            this.picArrowTR6.Name = "picArrowTR6";
-            this.picArrowTR6.Size = new System.Drawing.Size(24, 24);
-            this.picArrowTR6.TabIndex = 24;
-            this.picArrowTR6.TabStop = false;
+            this.slblStatus.Name = "slblStatus";
+            this.slblStatus.Size = new System.Drawing.Size(39, 17);
+            this.slblStatus.Text = "Ready";
             // 
             // MainForm
             // 
@@ -1352,26 +1421,29 @@ namespace TombExtract
             this.tabGame.ResumeLayout(false);
             this.tpTR1.ResumeLayout(false);
             this.tpTR1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR1)).EndInit();
             this.tpTR2.ResumeLayout(false);
             this.tpTR2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR2)).EndInit();
             this.tpTR3.ResumeLayout(false);
             this.tpTR3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR3)).EndInit();
             this.tpTR4.ResumeLayout(false);
             this.tpTR4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConversionInfoTR4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR4)).EndInit();
             this.tpTR5.ResumeLayout(false);
             this.tpTR5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConversionInfoTR5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR5)).EndInit();
             this.tpTR6.ResumeLayout(false);
             this.tpTR6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picConversionInfoTR6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR6)).EndInit();
             this.tsrToolStrip.ResumeLayout(false);
             this.tsrToolStrip.PerformLayout();
             this.ssrStatusStrip.ResumeLayout(false);
             this.ssrStatusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picArrowTR6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1488,6 +1560,12 @@ namespace TombExtract
         private System.Windows.Forms.PictureBox picArrowTR4;
         private System.Windows.Forms.PictureBox picArrowTR5;
         private System.Windows.Forms.PictureBox picArrowTR6;
+        private System.Windows.Forms.PictureBox picConversionInfoTR4;
+        private System.Windows.Forms.Label lblConversionInfoTR4;
+        private System.Windows.Forms.Label lblConversionInfoTR5;
+        private System.Windows.Forms.PictureBox picConversionInfoTR5;
+        private System.Windows.Forms.Label lblConversionInfoTR6;
+        private System.Windows.Forms.PictureBox picConversionInfoTR6;
     }
 }
 

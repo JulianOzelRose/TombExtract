@@ -13,6 +13,7 @@ namespace TombExtract
         // Config file keys
         public const string CONFIG_KEY_STATUS_BAR = "StatusBar=";
         public const string CONFIG_KEY_DARK_MODE = "DarkMode=";
+        public const string CONFIG_KEY_BACKUP_ON_WRITE = "BackupOnWrite=";
 
         // Tab IDs
         public const int TAB_TR1 = 0;
@@ -55,7 +56,7 @@ namespace TombExtract
         public const string DIALOG_MSG_INVALID_SAVEGAME_FILE_TRX2 = "Not a valid Tomb Raider IV–VI Remastered savegame file.";
         public const string DIALOG_MSG_WRITE_IN_PROGRESS_EXIT_CONFIRM = "Exiting in the middle of a write operation could result in a corrupted savegame file. Are you sure you wish to exit?";
         public const string DIALOG_MSG_WRITE_IN_PROGRESS_PLEASE_WAIT = "A savegame write operation is in progress. Please wait until it completes.";
-        public const string DIALOG_MSG_NO_SAVEGAMES_SELECTED = "Please select at least one savegame to convert.";
+        public const string DIALOG_MSG_NO_SAVEGAMES_SELECTED = "Please select at least one savegame to transfer.";
         public const string DIALOG_MSG_NO_SAVEGAME_SELECTED = "Please select a savegame first.";
         public const string DIALOG_MSG_SAVEGAME_BUFFER_NOT_FOUND = "Premade savegame buffer not found for this level or mode.";
         public const string DIALOG_MSG_SAVEGAME_SOURCE_FILE_NOT_FOUND = "Could not find savegame source file.";
@@ -67,6 +68,7 @@ namespace TombExtract
         public const string DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY = "Patch 5 to pre-patch conversion is only supported for PC.";
         public const string DIALOG_MSG_CHALLENGE_MODE_PREPATCH_CONVERSION_UNSUPPORTED = "Unable to convert Challenge Mode savegames to pre-patch format.";
         public const string DIALOG_MSG_CHALLENGE_MODE_PC_TO_MOBILE_CONVERSION_WARNING = "Challenge Mode savegames may not convert correctly from PC to mobile format. Proceed anyway?";
+        public const string DIALOG_MSG_INVALID_FILE_SELECTION = "Source file and destination file cannot be the same.";
         public const string DIALOG_TITLE_CONFIRMATION = "Confirmation";
         public const string DIALOG_TITLE_ERROR = "Error";
         public const string DIALOG_TITLE_CANCELED = "Canceled";

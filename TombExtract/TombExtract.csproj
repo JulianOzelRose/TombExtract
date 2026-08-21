@@ -403,6 +403,8 @@
     <Content Include="Images\Help_Image.png" />
     <Content Include="Images\Help_Image_DarkMode.png" />
     <Content Include="Images\README_Image.png" />
+    <Content Include="Images\ToolTip_Image.png" />
+    <Content Include="Images\ToolTip_Image_DarkMode.png" />
     <Content Include="TombExtract.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
