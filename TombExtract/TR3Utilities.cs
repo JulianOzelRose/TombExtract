@@ -556,7 +556,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0xAA6)
+                                    if (currentRelativeOffset >= 0xAA6 && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 2)
                                     {
                                         destinationFile.Seek(offset + 2, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -679,7 +679,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 0x40, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x994 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                    else if (currentRelativeOffset >= 0x994 && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 0x4B)
                                     {
                                         destinationFile.Seek(offset + 0x4B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -712,7 +712,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 0x40, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x994 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                    else if (currentRelativeOffset >= 0x994 && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 0x4B)
                                     {
                                         destinationFile.Seek(offset + 0x4B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);

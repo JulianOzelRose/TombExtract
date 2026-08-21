@@ -592,7 +592,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 1, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x6AC)
+                                    else if (currentRelativeOffset >= 0x6AC && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 4)
                                     {
                                         destinationFile.Seek(offset + 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -614,7 +614,7 @@ namespace TombExtract
                                     byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
                                     byte[] currentByte = { value };
 
-                                    if (currentRelativeOffset >= 0x6AC)
+                                    if (currentRelativeOffset >= 0x6AC && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 4)
                                     {
                                         destinationFile.Seek(offset + 4, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -734,7 +734,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 0x2C, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x6FC && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                    else if (currentRelativeOffset >= 0x6FC && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 0x3B)
                                     {
                                         destinationFile.Seek(offset + 0x3B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
@@ -772,7 +772,7 @@ namespace TombExtract
                                         destinationFile.Seek(offset + 0x2C, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
                                     }
-                                    else if (currentRelativeOffset >= 0x6FC && currentRelativeOffset < Globals.SAVEGAME_SIZE_TRX_PATCH5)
+                                    else if (currentRelativeOffset >= 0x6FC && currentRelativeOffset < DESTINATION_SAVEGAME_SIZE - 0x3B)
                                     {
                                         destinationFile.Seek(offset + 0x3B, SeekOrigin.Begin);
                                         destinationFile.Write(currentByte, 0, currentByte.Length);
