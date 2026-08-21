@@ -412,15 +412,16 @@ namespace TombExtract
                         int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR3 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
                         byte[] savegameBytes = savegames[i].SavegameBytes;
 
+                        // Clear destination savegame slot before writing
+                        byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
+                        destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
+                        destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
+
                         if (sourcePlatform == Platform.PC && destinationPlatform == Platform.PC)
                         {
                             if (isSourcePrepatch && isDestinationPatch5)    // PRE-PATCH -> PATCH 5
                             {
                                 progressForm.UpdateStatusMessage($"Transferring '{savegames[i]}' to destination...");
-
-                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
-                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
-                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
 
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
@@ -450,10 +451,6 @@ namespace TombExtract
                                 {
                                     savegameBytes = ConvertNativePatch5EntityBlockToPrepatchFormat(savegameBytes);
                                 }
-
-                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
-                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
-                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
 
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
@@ -528,10 +525,6 @@ namespace TombExtract
                             {
                                 progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to {destinationPlatform.ToFriendlyString()}...");
 
-                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
-                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
-                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
-
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
                                     int currentRelativeOffset = offset - currentSavegameOffset;
@@ -592,11 +585,6 @@ namespace TombExtract
                         else if (sourcePlatform.IsMobile() && destinationPlatform == Platform.PC) // Mobile -> PC
                         {
                             progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
-
-                            // ZERO BUFFER
-                            byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
-                            destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
-                            destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
 
                             for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                             {
@@ -659,11 +647,6 @@ namespace TombExtract
                             {
                                 progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to {destinationPlatform.ToFriendlyString()}...");
 
-                                // ZERO BUFFER
-                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
-                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
-                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
-
                                 // INTERMEDIATE PATCH 5 PC BUFFER
                                 byte[] migratedPatch5Buffer = new byte[Globals.SAVEGAME_SIZE_TRX_PATCH5];
 
@@ -717,11 +700,6 @@ namespace TombExtract
                             else if (!isSourcePrepatch && isDestinationPatch5)
                             {
                                 progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to {destinationPlatform.ToFriendlyString()}...");
-
-                                // ZERO BUFFER
-                                byte[] zeroBuffer = new byte[DESTINATION_SAVEGAME_SIZE];
-                                destinationFile.Seek(currentSavegameOffset, SeekOrigin.Begin);
-                                destinationFile.Write(zeroBuffer, 0, zeroBuffer.Length);
 
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
