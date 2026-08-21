@@ -1735,33 +1735,11 @@ namespace TombExtract
                     return;
                 }
 
-                if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
+                if (sourcePlatform.IsConsole() && (!destinationPlatform.IsConsole() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
-
-                    ThemedMessageBox.Show(
-                        this,
-                        warningMessage,
-                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-            }
-
-            if (!isSourcePatch5 && !isDestinationPrepatch)
-            {
-                Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
-                Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
-
-                if (sourcePlatform != Platform.PC)
-                {
-                    SystemSounds.Exclamation.Play();
-
-                    string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
 
                     ThemedMessageBox.Show(
                         this,
@@ -1876,33 +1854,11 @@ namespace TombExtract
                     return;
                 }
 
-                if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
+                if (sourcePlatform.IsConsole() && (!destinationPlatform.IsConsole() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
-
-                    ThemedMessageBox.Show(
-                        this,
-                        warningMessage,
-                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-            }
-
-            if (!isSourcePatch5 && !isDestinationPrepatch)
-            {
-                Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
-                Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
-
-                if (sourcePlatform != Platform.PC)
-                {
-                    SystemSounds.Exclamation.Play();
-
-                    string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
 
                     ThemedMessageBox.Show(
                         this,
@@ -2017,33 +1973,11 @@ namespace TombExtract
                     return;
                 }
 
-                if (sourcePlatform == Platform.PlayStation4 && (destinationPlatform != Platform.PlayStation4 && destinationPlatform != Platform.PC))
+                if (sourcePlatform.IsConsole() && (!destinationPlatform.IsConsole() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
 
                     string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
-
-                    ThemedMessageBox.Show(
-                        this,
-                        warningMessage,
-                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-            }
-
-            if (!isSourcePatch5 && !isDestinationPrepatch)
-            {
-                Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
-                Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
-
-                if (sourcePlatform != Platform.PC)
-                {
-                    SystemSounds.Exclamation.Play();
-
-                    string warningMessage = $"Unable to convert pre-patch savegames from {sourcePlatform.ToFriendlyString()} to {destinationPlatform.ToFriendlyString()}.";
 
                     ThemedMessageBox.Show(
                         this,

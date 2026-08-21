@@ -581,6 +581,47 @@ namespace TombExtract
                                     destinationFile.Write(currentByte, 0, currentByte.Length);
                                 }
                             }
+                            else if (isSourcePrepatch && isDestinationPatch5)
+                            {
+                                progressForm.UpdateStatusMessage($"Converting '{savegames[i]}' to PC...");
+
+                                // INTERMEDIATE PREPATCH PC BUFFER
+                                byte[] migratedPrepatchBuffer = new byte[Globals.SAVEGAME_SIZE_TRX_PREPATCH];
+
+                                // CONSOLE -> PREPATCH PC
+                                for (int j = 0; j < Globals.SAVEGAME_SIZE_TRX_PREPATCH; j++)
+                                {
+                                    byte value = j < savegameBytes.Length ? savegameBytes[j] : (byte)0;
+
+                                    if (j >= 0xAA6 && j < Globals.SAVEGAME_SIZE_TRX_PREPATCH - 2)
+                                    {
+                                        migratedPrepatchBuffer[j + 2] = value;
+                                    }
+                                    else
+                                    {
+                                        migratedPrepatchBuffer[j] = value;
+                                    }
+                                }
+
+                                // PREPATCH PC -> PATCH 5 PC
+                                for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
+                                {
+                                    int currentRelativeOffset = offset - currentSavegameOffset;
+                                    byte value = j < migratedPrepatchBuffer.Length ? migratedPrepatchBuffer[j] : (byte)0;
+                                    byte[] currentByte = { value };
+
+                                    if (currentRelativeOffset >= 0x988 && currentRelativeOffset <= Globals.SAVEGAME_SIZE_TRX_PREPATCH)
+                                    {
+                                        destinationFile.Seek(offset + 0x10, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                    else
+                                    {
+                                        destinationFile.Seek(offset, SeekOrigin.Begin);
+                                        destinationFile.Write(currentByte, 0, currentByte.Length);
+                                    }
+                                }
+                            }
                         }
                         else if (sourcePlatform.IsMobile() && destinationPlatform == Platform.PC) // Mobile -> PC
                         {
