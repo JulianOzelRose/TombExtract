@@ -1719,22 +1719,6 @@ namespace TombExtract
                     }
                 }
 
-                if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
-                {
-                    SystemSounds.Exclamation.Play();
-
-                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
-
-                    ThemedMessageBox.Show(
-                        this,
-                        warningMessage,
-                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-
                 if (sourcePlatform.IsMobile() && (!destinationPlatform.IsMobile() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
@@ -1876,22 +1860,6 @@ namespace TombExtract
                     }
                 }
 
-                if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
-                {
-                    SystemSounds.Exclamation.Play();
-
-                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
-
-                    ThemedMessageBox.Show(
-                        this,
-                        warningMessage,
-                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-
                 if (sourcePlatform.IsMobile() && (!destinationPlatform.IsMobile() && destinationPlatform != Platform.PC))
                 {
                     SystemSounds.Exclamation.Play();
@@ -2031,22 +1999,6 @@ namespace TombExtract
                             return;
                         }
                     }
-                }
-
-                if (sourcePlatform == Platform.NintendoSwitch && destinationPlatform != Platform.NintendoSwitch)
-                {
-                    SystemSounds.Exclamation.Play();
-
-                    string warningMessage = $"Unable to convert {sourcePlatform.ToFriendlyString()} savegames to {destinationPlatform.ToFriendlyString()} for Patch 5.";
-
-                    ThemedMessageBox.Show(
-                        this,
-                        warningMessage,
-                        Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
                 }
 
                 if (sourcePlatform.IsMobile() && (!destinationPlatform.IsMobile() && destinationPlatform != Platform.PC))

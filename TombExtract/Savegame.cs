@@ -44,6 +44,11 @@ namespace TombExtract
         {
             return platform == Platform.Android || platform == Platform.iOS;
         }
+
+        public static bool IsConsole(this Platform platform)
+        {
+            return platform == Platform.PlayStation4 || platform == Platform.NintendoSwitch;
+        }
     }
 
     public class Savegame

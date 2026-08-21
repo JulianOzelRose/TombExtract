@@ -26,7 +26,7 @@ namespace TombExtract
         // Common offsets (TR1-5)
         private const int SLOT_STATUS_OFFSET_DEFAULT = 0x0;
 
-        // TR1 offsets (universal)
+        // TR1 offsets (Universal)
         private const int SAVE_NUMBER_OFFSET_TR1 = 0x008;
         private const int NEW_GAME_PLUS_OFFSET_TR1 = 0x004;
 
@@ -38,11 +38,11 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR1_MOBILE = 0x658;
         private const int CHALLENGE_MODE_OFFSET_TR1_MOBILE = 0x714;
 
-        // TR1 offsets (PS4)
-        private const int LEVEL_INDEX_OFFSET_TR1_PS4 = 0x628;
-        private const int CHALLENGE_MODE_OFFSET_TR1_PS4 = 0x6E4;
+        // TR1 offsets (Console)
+        private const int LEVEL_INDEX_OFFSET_TR1_CONSOLE = 0x628;
+        private const int CHALLENGE_MODE_OFFSET_TR1_CONSOLE = 0x6E4;
 
-        // TR2 offsets (universal)
+        // TR2 offsets (Universal)
         private const int SAVE_NUMBER_OFFSET_TR2 = 0x008;
         private const int NEW_GAME_PLUS_OFFSET_TR2 = 0x004;
 
@@ -54,11 +54,11 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR2_MOBILE = 0x654;
         private const int CHALLENGE_MODE_OFFSET_TR2_MOBILE = 0x6D8;
 
-        // TR2 offsets (PS4)
-        private const int LEVEL_INDEX_OFFSET_TR2_PS4 = 0x624;
-        private const int CHALLENGE_MODE_OFFSET_TR2_PS4 = 0x6A8;
+        // TR2 offsets (Console)
+        private const int LEVEL_INDEX_OFFSET_TR2_CONSOLE = 0x624;
+        private const int CHALLENGE_MODE_OFFSET_TR2_CONSOLE = 0x6A8;
 
-        // TR3 offsets (universal)
+        // TR3 offsets (Universal)
         private const int SAVE_NUMBER_OFFSET_TR3 = 0x008;
         private const int NEW_GAME_PLUS_OFFSET_TR3 = 0x004;
 
@@ -70,9 +70,9 @@ namespace TombExtract
         private const int LEVEL_INDEX_OFFSET_TR3_MOBILE = 0x912;
         private const int CHALLENGE_MODE_OFFSET_TR3_MOBILE = 0x9CC;
 
-        // TR3 offsets (PS4)
-        private const int LEVEL_INDEX_OFFSET_TR3_PS4 = 0x8D2;
-        private const int CHALLENGE_MODE_OFFSET_TR3_PS4 = 0x98C;
+        // TR3 offsets (Console)
+        private const int LEVEL_INDEX_OFFSET_TR3_CONSOLE = 0x8D2;
+        private const int CHALLENGE_MODE_OFFSET_TR3_CONSOLE = 0x98C;
 
         // TR4 offsets
         private const int LEVEL_INDEX_OFFSET_TR4 = 0x26B;
@@ -231,15 +231,15 @@ namespace TombExtract
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PC;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_PC;
                     }
-                    else if (platform == Platform.Android || platform == Platform.iOS)
+                    else if (platform.IsMobile())
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_MOBILE;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_MOBILE;
                     }
-                    else if (platform == Platform.PlayStation4)
+                    else if (platform.IsConsole())
                     {
-                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_PS4;
-                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_PS4;
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR1_CONSOLE;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR1_CONSOLE;
                     }
                 }
                 else
@@ -261,15 +261,15 @@ namespace TombExtract
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PC;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_PC;
                     }
-                    else if (platform == Platform.Android || platform == Platform.iOS)
+                    else if (platform.IsMobile())
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_MOBILE;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_MOBILE;
                     }
-                    else if (platform == Platform.PlayStation4)
+                    else if (platform.IsConsole())
                     {
-                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_PS4;
-                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_PS4;
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR2_CONSOLE;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR2_CONSOLE;
                     }
                 }
                 else
@@ -291,15 +291,15 @@ namespace TombExtract
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PC;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_PC;
                     }
-                    else if (platform == Platform.Android || platform == Platform.iOS)
+                    else if (platform.IsMobile())
                     {
                         LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_MOBILE;
                         CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_MOBILE;
                     }
-                    else if (platform == Platform.PlayStation4)
+                    else if (platform.IsConsole())
                     {
-                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_PS4;
-                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_PS4;
+                        LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR3_CONSOLE;
+                        CHALLENGE_MODE_OFFSET = CHALLENGE_MODE_OFFSET_TR3_CONSOLE;
                     }
                 }
                 else
@@ -325,7 +325,7 @@ namespace TombExtract
             {
                 LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_TR6;
                 SAVE_NUMBER_OFFSET = SAVE_NUMBER_OFFSET_TR6;
-                SLOT_STATUS_OFFSET = SLOT_NUMBER_OFFSET_TR6;
+                SLOT_STATUS_OFFSET = SLOT_STATUS_OFFSET_TR6;
                 NEW_GAME_PLUS_OFFSET = NEW_GAME_PLUS_OFFSET_TR6;
             }
         }
