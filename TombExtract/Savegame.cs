@@ -14,6 +14,7 @@ namespace TombExtract
     {
         PC,
         PlayStation4,
+        PlayStation5,
         NintendoSwitch,
         Android,
         iOS
@@ -29,6 +30,8 @@ namespace TombExtract
                     return "PC";
                 case Platform.PlayStation4:
                     return "PS4";
+                case Platform.PlayStation5:
+                    return "PS5";
                 case Platform.NintendoSwitch:
                     return "Nintendo Switch";
                 case Platform.Android:
@@ -47,7 +50,7 @@ namespace TombExtract
 
         public static bool IsConsole(this Platform platform)
         {
-            return platform == Platform.PlayStation4 || platform == Platform.NintendoSwitch;
+            return platform == Platform.PlayStation4 || platform == Platform.PlayStation5 || platform == Platform.NintendoSwitch;
         }
     }
 

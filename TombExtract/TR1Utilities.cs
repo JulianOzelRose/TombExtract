@@ -555,7 +555,7 @@ namespace TombExtract
                                     }
                                 }
 
-                                // PATCH 5 PC -> PS4
+                                // PATCH 5 PC -> Console
                                 for (int offset = currentSavegameOffset, j = 0; offset < currentSavegameOffset + DESTINATION_SAVEGAME_SIZE; offset++, j++)
                                 {
                                     int currentRelativeOffset = offset - currentSavegameOffset;
