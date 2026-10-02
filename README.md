@@ -5,7 +5,7 @@ For a savegame editor for Tomb Raider I-VI Remastered, check out [TRR-SaveMaster
 ### ✨ Features
 - 📥 Import Savegames
 - 💾 Savegame Management (Deletion & Reordering)
-- 🔄 Platform Conversion (PC/PS4/NS/Android/iOS)
+- 🔄 Platform Conversion (PC/PS4/PS5/NS/Android/iOS)
 - 🔀 Patch Conversion (Pre-Patch ⇄ Patch 5)
 - 🎮 Level Selection / Savegame Creation
 
@@ -23,7 +23,7 @@ Use the checklist on the left to select which savegames you would like to import
 destination platforms are different, it will also apply the necessary conversions. Click "Extract" or "Convert" to transfer the savegames, and the program will begin extraction. The progress display will indicate how far along the process is. Platform conversion is not required for Tomb Raider IV-VI.
 
 ## 🖥️ Console and Mobile Savegame Conversion
-If you are trying to convert from PS4, you must first decrypt the savegame file using [Apollo Save Tool](https://github.com/bucanero/apollo-ps4). You can also use [garlicsaves](https://www.garlicsaves.com/) to decrypt PS4 savegames.
+If you are trying to convert from PS4/PS5, you must first decrypt the savegame file using [Apollo Save Tool](https://github.com/bucanero/apollo-ps4). You can also use [garlicsaves](https://www.garlicsaves.com/) to decrypt PS4/PS5 savegames.
 For Nintendo Switch savegames, you can either use [EdZion](https://github.com/WerWolv/EdiZon) or [Goldleaf](https://github.com/XorTroll/Goldleaf) to extract the savegame file from your console. You can find more detailed information on how to do this
 [here](https://github.com/JulianOzelRose/TombExtract/issues/1#issuecomment-1978837071). It is recommended that you check the "Backup before writing" option before transferring or converting.
 
