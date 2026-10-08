@@ -53,32 +53,32 @@ namespace TombExtract
             if (CURRENT_TAB == Globals.TAB_TR1)
             {
                 gameSuffix = "Tomb Raider I";
-                SAVE_NUMBER_OFFSET = 0x00C;
+                SAVE_NUMBER_OFFSET = 0x008;
             }
             else if (CURRENT_TAB == Globals.TAB_TR2)
             {
                 gameSuffix = "Tomb Raider II";
-                SAVE_NUMBER_OFFSET = 0x00C;
+                SAVE_NUMBER_OFFSET = 0x008;
             }
             else if (CURRENT_TAB == Globals.TAB_TR3)
             {
                 gameSuffix = "Tomb Raider III";
-                SAVE_NUMBER_OFFSET = 0x00C;
+                SAVE_NUMBER_OFFSET = 0x008;
             }
             else if (CURRENT_TAB == Globals.TAB_TR4)
             {
                 gameSuffix = "Tomb Raider IV";
-                SAVE_NUMBER_OFFSET = 0x008;
+                SAVE_NUMBER_OFFSET = 0x004;
             }
             else if (CURRENT_TAB == Globals.TAB_TR5)
             {
                 gameSuffix = "Tomb Raider V";
-                SAVE_NUMBER_OFFSET = 0x008;
+                SAVE_NUMBER_OFFSET = 0x004;
             }
             else if (CURRENT_TAB == Globals.TAB_TR6)
             {
                 gameSuffix = "Tomb Raider VI";
-                SAVE_NUMBER_OFFSET = 0x11C;
+                SAVE_NUMBER_OFFSET = 0x118;
                 nudSaveNumber.Maximum = UInt32.MaxValue;
             }
 
