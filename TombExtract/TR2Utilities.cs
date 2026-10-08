@@ -886,8 +886,6 @@ namespace TombExtract
 
             Int16 levelIndex = BitConverter.ToInt16(source, SOURCE_LEVEL_INDEX_OFFSET);
 
-            var levelObjectIds = new List<int>(TR2EntityCache.LevelObjectIdsByLevel[levelIndex]);
-
             if (!TR2EntityCache.TR2ObjectsByLevel.TryGetValue(levelIndex, out var levelObjects))
             {
                 throw new Exception($"{Globals.ERROR_MSG_MISSING_LEVEL_DEFINITION} {levelIndex}.");
@@ -899,16 +897,16 @@ namespace TombExtract
             CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 4);
             CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, 0x118);
 
-            int stateCount = TR2EntityCache.LevelStateEntryCounts[levelIndex];
+            int fixedCameraCount = TR2EntityCache.FixedCameraCounts[levelIndex];
 
-            CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, stateCount * 2);
+            CopyBytes(source, destination, ref sourceCursor, ref destinationCursor, fixedCameraCount * 2);
 
+            int numObjects = BitConverter.ToInt32(source, sourceCursor);
             sourceCursor += 4;
 
-            for (int itemIndex = 0; itemIndex < levelObjectIds.Count; itemIndex++)
+            for (int itemIndex = 0; itemIndex < numObjects; itemIndex++)
             {
-                int objectId = levelObjectIds[itemIndex];
-
+                int objectId = BitConverter.ToInt16(source, sourceCursor);
                 sourceCursor += 4;
 
                 if (!levelObjects.TryGetValue(objectId, out var tr2Object))
