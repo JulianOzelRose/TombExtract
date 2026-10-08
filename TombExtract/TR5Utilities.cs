@@ -19,7 +19,7 @@ namespace TombExtract
         private const int NEW_GAME_PLUS_OFFSET = 0x018;
         private const int SAVE_NUMBER_OFFSET = 0x004;
         private const int LEVEL_INDEX_OFFSET = 0x26B;
-        private const int BASE_SAVEGAME_OFFSET_TR5 = 0x14AE04;
+        private const int BASE_SAVEGAME_OFFSET = 0x14AE04;
 
         // Misc
         private int totalSavegames = 0;
@@ -43,7 +43,7 @@ namespace TombExtract
 
                 for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * Globals.SAVEGAME_SIZE_TRX2);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET + (i * Globals.SAVEGAME_SIZE_TRX2);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
@@ -81,7 +81,7 @@ namespace TombExtract
 
                 for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET_TR5 + (i * Globals.SAVEGAME_SIZE_TRX2);
+                    int currentSavegameOffset = BASE_SAVEGAME_OFFSET + (i * Globals.SAVEGAME_SIZE_TRX2);
 
                     byte levelIndex = fileData[currentSavegameOffset + LEVEL_INDEX_OFFSET];
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;

@@ -43,14 +43,14 @@ namespace TombExtract
         private const int CHALLENGE_MODE_OFFSET_CONSOLE = 0x6E4;
 
         // Savegame constants
-        private int SOURCE_BASE_SAVEGAME_OFFSET_TR1;
-        private int DESTINATION_BASE_SAVEGAME_OFFSET_TR1;
+        private int SOURCE_BASE_SAVEGAME_OFFSET;
+        private int DESTINATION_BASE_SAVEGAME_OFFSET;
         private int SOURCE_SAVEGAME_SIZE;
         private int DESTINATION_SAVEGAME_SIZE;
 
         // Patch-specific
-        private const int BASE_SAVEGAME_OFFSET_TR1_PREPATCH = 0x2004;
-        private const int BASE_SAVEGAME_OFFSET_TR1_PATCH5 = 0x2004;
+        private const int BASE_SAVEGAME_OFFSET_PREPATCH = 0x2004;
+        private const int BASE_SAVEGAME_OFFSET_PATCH5 = 0x2004;
 
         // Entity block
         private const int ENTITY_BLOCK_START_PC = 0x6F0;
@@ -94,7 +94,7 @@ namespace TombExtract
                 if (isPatch5)
                 {
                     SOURCE_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PATCH5;
-                    SOURCE_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PATCH5;
+                    SOURCE_BASE_SAVEGAME_OFFSET = BASE_SAVEGAME_OFFSET_PATCH5;
 
                     if (sourcePlatform == Platform.PC)
                     {
@@ -118,13 +118,13 @@ namespace TombExtract
                 else
                 {
                     SOURCE_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PREPATCH;
-                    SOURCE_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PREPATCH;
+                    SOURCE_BASE_SAVEGAME_OFFSET = BASE_SAVEGAME_OFFSET_PREPATCH;
                     SOURCE_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PREPATCH;
                 }
 
                 for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET_TR1 + (i * SOURCE_SAVEGAME_SIZE);
+                    int currentSavegameOffset = SOURCE_BASE_SAVEGAME_OFFSET + (i * SOURCE_SAVEGAME_SIZE);
 
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + SOURCE_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
@@ -171,7 +171,7 @@ namespace TombExtract
                 if (isPatch5)
                 {
                     DESTINATION_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PATCH5;
-                    DESTINATION_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PATCH5;
+                    DESTINATION_BASE_SAVEGAME_OFFSET = BASE_SAVEGAME_OFFSET_PATCH5;
 
                     if (destinationPlatform == Platform.PC)
                     {
@@ -192,13 +192,13 @@ namespace TombExtract
                 else
                 {
                     DESTINATION_SAVEGAME_SIZE = Globals.SAVEGAME_SIZE_TRX_PREPATCH;
-                    DESTINATION_BASE_SAVEGAME_OFFSET_TR1 = BASE_SAVEGAME_OFFSET_TR1_PREPATCH;
+                    DESTINATION_BASE_SAVEGAME_OFFSET = BASE_SAVEGAME_OFFSET_PREPATCH;
                     DESTINATION_LEVEL_INDEX_OFFSET = LEVEL_INDEX_OFFSET_PREPATCH;
                 }
 
                 for (int i = 0; i < Globals.MAX_SAVEGAMES; i++)
                 {
-                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR1 + (i * DESTINATION_SAVEGAME_SIZE);
+                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET + (i * DESTINATION_SAVEGAME_SIZE);
 
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
@@ -241,8 +241,8 @@ namespace TombExtract
 
                 for (int i = 0; i < savegames.Count; i++)
                 {
-                    int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR1) / SOURCE_SAVEGAME_SIZE;
-                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR1 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
+                    int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET) / SOURCE_SAVEGAME_SIZE;
+                    int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET + (slotIndex * DESTINATION_SAVEGAME_SIZE);
 
                     Int16 levelIndex = BitConverter.ToInt16(fileData, currentSavegameOffset + DESTINATION_LEVEL_INDEX_OFFSET);
                     bool isSavegamePresent = BitConverter.ToInt32(fileData, currentSavegameOffset + SLOT_STATUS_OFFSET) != 0;
@@ -406,8 +406,8 @@ namespace TombExtract
                     {
                         progressForm.UpdateStatusMessage($"Copying '{savegames[i]}'...");
 
-                        int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET_TR1) / SOURCE_SAVEGAME_SIZE;
-                        int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET_TR1 + (slotIndex * DESTINATION_SAVEGAME_SIZE);
+                        int slotIndex = (savegames[i].Offset - SOURCE_BASE_SAVEGAME_OFFSET) / SOURCE_SAVEGAME_SIZE;
+                        int currentSavegameOffset = DESTINATION_BASE_SAVEGAME_OFFSET + (slotIndex * DESTINATION_SAVEGAME_SIZE);
                         byte[] savegameBytes = savegames[i].SavegameBytes;
 
                         // Clear destination savegame slot before writing
