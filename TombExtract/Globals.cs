@@ -66,6 +66,7 @@ namespace TombExtract
         public const string DIALOG_MSG_CANNOT_DELETE_EMPTY_SLOTS = "Empty slots cannot be deleted.";
         public const string DIALOG_MSG_REORDER_ERROR = "An error occurred while reordering savegames.";
         public const string DIALOG_MSG_PATCH5_TO_PREPATCH_PC_ONLY = "Patch 5 to pre-patch conversion is only supported for PC.";
+        public const string DIALOG_MSG_MOBILE_REQUIRES_PATCH5 = "Android and iOS require Patch 5 savegame files.";
         public const string DIALOG_MSG_CHALLENGE_MODE_PREPATCH_CONVERSION_UNSUPPORTED = "Unable to convert Challenge Mode savegames to pre-patch format.";
         public const string DIALOG_MSG_CHALLENGE_MODE_PC_TO_MOBILE_CONVERSION_WARNING = "Challenge Mode savegames may not convert correctly from PC to mobile format. Proceed anyway?";
         public const string DIALOG_MSG_INVALID_FILE_SELECTION = "Source file and destination file cannot be the same.";

@@ -1822,6 +1822,26 @@ namespace TombExtract
                 }
             }
 
+            if (!isSourcePatch5 || isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR1.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR1.SelectedItem;
+
+                if ((!isSourcePatch5 && sourcePlatform.IsMobile()) || (isDestinationPrepatch && destinationPlatform.IsMobile()))
+                {
+                    SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        Globals.DIALOG_MSG_MOBILE_REQUIRES_PATCH5,
+                        Globals.DIALOG_TITLE_PLATFORM_NOT_SUPPORTED,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
             ExtractSavegamesTR1();
         }
 
@@ -1941,6 +1961,26 @@ namespace TombExtract
                 }
             }
 
+            if (!isSourcePatch5 || isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR2.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR2.SelectedItem;
+
+                if ((!isSourcePatch5 && sourcePlatform.IsMobile()) || (isDestinationPrepatch && destinationPlatform.IsMobile()))
+                {
+                    SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        Globals.DIALOG_MSG_MOBILE_REQUIRES_PATCH5,
+                        Globals.DIALOG_TITLE_PLATFORM_NOT_SUPPORTED,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
             ExtractSavegamesTR2();
         }
 
@@ -2053,6 +2093,26 @@ namespace TombExtract
                         this,
                         warningMessage,
                         Globals.DIALOG_TITLE_UNABLE_TO_CONVERT,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+            }
+
+            if (!isSourcePatch5 || isDestinationPrepatch)
+            {
+                Platform sourcePlatform = (Platform)cmbSourceFormatTR3.SelectedItem;
+                Platform destinationPlatform = (Platform)cmbDestinationFormatTR3.SelectedItem;
+
+                if ((!isSourcePatch5 && sourcePlatform.IsMobile()) || (isDestinationPrepatch && destinationPlatform.IsMobile()))
+                {
+                    SystemSounds.Exclamation.Play();
+
+                    ThemedMessageBox.Show(
+                        this,
+                        Globals.DIALOG_MSG_MOBILE_REQUIRES_PATCH5,
+                        Globals.DIALOG_TITLE_PLATFORM_NOT_SUPPORTED,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
